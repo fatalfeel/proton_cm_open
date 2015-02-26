@@ -6,6 +6,7 @@
 #include "WebOS/SDLMain.h"
 #include "BaseApp.h"
 #include "App.h"
+#include "EGL/egl.h"
 
 //avoid needing to define _WIN32_WINDOWS > 0x0400.. although I guess we could in PlatformPrecomp's win stuff...
 #ifndef WM_MOUSEWHEEL
@@ -153,9 +154,10 @@ using namespace irr;
 
 #ifdef C_GL_MODE
 
-#define eglGetError glGetError
-#define EGLint GLint
-#define EGL_SUCCESS GL_NO_ERROR
+//#define eglGetError	glGetError
+//#define EGLint		GLint
+//#define EGL_SUCCESS	GL_NO_ERROR
+
 #else
 
 #ifndef RT_WEBOS
@@ -200,6 +202,11 @@ HINSTANCE			g_hInstance = NULL;
 HWND				g_hWnd		= NULL;
 HDC					g_hDC		= NULL;
 HGLRC				g_hRC		= NULL;		// Permanent Rendering Context
+
+EGLDisplay          g_egl_display	= NULL;
+EGLConfig           g_egl_config	= NULL;
+EGLSurface          g_egl_surface	= NULL;
+EGLContext          g_egl_context	= NULL;
 
 #define KEY_DOWN  0x8000
 
@@ -298,6 +305,89 @@ int VKeyToWMCharKey(int vKey)
 	return vKey;
 }
 
+void xmEGLInit()
+{
+	int		i;
+	int		eRet;
+	int		major   = 0;
+	int     minor   = 0;
+	int     configs = 0;
+	int     color_buffer[4];
+	int     config_attrs[32];
+	int     context_attrs[3];
+	
+	color_buffer [ 0 ] = 8;
+	color_buffer [ 1 ] = 8;
+	color_buffer [ 2 ] = 8;
+	color_buffer [ 3 ] = 8;
+	
+	i = 0;
+	
+	config_attrs[i++] = EGL_RED_SIZE;
+	config_attrs[i++] = color_buffer[ 0 ];
+	config_attrs[i++] = EGL_GREEN_SIZE;
+	config_attrs[i++] = color_buffer[ 1 ];
+	config_attrs[i++] = EGL_BLUE_SIZE;
+	config_attrs[i++] = color_buffer[ 2 ];
+	config_attrs[i++] = EGL_ALPHA_SIZE;
+	config_attrs[i++] = color_buffer[ 3 ];
+	config_attrs[i++] = EGL_DEPTH_SIZE;
+	config_attrs[i++] = 16;
+	config_attrs[i++] = EGL_STENCIL_SIZE;
+	config_attrs[i++] = 8;
+
+
+	config_attrs[i++] = EGL_SURFACE_TYPE;
+	config_attrs[i++] = EGL_WINDOW_BIT;
+
+	config_attrs[i++] = EGL_RENDERABLE_TYPE;
+	config_attrs[i++] = EGL_OPENGL_ES_BIT;
+
+	config_attrs[i++] = EGL_NONE;
+
+	context_attrs[0] = EGL_CONTEXT_CLIENT_VERSION;	
+	context_attrs[1] = 1;
+	context_attrs[2] = EGL_NONE;
+
+	eRet = eglBindAPI( EGL_OPENGL_ES_API );
+
+	g_egl_display = eglGetDisplay ( g_hDC );
+	
+	if ( g_egl_display == EGL_NO_DISPLAY )
+	{
+		return;
+	}
+
+	if ( !eglInitialize ( g_egl_display, &major, &minor ) )
+	{
+		return;
+	}
+
+	if ( !eglChooseConfig ( g_egl_display, config_attrs, &g_egl_config, 1, &configs ) || ( configs != 1 ) )
+    {
+        return ;
+    }
+   
+	g_egl_context = eglCreateContext ( g_egl_display, g_egl_config, 0, context_attrs );
+
+ 	if ( eglGetError ( ) != EGL_SUCCESS )
+	{
+		return;
+	}
+
+	g_egl_surface = eglCreateWindowSurface ( g_egl_display, g_egl_config, g_hWnd, 0 );
+	if ( eglGetError ( ) != EGL_SUCCESS )
+	{
+		return;
+	}
+
+	eglMakeCurrent ( g_egl_display, g_egl_surface, g_egl_surface, g_egl_context );
+	if ( eglGetError ( ) != EGL_SUCCESS )
+	{
+		return;
+	}
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int Width, Height;
@@ -308,7 +398,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	
 	switch (message)
 	{
-			// Handles the close message when a user clicks the quit icon of the window
+	case WM_CREATE:
+			g_hWnd	= hWnd;
+			g_hDC	= GetDC(g_hWnd);
+
+			xmEGLInit();
+			break;
+
+		// Handles the close message when a user clicks the quit icon of the window
 		case WM_CLOSE:
 			g_bAppFinished = true;
 			//PostQuitMessage(0);
@@ -789,7 +886,7 @@ bool InitVideo(int width, int height, bool bFullscreen, float aspectRatio)
 	EGLint				pi32ConfigAttribs[128];
 	int				i;
 #else
-	int		bits = 16;
+	/*int		bits = 16;
 	GLuint	PixelFormat;			// Holds The Results After Searching For A Match
 
 	// pfd Tells Windows How We Want Things To Be
@@ -813,7 +910,7 @@ bool InitVideo(int width, int height, bool bFullscreen, float aspectRatio)
 		PFD_MAIN_PLANE,								// Main Drawing Layer
 		0,											// Reserved
 		0, 0, 0										// Layer Masks Ignored
-	};
+	};*/
 
 #endif
 
@@ -843,51 +940,38 @@ bool InitVideo(int width, int height, bool bFullscreen, float aspectRatio)
 	AdjustWindowRectEx(&sRect, style, false, ex_style);
 	
 	g_bHasFocus = true;
-
-	/*if (g_hWnd)
-	{
-		//RECT clientRect;
-		GetClientRect(g_hWnd, &clientRect);
 	
-		if (clientRect.right != width || clientRect.bottom != height)
-		{
-			//we'll need to actually recreate this
-			DestroyWindow(g_hWnd);
-			g_hWnd = NULL;
-		}
-	}*/
-
 	//if (!g_hWnd)
 	if ( g_hWnd == NULL )
 	{
 		bCenterWindow = true;
 
-		g_hWnd = CreateWindowEx(ex_style,
-								WINDOW_CLASS,
-								GetAppName(),
-								style,
-								0,
-								0, 
-								sRect.right-sRect.left,
-								sRect.bottom-sRect.top,
-								NULL,
-								NULL,
-								g_hInstance,
-								NULL);
+		CreateWindowEx(	ex_style,
+						WINDOW_CLASS,
+						GetAppName(),
+						style,
+						0,
+						0, 
+						sRect.right-sRect.left,
+						sRect.bottom-sRect.top,
+						NULL,
+						NULL,
+						g_hInstance,
+						NULL );
 	} 
 	else
 	{
 		SetWindowLong(g_hWnd, GWL_STYLE, style);
 	}
 	
-	assert(!g_hDC);
-
+	
 #ifndef C_GL_MODE
 	eglWindow = g_hWnd;
 #endif
 
 	// Get the associated device context
-	g_hDC = GetDC(g_hWnd);
+	//g_hDC = GetDC(g_hWnd);
+	
 	if (!g_hDC)
 	{
 		MessageBox(0, _T("Failed to create the device context"), _T("Error"), MB_OK|MB_ICONEXCLAMATION);
@@ -896,7 +980,7 @@ bool InitVideo(int width, int height, bool bFullscreen, float aspectRatio)
 
 #ifdef C_GL_MODE
 	//NORMAL GL INIT
-	if (!(PixelFormat=ChoosePixelFormat(g_hDC,&pfd)))	// Did Windows Find A Matching Pixel Format?
+	/*if (!(PixelFormat=ChoosePixelFormat(g_hDC,&pfd)))	// Did Windows Find A Matching Pixel Format?
 	{
 		MessageBox(NULL,"Can't Find A Suitable PixelFormat.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		return FALSE;								// Return FALSE
@@ -918,7 +1002,7 @@ bool InitVideo(int width, int height, bool bFullscreen, float aspectRatio)
 	{
 		MessageBox(NULL,"Can't Activate The GL Rendering Context.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		return FALSE;								// Return FALSE
-	}
+	}*/
 	
 #else
 	g_eglDisplay = eglGetDisplay((NativeDisplayType) g_hDC);
@@ -1015,7 +1099,7 @@ void DestroyVideo(bool bDestroyHWNDAlso)
 {
 #ifdef C_GL_MODE
 
-	if (g_hRC)											// Do We Have A Rendering Context?
+	/*if (g_hRC)											// Do We Have A Rendering Context?
 	{
 		if (!wglMakeCurrent(NULL,NULL))					// Are We Able To Release The DC And RC Contexts?
 		{
@@ -1027,7 +1111,13 @@ void DestroyVideo(bool bDestroyHWNDAlso)
 			MessageBox(NULL,"Release Rendering Context Failed.","SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
 		}
 		g_hRC=NULL;										// Set RC To NULL
-	}
+	}*/
+
+	eglSwapBuffers ( g_egl_display, g_egl_surface );
+	eglMakeCurrent ( g_egl_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT );
+	eglDestroySurface(g_egl_display, g_egl_surface);
+	eglDestroyContext(g_egl_display, g_egl_context);
+	eglTerminate ( g_egl_display );
 
 #else
 
@@ -1308,7 +1398,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 		if (g_bHasFocus && !g_bIsMinimized)
 		{
 #ifdef C_GL_MODE
-			SwapBuffers(g_hDC); //need it
+			//SwapBuffers(g_hDC); //need it
+			eglSwapBuffers ( g_egl_display, g_egl_surface );
 #else
 			eglSwapBuffers(g_eglDisplay, g_eglSurface);
 			if (!TestEGLError(g_hWnd, "eglSwapBuffers"))

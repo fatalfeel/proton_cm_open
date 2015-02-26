@@ -96,10 +96,10 @@ bool IrrlichtManager::Init(irr::IEventReceiver *pEventReceiver)
     //E_DRIVER_TYPE driverType = video::EDT_OGLES1;
     E_DRIVER_TYPE driverType = AppGetOGLESType(); //by stone
 
-#ifdef C_GL_MODE
+/*#ifdef C_GL_MODE
 	driverType = video::EDT_OPENGL;
 	bStencilBuffer = true;
-#endif
+#endif*/
 	
 	m_pDevice = createDevice( driverType, dimension2d<u32>(GetPrimaryGLX(), GetPrimaryGLY()), 16, false, bStencilBuffer, false, pEventReceiver);
   

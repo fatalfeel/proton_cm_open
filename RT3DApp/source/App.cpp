@@ -13,7 +13,7 @@
 
 irr::video::E_DRIVER_TYPE AppGetOGLESType()
 {
-	return irr::video::EDT_OGLES2;
+	return irr::video::EDT_OGLES1;
 }
 
 ////////////////////////////////////////

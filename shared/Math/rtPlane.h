@@ -20,6 +20,6 @@ struct rtPlane
 		plane[3] = vNormal.x * -vPos.x + vNormal.y * -vPos.y + vNormal.z * -vPos.z;
 	}
 
-	GLdouble plane[4];
+	double plane[4];
 };
 #endif // rtPlane_h__

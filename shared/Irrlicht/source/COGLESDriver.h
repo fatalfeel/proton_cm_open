@@ -17,7 +17,13 @@
 
 #ifdef _IRR_COMPILE_WITH_OGLES1_
 
-#include "CIrrDeviceIPhone.h" //SETH
+#ifdef _WIN32
+	#include "CIrrDeviceWin32.h" //stone
+#else
+	#include "CIrrDeviceIPhone.h" //SETH
+#endif
+
+
 #include "CNullDriver.h"
 #include "IMaterialRendererServices.h"
 #include "EDriverFeatures.h"
@@ -37,9 +43,6 @@
 #ifdef _MSC_VER
 	#pragma comment(lib, "libgles_cm.lib")
 #endif*/
-
-#include "PlatformSetup.h"
-#include "COGLESExtensionHandler.h"
 
 namespace irr
 {

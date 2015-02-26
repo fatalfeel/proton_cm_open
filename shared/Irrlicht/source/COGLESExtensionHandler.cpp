@@ -4,6 +4,11 @@
 // For conditions of distribution and use, see copyright notice in Irrlicht.h
 
 #include "IrrCompileConfig.h"
+#include "PlatformEnums.h"
+
+#include "EGL/egl.h"
+#include "GLES/gl.h"
+#include "GLES/glext.h"
 
 #ifdef _IRR_COMPILE_WITH_OGLES1_
 

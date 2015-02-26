@@ -4,11 +4,16 @@
 
 #include "IrrCompileConfig.h"
 
+#include "EGL/egl.h"
+#include "GLES/gl.h"
+#include "GLES/glext.h"
+
 #ifdef _IRR_COMPILE_WITH_OGLES1_
 
 #include "irrTypes.h"
-#include "COGLESTexture.h"
+#include "COGLESExtensionHandler.h"
 #include "COGLESDriver.h"
+#include "COGLESTexture.h"
 #include "os.h"
 #include "CImage.h"
 #include "CColorConverter.h"

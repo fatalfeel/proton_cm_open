@@ -28,6 +28,11 @@
 #include "CImage.h"
 #include "os.h"
 
+#ifdef _WIN32
+	#pragma comment(lib, "../../shared/dep32/ogles2/lib/libEGL.lib")
+	#pragma comment(lib, "../../shared/dep32/ogles2/lib/libGLESv2.lib")
+#endif
+
 /*#if defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_)
     #include <OpenGLES/ES2/gl.h>
     #include <OpenGLES/ES2/glext.h>

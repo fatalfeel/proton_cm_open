@@ -2,19 +2,28 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#include "COGLESDriver.h"
+#include "EGL/egl.h"
+#include "GLES/gl.h"
+#include "GLES/glext.h"
+
 // needed here also because of the create methods' parameters
 #include "CNullDriver.h"
+#include "COGLESExtensionHandler.h"
+#include "COGLESDriver.h"
 
 #ifdef _IRR_COMPILE_WITH_OGLES1_
-
 #include "COGLESTexture.h"
 #include "COGLESMaterialRenderer.h"
 #include "CImage.h"
 #include "os.h"
 
+#ifdef _WIN32
+	#pragma comment(lib, "../../shared/dep32/ogles1/lib/libEGL.lib")
+	#pragma comment(lib, "../../shared/dep32/ogles1/lib/libgles_cm.lib")
+#endif
+
 #ifdef _IRR_COMPILE_WITH_SDL_DEVICE_
-#include <SDL/SDL.h>
+	#include <SDL/SDL.h>
 #endif
 
 namespace irr

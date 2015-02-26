@@ -17,6 +17,10 @@
 #include "COpenGLParallaxMapRenderer.h"
 #include "os.h"
 
+#ifdef _WIN32
+	#pragma comment(lib, "opengl32.lib")
+#endif
+
 #ifdef _IRR_COMPILE_WITH_SDL_DEVICE_
 #include <SDL/SDL.h>
 #endif

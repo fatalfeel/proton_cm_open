@@ -10,20 +10,21 @@
 
 #ifndef _CONSOLE
 #ifdef C_GL_MODE
-#include "Renderer/GL/gl.h"
+
+#include "KHR/khrplatform.h"
+#include "GLES/gl.h"
 
 //help with compatibility so I can use the GL ES calls with normal GL
-
-#define glTexParameterx glTexParameteri
-#define glFrustumf glFrustum
-#define glOrthof glOrtho
-#define glColor4x(r,g,b,a) glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
-#define glActiveTexture glActiveTextureARB
-#define glClientActiveTexture glClientActiveTextureARB
+#define glTexParameterx			glTexParameteri
+#define glFrustumf				glFrustum
+#define glOrthof				glOrtho
+#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
+//#define glActiveTexture		glActiveTextureARB
+//#define glClientActiveTexture glClientActiveTextureARB
 
 
 #ifdef _IRR_STATIC_LIB_
-#include "Irrlicht/source/glext.h"
+#include "GLES/glext.h"
 #endif
 //#include "Renderer/RTGLESExt.h"
 

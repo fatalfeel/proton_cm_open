@@ -12,7 +12,10 @@
 #include "IrrlichtDevice.h"
 #include "IImagePresenter.h"
 
-#define WIN32_LEAN_AND_MEAN
+#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+#endif
+
 //#if !defined(_IRR_XBOX_PLATFORM_)
 #if defined(_WIN32)
 	#include <windows.h>
@@ -403,7 +406,7 @@ namespace irr
 
 		void pollJoysticks();
 
-		//HWND HWnd;
+		HWND HWnd;
 
 		bool ChangedToFullScreen;
 		bool IsNonNTWindows;

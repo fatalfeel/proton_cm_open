@@ -92,38 +92,17 @@
 #endif
 
 #if defined(__APPLE__) || defined(MACOSX)
-
     #define _IRR_OSX_PLATFORM_ // we only support OSX on these systems
-
-    /*#if !defined(MACOSX)
-        #define MACOSX // legacy support
-    #endif
-
-    #if defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__) || defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-        #define _IRR_IPHONE_PLATFORM_
-        #define _IRR_COMPILE_WITH_IPHONE_DEVICE_
-        #define _IRR_COMPILE_WITH_OGLES1_
-        #define _IRR_COMPILE_WITH_OGLES2_
-    #else
-        #define _IRR_COMPILE_WITH_OSX_DEVICE_
-    #endif*/
 #endif
-
-/*#if defined(_IRR_ANDROID_PLATFORM_)
-    #define _IRR_ANDROID_PLATFORM_
-    #define _IRR_COMPILE_WITH_ANDROID_DEVICE_
-    #define _IRR_COMPILE_WITH_OGLES1_
-    #define _IRR_COMPILE_WITH_OGLES2_
-    //#define _IRR_COMPILE_ANDROID_ASSET_READER_
-#endif*/
 
 //SETH Make my own C_GL_MODE define control if normal gl is used or not in irrlicht
 #if defined(C_GL_MODE)
-	#define _IRR_COMPILE_WITH_OPENGL_
-	#define _IRR_COMPILE_WITH_WINDOWS_DEVICE_
+	//#define _IRR_COMPILE_WITH_OPENGL_
+	#define _IRR_COMPILE_WITH_OGLES1_
 #else
 	#define _IRR_IPHONE_PLATFORM_	//share with android setting
 	#define _IRR_COMPILE_WITH_IPHONE_DEVICE_
+	
 	#define _IRR_COMPILE_WITH_OGLES1_
 	
 	#if defined(__APPLE__) || defined(ANDROID_NDK)
@@ -215,12 +194,12 @@ If not defined, Windows Multimedia library is used, which offers also broad supp
 //! Define _IRR_COMPILE_WITH_OPENGL_ to compile the Irrlicht engine with OpenGL.
 /** If you do not wish the engine to be compiled with OpenGL, comment this
 define out. */
-#if !defined(_IRR_IPHONE_PLATFORM_) && !defined(_IRR_ANDROID_PLATFORM_)
+/*#if !defined(_IRR_IPHONE_PLATFORM_) && !defined(_IRR_ANDROID_PLATFORM_)
 #define _IRR_COMPILE_WITH_OPENGL_
 #endif
 #ifdef NO_IRR_COMPILE_WITH_OPENGL_
 #undef _IRR_COMPILE_WITH_OPENGL_
-#endif
+#endif*/
 
 //! Define _IRR_COMPILE_WITH_OGLES1_ to compile the Irrlicht engine with OpenGL-ES 1.x.
 /** If you do not wish the engine to be compiled with OpenGL-ES 1.x, comment

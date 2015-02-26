@@ -526,7 +526,7 @@ void SetOrthoRenderSize(float x, float y, int screenOffsetX, int screenOffsetY)
 	g_renderOrthoRenderSizeY = y;
 	
 	float offset = 0;
-	glOrthof( (-screenOffsetX)+offset, (x+offset), y+offset, screenOffsetY+offset,  -1, 1 );		
+	//glOrthof( (-screenOffsetX)+offset, (x+offset), y+offset, screenOffsetY+offset,  -1, 1 );		
 	//glTranslatef(0.5f, 0.5f, 0); //fixes a gl glitch where pixels don't know which side to be on
 
 	glMatrixMode(GL_MODELVIEW);
@@ -553,7 +553,7 @@ void RemoveOrthoRenderSize()
 		g_renderOrthoRenderSizeY = GetScreenSizeYf();
 	
 		float offset = 0.0f;
-		glOrthof( offset,  g_renderOrthoRenderSizeX+offset, g_renderOrthoRenderSizeY+offset, offset,  -1, 1 );		
+		//glOrthof( offset,  g_renderOrthoRenderSizeX+offset, g_renderOrthoRenderSizeY+offset, offset,  -1, 1 );		
 		glMatrixMode(GL_MODELVIEW);
 		CHECK_GL_ERROR();
 	}
@@ -603,7 +603,7 @@ void SetupOrtho()
 
     CHECK_GL_ERROR();
 
-	glOrthof( 0,  tempX, tempY, 0,  -1, 1 );		
+	//glOrthof( 0,  tempX, tempY, 0,  -1, 1 );		
 	
 	CHECK_GL_ERROR();
 
