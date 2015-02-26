@@ -4,9 +4,14 @@
 
 #include "IrrCompileConfig.h"
 
-#include "EGL/egl.h"
-#include "GLES/gl.h"
-#include "GLES/glext.h"
+#ifdef _IRR_COMPILE_WITH_IPHONE_DEVICE_
+    #include "OpenGLES/ES1/gl.h"
+    #include "OpenGLES/ES1/glext.h"
+#else
+    #include "EGL/egl.h"
+    #include "GLES/gl.h"
+    #include "GLES/glext.h"
+#endif
 
 #ifdef _IRR_COMPILE_WITH_OGLES1_
 

@@ -1101,9 +1101,8 @@ void CIrrDeviceWin32::createDriver()
 	case video::EDT_OPENGL:
 
 		#ifdef _IRR_COMPILE_WITH_OPENGL_
-		switchToFullScreen();
-
 		VideoDriver = video::createOpenGLDriver(CreationParams, FileSystem, this);
+		
 		if (!VideoDriver)
 		{
 			os::Printer::log("Could not create OpenGL driver.", ELL_ERROR);
@@ -1117,10 +1116,7 @@ void CIrrDeviceWin32::createDriver()
 		#ifdef _IRR_COMPILE_WITH_OGLES1_
 		{
 			video::SExposedVideoData data;
-			data.OpenGLWin32.HWnd=HWnd;
-
-			switchToFullScreen();
-
+						
 			VideoDriver = video::createOGLES1Driver(CreationParams, data, FileSystem);
 			if (!VideoDriver)
 			{

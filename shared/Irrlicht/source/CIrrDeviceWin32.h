@@ -406,7 +406,7 @@ namespace irr
 
 		void pollJoysticks();
 
-		HWND HWnd;
+		//HWND HWnd;
 
 		bool ChangedToFullScreen;
 		bool IsNonNTWindows;

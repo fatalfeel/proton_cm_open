@@ -2,9 +2,16 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#include "EGL/egl.h"
-#include "GLES/gl.h"
-#include "GLES/glext.h"
+#include "IrrCompileConfig.h"
+
+#ifdef _IRR_COMPILE_WITH_IPHONE_DEVICE_
+    #include "OpenGLES/ES1/gl.h"
+    #include "OpenGLES/ES1/glext.h"
+#else
+    #include "EGL/egl.h"
+    #include "GLES/gl.h"
+    #include "GLES/glext.h"
+#endif
 
 // needed here also because of the create methods' parameters
 #include "CNullDriver.h"

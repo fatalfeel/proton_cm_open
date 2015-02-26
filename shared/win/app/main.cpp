@@ -1281,7 +1281,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 	GLFlashAdaptor_Initialize();
 #endif
 
-	if (!InitVideo(GetPrimaryGLX(), GetPrimaryGLY(), false, 0))
+	//if (!InitVideo(GetPrimaryGLX(), GetPrimaryGLY(), false, 0))
+	if (!InitVideo(320, 480, false, 0))
 	{
 		goto cleanup;
 	}

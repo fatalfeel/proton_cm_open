@@ -3,12 +3,17 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in Irrlicht.h
 
-#include "IrrCompileConfig.h"
 #include "PlatformEnums.h"
+#include "IrrCompileConfig.h"
 
-#include "EGL/egl.h"
-#include "GLES/gl.h"
-#include "GLES/glext.h"
+#ifdef TARGET_OS_IPHONE
+    #include "OpenGLES/ES1/gl.h"
+    #include "OpenGLES/ES1/glext.h"
+#else
+    #include "EGL/egl.h"
+    #include "GLES/gl.h"
+    #include "GLES/glext.h"
+#endif
 
 #ifdef _IRR_COMPILE_WITH_OGLES1_
 
