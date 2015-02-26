@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winRT3DApp", "winRT3DApp.vcproj", "{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Common Debug|Win32 = Common Debug|Win32
+		Common Release|Win32 = Common Release|Win32
+		Debug GL|Win32 = Debug GL|Win32
+		Release GL|Win32 = Release GL|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Common Debug|Win32.ActiveCfg = Common Debug|Win32
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Common Debug|Win32.Build.0 = Common Debug|Win32
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Common Release|Win32.ActiveCfg = Common Release|Win32
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Common Release|Win32.Build.0 = Common Release|Win32
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Debug GL|Win32.ActiveCfg = Debug GL|Win32
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Debug GL|Win32.Build.0 = Debug GL|Win32
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Release GL|Win32.ActiveCfg = Release GL|Win32
+		{CFCB24DA-5AE2-453A-930B-50E0AF6E2822}.Release GL|Win32.Build.0 = Release GL|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+.txt
+.bak
+.max
+.svn
+.psd
+.fbx
+.tmp
+.fnt

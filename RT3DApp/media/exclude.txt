@@ -1,0 +1,13 @@
+.bmp
+.bak
+.max
+.obj
+.x
+.txt
+.svn
+.psd
+.png
+.fbx
+.tmp
+.fnt
+.bmfc

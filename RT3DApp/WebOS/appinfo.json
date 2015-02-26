@@ -1,0 +1,10 @@
+{
+	"title": "RT3DApp",
+	"type": "pdk",
+	"main": "rt3dapp",
+	"id": "com.rtsoft.rt3dapp",
+	"version": "1.0.0",
+	"vendor": "Robinson Technologies",
+	"icon": "icon.png",
+  "requiredMemory": 50
+}
