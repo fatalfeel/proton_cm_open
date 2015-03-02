@@ -1064,8 +1064,6 @@
 		B7320E4918080A0300A41E79 /* CSoftwareDriver2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSoftwareDriver2.h; path = ../shared/Irrlicht/source/CSoftwareDriver2.h; sourceTree = "<group>"; };
 		B7320E4A18080A0500A41E79 /* CSoftwareTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSoftwareTexture.h; path = ../shared/Irrlicht/source/CSoftwareTexture.h; sourceTree = "<group>"; };
 		B7320E4B18080A0800A41E79 /* CSoftwareTexture2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSoftwareTexture2.h; path = ../shared/Irrlicht/source/CSoftwareTexture2.h; sourceTree = "<group>"; };
-		B73220EF183CBFFA00DB39B1 /* gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
-		B73220F1183CBFFA00DB39B1 /* glext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
 		B73220F2183CC04800DB39B1 /* CGUIButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CGUIButton.cpp; path = ../shared/Irrlicht/source/CGUIButton.cpp; sourceTree = "<group>"; };
 		B73220F3183CC04800DB39B1 /* CGUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGUIButton.h; path = ../shared/Irrlicht/source/CGUIButton.h; sourceTree = "<group>"; };
 		B73220F4183CC04800DB39B1 /* CGUICheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CGUICheckBox.cpp; path = ../shared/Irrlicht/source/CGUICheckBox.cpp; sourceTree = "<group>"; };
@@ -1251,16 +1249,6 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5D0CC94A0F79E162004D9AE9 /* Renderer */ = {
-			isa = PBXGroup;
-			children = (
-				B73220EE183CBFFA00DB39B1 /* GL */,
-				B73220F0183CBFFA00DB39B1 /* GLES */,
-			);
-			name = Renderer;
-			path = ../RT3DApp;
 			sourceTree = "<group>";
 		};
 		5D3063690FD890CF009DE600 /* Audio */ = {
@@ -2115,7 +2103,6 @@
 				5D9831DA0F7B625000D94D9B /* Math */,
 				5DA556E90E9B3D3F00D16247 /* Managers */,
 				5D82C8840FF4BB180082EBE7 /* Network */,
-				5D0CC94A0F79E162004D9AE9 /* Renderer */,
 				5DA556EA0E9B3D5C00D16247 /* util */,
 				5DD9544D0E960962004E403D /* PlatformSetup.h */,
 				5D7C8042119112B3007F9604 /* PlatformSetup.cpp */,
@@ -2232,24 +2219,6 @@
 				B7322127183CC04900DB39B1 /* CGUIWindow.h */,
 			);
 			name = Gui;
-			sourceTree = "<group>";
-		};
-		B73220EE183CBFFA00DB39B1 /* GL */ = {
-			isa = PBXGroup;
-			children = (
-				B73220EF183CBFFA00DB39B1 /* gl.h */,
-			);
-			name = GL;
-			path = ../shared/Renderer/GL;
-			sourceTree = "<group>";
-		};
-		B73220F0183CBFFA00DB39B1 /* GLES */ = {
-			isa = PBXGroup;
-			children = (
-				B73220F1183CBFFA00DB39B1 /* glext.h */,
-			);
-			name = GLES;
-			path = ../shared/Renderer/GLES;
 			sourceTree = "<group>";
 		};
 		B739B97817D72F1D00F60FA4 /* Header */ = {

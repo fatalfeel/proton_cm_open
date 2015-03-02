@@ -9,61 +9,50 @@
 #endif
 
 #ifndef _CONSOLE
-#ifdef C_GL_MODE
+	#ifdef C_GL_MODE
+		#include "KHR/khrplatform.h"
+		#include "GLES/gl.h"
+		
+		#ifdef _IRR_STATIC_LIB_
+			#include "GLES/glext.h"
+		#endif
+				
+		#define glTexParameterx			glTexParameteri
+		#define glFrustumf				glFrustum
+		//#define glOrthof				glOrtho
+		#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
+		//#define glActiveTexture		glActiveTextureARB
+		//#define glClientActiveTexture glClientActiveTextureARB
+	#else
+		#ifdef RT_WEBOS
+			#include <GLES/gl.h>
+			#ifdef _IRR_STATIC_LIB_
+				#include "Irrlicht/source/glext.h"
+			#else
+				#include <GLES/glext.h>
+			#endif
+		#else
+			#ifdef RT_FLASH_TEST
+				//Allow us to use our fake flash functions from GLFlashAdaptor.cpp, can help with debugging certain things
+				//even though we can't really talk to Flash from MSVC++
+				#define _DLL_EXPORTS
+				#define inline_as3(...)  ((void)0)
+			#endif
 
-#include "KHR/khrplatform.h"
-#include "GLES/gl.h"
+			#include <GLES/egl.h>
+			#include <GLES/gl.h>
+			#include "Irrlicht/source/glext.h"
+		#endif
 
-//help with compatibility so I can use the GL ES calls with normal GL
-#define glTexParameterx			glTexParameteri
-#define glFrustumf				glFrustum
-#define glOrthof				glOrtho
-#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
-//#define glActiveTexture		glActiveTextureARB
-//#define glClientActiveTexture glClientActiveTextureARB
+		#ifdef _IRR_STATIC_LIB_
+			#include "Irrlicht/source/gles-ext.h"
+		#endif
 
-
-#ifdef _IRR_STATIC_LIB_
-#include "GLES/glext.h"
-#endif
-//#include "Renderer/RTGLESExt.h"
-
-
-
-#else
-
-#ifdef RT_WEBOS
-#include <GLES/gl.h>
-#ifdef _IRR_STATIC_LIB_
-#include "Irrlicht/source/gles-ext.h"
-#else
-#include <GLES/glext.h>
-#endif
-
-#else
-
-#ifdef RT_FLASH_TEST
-	//Allow us to use our fake flash functions from GLFlashAdaptor.cpp, can help with debugging certain things
-	//even though we can't really talk to Flash from MSVC++
-	#define _DLL_EXPORTS
-
-	#define inline_as3(...)  ((void)0)
-#endif
-
-#include <GLES/egl.h>
-#include <GLES/gl.h>
-#include "Renderer/GLES/glext.h"
+		typedef GLfloat		GLdouble;
+		#define glClipPlane glClipPlanef
+	#endif
 #endif
 
-#ifdef _IRR_STATIC_LIB_
-	#include "Irrlicht/source/gles-ext.h"
-#endif
-
-typedef GLfloat GLdouble;
-#define glClipPlane glClipPlanef
-#endif
-
-#endif
 #ifndef M_PI
 #define M_PI 3.141592f
 #endif

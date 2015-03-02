@@ -4,11 +4,16 @@
 
 #include "IrrCompileConfig.h"
 
-#ifdef _IRR_COMPILE_WITH_IPHONE_DEVICE_
+#define GL_GLEXT_PROTOTYPES
+
+#ifdef __APPLE__
     #include "OpenGLES/ES1/gl.h"
     #include "OpenGLES/ES1/glext.h"
 #else
-    #include "EGL/egl.h"
+    #ifdef _WIN32
+		#include "EGL/egl.h"
+	#endif
+
     #include "GLES/gl.h"
     #include "GLES/glext.h"
 #endif

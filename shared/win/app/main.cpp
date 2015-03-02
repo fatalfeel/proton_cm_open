@@ -203,10 +203,10 @@ HWND				g_hWnd		= NULL;
 HDC					g_hDC		= NULL;
 HGLRC				g_hRC		= NULL;		// Permanent Rendering Context
 
-EGLDisplay          g_egl_display	= NULL;
-EGLConfig           g_egl_config	= NULL;
-EGLSurface          g_egl_surface	= NULL;
-EGLContext          g_egl_context	= NULL;
+static EGLDisplay   s_egl_display	= NULL;
+static EGLConfig    g_egl_config	= NULL;
+static EGLSurface   s_egl_surface	= NULL;
+static EGLContext	s_egl_context	= NULL;
 
 #define KEY_DOWN  0x8000
 
@@ -351,37 +351,37 @@ void xmEGLInit()
 
 	eRet = eglBindAPI( EGL_OPENGL_ES_API );
 
-	g_egl_display = eglGetDisplay ( g_hDC );
+	s_egl_display = eglGetDisplay ( g_hDC );
 	
-	if ( g_egl_display == EGL_NO_DISPLAY )
+	if ( s_egl_display == EGL_NO_DISPLAY )
 	{
 		return;
 	}
 
-	if ( !eglInitialize ( g_egl_display, &major, &minor ) )
+	if ( !eglInitialize ( s_egl_display, &major, &minor ) )
 	{
 		return;
 	}
 
-	if ( !eglChooseConfig ( g_egl_display, config_attrs, &g_egl_config, 1, &configs ) || ( configs != 1 ) )
+	if ( !eglChooseConfig ( s_egl_display, config_attrs, &g_egl_config, 1, &configs ) || ( configs != 1 ) )
     {
         return ;
     }
    
-	g_egl_context = eglCreateContext ( g_egl_display, g_egl_config, 0, context_attrs );
+	s_egl_context = eglCreateContext ( s_egl_display, g_egl_config, 0, context_attrs );
 
  	if ( eglGetError ( ) != EGL_SUCCESS )
 	{
 		return;
 	}
 
-	g_egl_surface = eglCreateWindowSurface ( g_egl_display, g_egl_config, g_hWnd, 0 );
+	s_egl_surface = eglCreateWindowSurface ( s_egl_display, g_egl_config, g_hWnd, 0 );
 	if ( eglGetError ( ) != EGL_SUCCESS )
 	{
 		return;
 	}
 
-	eglMakeCurrent ( g_egl_display, g_egl_surface, g_egl_surface, g_egl_context );
+	eglMakeCurrent ( s_egl_display, s_egl_surface, s_egl_surface, s_egl_context );
 	if ( eglGetError ( ) != EGL_SUCCESS )
 	{
 		return;
@@ -1113,11 +1113,11 @@ void DestroyVideo(bool bDestroyHWNDAlso)
 		g_hRC=NULL;										// Set RC To NULL
 	}*/
 
-	eglSwapBuffers ( g_egl_display, g_egl_surface );
-	eglMakeCurrent ( g_egl_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT );
-	eglDestroySurface(g_egl_display, g_egl_surface);
-	eglDestroyContext(g_egl_display, g_egl_context);
-	eglTerminate ( g_egl_display );
+	eglSwapBuffers(s_egl_display, s_egl_surface);
+	eglMakeCurrent(s_egl_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT );
+	eglDestroySurface(s_egl_display, s_egl_surface);
+	eglDestroyContext(s_egl_display, s_egl_context);
+	eglTerminate(s_egl_display);
 
 #else
 
@@ -1400,7 +1400,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 		{
 #ifdef C_GL_MODE
 			//SwapBuffers(g_hDC); //need it
-			eglSwapBuffers ( g_egl_display, g_egl_surface );
+			eglSwapBuffers ( s_egl_display, s_egl_surface );
 #else
 			eglSwapBuffers(g_eglDisplay, g_eglSurface);
 			if (!TestEGLError(g_hWnd, "eglSwapBuffers"))
