@@ -13227,10 +13227,6 @@
 							Name="GLES"
 							>
 							<File
-								RelativePath="..\..\shared\dep32\ogles1\include\GLES\egl.h"
-								>
-							</File>
-							<File
 								RelativePath="..\..\shared\dep32\ogles1\include\GLES\gl.h"
 								>
 							</File>
