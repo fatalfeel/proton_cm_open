@@ -612,18 +612,18 @@ void SetupScreenInfo(int x, int y, int orientation)
     }*/
 }
 
-void ConvertCoordinatesIfRequired(int &xPos, int &yPos)
+/*void ConvertCoordinatesIfRequired(int &xPos, int &yPos)
 {
 	float x = (float)xPos;
 	float y = (float)yPos;
 	ConvertCoordinatesIfRequired(x, y);
 	xPos = (int)x;
 	yPos = (int)y;
-}
+}*/
 
-void ConvertCoordinatesIfRequired(float &xPos, float &yPos)
+void ConvertCoordinatesIfRequired(float& xPos, float& yPos)
 {
-//	LogMsg("Before converting, coords are %d, %d", int(xPos), int(yPos));	
+    //LogMsg("Before converting, coords are %d, %d", int(xPos), int(yPos));
 
 	xPos *= GetProtonPixelScaleFactor();
 	yPos *= GetProtonPixelScaleFactor();
@@ -632,33 +632,28 @@ void ConvertCoordinatesIfRequired(float &xPos, float &yPos)
 	{
 		switch (GetOrientation())
 		{
-
-		case ORIENTATION_PORTRAIT:
-			break;
-
-		case ORIENTATION_PORTRAIT_UPSIDE_DOWN:
-			yPos = float(GetOriginalScreenSizeY())-yPos;
-			xPos = float(GetOriginalScreenSizeX())-xPos;
-			break;
-
-		case ORIENTATION_LANDSCAPE_LEFT:
-			swap(xPos, yPos);
-			yPos = float(GetOriginalScreenSizeX())-yPos;
-			break;
-
-		case ORIENTATION_LANDSCAPE_RIGHT:
-			yPos = float(GetOriginalScreenSizeY())-yPos;
-			swap(xPos, yPos);
-			break;
-
+            case ORIENTATION_PORTRAIT:
+                break;
+                
+            case ORIENTATION_PORTRAIT_UPSIDE_DOWN:
+                yPos = (float)GetOriginalScreenSizeY() - yPos;
+                xPos = (float)GetOriginalScreenSizeX() - xPos;
+                break;
+                
+            case ORIENTATION_LANDSCAPE_LEFT:
+                swap(xPos, yPos);
+                yPos = (float)GetOriginalScreenSizeX() - yPos;
+                break;
+                
+            case ORIENTATION_LANDSCAPE_RIGHT:
+                yPos = (float)GetOriginalScreenSizeY() - yPos;
+                swap(xPos, yPos);
+                break;
 		}
 	}
+    
 	if (GetFakePrimaryScreenSizeX() != 0)
 	{
-		//remap to correct values
-		//LogMsg("CurY: %.2f - old y: %.2f",  GetScreenSizeYf(), float(GetOriginalScreenSizeY()));
-		//LogMsg("CurX: %.2f - old x: %.2f",  GetScreenSizeXf(), float(GetOriginalScreenSizeX()) );
-		
 		float OriginalX = (float)GetOriginalScreenSizeX();
 		float OriginalY = (float)GetOriginalScreenSizeY();
 		
@@ -670,8 +665,8 @@ void ConvertCoordinatesIfRequired(float &xPos, float &yPos)
             }
         }
 		
-		xPos = (float(xPos) * (GetScreenSizeXf()/OriginalX));
-		yPos = (float(yPos) * (GetScreenSizeYf()/OriginalY));
+		xPos = xPos * (GetScreenSizeXf()/OriginalX);
+		yPos = yPos * (GetScreenSizeYf()/OriginalY);
 	}
 	
 //	LogMsg("Converted coords to %d, %d", int(xPos), int(yPos));

@@ -65,8 +65,8 @@ CL_Vec2f GetScreenSize();
 void SetupScreenInfo(int x, int y, int orientation);
 bool SetupScreenInfoIPhone(int interfaceOrientation);
 
-void ConvertCoordinatesIfRequired(int &xPos, int &yPos);
-void ConvertCoordinatesIfRequired(float &xPos, float &yPos);
+//void ConvertCoordinatesIfRequired(int &xPos, int &yPos);
+void ConvertCoordinatesIfRequired(float& xPos, float& yPos);
 bool NeedsOrthoSet();
 void ResetOrthoFlag();
 void SetOrthoModeFlag();

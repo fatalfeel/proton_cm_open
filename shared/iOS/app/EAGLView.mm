@@ -421,9 +421,13 @@ return count;
 		}
 
 		CGPoint pt =[touch locationInView:self];
-		ConvertCoordinatesIfRequired(pt.x, pt.y);
+        float px = pt.x;
+        float py = pt.y;
+		ConvertCoordinatesIfRequired(px, py);
+        pt.x = px;
+        pt.y = py;
         MessageManager::GetMessageManager()->SendGUIEx(MESSAGE_TYPE_GUI_CLICK_START,pt.x, pt.y,fingerID);
-	}	
+	}
 }
 
 //by stone
@@ -478,7 +482,13 @@ return count;
 		}
 		
 		CGPoint pt =[touch locationInView:self];
-		ConvertCoordinatesIfRequired(pt.x, pt.y);
+		//ConvertCoordinatesIfRequired(pt.x, pt.y);
+        float px = pt.x;
+        float py = pt.y;
+		ConvertCoordinatesIfRequired(px, py);
+        pt.x = px;
+        pt.y = py;
+        
 		MessageManager::GetMessageManager()->SendGUIEx(MESSAGE_TYPE_GUI_CLICK_END,pt.x, pt.y, fingerID);
 	}	
 }
@@ -501,7 +511,12 @@ return count;
 		}
 		
 		CGPoint pt =[touch locationInView:self];
-		ConvertCoordinatesIfRequired(pt.x, pt.y);
+		//ConvertCoordinatesIfRequired(pt.x, pt.y);
+        float px = pt.x;
+        float py = pt.y;
+		ConvertCoordinatesIfRequired(px, py);
+        pt.x = px;
+        pt.y = py;
 		MessageManager::GetMessageManager()->SendGUIEx(MESSAGE_TYPE_GUI_CLICK_END,pt.x, pt.y, fingerID);
 	}	
 }
@@ -526,7 +541,12 @@ return count;
 		}
 	
 		CGPoint pt =[touch locationInView:self];
-		ConvertCoordinatesIfRequired(pt.x, pt.y);
+		//ConvertCoordinatesIfRequired(pt.x, pt.y);
+        float px = pt.x;
+        float py = pt.y;
+		ConvertCoordinatesIfRequired(px, py);
+        pt.x = px;
+        pt.y = py;
 		MessageManager::GetMessageManager()->SendGUIEx(MESSAGE_TYPE_GUI_CLICK_MOVE,pt.x, pt.y, fingerID);
 	}	
 }
