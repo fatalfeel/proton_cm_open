@@ -39,7 +39,7 @@
 				#define inline_as3(...)  ((void)0)
 			#endif
 
-			#include <GLES/egl.h>
+			#include <EGL/egl.h>
 			#include <GLES/gl.h>
 			#include "Irrlicht/source/glext.h"
 		#endif

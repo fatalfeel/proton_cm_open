@@ -20,11 +20,20 @@ public:
 	Console();
 	virtual ~Console();
 
-	void AddLine(std::string line);
-	void SetMaxLines(unsigned int num) {m_maxLines = num;}
-	string GetAsSingleString();
 	void Clear();
-	size_t GetTotalLines(){return m_log.size();}
+	void AddLine(std::string line);
+	void SetMaxLines(unsigned int num) 
+	{
+		m_maxLines = num;
+	}
+	
+	string GetAsSingleString();
+	
+	size_t GetTotalLines()
+	{
+		return m_log.size();
+	}
+	
 	string GetLine(int index) {return m_log.at(index);}
 	
 	boost::signal<void()> m_sig_on_text_added; //if you want notification when text is added here, connect to this

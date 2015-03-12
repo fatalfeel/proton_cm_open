@@ -305,6 +305,39 @@ int VKeyToWMCharKey(int vKey)
 	return vKey;
 }
 
+bool TestEGLError(HWND hWnd, char* pszLocation)
+{
+
+	EGLint iErr = eglGetError();
+	if (iErr != EGL_SUCCESS)
+	{
+		TCHAR pszStr[256];
+		_stprintf_s(pszStr, _T("%s failed (%d).\n"), pszLocation, iErr);
+		MessageBox(hWnd, pszStr, _T("Error"), MB_OK|MB_ICONEXCLAMATION);
+		return false;
+	}
+
+	return true;
+}
+
+void CenterWindow(HWND hWnd)
+{
+	RECT r, desk;
+	GetWindowRect(hWnd, &r);
+	GetWindowRect(GetDesktopWindow(), &desk);
+
+	int wa,ha,wb,hb;
+
+	wa = (r.right - r.left) / 2;
+	ha = (r.bottom - r.top) / 2;
+
+	wb = (desk.right - desk.left) / 2;
+	hb = (desk.bottom - desk.top) / 2;
+
+	SetWindowPos(hWnd, NULL, wb - wa, hb - ha, r.right - r.left, r.bottom - r.top, 0); 
+
+}
+
 void xmEGLInit()
 {
 	int		i;
@@ -390,7 +423,7 @@ void xmEGLInit()
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	int Width, Height;
+	int		Width, Height;
 
 #ifdef _IRR_COMPILE_WITH_GUI_	
 	irr::SEvent	ev;
@@ -647,39 +680,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		
 		case WM_IME_CHAR:
-			{
-			}
+			break;
 
 		case WM_KEYUP:
-			{
-				uint32 key = ConvertWindowsKeycodeToProtonVirtualKey(wParam);
-
-				/*
-				if (key == VIRTUAL_KEY_BACK)
-				{
-					if (!g_escapeMessageSent)
-					{
-						//work around for not registering escape messages on my dev machine sometimes
-						MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CHAR, float(key) , float(1));  
-						MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CHAR_RAW, float(key) , float(1));  
-					}
-					//g_escapeMessageSent
-
-					g_escapeMessageSent = false;
-				}
-				*/
-
-				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CHAR_RAW, float(key) , float(0), 0, GetWinkeyModifiers());  
-			}
 			break;
 		
 		case WM_SETCURSOR:
-			//{
 			break;
-			//}
+
 		case WM_SYSCOMMAND:
-			// Do not allow screensaver to start. - wait, why would I want to disable the screensaver?!
-			//if (wParam == SC_SCREENSAVE) return true;
+
 			if ((wParam & 0xFFF0) == SC_MINIMIZE)
 			{
 				// shrink the application to the notification area
@@ -697,7 +707,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				g_bIsMinimized = false;
 			
 			}
-
 
 			if ((wParam & 0xFFF0) == SC_CLOSE)
 			{
@@ -728,12 +737,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				ev.MouseInput.Y				= GET_Y_LPARAM(lParam);
 				IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
 #endif
-
 				g_leftMouseButtonDown = true;
-				int xPos = GET_X_LPARAM(lParam);
-				int yPos = GET_Y_LPARAM(lParam);
-				ConvertCoordinatesIfRequired(xPos, yPos);
-				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_START, (float)xPos, (float)yPos, 0, GetWinkeyModifiers());
+				
+				/*xf = (float)GET_X_LPARAM(lParam);
+				yf = (float)GET_Y_LPARAM(lParam);
+				ConvertCoordinatesIfRequired(xf, yf);
+				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_START, xf, yf, 0, GetWinkeyModifiers());*/
+				
 				break;
 			}
 			break;
@@ -752,26 +762,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
 #endif
 				
-				int xPos = GET_X_LPARAM(lParam);
-				int yPos = GET_Y_LPARAM(lParam);
-				ConvertCoordinatesIfRequired(xPos, yPos);
-				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_END, (float)xPos, (float)yPos, 0, GetWinkeyModifiers());
+				/*xf = (float)GET_X_LPARAM(lParam);
+				yf = (float)GET_Y_LPARAM(lParam);
+				ConvertCoordinatesIfRequired(xf, yf);
+				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_END, xf, yf, 0, GetWinkeyModifiers());*/
+				
 				g_leftMouseButtonDown = false;
 			}
 			return true;
-			break;
-
-
+			
 		case WM_RBUTTONDOWN:
 		case WM_RBUTTONDBLCLK:
 			{
 				if (!g_bHasFocus) 
 					break;
+				
 				g_rightMouseButtonDown = true;
-				int xPos = GET_X_LPARAM(lParam);
-				int yPos = GET_Y_LPARAM(lParam);
-				ConvertCoordinatesIfRequired(xPos, yPos);
-				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_START, (float)xPos, (float)yPos, 1, GetWinkeyModifiers());
+				
+				/*xf = (float)GET_X_LPARAM(lParam);
+				yf = (float)GET_Y_LPARAM(lParam);
+				ConvertCoordinatesIfRequired(xf, yf);
+				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_START, xf, yf, 1, GetWinkeyModifiers());*/
+
 				break;
 			}
 			break;
@@ -781,39 +793,36 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if (!g_bHasFocus) 
 					break;
 				
-				int xPos = GET_X_LPARAM(lParam);
-				int yPos = GET_Y_LPARAM(lParam);
+				/*xf = (float)GET_X_LPARAM(lParam);
+				yf = (float)GET_Y_LPARAM(lParam);
+				ConvertCoordinatesIfRequired(xf, yf);
+				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_END, xf, yf, 1, GetWinkeyModifiers());*/
 				
-				ConvertCoordinatesIfRequired(xPos, yPos);
-				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_END, (float)xPos, (float)yPos, 1, GetWinkeyModifiers());
 				g_rightMouseButtonDown = false;
 			}
-			
 			return true;
-			break;
-		
+					
 		case WM_MOUSEMOVE:
 			{
-				if (!g_bHasFocus) break;
+				if (!g_bHasFocus) 
+					break;
 			
-				float xPos = (float)GET_X_LPARAM(lParam);
-				float yPos = (float)GET_Y_LPARAM(lParam);
-				ConvertCoordinatesIfRequired(xPos, yPos);
+				/*xf = (float)GET_X_LPARAM(lParam);
+				yf = (float)GET_Y_LPARAM(lParam);
+				ConvertCoordinatesIfRequired(xf, yf);
 		
 				if (g_leftMouseButtonDown)
 				{
-					MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_MOVE, xPos, yPos, 0, GetWinkeyModifiers());
+					MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_MOVE, xf, yf, 0, GetWinkeyModifiers());
 				} 
 			
 				if (g_rightMouseButtonDown)
 				{
-					MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_MOVE, xPos, yPos, 1, GetWinkeyModifiers());
+					MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_MOVE, xf, yf, 1, GetWinkeyModifiers());
 				} 
 
-				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_MOVE_RAW, xPos, yPos, 0, GetWinkeyModifiers());
+				MessageManager::GetMessageManager()->SendGUIEx2(MESSAGE_TYPE_GUI_CLICK_MOVE_RAW, xf, yf, 0, GetWinkeyModifiers());*/
 			}
-			//sreturn true;
-
 			break;
 
 		case WM_MOUSELEAVE:
@@ -831,39 +840,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	// Calls the default window procedure for messages we did not handle
 	return DefWindowProc(hWnd, message, wParam, lParam);
-}
-
-bool TestEGLError(HWND hWnd, char* pszLocation)
-{
-
-	EGLint iErr = eglGetError();
-	if (iErr != EGL_SUCCESS)
-	{
-		TCHAR pszStr[256];
-		_stprintf_s(pszStr, _T("%s failed (%d).\n"), pszLocation, iErr);
-		MessageBox(hWnd, pszStr, _T("Error"), MB_OK|MB_ICONEXCLAMATION);
-		return false;
-	}
-
-	return true;
-}
-
-void CenterWindow(HWND hWnd)
-{
-	RECT r, desk;
-	GetWindowRect(hWnd, &r);
-	GetWindowRect(GetDesktopWindow(), &desk);
-
-	int wa,ha,wb,hb;
-
-	wa = (r.right - r.left) / 2;
-	ha = (r.bottom - r.top) / 2;
-
-	wb = (desk.right - desk.left) / 2;
-	hb = (desk.bottom - desk.top) / 2;
-
-	SetWindowPos(hWnd, NULL, wb - wa, hb - ha, r.right - r.left, r.bottom - r.top, 0); 
-
 }
 
 bool InitVideo(int width, int height, bool bFullscreen, float aspectRatio)
@@ -1128,7 +1104,7 @@ void DestroyVideo(bool bDestroyHWNDAlso)
 
 	if (g_hDC && !ReleaseDC(g_hWnd,g_hDC))					// Are We Able To Release The DC
 	{
-		MessageBox(NULL,"Release Device Context Failed.","SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
+		MessageBox(NULL,L"Release Device Context Failed.",L"SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
 		g_hDC=NULL;										// Set DC To NULL
 	}
 	g_hDC = NULL;
@@ -1138,24 +1114,28 @@ void DestroyVideo(bool bDestroyHWNDAlso)
 
 		if (g_hWnd && !DestroyWindow(g_hWnd))					// Are We Able To Destroy The Window?
 		{
-			MessageBox(NULL,"Could Not Release hWnd.","SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
+			MessageBox(NULL,L"Could Not Release hWnd.",L"SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
 			g_hWnd=NULL;										// Set hWnd To NULL
 		}
 		g_hWnd = NULL;
 	}
 }
 
-
-string GetExePath()
+std::string GetExePath()
 {
-	// Get path to executable:
-	TCHAR szDllName[_MAX_PATH];
-	TCHAR szDrive[_MAX_DRIVE];
-	TCHAR szDir[_MAX_DIR];
-	TCHAR szFilename[256];
-	TCHAR szExt[256];
-	GetModuleFileName(0, szDllName, _MAX_PATH);
-	_splitpath(szDllName, szDrive, szDir, szFilename, szExt);
+	//char szDllName[_MAX_PATH];
+	std::string	pcstr;
+	WCHAR		w_szDllName[_MAX_PATH];
+	char		szDrive[_MAX_DRIVE];
+	char		szDir[_MAX_DIR];
+	char		szFilename[256];
+	char		szExt[256];
+	
+	GetModuleFileName(0, w_szDllName, _MAX_PATH);
+
+	pcstr = WstringToString(w_szDllName);// wstring???string
+	
+	_splitpath(pcstr.c_str(), szDrive, szDir, szFilename, szExt);
 
 	return string(szDrive) + string(szDir); 
 }
@@ -1218,11 +1198,12 @@ void CheckIfMouseLeftWindowArea()
 }
 
 //by jesse stone
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLine, int nCmdShow)
+int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
 	OSMessage		osm;
 	MSG				msg;
 	int				ret;
+	std::string		pcstr;
 	static float	fpsTimer=0;
 
 	//core::dimension2d<u32> size;
@@ -1240,8 +1221,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 	RemoveFile("log.txt", false);
 
 	if (lpCmdLine[0])
-	{
-		vector<string> parms = StringTokenize(lpCmdLine, " ");
+	{				
+		//vector<string> parms = StringTokenize(lpCmdLine, " ");
+		pcstr = WstringToString(lpCmdLine);
+		std::vector<std::string> parms = StringTokenize(pcstr.c_str(), " ");
 	
 		for (unsigned int i=0; i < parms.size(); i++)
 		{
@@ -1290,7 +1273,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 	if (!BaseApp::GetBaseApp()->Init())
 	{
 		assert(!"Unable to init - did you run media/update_media.bat to build the resources?");
-		MessageBox(NULL, "Error initializing the game.  Did you unzip everything right?", "Unable to load stuff", NULL);
+		MessageBox(NULL, L"Error initializing the game.  Did you unzip everything right?", L"Unable to load stuff", NULL);
 		goto cleanup;
 	}
 
@@ -1472,18 +1455,22 @@ void AddText(const char *tex ,char *filename)
 
 void LogMsg ( const char* traceStr, ... )
 {
-	va_list argsVA;
-	const int logSize = 1024*10;
-	char buffer[logSize];
-	memset ( (void*)buffer, 0, logSize );
+	std::wstring	pwstr;
+	
+	va_list			argsVA;
+	int				logSize = 1024*4; //4k
+	char*			buffer = new char[logSize];
+	
+	memset (buffer, 0, logSize );
 
 	va_start ( argsVA, traceStr );
 	vsnprintf_s( buffer, logSize, logSize, traceStr, argsVA );
 	va_end( argsVA );
-	
 
-	OutputDebugString(buffer);
-	OutputDebugString("\n");
+	pwstr = StringToWstring(buffer);
+	
+	OutputDebugString(pwstr.c_str());
+	OutputDebugString(L"\n");
 
 	if (IsBaseAppInitted())
 	{
@@ -1492,6 +1479,7 @@ void LogMsg ( const char* traceStr, ... )
 		AddText(buffer, "log.txt");
 	}
 
+	delete buffer;
 }
 
 #endif

@@ -332,7 +332,8 @@ void MessageManager::Deliver(Message *m)
 						//to null and some messages may end up here as they are undeliverable
 				}
 			}
-	} else
+	} 
+	else
 	{
 		BaseApp::GetBaseApp()->OnMessage(*m);
 

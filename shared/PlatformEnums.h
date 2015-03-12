@@ -108,18 +108,18 @@ unsigned int GetSystemTimeTick();
 double GetSystemTimeAccurate();
 unsigned int GetFreeMemory();
 unsigned int GetNativeMemoryUsed(); //for flash, this means how many bytes the Flash system is using
-void LaunchURL(std::string url);
+void LaunchURL(std::wstring url);
 void FireAchievement(std::string achievement);
 void LogMsg(const char *lpFormat, ...);
 void LogError (const char* traceStr, ... );
 void SetLastStringInput(std::string s);
 std::string GetLastStringInput();
 void RemoveFile(std::string fileName, bool bAddSavePath = true);
-void CreateDirectoryRecursively(std::string basePath, std::string path);
-bool RemoveDirectoryRecursively(std::string path);
-std::vector<std::string> GetDirectoriesAtPath(std::string path);
-std::vector<std::string> GetFilesAtPath(std::string path);
-std::string GetRegionString();
+//void CreateDirectoryRecursively(std::string basePath, std::string path);
+//bool RemoveDirectoryRecursively(std::string path);
+//std::vector<std::string> GetDirectoriesAtPath(std::string path);
+//std::vector<std::string> GetFilesAtPath(std::string path);
+//std::string GetRegionString();
 bool IsAppInstalled(std::string packageName); // implemented on Android only, send "com.cih.gamecih" to check for that hack tool, for instance
 bool IsIphone();
 bool IsIPAD();

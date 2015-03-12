@@ -15,7 +15,7 @@ void Console::Clear()
 	m_log.clear();
 }
 
-void Console::AddLine( string line )
+void Console::AddLine(std::string line)
 {
 	//OutputDebugString(line.c_str());
 	m_log.push_back(line);

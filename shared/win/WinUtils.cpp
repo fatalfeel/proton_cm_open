@@ -1,6 +1,5 @@
 #if defined(WIN32) && !defined(RT_WEBOS)
 
-#include "WinUtils.h"
 #include "PlatformSetupWin.h"
 #include <cstdlib>
 #include <cstdarg>
@@ -12,7 +11,9 @@
 #include <direct.h>
 #include <io.h>
 #include <sys/stat.h>
-#include "errno.h"
+#include <errno.h>
+#include "App.h"
+#include "WinUtils.h"
 #include "util/MiscUtils.h"
 
 using namespace std;
@@ -55,18 +56,24 @@ FastTimerDX g_fastTimer(0);
 
 string GetBaseAppPath()
 {
-
 	// Get path to executable:
-	TCHAR szDllName[_MAX_PATH];
-	TCHAR szDrive[_MAX_DRIVE];
-	TCHAR szDir[_MAX_DIR];
-	TCHAR szFilename[256];
-	TCHAR szExt[256];
-	GetModuleFileName(0, szDllName, _MAX_PATH);
-	_splitpath(szDllName, szDrive, szDir, szFilename, szExt);
+	//TCHAR szDllName[_MAX_PATH];
+	std::string	pcstr;
+	WCHAR		w_szDllName[_MAX_PATH];
+	char		szDrive[_MAX_DRIVE];
+	char		szDir[_MAX_DIR];
+	char		szFilename[256];
+	char		szExt[256];
+	
+	//GetModuleFileName(0, szDllName, _MAX_PATH);
+	GetModuleFileName(0, w_szDllName, _MAX_PATH);
+	pcstr = WstringToString(w_szDllName);// wstring???string
+	
+	_splitpath(pcstr.c_str(), szDrive, szDir, szFilename, szExt);
 
 	return string(szDrive) + string(szDir); 
 }
+
 string GetSavePath()
 {
 	return "";
@@ -85,23 +92,21 @@ void FireAchievement(std::string achievement)
 {
 }
 
-void LaunchURL(string url)
+void LaunchURL(std::wstring url)
 {
 	//LogMsg("Launching %s", url.c_str());
 	//weird double cast to get away from MSVC warning
-	int result = (int)(LONG_PTR)ShellExecute(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
+	int result = (int)(LONG_PTR)ShellExecute(NULL, L"open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
 
 	if ( (result < 32) && (result != 2))
 	{
 		//big fat error.
+		std::wstring ms;
+		ms = std::wstring(L"Windows doesn't know how to open ")+url+ 
+			 std::wstring(L"\n\nYou need to use file explorer and associate this file type with something first.");
 
-		std::string s;
-		s = std::string("Windows doesn't know how to open ")+url+ 
-			std::string("\n\nYou need to use file explorer and associate this file type with something first.");
-
-		MessageBox(GetForegroundWindow(), s.c_str(), url.c_str(), MB_ICONSTOP);
+		MessageBox(GetForegroundWindow(), ms.c_str(), url.c_str(), MB_ICONSTOP);
 	}
-
 }
 
 float GetDeviceOSVersion()
@@ -278,8 +283,6 @@ void RemoveFile( string fileName, bool bAddSavePath)
 			break;
 
 		}
-
-
 	}
 }
 
@@ -319,7 +322,7 @@ bool IsAppInstalled(string packageName)
 	return false;
 }
 
-string GetRegionString()
+/*string GetRegionString()
 {
 	char  countryCode[12];
 	GetLocaleInfo(LOCALE_SYSTEM_DEFAULT,LOCALE_SISO3166CTRYNAME,countryCode,12);
@@ -333,8 +336,7 @@ string GetRegionString()
 	
 	//um... something is wrong.  Return default
 	return "en_us";
-}
-
+}*/
 
 //month is 1-12 btw
 int GetDaysSinceDate(int month,int day, int year)
@@ -426,7 +428,7 @@ bool LaterThanNow(const int year, const int month, const int day)
 	return false;
 }
 
-bool RTCreateDirectory(const std::string &dir_name)
+/*bool RTCreateDirectory(const std::string &dir_name)
 {
 	if (dir_name.empty())
 		return false;
@@ -488,15 +490,17 @@ void CreateDirectoryRecursively(string basePath, string path)
 		RTCreateDirectory(basePath+path);
 		path += "/";
 	}
-}
+}*/
 
-
-BOOL IsDots(const TCHAR* str) {
-	if(_tcscmp(str,".") && _tcscmp(str,"..")) return FALSE;
+/*BOOL IsDots(const TCHAR* str) 
+{
+	if(_tcscmp(str,".") && _tcscmp(str,"..")) 
+		return FALSE;
+	
 	return TRUE;
-}
+}*/
 
-vector<string> GetDirectoriesAtPath(string path)
+/*vector<string> GetDirectoriesAtPath(string path)
 {
 	if (path.empty()) path += "."; //needed for relative paths
 
@@ -614,7 +618,7 @@ bool RemoveDirectoryRecursively(string path)
 
 	return RemoveDirectory(sPath) != 0;     // remove the empty directory
 
-}
+}*/
 
 
 bool CheckIfOtherAudioIsPlaying()

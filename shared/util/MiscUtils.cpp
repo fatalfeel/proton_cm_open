@@ -381,7 +381,7 @@ void ForceRange(float &a, const float min, const float max)
 	}
 }
 
-string GetCountryCode() //return the 2 letter ISO country code, or 00 if we failed
+/*string GetCountryCode() //return the 2 letter ISO country code, or 00 if we failed
 {
 	string country = "00";
 	if (GetRegionString().length() == 5)
@@ -391,7 +391,7 @@ string GetCountryCode() //return the 2 letter ISO country code, or 00 if we fail
 	}
 
 	return country;
-}
+}*/
 
 inline string TrimRight (const string & s, const string & t)
 { 
