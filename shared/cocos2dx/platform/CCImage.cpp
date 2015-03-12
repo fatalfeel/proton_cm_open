@@ -22,21 +22,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-
-#include "CCImage.h"
+#include <string>
+#include <ctype.h>
 #include "CCCommon.h"
 #include "CCStdC.h"
 #include "CCFileUtils.h"
 #include "png.h"
-#include <string>
-#include <ctype.h>
+#include "CCImage.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS) 
 // on ios, we should use platform/ios/CCImage_ios.mm instead
 
-#define  QGLOBAL_H        // defined for wophone
-#include "jpeglib.h"
-#undef   QGLOBAL_H
+//#define  QGLOBAL_H        // defined for wophone
+//#include "jpeglib.h"
+//#undef   QGLOBAL_H
 
 #define CC_RGB_PREMULTIPLY_APLHA(vr, vg, vb, va) \
     (unsigned)(((unsigned)((unsigned char)(vr) * ((unsigned char)(va) + 1)) >> 8) | \
@@ -50,6 +49,16 @@ typedef struct
     int size;
     int offset;
 }tImageSource;
+
+// struct for handling jpeg errors
+struct irr_jpeg_error_mgr
+{
+    // public jpeg error fields
+    struct jpeg_error_mgr pub;
+
+    // for longjmp, to return to caller on a fatal error
+    jmp_buf setjmp_buffer;
+};
 
 static void pngReadCallback(png_structp png_ptr, png_bytep data, png_size_t length)
 {
@@ -133,11 +142,61 @@ bool CCImage::initWithImageData(void * pData,
     return bRet;
 }
 
+
+void CCImage::CoCo_init_source (j_decompress_ptr cinfo)
+{
+	// DO NOTHING
+}
+
+boolean CCImage::CoCo_fill_input_buffer (j_decompress_ptr cinfo)
+{
+	// DO NOTHING
+	return true;
+}
+
+void CCImage::CoCo_skip_input_data (j_decompress_ptr cinfo, long count)
+{
+	jpeg_source_mgr * src = cinfo->src;
+	if(count > 0)
+	{
+		src->bytes_in_buffer -= count;
+		src->next_input_byte += count;
+	}
+}
+
+void CCImage::CoCo_term_source (j_decompress_ptr cinfo)
+{
+	// DO NOTHING
+}
+
+void CCImage::CoCo_error_exit (j_common_ptr cinfo)
+{
+	// unfortunately we need to use a goto rather than throwing an exception
+	// as gcc crashes under linux crashes when using throw from within
+	// extern c code
+
+	// Always display the message
+	(*cinfo->err->output_message) (cinfo);
+
+	// cinfo->err really points to a irr_error_mgr struct
+	irr_jpeg_error_mgr *myerr = (irr_jpeg_error_mgr*) cinfo->err;
+
+	longjmp(myerr->setjmp_buffer, 1);
+}
+
+void CCImage::CoCo_output_message(j_common_ptr cinfo)
+{
+	// display the error message.
+	char temp1[JMSG_LENGTH_MAX];
+	(*cinfo->err->format_message)(cinfo, temp1);
+}
+
 bool CCImage::_initWithJpgData(void * data, int nSize)
 {
     /* these are standard libjpeg structures for reading(decompression) */
     struct jpeg_decompress_struct cinfo;
-    struct jpeg_error_mgr jerr;
+    struct jpeg_error_mgr	jerr;
+	struct jpeg_source_mgr	jsrc;
     /* libjpeg data structure for storing one row, that is, scanline of an image */
     JSAMPROW row_pointer[1] = {0};
     unsigned long location = 0;
@@ -149,10 +208,24 @@ bool CCImage::_initWithJpgData(void * data, int nSize)
         /* here we set up the standard libjpeg error handler */
         cinfo.err = jpeg_std_error( &jerr );
 
+		//by stone
+		cinfo.err->error_exit		= CoCo_error_exit;
+		cinfo.err->output_message	= CoCo_output_message;
+
         /* setup decompression process and source, then read JPEG header */
         jpeg_create_decompress( &cinfo );
 
-        jpeg_mem_src( &cinfo, (unsigned char *) data, nSize );
+        //by stone
+		//jpeg_mem_src( &cinfo, (unsigned char *) data, nSize );
+		jsrc.bytes_in_buffer	= nSize;
+		jsrc.next_input_byte	= (JOCTET*)data;
+		jsrc.init_source		= CoCo_init_source;
+		jsrc.fill_input_buffer	= CoCo_fill_input_buffer;
+		jsrc.skip_input_data	= CoCo_skip_input_data;
+		jsrc.resync_to_restart	= jpeg_resync_to_restart;
+		jsrc.term_source		= CoCo_term_source;
+		
+		cinfo.src = &jsrc;
 
         /* reading the image header which contains image information */
         jpeg_read_header( &cinfo, true );
@@ -243,8 +316,26 @@ bool CCImage::_initWithPngData(void * pData, int nDatalen)
         // PNG_TRANSFORM_PACKING: expand 1, 2 and 4-bit samples to bytes
         // PNG_TRANSFORM_STRIP_16: strip 16-bit samples to 8 bits
         // PNG_TRANSFORM_GRAY_TO_RGB: expand grayscale samples to RGB (or GA to RGBA)
-        png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_EXPAND | PNG_TRANSFORM_PACKING 
-            | PNG_TRANSFORM_STRIP_16 | PNG_TRANSFORM_GRAY_TO_RGB, 0);
+        
+		//by stone
+		/*png_read_png(png_ptr, 
+					info_ptr, 
+					PNG_TRANSFORM_EXPAND 
+					| 
+					PNG_TRANSFORM_PACKING 
+					| 
+					PNG_TRANSFORM_STRIP_16 
+					| 
+					PNG_TRANSFORM_GRAY_TO_RGB, 
+					0);*/
+		png_read_png(png_ptr, 
+					info_ptr, 
+					PNG_TRANSFORM_EXPAND 
+					| 
+					PNG_TRANSFORM_PACKING 
+					| 
+					PNG_TRANSFORM_STRIP_16,
+					0);
 
         int         color_type  = 0;
         png_uint_32 nWidth = 0;

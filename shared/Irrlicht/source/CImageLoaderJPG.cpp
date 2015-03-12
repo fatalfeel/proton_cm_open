@@ -61,15 +61,11 @@ void CImageLoaderJPG::init_source (j_decompress_ptr cinfo)
 	// DO NOTHING
 }
 
-
-
 boolean CImageLoaderJPG::fill_input_buffer (j_decompress_ptr cinfo)
 {
 	// DO NOTHING
-	return 1;
+	return true;
 }
-
-
 
 void CImageLoaderJPG::skip_input_data (j_decompress_ptr cinfo, long count)
 {
@@ -153,7 +149,9 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 
 	// allocate and initialize JPEG decompression object
 	struct jpeg_decompress_struct cinfo;
-	struct irr_jpeg_error_mgr jerr;
+	struct irr_jpeg_error_mgr	jerr;
+	// specify data source
+	struct jpeg_source_mgr		jsrc;
 
 	//We have to set up the error handler first, in case the initialization
 	//step fails.  (Unlikely, but it could happen if you are out of memory.)
@@ -186,19 +184,18 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 	// Now we can initialize the JPEG decompression object.
 	jpeg_create_decompress(&cinfo);
 
-	// specify data source
-	jpeg_source_mgr jsrc;
-
+	
 	// Set up data pointer
 	jsrc.bytes_in_buffer = file->getSize();
 	jsrc.next_input_byte = (JOCTET*)input;
-	cinfo.src = &jsrc;
+	
+	jsrc.init_source		= init_source;
+	jsrc.fill_input_buffer	= fill_input_buffer;
+	jsrc.skip_input_data	= skip_input_data;
+	jsrc.resync_to_restart	= jpeg_resync_to_restart;
+	jsrc.term_source		= term_source;
 
-	jsrc.init_source = init_source;
-	jsrc.fill_input_buffer = fill_input_buffer;
-	jsrc.skip_input_data = skip_input_data;
-	jsrc.resync_to_restart = jpeg_resync_to_restart;
-	jsrc.term_source = term_source;
+	cinfo.src = &jsrc;
 
 	// Decodes JPG input from whatever source
 	// Does everything AFTER jpeg_create_decompress

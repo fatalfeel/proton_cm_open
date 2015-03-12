@@ -1437,9 +1437,9 @@ void AddText(const char *tex ,char *filename)
 
 	if (FileExists(filename) == false)
 	{
-
 		fp = fopen( (GetBaseAppPath()+filename).c_str(), "wb");
-		if (!fp) return;
+		if (!fp) 
+			return;
 		fwrite( tex, strlen(tex), 1, fp);      
 		fclose(fp);
 		//return;
@@ -1447,7 +1447,8 @@ void AddText(const char *tex ,char *filename)
 	else
 	{
 		fp = fopen( (GetBaseAppPath()+filename).c_str(), "ab");
-		if (!fp) return;
+		if (!fp) 
+			return;
 		fwrite( tex, strlen(tex), 1, fp);      
 		fclose(fp);
 	}

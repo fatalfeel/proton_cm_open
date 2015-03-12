@@ -43,7 +43,7 @@
 #include "semaphore.h"
 #include "implement.h"
 
-void xmPlatformSetErrno ( int err );
+//void xmPlatformSetErrno ( int err );
 
 int
 sem_init (sem_t * sem, int pshared, unsigned int value)
@@ -161,7 +161,7 @@ sem_init (sem_t * sem, int pshared, unsigned int value)
   if (result != 0)
     {	
       errno = result;
-	  xmPlatformSetErrno ( errno );
+	  //xmPlatformSetErrno ( errno );
       return -1;
     }
 

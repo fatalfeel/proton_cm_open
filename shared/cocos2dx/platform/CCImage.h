@@ -25,6 +25,9 @@ THE SOFTWARE.
 #ifndef __CC_IMAGE_H_YANGWS_20110115__
 #define __CC_IMAGE_H_YANGWS_20110115__
 
+extern "C" {
+#include "jpeglib.h"
+}
 #include "CCCommon.h"
 
 NS_CC_BEGIN;
@@ -143,6 +146,13 @@ private:
     // noncopyable
     CCImage(const CCImage&    rImg);
     CCImage & operator=(const CCImage&);
+	
+	static void		CoCo_init_source (j_decompress_ptr cinfo);
+	static boolean	CoCo_fill_input_buffer (j_decompress_ptr cinfo);
+	static void		CoCo_skip_input_data (j_decompress_ptr cinfo, long num_bytes);
+	static void		CoCo_term_source (j_decompress_ptr cinfo);
+	static void		CoCo_error_exit (j_common_ptr cinfo);
+	static void		CoCo_output_message(j_common_ptr cinfo);
 };
 
 NS_CC_END;
