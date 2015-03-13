@@ -30,7 +30,7 @@ enum EnMenuSelect
 Entity* MainMenuCreate(Entity* pParentEnt)
 {
     Entity* pBG;
-	EnMenuSelect menuid = QUAKE;
+	EnMenuSelect menuid = ANIMESH;
     
     switch(menuid)
     {

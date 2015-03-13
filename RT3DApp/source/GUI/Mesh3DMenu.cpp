@@ -46,9 +46,9 @@ void Mesh3DInitScene()
 	
 		
 //////////////////////////////mesh/////////////////////////////////////////////////
-	load_zip	= (GetBaseAppPath() + "game/squirrel.zip").c_str();
-	load_data	= "squirrel.x";
-	reload_path	= (GetBaseAppPath() + "game/squirrel.x").c_str();
+	load_zip	= (GetBaseAppPath() + "game/ninja.zip").c_str();
+	load_data	= "ninja.b3d";
+	reload_path	= (GetBaseAppPath() + "game/ninja.b3d").c_str();
 	
 #ifdef ANDROID_NDK
 	apk_buffer	= FileManager::GetFileManager()->Get(load_zip.c_str(), &apk_size, false, false);
@@ -83,18 +83,38 @@ void Mesh3DInitScene()
 	}
 
 //////////////////////////////texture/////////////////////////////////////////////////
-	node->setMaterialTexture( 0, driver->getTexture((GetBaseAppPath()+"game/squirrel_skin.jpg").c_str()) );
+	node->setMaterialTexture( 0, driver->getTexture((GetBaseAppPath()+"game/nskinbl.jpg").c_str()) );
     node->setMaterialFlag(EMF_LIGHTING, true);
     node->setMaterialFlag(EMF_NORMALIZE_NORMALS, true);
     anim = smgr->createRotationAnimator(core::vector3df(0,0.3f,0));
     node->addAnimator(anim);
     anim->drop();
-	
 
+	u32 alpha_val = 180;
+	u32 MaterialCount = node->getMaterialCount();
+	
+	for(u32 i=0; i<MaterialCount; i++)
+	{
+		video::SMaterial& tex_mat	= node->getMaterial(i);
+		tex_mat.MaterialType		= video::EMT_TRANSPARENT_VERTEX_ALPHA;
+		//tex_mat.MaterialTypeParam	= 0.1;
+		//tex_mat.MaterialTypeParam2= 0.1;
+		tex_mat.AmbientColor.setAlpha(alpha_val);
+		tex_mat.DiffuseColor.setAlpha(alpha_val);
+		tex_mat.SpecularColor.setAlpha(alpha_val);
+		tex_mat.EmissiveColor.setAlpha(alpha_val);
+	}
+	
+	smgr->addSkyBoxSceneNode(IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_up.jpg"),
+                             IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_dn.jpg"),
+                             IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_lf.jpg"),
+                             IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_rt.jpg"),
+                             IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_ft.jpg"),
+                             IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_bk.jpg"));
 //////////////////////////////////cam/////////////////////////////////////////////    
    	ICameraSceneNode* camera = smgr->addCameraSceneNodeFPS(0, 100.0f, .02f, 0, 0, 0, true, 1.0f);
 	//camera->addCameraSceneNode(0, vector3df(0,2,-10));
-	camera->setPosition(core::vector3df(0,2,-10));
+	camera->setPosition(core::vector3df(0,5,-20));
 	float fov = float(GetPrimaryGLX())/ float(GetPrimaryGLY());
 	camera->setAspectRatio(fov);
 	camera->setFOV((120 * M_PI / 360.0f));

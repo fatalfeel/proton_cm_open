@@ -40,7 +40,7 @@ void EventControlComponent::AddGuiButton()
 	gui::IGUIEnvironment*   gui    = device->getGUIEnvironment();
 	core::dimension2d<u32>  screen = driver->getScreenSize();
 
-#ifdef __APPLE__
+#if defined(_WIN32) || defined(__APPLE__)
     
     /*gui->addButton(core::rect<int>(85,screen.Height-300,155,screen.Height-250), NULL, GUI_ID_BUTTON_DIR_FORWARD, L"D_Up");
 	gui->addButton(core::rect<int>(85,screen.Height-100,155,screen.Height-50),  NULL, GUI_ID_BUTTON_DIR_BACK,    L"D_Dn");
