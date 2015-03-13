@@ -56,18 +56,18 @@ bool CImageLoaderJPG::isALoadableFileExtension(const io::path& filename) const
         jmp_buf setjmp_buffer;
     };
 
-void CImageLoaderJPG::init_source (j_decompress_ptr cinfo)
+void CImageLoaderJPG::Irr_init_source (j_decompress_ptr cinfo)
 {
 	// DO NOTHING
 }
 
-boolean CImageLoaderJPG::fill_input_buffer (j_decompress_ptr cinfo)
+boolean CImageLoaderJPG::Irr_fill_input_buffer (j_decompress_ptr cinfo)
 {
 	// DO NOTHING
 	return true;
 }
 
-void CImageLoaderJPG::skip_input_data (j_decompress_ptr cinfo, long count)
+void CImageLoaderJPG::Irr_skip_input_data (j_decompress_ptr cinfo, long count)
 {
 	jpeg_source_mgr * src = cinfo->src;
 	if(count > 0)
@@ -78,14 +78,13 @@ void CImageLoaderJPG::skip_input_data (j_decompress_ptr cinfo, long count)
 }
 
 
-
-void CImageLoaderJPG::term_source (j_decompress_ptr cinfo)
+void CImageLoaderJPG::Irr_term_source (j_decompress_ptr cinfo)
 {
 	// DO NOTHING
 }
 
 
-void CImageLoaderJPG::error_exit (j_common_ptr cinfo)
+void CImageLoaderJPG::Irr_error_exit (j_common_ptr cinfo)
 {
 	// unfortunately we need to use a goto rather than throwing an exception
 	// as gcc crashes under linux crashes when using throw from within
@@ -101,7 +100,7 @@ void CImageLoaderJPG::error_exit (j_common_ptr cinfo)
 }
 
 
-void CImageLoaderJPG::output_message(j_common_ptr cinfo)
+void CImageLoaderJPG::Irr_output_message(j_common_ptr cinfo)
 {
 	// display the error message.
 	c8 temp1[JMSG_LENGTH_MAX];
@@ -148,10 +147,10 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 	file->read(input, file->getSize());
 
 	// allocate and initialize JPEG decompression object
-	struct jpeg_decompress_struct cinfo;
-	struct irr_jpeg_error_mgr	jerr;
+	struct jpeg_decompress_struct	cinfo;
 	// specify data source
-	struct jpeg_source_mgr		jsrc;
+	struct jpeg_source_mgr			jsrc;
+	struct irr_jpeg_error_mgr		jerr;
 
 	//We have to set up the error handler first, in case the initialization
 	//step fails.  (Unlikely, but it could happen if you are out of memory.)
@@ -159,8 +158,8 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 	//address which we place into the link field in cinfo.
 
 	cinfo.err = jpeg_std_error(&jerr.pub);
-	cinfo.err->error_exit = error_exit;
-	cinfo.err->output_message = output_message;
+	cinfo.err->error_exit		= Irr_error_exit;
+	cinfo.err->output_message	= Irr_output_message;
 
 	// compatibility fudge:
 	// we need to use setjmp/longjmp for error handling as gcc-linux
@@ -189,11 +188,11 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 	jsrc.bytes_in_buffer = file->getSize();
 	jsrc.next_input_byte = (JOCTET*)input;
 	
-	jsrc.init_source		= init_source;
-	jsrc.fill_input_buffer	= fill_input_buffer;
-	jsrc.skip_input_data	= skip_input_data;
+	jsrc.init_source		= Irr_init_source;
+	jsrc.fill_input_buffer	= Irr_fill_input_buffer;
+	jsrc.skip_input_data	= Irr_skip_input_data;
 	jsrc.resync_to_restart	= jpeg_resync_to_restart;
-	jsrc.term_source		= term_source;
+	jsrc.term_source		= Irr_term_source;
 
 	cinfo.src = &jsrc;
 
