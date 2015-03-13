@@ -4477,7 +4477,7 @@ xmlTextWriterVSprintf(const char *format, va_list argptr)
 
     //KD_VA_COPY(locarg, argptr);
 	locarg = argptr;
-    while (((count = vsnprintf((char *) buf, size, format, locarg)) < 0)
+    while (((count = win_vsnprintf((char *) buf, size, format, locarg)) < 0)
            || (count == size - 1) || (count == size) || (count > size)) {
 	va_end(locarg);
         xmlFree(buf);
