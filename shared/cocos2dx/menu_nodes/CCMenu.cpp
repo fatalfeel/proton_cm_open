@@ -88,7 +88,7 @@ namespace cocos2d{
             // XXX: in v0.7, winSize should return the visible size
             // XXX: so the bar calculation should be done there
             CCRect r;
-            CCApplication::sharedApplication().statusBarFrame(&r);
+            //CCApplication::sharedApplication().statusBarFrame(&r);
             ccDeviceOrientation orientation = CCDirector::sharedDirector()->getDeviceOrientation();
             if (orientation == CCDeviceOrientationLandscapeLeft || orientation == CCDeviceOrientationLandscapeRight)
             {

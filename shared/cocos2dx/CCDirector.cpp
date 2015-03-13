@@ -115,7 +115,7 @@ bool CCDirector::init(void)
 	// portrait mode default
 	m_eDeviceOrientation = CCDeviceOrientationPortrait;		
 
-	m_pobOpenGLView = NULL;
+	//m_pobOpenGLView = NULL;
 
     m_bRetinaDisplay = false;
     m_fContentScaleFactor = 1;	
@@ -154,7 +154,7 @@ CCDirector::~CCDirector(void)
 void CCDirector::setGLDefaultValues(void)
 {
 	// This method SHOULD be called only after openGLView_ was initialized
-	CCAssert(m_pobOpenGLView, "opengl view should not be null");
+	//CCAssert(m_pobOpenGLView, "opengl view should not be null");
 
 	setAlphaBlending(true);
 	setDepthTest(true);
@@ -184,7 +184,8 @@ void CCDirector::drawScene(void)
 		CCScheduler::sharedScheduler()->tick(m_fDeltaTime);
 	}
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//by stone
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     /* to avoid flickr, nextScene MUST be here: after tick and before draw.
 	 XXX: Which bug is this one. It seems that it can't be reproduced with v0.9 */
@@ -228,10 +229,10 @@ void CCDirector::drawScene(void)
 	m_uTotalFrames++;
 
 	// swap buffers
-	if (m_pobOpenGLView)
+	/*if (m_pobOpenGLView)
     {
         m_pobOpenGLView->swapBuffers();
-    }
+    }*/
 }
 
 void CCDirector::calculateDeltaTime(void)
@@ -275,14 +276,14 @@ void CCDirector::setOpenGLView(CC_GLVIEW *pobOpenGLView)
 {
 	CCAssert(pobOpenGLView, "opengl view should not be null");
 
-	if (m_pobOpenGLView != pobOpenGLView)
+	//if (m_pobOpenGLView != pobOpenGLView)
 	{
 		// because EAGLView is not kind of CCObject
-		delete m_pobOpenGLView; // [openGLView_ release]
-		m_pobOpenGLView = pobOpenGLView;
+		//delete m_pobOpenGLView; // [openGLView_ release]
+		//m_pobOpenGLView = pobOpenGLView;
 
 		// set size
-		m_obWinSizeInPoints = m_pobOpenGLView->getSize();
+		//m_obWinSizeInPoints = m_pobOpenGLView->getSize();
 		m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
         setGLDefaultValues();
 
@@ -292,7 +293,7 @@ void CCDirector::setOpenGLView(CC_GLVIEW *pobOpenGLView)
 		}
 
  		CCTouchDispatcher *pTouchDispatcher = CCTouchDispatcher::sharedDispatcher();
- 		m_pobOpenGLView->setTouchDelegate(pTouchDispatcher);
+ 		//m_pobOpenGLView->setTouchDelegate(pTouchDispatcher);
         pTouchDispatcher->setDispatchEvents(true);
 	}
 }
@@ -309,10 +310,10 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
 	switch (kProjection)
 	{
 	case kCCDirectorProjection2D:
-        if (m_pobOpenGLView) 
-        {
-            m_pobOpenGLView->setViewPortInPoints(0, 0, size.width, size.height);
-        }
+        //if (m_pobOpenGLView) 
+        //{
+        //    m_pobOpenGLView->setViewPortInPoints(0, 0, size.width, size.height);
+        //}
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		ccglOrtho(0, size.width, 0, size.height, -1024 * CC_CONTENT_SCALE_FACTOR(), 
@@ -322,18 +323,18 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
 		break;
 
 	case kCCDirectorProjection3D:		
-        if (m_pobOpenGLView) 
-        {
-            m_pobOpenGLView->setViewPortInPoints(0, 0, size.width, size.height);
-        }
+        //if (m_pobOpenGLView) 
+        //{
+        //    m_pobOpenGLView->setViewPortInPoints(0, 0, size.width, size.height);
+        //}
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		// accommodate iPad retina while keep backward compatibility
-		if (m_pobOpenGLView && m_pobOpenGLView->isIpad() && m_pobOpenGLView->getMainScreenScale() > 1.0)
+		/*if (m_pobOpenGLView && m_pobOpenGLView->isIpad() && m_pobOpenGLView->getMainScreenScale() > 1.0)
 		{
 			gluPerspective(60, (GLfloat)size.width/size.height, zeye-size.height/2, zeye+size.height/2);	
 		}
-		else
+		else*/
 		{
 			gluPerspective(60, (GLfloat)size.width/size.height, 0.5f, 1500.0f);
 		}				
@@ -489,7 +490,7 @@ CCSize CCDirector::getDisplaySizeInPixels(void)
 void CCDirector::reshapeProjection(const CCSize& newWindowSize)
 {
     CC_UNUSED_PARAM(newWindowSize);
-    m_obWinSizeInPoints = m_pobOpenGLView->getSize();
+    //m_obWinSizeInPoints = m_pobOpenGLView->getSize();
 	m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor,
 		                             m_obWinSizeInPoints.height * m_fContentScaleFactor);
 
@@ -630,9 +631,10 @@ void CCDirector::purgeDirector()
 	CCTextureCache::purgeSharedTextureCache();
 	CCUserDefault::purgeSharedUserDefault();
     CCNotificationCenter::purgeNotifCenter();
+	
 	// OpenGL view
-	m_pobOpenGLView->release();
-	m_pobOpenGLView = NULL;
+	//m_pobOpenGLView->release();
+	//m_pobOpenGLView = NULL;
 }
 
 void CCDirector::setNextScene(void)
@@ -745,7 +747,7 @@ void CCDirector::showProfilers()
 void CCDirector::updateContentScaleFactor()
 {
 	// [openGLView responseToSelector:@selector(setContentScaleFactor)]
-	if (m_pobOpenGLView->canSetContentScaleFactor())
+	/*if (m_pobOpenGLView->canSetContentScaleFactor())
 	{
 		m_pobOpenGLView->setContentScaleFactor(m_fContentScaleFactor);
 		m_bIsContentScaleSupported = true;
@@ -753,7 +755,8 @@ void CCDirector::updateContentScaleFactor()
 	else
 	{
 		CCLOG("cocos2d: setContentScaleFactor:'is not supported on this device");
-	}
+	}*/
+	m_bIsContentScaleSupported = true;
 }
 
 
@@ -781,16 +784,16 @@ bool CCDirector::enableRetinaDisplay(bool enabled)
 	}
 
 	// setContentScaleFactor is not supported
-	if (! m_pobOpenGLView->canSetContentScaleFactor())
-	{
-		return false;
-	}
+	//if (! m_pobOpenGLView->canSetContentScaleFactor())
+	//{
+	//	return false;
+	//}
 
 	// SD device
-	if (m_pobOpenGLView->getMainScreenScale() == 1.0)
-	{
-		return false;
-	}
+	//if (m_pobOpenGLView->getMainScreenScale() == 1.0)
+	//{
+	//	return false;
+	//}
 
 	float newScale = (float)(enabled ? 2 : 1);
 	setContentScaleFactor(newScale);
@@ -831,10 +834,10 @@ void CCDirector::setContentScaleFactor(CGFloat scaleFactor)
 		m_fContentScaleFactor = scaleFactor;
 		m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * scaleFactor, m_obWinSizeInPoints.height * scaleFactor);
 
-		if (m_pobOpenGLView)
-		{
-			updateContentScaleFactor();
-		}
+		//if (m_pobOpenGLView)
+		//{
+		updateContentScaleFactor();
+		//}
 
 		// update projection
 		setProjection(m_eProjection);
@@ -892,10 +895,10 @@ ccDeviceOrientation CCDirector::getDeviceOrientation(void)
 
 void CCDirector::setDeviceOrientation(ccDeviceOrientation kDeviceOrientation)
 {
-	ccDeviceOrientation eNewOrientation;
+	ccDeviceOrientation eNewOrientation = kDeviceOrientation;
 
-	eNewOrientation = (ccDeviceOrientation)CCApplication::sharedApplication().setOrientation(
-        (CCApplication::Orientation)kDeviceOrientation);
+	//eNewOrientation = 
+	//(ccDeviceOrientation)CCApplication::sharedApplication().setOrientation((CCApplication::Orientation)kDeviceOrientation);
 
 	if (m_eDeviceOrientation != eNewOrientation)
 	{
@@ -906,7 +909,7 @@ void CCDirector::setDeviceOrientation(ccDeviceOrientation kDeviceOrientation)
         // this logic is only run on win32 now
         // On win32,the return value of CCApplication::setDeviceOrientation is always kCCDeviceOrientationPortrait
         // So,we should calculate the Projection and window size again.
-        m_obWinSizeInPoints = m_pobOpenGLView->getSize();
+        //m_obWinSizeInPoints = m_pobOpenGLView->getSize();
         m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
         setProjection(m_eProjection);
     }
@@ -928,7 +931,8 @@ void CCDisplayLinkDirector::startAnimation(void)
 	}
 
 	m_bInvalid = false;
-	CCApplication::sharedApplication().setAnimationInterval(m_dAnimationInterval);
+	
+	//CCApplication::sharedApplication().setAnimationInterval(m_dAnimationInterval);
 }
 
 void CCDisplayLinkDirector::mainLoop(void)

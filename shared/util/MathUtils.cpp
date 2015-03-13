@@ -2,6 +2,8 @@
 #include "MathUtils.h"
 #include "MiscUtils.h"
 
+#define M_PI 3.141592f
+
 void ApplyOffset(CL_Rectf *pR, const CL_Vec2f &vOffset)
 {
 	pR->left += vOffset.x;

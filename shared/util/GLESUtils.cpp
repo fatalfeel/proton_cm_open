@@ -17,6 +17,8 @@
 #include "GLESUtils.h"
 #include "BaseApp.h"
 
+#define M_PI 3.141592f
+
 float g_renderOrthoRenderSizeX;
 float g_renderOrthoRenderSizeY;
 

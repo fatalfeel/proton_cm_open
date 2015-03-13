@@ -53,9 +53,9 @@
 	#endif
 #endif
 
-#ifndef M_PI
-#define M_PI 3.141592f
-#endif
+//#ifndef M_PI
+//#define M_PI 3.141592f
+//#endif
 /* The following definitions are the same across platforms.  This first
 ** group are the sanctioned types.
 */

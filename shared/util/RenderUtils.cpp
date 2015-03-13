@@ -11,6 +11,8 @@
 #include "RenderUtils.h"
 #include "BaseApp.h"
 
+#define M_PI 3.141592f
+
 //defaults
 int g_screenSizeY = GetPrimaryGLY();
 int g_screenSizeX = GetPrimaryGLX();

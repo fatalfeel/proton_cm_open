@@ -11,6 +11,8 @@ using namespace core;
 using namespace scene;
 using namespace video;
 
+#define M_PI 3.141592f
+
 
 /*void HouseMenuOnSelect(VariantList *pVList) //0=vec2 point of click, 1=entity sent from
 {

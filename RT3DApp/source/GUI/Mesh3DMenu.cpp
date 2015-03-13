@@ -12,23 +12,7 @@ using namespace core;
 using namespace scene;
 using namespace video;
 
-/*void Mesh3DMenuOnSelect(VariantList *pVList) //0=vec2 point of click, 1=entity sent from
-{
-	Entity *pEntClicked = pVList->m_variant[1].GetEntity();
-
-	LogMsg("Clicked %s entity at %s", pEntClicked->GetName().c_str(),pVList->m_variant[1].Print().c_str());
-
-	if (pEntClicked->GetName() == "Back")
-	{
-		//SlideScreen(pEntClicked->GetParent(), false);
-		MessageManager::GetMessageManager()->CallEntityFunction(pEntClicked->GetParent(), 500, "OnDelete", NULL);
-		MainMenuCreate(pEntClicked->GetParent()->GetParent());
-
-		IrrlichtManager::GetIrrlichtManager()->ClearScene();
-	}
-
-	Entity::GetEntityManager()->PrintTreeAsText(); //useful for debugging
-}*/
+#define M_PI 3.141592f
 
 void Mesh3DInitScene()
 {

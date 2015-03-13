@@ -134,11 +134,12 @@ bool CCTextFieldTTF::attachWithIME()
     if (bRet)
     {
         // open keyboard
-        CCEGLView * pGlView = CCDirector::sharedDirector()->getOpenGLView();
+		//by stone
+        /*CCEGLView * pGlView = CCDirector::sharedDirector()->getOpenGLView();
         if (pGlView)
         {
             pGlView->setIMEKeyboardState(true);
-        }
+        }*/
     }
     return bRet;
 }
@@ -149,11 +150,12 @@ bool CCTextFieldTTF::detachWithIME()
     if (bRet)
     {
         // close keyboard
-        CCEGLView * pGlView = CCDirector::sharedDirector()->getOpenGLView();
+		//by stone
+        /*CCEGLView * pGlView = CCDirector::sharedDirector()->getOpenGLView();
         if (pGlView)
         {
             pGlView->setIMEKeyboardState(false);
-        }
+        }*/
     }
     return bRet;
 }

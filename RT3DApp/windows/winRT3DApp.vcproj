@@ -16396,6 +16396,7 @@
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -16406,12 +16407,21 @@
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\win32\CCAccelerometer_win32.h"
 							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\win32\CCApplication_win32.cpp"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -16422,12 +16432,21 @@
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\win32\CCApplication_win32.h"
 							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\win32\CCEGLView_win32.cpp"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -16438,6 +16457,14 @@
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\win32\CCEGLView_win32.h"
 							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 					</Filter>
 				</Filter>
@@ -17089,18 +17116,6 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\shared\libxml\nprintf.c"
-						>
-						<FileConfiguration
-							Name="Debug GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
 						RelativePath="..\..\shared\libxml\parser.c"
 						>
 						<FileConfiguration
@@ -17221,42 +17236,6 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath="..\..\shared\libxml\trio.c"
-						>
-						<FileConfiguration
-							Name="Debug GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\shared\libxml\trionan.c"
-						>
-						<FileConfiguration
-							Name="Debug GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath="..\..\shared\libxml\triostr.c"
-						>
-						<FileConfiguration
-							Name="Debug GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-					</File>
-					<File
 						RelativePath="..\..\shared\libxml\uri.c"
 						>
 						<FileConfiguration
@@ -17270,6 +17249,18 @@
 					</File>
 					<File
 						RelativePath="..\..\shared\libxml\valid.c"
+						>
+						<FileConfiguration
+							Name="Debug GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\shared\libxml\winnprintf.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"

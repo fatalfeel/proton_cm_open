@@ -171,14 +171,14 @@ void CCLayer::setIsAccelerometerEnabled(bool enabled)
 
         if (m_bIsRunning)
         {
-            if (enabled)
+            /*if (enabled)
             {
                 CCAccelerometer::sharedAccelerometer()->setDelegate(this);
             }
             else
             {
                 CCAccelerometer::sharedAccelerometer()->setDelegate(NULL);
-            }
+            }*/
         }
     }
 }
@@ -223,10 +223,10 @@ void CCLayer::onEnter()
 	CCNode::onEnter();
 
     // add this layer to concern the Accelerometer Sensor
-    if (m_bIsAccelerometerEnabled)
+    /*if (m_bIsAccelerometerEnabled)
     {
         CCAccelerometer::sharedAccelerometer()->setDelegate(this);
-    }
+    }*/
 
     // add this layer to concern the kaypad msg
     if (m_bIsKeypadEnabled)
@@ -244,10 +244,10 @@ void CCLayer::onExit()
 	}
 
     // remove this layer from the delegates who concern Accelerometer Sensor
-    if (m_bIsAccelerometerEnabled)
+    /*if (m_bIsAccelerometerEnabled)
     {
         CCAccelerometer::sharedAccelerometer()->setDelegate(NULL);
-    }
+    }*/
 
     // remove this layer from the delegates who concern the kaypad msg
     if (m_bIsKeypadEnabled)
@@ -260,10 +260,10 @@ void CCLayer::onExit()
 
 void CCLayer::onEnterTransitionDidFinish()
 {
-    if (m_bIsAccelerometerEnabled)
+    /*if (m_bIsAccelerometerEnabled)
     {
         CCAccelerometer::sharedAccelerometer()->setDelegate(this);
-    }
+    }*/
     
     CCNode::onEnterTransitionDidFinish();
 }

@@ -12,36 +12,7 @@ using namespace core;
 using namespace scene;
 using namespace video;
 
-
-/*void QuakeMenuOnSelect(VariantList *pVList) //0=vec2 point of click, 1=entity sent from
-{
-	Entity *pEntClicked = pVList->m_variant[1].GetEntity();
-
-	LogMsg("Clicked %s entity at %s", pEntClicked->GetName().c_str(),pVList->m_variant[1].Print().c_str());
-
-	if (pEntClicked->GetName() == "Back")
-	{
-		//SlideScreen(pEntClicked->GetParent(), false);
-		MessageManager::GetMessageManager()->CallEntityFunction(pEntClicked->GetParent(), 500, "OnDelete", NULL);
-		MainMenuCreate(pEntClicked->GetParent()->GetParent());
-		IrrlichtManager::GetIrrlichtManager()->ClearScene();
-		
-		//put it back to how it was.  Major hack.  For a real game, set up the data so we don't need to change directories.
-
-			#ifdef WIN32
-				//Hack to change the working directory back to what it was
-					IrrlichtManager::GetIrrlichtManager()->GetDevice()->getFileSystem()->changeWorkingDirectoryTo( "..\\..");
-			#else
-					IrrlichtManager::GetIrrlichtManager()->GetDevice()->getFileSystem()->changeWorkingDirectoryTo(GetBaseAppPath().c_str());
-			#endif
-		
-			FileSystemZip *pFileSystem = (FileSystemZip*)FileManager::GetFileManager()->GetFileSystem(0);
-			if (pFileSystem) pFileSystem->SetRootDirectory("assets"); //for android
-
-	}
-
-	Entity::GetEntityManager()->PrintTreeAsText(); //useful for debugging
-}*/
+#define M_PI 3.141592f
 
 void QuakeInitScene()
 {

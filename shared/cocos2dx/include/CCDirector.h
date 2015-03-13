@@ -183,7 +183,11 @@ public:
 	inline void setDisplayFPS(bool bDisplayFPS) { m_bDisplayFPS = bDisplayFPS; }
 
 	/** Get the CCEGLView, where everything is rendered */
-	inline CC_GLVIEW* getOpenGLView(void) { return m_pobOpenGLView; }
+	inline CC_GLVIEW* getOpenGLView(void) 
+	{ 
+		//return m_pobOpenGLView; 
+		return NULL; 
+	}
 	void setOpenGLView(CC_GLVIEW *pobOpenGLView);
 
 	inline bool isNextDeltaTimeZero(void) { return m_bNextDeltaTimeZero; }
@@ -345,7 +349,7 @@ public:
 	void applyOrientation(void);
 
 	ccDeviceOrientation getDeviceOrientation(void);
-	void setDeviceOrientation(ccDeviceOrientation kDeviceOrientation);
+	void setDeviceOrientation(ccDeviceOrientation kDeviceOrientation = kCCDeviceOrientationPortrait);
 
 	/** The size in pixels of the surface. It could be different than the screen size.
 	High-res devices might have a higher surface size than the screen size.
@@ -403,7 +407,7 @@ protected:
 
 /** calculates delta time since last time it was called */	void calculateDeltaTime();protected:
 	/* The CCEGLView, where everything is rendered */
-    CC_GLVIEW	*m_pobOpenGLView;
+    //CC_GLVIEW	*m_pobOpenGLView;
 
 	double m_dAnimationInterval;
 	double m_dOldAnimationInterval;
