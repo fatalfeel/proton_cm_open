@@ -51,7 +51,7 @@ typedef struct
 }tImageSource;
 
 // struct for handling jpeg errors
-struct irr_jpeg_error_mgr
+struct coco_jpeg_error_mgr
 {
     // public jpeg error fields
     struct jpeg_error_mgr pub;
@@ -179,7 +179,7 @@ void CCImage::CoCo_error_exit (j_common_ptr cinfo)
 	(*cinfo->err->output_message) (cinfo);
 
 	// cinfo->err really points to a irr_error_mgr struct
-	irr_jpeg_error_mgr *myerr = (irr_jpeg_error_mgr*) cinfo->err;
+	coco_jpeg_error_mgr *myerr = (coco_jpeg_error_mgr*) cinfo->err;
 
 	longjmp(myerr->setjmp_buffer, 1);
 }
@@ -194,9 +194,10 @@ void CCImage::CoCo_output_message(j_common_ptr cinfo)
 bool CCImage::_initWithJpgData(void * data, int nSize)
 {
     /* these are standard libjpeg structures for reading(decompression) */
-    struct jpeg_decompress_struct cinfo;
-    struct jpeg_error_mgr	jerr;
-	struct jpeg_source_mgr	jsrc;
+    struct	jpeg_decompress_struct	cinfo;
+    struct	jpeg_source_mgr			jsrc;
+	//struct jpeg_error_mgr	jerr;
+	struct	coco_jpeg_error_mgr		jerr;
     /* libjpeg data structure for storing one row, that is, scanline of an image */
     JSAMPROW row_pointer[1] = {0};
     unsigned long location = 0;
@@ -206,11 +207,21 @@ bool CCImage::_initWithJpgData(void * data, int nSize)
     do 
     {
         /* here we set up the standard libjpeg error handler */
-        cinfo.err = jpeg_std_error( &jerr );
+        cinfo.err = jpeg_std_error( &jerr.pub );
 
 		//by stone
 		cinfo.err->error_exit		= CoCo_error_exit;
 		cinfo.err->output_message	= CoCo_output_message;
+
+		if (setjmp(jerr.setjmp_buffer))
+		{
+			// If we get here, the JPEG code has signaled an error.
+			// We need to clean up the JPEG object and return.
+			jpeg_destroy_decompress(&cinfo);
+
+			// return null pointer
+			return false;
+		}
 
         /* setup decompression process and source, then read JPEG header */
         jpeg_create_decompress( &cinfo );
@@ -219,6 +230,7 @@ bool CCImage::_initWithJpgData(void * data, int nSize)
 		//jpeg_mem_src( &cinfo, (unsigned char *) data, nSize );
 		jsrc.bytes_in_buffer	= nSize;
 		jsrc.next_input_byte	= (JOCTET*)data;
+
 		jsrc.init_source		= CoCo_init_source;
 		jsrc.fill_input_buffer	= CoCo_fill_input_buffer;
 		jsrc.skip_input_data	= CoCo_skip_input_data;
