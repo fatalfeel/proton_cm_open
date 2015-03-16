@@ -3,7 +3,8 @@ Proton_CM cross platform 3D engine open source
 1.
 
 (a.)
-Proton 3d engine implement Irrlicht and Bullet Physics with OpenGL ES1.0 ES2.0
+Proton_sdk_source implement Irrlicht and Bullet Physics with OpenGL ES1.0 ES2.0
+https://github.com/fatalfeel/proton_sdk_source
 
 (b.)
 Full open source
@@ -19,7 +20,7 @@ GLSL shading language full control
 
 2.
 
-This is Proton Sdk Source Add Cocos2D upgrade gui to OGLES1.1 on Win32
+This Project is Proton_sdk_source + Cocos2D on OGLES1.1
 
 3.
 
