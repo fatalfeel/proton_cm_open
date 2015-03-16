@@ -1,3 +1,4 @@
+#include "App.h"
 #include "HelloWorldScene.h"
 #include "PlatformEnums.h"
 
@@ -41,11 +42,14 @@ bool HelloWorld::init()
 
 	/////////////////////////////
 	// 3. add your codes below...
-	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	std::string		e_str;
+	std::wstring	w_str	= L"Hello §A¦n";
+	CCSize			size	= CCDirector::sharedDirector()->getWinSize();
 
-	// add a label shows "Hello World"
+	WideStrToUTF8(e_str, w_str);
+	
 	// create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::labelWithString("Hello World", "Arial", 24);
+	CCLabelTTF* pLabel = CCLabelTTF::labelWithString(e_str.c_str(), "Arial", 24);
 	// ask director the window size
 	
 	// position the label on the center of the screen
