@@ -387,11 +387,14 @@ public:
 public:
 	/** returns a shared instance of the director */
 	static CCDirector* sharedDirector(void);
+	
 	void resetDirector();
 
+	void purgeDirector();
+	
 protected:
 
-	void purgeDirector();
+	//void purgeDirector();
 	bool m_bPurgeDirecotorInNextLoop; // this flag will be set to true in end()
 	
 	void updateContentScaleFactor(void);

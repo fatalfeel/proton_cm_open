@@ -603,7 +603,7 @@ namespace
 		//HWND hWnd;
 		irr::CIrrDeviceWin32* irrDev;
 	};
-	irr::core::list<SEnvMapper> EnvMap;
+	//irr::core::list<SEnvMapper> EnvMap;
 
 	//HKL KEYBOARD_INPUT_HKL=0;
 	unsigned int KEYBOARD_INPUT_CODEPAGE = 1252;
@@ -1023,10 +1023,10 @@ CIrrDeviceWin32::CIrrDeviceWin32(const SIrrlichtCreationParameters& params)
 
 	// register environment
 
-	SEnvMapper em;
-	em.irrDev = this;
+	//SEnvMapper em;
+	//em.irrDev = this;
 	//em.hWnd = HWnd;
-	EnvMap.push_back(em);
+	//EnvMap.push_back(em);
 
 	// set this as active window
 	//SetActiveWindow(HWnd);
@@ -1043,7 +1043,7 @@ CIrrDeviceWin32::~CIrrDeviceWin32()
 {
 	// unregister environment
 
-	irr::core::list<SEnvMapper>::Iterator it = EnvMap.begin();
+	/*irr::core::list<SEnvMapper>::Iterator it = EnvMap.begin();
 	for (; it!= EnvMap.end(); ++it)
 	{
 		//if ((*it).hWnd == HWnd)
@@ -1051,7 +1051,7 @@ CIrrDeviceWin32::~CIrrDeviceWin32()
 			EnvMap.erase(it);
 			break;
 		}
-	}
+	}*/
 
 	switchToFullScreen(true);
 }

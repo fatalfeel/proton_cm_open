@@ -458,6 +458,22 @@
 				Name="GUI"
 				>
 				<File
+					RelativePath="..\source\GUI\HelloWorldScene.cpp"
+					>
+					<FileConfiguration
+						Name="Debug GL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\source\GUI\HelloWorldScene.h"
+					>
+				</File>
+				<File
 					RelativePath="..\source\GUI\HouseMenu.cpp"
 					>
 				</File>
