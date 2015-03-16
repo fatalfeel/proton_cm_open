@@ -1,6 +1,9 @@
-#include "App.h"
-#include "HelloWorldScene.h"
 #include "PlatformEnums.h"
+#include "App.h"
+
+#include "cocos2d.h"
+using namespace cocos2d;
+#include "HelloWorldScene.h"
 
 CCScene* HelloWorld::scene()
 {
@@ -43,7 +46,7 @@ bool HelloWorld::init()
 	/////////////////////////////
 	// 3. add your codes below...
 	std::string		e_str;
-	std::wstring	w_str	= L"Hello 你好";
+	std::wstring	w_str	= L"Hello 動感光波";
 	CCSize			size	= CCDirector::sharedDirector()->getWinSize();
 
 	WideStrToUTF8(e_str, w_str);
