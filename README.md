@@ -3,9 +3,7 @@ Proton_CM cross platform 3D engine open source
 1.
 
 (a.)
-Proton_sdk_source implement Irrlicht and Bullet Physics with OpenGL ES1.0 ES2.0
-
-https://github.com/fatalfeel/proton_sdk_source
+Proton CM Open implement Irrlicht and Bullet Physics with OpenGL ES1.1
 
 (b.)
 Full open source
@@ -21,7 +19,7 @@ GLSL shading language full control
 
 2.
 
-This Project is Proton_sdk_source + Cocos2D on OGLES1.1
+This Project is Proton CM Open + Cocos2D on OGLES1.1
 
 3.
 
@@ -59,6 +57,10 @@ When debug NDK c++ on Android, please set
 
 android:installLocation="internalOnly" of AndroidManifest.xml
 
-6.
+6. Demo screenshots
+
+https://plus.google.com/photos/106185541018774360364/albums/5964765088859640225
+
+7.
 
 The Brother site is https://github.com/fatalfeel/proton_sdk_source
