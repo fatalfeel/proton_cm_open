@@ -9,5 +9,7 @@
 
 #ifndef WinUtils_h__
 #define WinUtils_h__
+
 #include "../PlatformEnums.h"
-#endif // WinUtils_h__
+
+#endif

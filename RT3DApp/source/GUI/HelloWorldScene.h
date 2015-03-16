@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+using namespace cocos2d;
 
 class HelloWorld : public cocos2d::CCLayer
 {
@@ -10,13 +11,17 @@ public:
 	virtual bool init();  
 
 	// there's no 'id' in cpp, so we recommand to return the exactly class pointer
-	static cocos2d::CCScene* scene();
+	static CCScene* scene();
+
+	static HelloWorld* node();
 	
 	// a selector callback
 	virtual void menuCloseCallback(CCObject* pSender);
 
-	// implement the "static node()" method manually
-	LAYER_NODE_FUNC(HelloWorld);
+	virtual void onEnter();
+	virtual void onExit();
+		
+	CCSprite*	m_grossini;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
