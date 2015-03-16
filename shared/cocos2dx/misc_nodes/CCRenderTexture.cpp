@@ -213,6 +213,7 @@ void CCRenderTexture::end(bool bIsTOCacheTexture)
 	
 	//by stone
 	//CCDirector::sharedDirector()->getOpenGLView()->setViewPortInPoints(0, 0, size.width, size.height);
+	glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height);
 
 #if CC_ENABLE_CACHE_TEXTTURE_DATA
 	if (bIsTOCacheTexture)
