@@ -155,12 +155,11 @@ CCDirector::~CCDirector(void)
 void CCDirector::setGLDefaultValues(void)
 {
 	// This method SHOULD be called only after openGLView_ was initialized
-	//CCAssert(m_pobOpenGLView, "opengl view should not be null");
-
-	glDisable(GL_CULL_FACE);
-
-	setAlphaBlending(true);
+	
 	setDepthTest(false);
+	setAlphaBlending(true);
+	glDisable(GL_CULL_FACE);
+	
 	setProjection(m_eProjection);
 
 	// set other opengl default values
