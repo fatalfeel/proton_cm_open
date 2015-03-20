@@ -60,7 +60,7 @@ android:installLocation="internalOnly" of AndroidManifest.xml
 6.
 Demo screenshots
 
-https://plus.google.com/photos/106185541018774360364/albums/5964765088859640225
+https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
 
 7.
 
