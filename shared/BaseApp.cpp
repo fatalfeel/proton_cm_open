@@ -114,7 +114,7 @@ void BaseApp::InitializeGLDefaults()
 //by jesse stone
 bool BaseApp::Init()
 {
-    GLint depthbits;
+    //GLint depthbits;
 	
     m_gameTimer.Reset();
 	Entity::GetEntityManager()->SetName("root");
@@ -133,12 +133,12 @@ bool BaseApp::Init()
 	PrintGLString("Extensions", GL_EXTENSIONS);
 
 	//by stone
-    //InitializeGLDefaults();
+    /*InitializeGLDefaults();
     CHECK_GL_ERROR();
 		
 	glGetIntegerv(GL_DEPTH_BITS, &depthbits);
 	LogMsg("GL depth buffer: %d bit", depthbits);
-	CHECK_GL_ERROR();
+	CHECK_GL_ERROR();*/
 
 	if (GetAudioManager())
 		GetAudioManager()->Init();
