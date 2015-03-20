@@ -90,7 +90,7 @@ void BaseApp::PrintGLString(const char *name, GLenum s)
 	LogMsg("GL %s = %s\n", name, v);
 }
 
-void BaseApp::InitializeGLDefaults()
+/*void BaseApp::InitializeGLDefaults()
 {
 	glMatrixMode(GL_MODELVIEW);
 	glDepthMask(GL_TRUE);
@@ -109,7 +109,7 @@ void BaseApp::InitializeGLDefaults()
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glColor4x(1 << 16, 1 << 16, 1 << 16, 1 << 16);
 	glClearColor(0,0,0,255);
-}
+}*/
 
 //by jesse stone
 bool BaseApp::Init()
@@ -250,15 +250,15 @@ void BaseApp::Update()
 	m_sig_update(NULL);
 }
 
-void BaseApp::OnScreenSizeChange()
+/*void BaseApp::OnScreenSizeChange()
 {
 	
 #ifdef _DEBUG
 	//LogMsg("Changing screen-size to %d, %d, %d", GetScreenSizeX(), GetScreenSizeY(), GetOrientation());
 #endif
 	
-	GenerateSetPerspectiveFOV(C_APP_FOV, GetScreenSizeXf()/ GetScreenSizeYf(),0.1f,500.0f);
-}
+	//GenerateSetPerspectiveFOV(C_APP_FOV, GetScreenSizeXf()/ GetScreenSizeYf(),0.1f,500.0f);
+}*/
 
 void BaseApp::SetConsoleVisible( bool bNew )
 {

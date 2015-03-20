@@ -9,10 +9,18 @@
 #ifdef _IRR_COMPILE_WITH_OGLES2_
 
 //by stone
-#ifdef ANDROID_NDK
-#include <GLES2/gl2.h>
+#define GL_GLEXT_PROTOTYPES
+
+#ifdef __APPLE__
+    #include "OpenGLES/ES2/gl.h"
+    #include "OpenGLES/ES2/glext.h"
 #else
-#include <OpenGLES/ES2/gl.h>
+    #ifdef _WIN32
+		#include "EGL/egl.h"
+	#endif
+
+    #include "GLES2/gl2.h"
+    #include "GLES2/gl2ext.h"
 #endif
 
 #include "COGLES2MaterialRenderer.h"
@@ -23,6 +31,8 @@
 #include "os.h"
 #include "COGLES2Driver.h"
 #include "COGLES2MaterialRenderer.h"
+
+typedef char GLchar;
 
 namespace irr
 {

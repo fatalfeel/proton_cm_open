@@ -29,6 +29,7 @@ THE SOFTWARE.
 // Common layer for OpenGL stuff
 //
 
+#include "IrrCompileConfig.h" //by stone
 #include "CCEGLView.h"
 
 #define CC_GLVIEW                   cocos2d::CCEGLView
@@ -81,10 +82,16 @@ THE SOFTWARE.
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-#define GL_GLEXT_PROTOTYPES
+	
+	#define GL_GLEXT_PROTOTYPES
 
-#include <GLES/gl.h>
-#include <GLES/glext.h>
+	#ifdef _IRR_COMPILE_WITH_OGLES1_
+		#include "GLES/gl.h"
+		#include "GLES/glext.h"
+	#else
+		#include "GLES2/gl2.h"
+		#include "GLES2/gl2ext.h"
+	#endif
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)

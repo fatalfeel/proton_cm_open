@@ -1,8 +1,10 @@
 #pragma once
+
 #include <winsock2.h>
 #include <windows.h>
 #include <TCHAR.h>
-#include "time.h"
+#include <time.h>
+#include "IrrCompileConfig.h"
 
 #ifndef PLATFORM_WINDOWS
 #define PLATFORM_WINDOWS
@@ -10,13 +12,18 @@
 
 #ifndef _CONSOLE
 	#ifdef C_GL_MODE
+		#define GL_GLEXT_PROTOTYPES		
+
 		#include "KHR/khrplatform.h"
-		#include "GLES/gl.h"
 		
-		#ifdef _IRR_STATIC_LIB_
+		#ifdef _IRR_COMPILE_WITH_OGLES1_
+			#include "GLES/gl.h"
 			#include "GLES/glext.h"
+		#else
+			#include "GLES2/gl2.h"
+			#include "GLES2/gl2ext.h"
 		#endif
-				
+						
 		#define glTexParameterx			glTexParameteri
 		#define glFrustumf				glFrustum
 		//#define glOrthof				glOrtho

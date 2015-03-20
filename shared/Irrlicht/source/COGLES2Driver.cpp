@@ -10,13 +10,22 @@
 
 #ifdef _IRR_COMPILE_WITH_OGLES2_
 
+#define GL_GLEXT_PROTOTYPES
+
+#ifdef __APPLE__
+    #include "OpenGLES/ES2/gl.h"
+    #include "OpenGLES/ES2/glext.h"
+#else
+    #ifdef _WIN32
+		#include "EGL/egl.h"
+	#endif
+
+    #include "GLES2/gl2.h"
+    #include "GLES2/gl2ext.h"
+#endif
+
 //by stone
 #include "BaseApp.h"
-#ifdef ANDROID_NDK
-    #include <GLES2/gl2.h>
-#else
-    #include <OpenGLES/ES2/gl.h>
-#endif
 
 #include "COGLES2Driver.h"
 #include "COGLES2Texture.h"

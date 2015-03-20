@@ -36,38 +36,31 @@
  * ----------------------------------------------------------------------------------- */ 
 #include "IrrCompileConfig.h"
 
-#ifdef _IRR_COMPILE_WITH_OGLES1_
-
 #define GL_GLEXT_PROTOTYPES
 
 #ifdef __APPLE__
-    #include "OpenGLES/ES1/gl.h"
-    #include "OpenGLES/ES1/glext.h"
+    #ifdef _IRR_COMPILE_WITH_OGLES1_
+		#include "OpenGLES/ES1/gl.h"
+		#include "OpenGLES/ES1/glext.h"
+	#else
+		#include "OpenGLES/ES2/gl.h"
+		#include "OpenGLES/ES2/glext.h"
+	#endif
 #else
     #ifdef _WIN32
 		#include "EGL/egl.h"
 	#endif
 
-    #include "GLES/gl.h"
-    #include "GLES/glext.h"
-#endif
-
-#else
-
-#ifdef __APPLE__
-    #include "OpenGLES/ES2/gl2.h"
-    #include "OpenGLES/ES2/gl2ext.h"
-#else
-    #ifdef _WIN32
-		#include "EGL/egl.h"
+    #ifdef _IRR_COMPILE_WITH_OGLES1_
+		#include "GLES/gl.h"
+		#include "GLES/glext.h"
+	#else
+		#include "GLES2/gl2.h"
+		#include "GLES2/gl2ext.h"
 	#endif
-
-    #include "GLES/gl2.h"
-    #include "GLES/gl2ext.h"
 #endif
 
-#endif
-
+#include "support/data_support/uthash.h"
 #include "cocoshader/ccGLStateCache.h"
 #include "cocoshader/CCGLProgram.h"
 #include "CCString.h"

@@ -25,7 +25,7 @@
 #include "Manager/MessageManager.h"
 #include "FileSystem/FileManager.h"
 #include "util/ResourceUtils.h"
-#include "util/GLESUtils.h"
+//#include "util/GLESUtils.h"
 #include "util/RenderUtils.h"
 //#include "Font/RTFont.h"
 #include "Entity/Entity.h"
@@ -206,7 +206,7 @@ public:
 	virtual void Update();
 	virtual void OnEnterBackground(); //OS4 got a phonecall or changed apps, should save your junk
 	virtual void OnEnterForeground(); //switched back to the app
-	virtual void OnScreenSizeChange();
+	//virtual void OnScreenSizeChange();
 	virtual void OnFullscreenToggleRequest(); //Alt-Enter on Win, Ctrl-F on Mac - override if you want custom functionality
 	void SetConsoleVisible(bool bNew);
 	bool GetConsoleVisible()							{return m_bConsoleVisible;}
@@ -362,7 +362,7 @@ public:
 	void SetAllowScreenDimming(bool bAllowDimming); //respected by iOS only for now
     void PrintGLString(const char *name, GLenum s);
 	bool IsInitted() {return m_bInitted;}
-	virtual void InitializeGLDefaults();
+	//virtual void InitializeGLDefaults();
 	
 	//by jesse stone
 	CL_Mat4f* GetProjectionMatrix() 

@@ -103,14 +103,9 @@ int GetDevicePixelsPerInchDiagonal()
 	return cachedPixelsPerInch;	
 }
 
-void RenderGLTriangle()
+/*void RenderGLTriangle()
 {
-	//let's draw a simple triangle 
-	/*
-	 2
-	0 1
-	*/
-
+	
 	const float triSize = 0.4f;
 
 	GLfloat vVertices[] = 
@@ -140,7 +135,6 @@ void RenderGLTriangle()
 	CHECK_GL_ERROR();
 }
 
-
 void RenderSpinningTriangle()
 {
 
@@ -165,14 +159,6 @@ void RenderTexturedGLTriangle()
 	//glTranslatef(0,0,-2);
 	glRotatef(float( (BaseApp::GetBaseApp()->GetGameTick()/10) %360) , 0, 1, 0); //rotate it
 	glDisable(GL_CULL_FACE); //so we can see the back of the triangle too
-
-
-
-	//let's draw a simple triangle 
-	/*
-	 2
-	0 1
-	*/
 
 	const float triSize = 0.4f;
 
@@ -224,12 +210,6 @@ void RenderTexturedGLTriangleWithDrawElements()
 	glRotatef(float( (BaseApp::GetBaseApp()->GetGameTick()/10) %360) , 0, 1, 0); //rotate it
 	glDisable(GL_CULL_FACE); //so we can see the back of the triangle too
 
-
-	//let's draw a simple triangle 
-	/*
-	 2
-	0 1
-	*/
 
 	const float triSize = 0.4f;
 
@@ -295,11 +275,6 @@ void RenderTexturedGLTriangleWithDrawElements()
 
 void RenderTexturedRectangle(float RectSize)
 {
-	//let's draw a simple rectangle
-	/*
-	3 2
-	0 1
-	*/
 
 	GLfloat vVertices[] = 
 	{
@@ -331,8 +306,7 @@ void RenderTexturedRectangle(float RectSize)
 	
 	glDisable(GL_BLEND);
 	glDisable(GL_ALPHA_TEST);
-}
-
+}*/
 
 void SetupFakePrimaryScreenSize(int x, int y)
 {
@@ -397,7 +371,8 @@ void UndoFakeScreenSize()
 	SetupOriginalScreenSize(0,0);
 
 	SetupScreenInfo(g_screenSizeX,g_screenSizeY, GetOrientation());
-	PrepareForGL(); //make sure any ortho settings are also updated
+	
+	//PrepareForGL(); //make sure any ortho settings are also updated
 }
 
 
@@ -412,7 +387,7 @@ void RedoFakeScreenSize()
 		g_undoFakeScreenSizeX = 0;
 		g_undoFakeScreenSizeY = 0;
 	
-		PrepareForGL(); //make sure any ortho settings are also updated
+		//PrepareForGL(); //make sure any ortho settings are also updated
 	}
 
 }
@@ -788,7 +763,7 @@ uint32 ColorCombine(uint32 c1, uint32 c2, float alphaMod)
 	return MAKE_RGBA(r,g,b, byte(float(a)*alphaMod)) ;
 }
 
-void  ScreenToWorld(CL_Vec2f pt, CL_Vec3f *pReturnA, float dist)
+/*void  ScreenToWorld(CL_Vec2f pt, CL_Vec3f *pReturnA, float dist)
 {
 	float aspect = GetScreenSizeYf()/GetScreenSizeXf();
 
@@ -913,7 +888,7 @@ CL_Vec3f GetOGLPos(int x, int y, float z, CL_Vec3f *pNormalOut, CL_Mat4f *pModel
 		*pNormalOut = n;
 	}
 	return a + (n* z);
-}
+}*/
 
 
 //I see I'm truncating the floats to ints here, but I can't remember if I had a decent reason.  Oh well, this stuff

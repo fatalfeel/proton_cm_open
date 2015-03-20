@@ -39,56 +39,41 @@
 //#include "Precompiled.h"
 #include "IrrCompileConfig.h"
 
-#ifdef _IRR_COMPILE_WITH_OGLES1_
-
 #define GL_GLEXT_PROTOTYPES
 
 #ifdef __APPLE__
-    #include "OpenGLES/ES1/gl.h"
-    #include "OpenGLES/ES1/glext.h"
+    #ifdef _IRR_COMPILE_WITH_OGLES1_
+		#include "OpenGLES/ES1/gl.h"
+		#include "OpenGLES/ES1/glext.h"
+	#else
+		#include "OpenGLES/ES2/gl.h"
+		#include "OpenGLES/ES2/glext.h"
+	#endif
 #else
     #ifdef _WIN32
 		#include "EGL/egl.h"
 	#endif
 
-    #include "GLES/gl.h"
-    #include "GLES/glext.h"
-#endif
-
-#else
-
-#ifdef __APPLE__
-    #include "OpenGLES/ES2/gl2.h"
-    #include "OpenGLES/ES2/gl2ext.h"
-#else
-    #ifdef _WIN32
-		#include "EGL/egl.h"
+    #ifdef _IRR_COMPILE_WITH_OGLES1_
+		#include "GLES/gl.h"
+		#include "GLES/glext.h"
+	#else
+		#include "GLES2/gl2.h"
+		#include "GLES2/gl2ext.h"
 	#endif
-
-    #include "GLES/gl2.h"
-    #include "GLES/gl2ext.h"
 #endif
 
-#endif
-
+#include "support/data_support/uthash.h"
 #include "cocoshader/CCGLProgram.h"
 #include "cocoshader/CCGLStateCache.h"
 #include "CCDirector.h"
 #include "CCFileUtils.h"
 #include "CCString.h"
-#include "support/data_support/uthash.h"
 #include "matrix4.h"
 //#include "kazmath/GL/matrix.h"
 //#include "kazmath/kazmath.h"
 
 NS_CC_BEGIN
-
-typedef struct _hashUniformEntry
-{
-    void*				value;		// value
-    unsigned int		location;	// Key
-    UT_hash_handle		hh;			// hash entry
-} tHashUniformEntry;
 
 CCGLProgram::CCGLProgram ( void )
 {
@@ -126,7 +111,7 @@ CCGLProgram::~CCGLProgram ( void )
     }
 }
 
-bool CCGLProgram::initWithVertexShaderByteArray ( const char* pVShaderByteArray, const char* pFShaderByteArray )
+bool CCGLProgram::initWithVertexShaderByteArray ( const GLchar* pVShaderByteArray, const GLchar* pFShaderByteArray )
 {
 #if defined ( USE_OPEN_GLES2 )
 
@@ -174,8 +159,8 @@ bool CCGLProgram::initWithVertexShaderByteArray ( const char* pVShaderByteArray,
 
 /*bool CCGLProgram::initWithVertexShaderFilename ( const char* szVShaderFilename, const char* szFShaderFilename )
 {
-	const char*  pVertexSource   = (char*) CCString::createWithContentsOfFile ( CCFileUtils::sharedFileUtils ( )->fullPathForFilename ( szVShaderFilename ).c_str ( ) )->getCString ( );
-	const char*  pFragmentSource = (char*) CCString::createWithContentsOfFile ( CCFileUtils::sharedFileUtils ( )->fullPathForFilename ( szFShaderFilename ).c_str ( ) )->getCString ( );
+	const GLchar*  pVertexSource   = (GLchar*) CCString::createWithContentsOfFile ( CCFileUtils::sharedFileUtils ( )->fullPathForFilename ( szVShaderFilename ).c_str ( ) )->getCString ( );
+	const GLchar*  pFragmentSource = (GLchar*) CCString::createWithContentsOfFile ( CCFileUtils::sharedFileUtils ( )->fullPathForFilename ( szFShaderFilename ).c_str ( ) )->getCString ( );
 
     return initWithVertexShaderByteArray ( pVertexSource, pFragmentSource );
 }
@@ -228,7 +213,7 @@ bool CCGLProgram::compileShader ( GLuint* pShader, GLenum uType, const char* pSo
 	{
 		GLsizei  nLength;
 		glGetShaderiv ( *pShader, GL_SHADER_SOURCE_LENGTH, &nLength );
-		char*  szSrc = (char*) malloc ( sizeof ( char ) * nLength );
+		GLchar*  szSrc = (GLchar*) malloc ( sizeof ( GLchar ) * nLength );
 		
 		glGetShaderSource ( *pShader, nLength, NULL, szSrc );
 		CCLOG ( "XMCocos2D : ERROR - Failed to compile shader:\n%s", szSrc );
@@ -346,7 +331,7 @@ const char* CCGLProgram::logForOpenGLObject ( GLuint uObject, GLInfoFunction pIn
         return 0;
 	}
 
-    char*  pLogBytes = (char*) malloc ( nLogLength );
+    GLchar*  pLogBytes = (GLchar*) malloc ( nLogLength );
     pLogFunc ( uObject, nLogLength, &nCharsWritten, pLogBytes );
 
     CCString*  pLog = CCString::create ( (char*) pLogBytes );

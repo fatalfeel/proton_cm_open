@@ -95,7 +95,14 @@ enum
 #define	kCCAttributeNamePosition					"a_position"
 #define	kCCAttributeNameTexCoord					"a_texCoord"
 
-struct _hashUniformEntry;
+typedef char GLchar;
+
+typedef struct _hashUniformEntry
+{
+    void*				value;		// value
+    unsigned int		location;	// Key
+    UT_hash_handle		hh;			// hash entry
+} tHashUniformEntry;
 
 typedef void (*GLInfoFunction) ( GLuint uProgram, GLenum uPname, GLint* pParams );
 typedef void (*GLLogFunction ) ( GLuint uProgram, GLsizei uSize, GLsizei* pLength, char* szInfoLog );
@@ -114,12 +121,7 @@ public :
 public :
 
 	/** Initializes the CCGLProgram with a vertex and fragment with bytes array */
-	virtual bool			initWithVertexShaderByteArray ( const char* pVShaderByteArray, const char* pFShaderByteArray );
-
-#if ( CC_TARGET_PLATFORM == CC_PLATFORM_WINRT ) || ( CC_TARGET_PLATFORM == CC_PLATFORM_WP8 )
-	/** Initializes the CCGLProgram with precompiled shader program */
-	virtual bool			initWithPrecompiledProgramByteArray ( const char* pShaderByteArray, GLint nLength );
-#endif
+	virtual bool			initWithVertexShaderByteArray ( const GLchar* pVShaderByteArray, const GLchar* pFShaderByteArray );
 
 	/** Initializes the CCGLProgram with a vertex and fragment with contents of filenames */
 	//virtual bool			initWithVertexShaderFilename ( const char* szVShaderFilename, const char* szFShaderFilename );
@@ -133,15 +135,7 @@ public :
 	/** it will call glUseProgram() */
 	void					use ( void );
 
-	/** It will create 4 uniforms:
-	 *		- kCCUniformPMatrix
-	 *		- kCCUniformMVMatrix
-	 *		- kCCUniformMVPMatrix
-	 *		- kCCUniformSampler
-	 *
-	 *	And it will bind "kCCUniformSampler" to 0
-	 *
-	 */
+
 	void					updateUniforms ( void );
 
 	/** calls retrieves the named uniform location for this shader program. */

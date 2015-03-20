@@ -830,14 +830,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\shared\util\GLESUtils.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\shared\util\GLESUtils.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\shared\util\MathUtils.cpp"
 					>
 				</File>

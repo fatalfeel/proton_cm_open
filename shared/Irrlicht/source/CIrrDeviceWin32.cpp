@@ -1132,10 +1132,7 @@ void CIrrDeviceWin32::createDriver()
 		#ifdef _IRR_COMPILE_WITH_OGLES2_
 		{ 	 
 			video::SExposedVideoData data;
-			data.OpenGLWin32.HWnd=HWnd;
-
-			switchToFullScreen();
-
+			
 			VideoDriver = video::createOGLES2Driver(CreationParams, data, FileSystem);
 			if (!VideoDriver)
 			{
