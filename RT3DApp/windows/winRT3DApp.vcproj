@@ -8963,7 +8963,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8984,7 +8983,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -9004,7 +9002,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9025,7 +9022,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -9045,7 +9041,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9066,7 +9061,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -9086,7 +9080,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9107,7 +9100,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -9127,7 +9119,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9148,7 +9139,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -9168,7 +9158,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9189,7 +9178,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -9209,7 +9197,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9230,7 +9217,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -9250,7 +9236,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9271,7 +9256,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16342,7 +16326,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16354,7 +16337,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16366,7 +16348,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16382,7 +16363,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16394,7 +16374,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16406,7 +16385,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16418,7 +16396,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -16434,7 +16411,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -18877,6 +18853,62 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="cocoshader"
+					>
+					<File
+						RelativePath="..\..\shared\cocos2dx\cocoshader\CCGLProgram.cpp"
+						>
+						<FileConfiguration
+							Name="Debug GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\cocoshader\CCGLProgram.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\cocoshader\CCGLStateCache.cpp"
+						>
+						<FileConfiguration
+							Name="Debug GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\cocoshader\CCGLStateCache.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\cocoshader\CCShaderCache.cpp"
+						>
+						<FileConfiguration
+							Name="Debug GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\cocoshader\CCShaderCache.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\cocoshader\CCShaders.h"
+						>
 					</File>
 				</Filter>
 			</Filter>

@@ -6,6 +6,8 @@
 #include "PlatformEnums.h"
 #include "IrrCompileConfig.h"
 
+#ifdef _IRR_COMPILE_WITH_OGLES1_
+
 #define GL_GLEXT_PROTOTYPES
 
 #ifdef __APPLE__
@@ -19,8 +21,6 @@
     #include "GLES/gl.h"
     #include "GLES/glext.h"
 #endif
-
-#ifdef _IRR_COMPILE_WITH_OGLES1_
 
 #include "COGLESExtensionHandler.h"
 #include "COGLESDriver.h"
