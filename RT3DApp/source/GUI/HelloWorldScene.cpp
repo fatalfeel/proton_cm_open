@@ -46,7 +46,7 @@ bool HelloWorld::init()
 	/////////////////////////////
 	// 3. add your codes below...
 	std::string		e_str;
-	std::wstring	w_str	= L"Hello 動感光波";
+	std::wstring	w_str	= L"Hello";
 	CCSize			size	= CCDirector::sharedDirector()->getWinSize();
 
 	WideStrToUTF8(e_str, w_str);
