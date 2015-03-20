@@ -6,7 +6,6 @@ using namespace io;
 
 #include "BaseApp.h"
 #include "Irrlicht/source/CCameraSceneNode.h"
-#include "util/GLESUtils.h"
 #include "Entity/EntityUtils.h"
 #include "Component/EventControlComponent.h"
 
