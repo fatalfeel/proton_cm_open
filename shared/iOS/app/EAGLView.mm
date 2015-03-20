@@ -13,6 +13,9 @@
 #import "App.h"
 #import "Irrlicht/IrrlichtManager.h"
 
+#import "CCDirector.h"
+using namespace cocos2d;
+
 #define USE_DEPTH_BUFFER 1
 
 // A class extension to declare private methods
@@ -78,15 +81,12 @@
 		animationInterval = animationIntervalSave;
 	}
 	
-    //CGFloat pixelScale = [[UIScreen mainScreen] scale];
-    UIScreen *pScreen = [UIScreen mainScreen];
-    CGRect fullScreenRect = pScreen.bounds;
-    
-    bool bUseSizeGuess = false;
+    UIScreen*   pScreen         = [UIScreen mainScreen];
+    CGRect      fullScreenRect  = pScreen.bounds;
+    float       pixelScale      = [[UIScreen mainScreen] scale];
     
 	if (GetPrimaryGLX() == 0)
     {
-        bUseSizeGuess = true;
         SetPrimaryScreenSize(fullScreenRect.size.width, fullScreenRect.size.height);
         SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), 0);
     }
@@ -98,15 +98,13 @@
 		[self release];
 		return nil;
 	}
-  
-    if (bUseSizeGuess)
-    {
-        //put it back, otherwise we may not fix it later
-        SetPrimaryScreenSize(0,0);
-    }
     
+    CCSize size = CCSize(GetPrimaryGLX(), GetPrimaryGLY());
+    CCDirector::sharedDirector()->SetWinSize(size);
+    CCDirector::sharedDirector()->setContentScaleFactor(pixelScale);
+    CCDirector::sharedDirector()->setOpenGLView(NULL);
+      
     //BaseApp::GetBaseApp()->OnScreenSizeChange();
-    
 	return self;
 }
 
@@ -145,6 +143,9 @@
 		
 		[appDelegate onOSMessage: &m];
 	}
+    
+    CCDirector::sharedDirector()->setGLDefaultValues();
+    CCDirector::sharedDirector()->mainLoop();
 	
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	// if(main_throttled_update()) 
@@ -162,17 +163,11 @@
 
 - (BOOL)createFramebuffer 
 {
-    
-    CGFloat pixelScale = [[UIScreen mainScreen] scale];
-    UIScreen *pScreen = [UIScreen mainScreen];
-    CGRect fullScreenRect = pScreen.bounds;
-    
-    
-    LogMsg("Scale: %.2f", pixelScale);
+    float pixelScale = [[UIScreen mainScreen] scale];
+
     SetProtonPixelScaleFactor(pixelScale);
 
     [self setContentScaleFactor: GetProtonPixelScaleFactor()];
-
     
     glGenFramebuffersOES(1, &viewFramebuffer);
     glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
@@ -292,7 +287,6 @@
 
 - (void)dealloc 
 {
-
 	[self stopAnimation];
 	
 	if ([EAGLContext currentContext] == context) 
@@ -301,6 +295,10 @@
 	}
 	
 	[context release];	
+	
+	CCDirector::sharedDirector()->end();
+	CCDirector::sharedDirector()->purgeDirector();
+	
 	[super dealloc];
 }
 

@@ -28,7 +28,10 @@
 #include <string.h>
 #include <math.h>
 #include <ctype.h>
-#include <io.h>
+
+#ifdef _WIN32
+    #include <io.h>
+#endif
 
 #define write _write
 #define close _close

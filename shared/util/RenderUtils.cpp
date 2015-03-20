@@ -8,10 +8,11 @@
  */
 
 #include "PlatformPrecomp.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "RenderUtils.h"
 #include "BaseApp.h"
-
-#define M_PI 3.141592f
+//#define M_PI 3.141592f
 
 //defaults
 int g_screenSizeY = GetPrimaryGLY();
@@ -34,13 +35,14 @@ void SetForcedOrientation(eOrientationMode orientation) {g_forcedOrientation = o
 
 void SetProtonPixelScaleFactor(float scale)
 {
-	#ifdef RT_DISABLE_RETINA_ON_IPAD
-		if (IsIPAD() && scale == 2.0f)
-		{
-			//it's an ipad3 actually.  Do we want retina or not?
-			scale = 1.0f;
-		}
-	#endif
+#ifdef RT_DISABLE_RETINA_ON_IPAD
+	if (IsIPAD() && scale == 2.0f)
+	{
+		//it's an ipad3 actually.  Do we want retina or not?
+		scale = 1.0f;
+	}
+#endif
+
     g_protonPixelScaleFactor = scale;
 }
 

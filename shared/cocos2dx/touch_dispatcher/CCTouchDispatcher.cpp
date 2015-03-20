@@ -36,7 +36,7 @@ THE SOFTWARE.
 /**
  * Used for sort
  */
-static bool less(const cocos2d::CCTouchHandler *p1, const cocos2d::CCTouchHandler *p2)
+static bool CCless(const cocos2d::CCTouchHandler *p1, const cocos2d::CCTouchHandler *p2)
 {
 	return ((cocos2d::CCTouchHandler*)p1)->getPriority() < ((cocos2d::CCTouchHandler*)p2)->getPriority();
 }
@@ -303,7 +303,7 @@ CCTouchHandler* CCTouchDispatcher::findHandler(CCMutableArray<CCTouchHandler*> *
 
 void CCTouchDispatcher::rearrangeHandlers(CCMutableArray<CCTouchHandler*> *pArray)
 {
-	std::sort(pArray->begin(), pArray->end(), less);
+	std::sort(pArray->begin(), pArray->end(), CCless);
 }
 
 void CCTouchDispatcher::setPriority(int nPriority, CCTouchDelegate *pDelegate)

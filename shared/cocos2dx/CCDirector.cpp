@@ -270,6 +270,16 @@ void CCDirector::calculateDeltaTime(void)
 
 	*m_pLastUpdate = now;
 }
+    
+void CCDirector::SetWinSize(CCSize size)
+{
+    m_obWinSizeInPoints = size;
+}
+    
+CCSize CCDirector::GetWinSize()
+{
+    return m_obWinSizeInPoints;
+}
 
 // m_pobOpenGLView
 void CCDirector::setOpenGLView(CC_GLVIEW *pobOpenGLView)
@@ -284,7 +294,6 @@ void CCDirector::setOpenGLView(CC_GLVIEW *pobOpenGLView)
 
 		// set size
 		//m_obWinSizeInPoints = m_pobOpenGLView->getSize();
-		m_obWinSizeInPoints = CCSize((float)GetPrimaryGLX(), (float)GetPrimaryGLY());
 		m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
         setGLDefaultValues();
 
@@ -333,11 +342,13 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		// accommodate iPad retina while keep backward compatibility
-		/*if (m_pobOpenGLView && m_pobOpenGLView->isIpad() && m_pobOpenGLView->getMainScreenScale() > 1.0)
+		//if (m_pobOpenGLView && m_pobOpenGLView->isIpad() && m_pobOpenGLView->getMainScreenScale() > 1.0)
+        if ( IsIPAD() && GetMainScreenScale() > 1.0)
+
 		{
 			gluPerspective(60, (GLfloat)size.width/size.height, zeye-size.height/2, zeye+size.height/2);	
 		}
-		else*/
+		else
 		{
 			gluPerspective(60, (GLfloat)size.width/size.height, 0.5f, 1500.0f);
 		}				
@@ -460,8 +471,7 @@ CCPoint CCDirector::convertToUI(const CCPoint& obPoint)
 
 CCSize CCDirector::getWinSize(void)
 {
-	//CCSize s = m_obWinSizeInPoints;
-	CCSize s = CCSize((float)GetPrimaryGLX(), (float)GetPrimaryGLY());
+	CCSize s = m_obWinSizeInPoints;
 	
 	if (m_eDeviceOrientation == CCDeviceOrientationLandscapeLeft
 		|| m_eDeviceOrientation == CCDeviceOrientationLandscapeRight)
@@ -495,7 +505,6 @@ void CCDirector::reshapeProjection(const CCSize& newWindowSize)
 {
     CC_UNUSED_PARAM(newWindowSize);
     //m_obWinSizeInPoints = m_pobOpenGLView->getSize();
-	m_obWinSizeInPoints = CCSize((float)GetPrimaryGLX(), (float)GetPrimaryGLY());
 	m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor,
 		                             m_obWinSizeInPoints.height * m_fContentScaleFactor);
 
@@ -915,7 +924,6 @@ void CCDirector::setDeviceOrientation(ccDeviceOrientation kDeviceOrientation)
         // On win32,the return value of CCApplication::setDeviceOrientation is always kCCDeviceOrientationPortrait
         // So,we should calculate the Projection and window size again.
         //m_obWinSizeInPoints = m_pobOpenGLView->getSize();
-		m_obWinSizeInPoints = CCSize((float)GetPrimaryGLX(), (float)GetPrimaryGLY());
         m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
         setProjection(m_eProjection);
     }

@@ -86,8 +86,8 @@ typedef uint8_t byte;
 
 typedef intptr_t CSSM_INTPTR;
 
+#define GL_GLEXT_PROTOTYPES
 #include <OpenGLES/ES1/gl.h>
-//#include <OpenGLES/eagl.h>
 #include <OpenGLES/ES1/glext.h>
 
 typedef GLfloat GLdouble;

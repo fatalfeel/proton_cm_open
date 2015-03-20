@@ -735,7 +735,7 @@ xmlDictLookup(xmlDictPtr dict, const xmlChar *name, int len) {
 	     insert = insert->next) {
 #ifdef __GNUC__
 	    if ((insert->okey == okey) && (insert->len == len)) {
-		if (!kdMemcmp(insert->name, name, len))
+		if (!memcmp(insert->name, name, len))
 		    return(insert->name);
 	    }
 #else
@@ -747,7 +747,7 @@ xmlDictLookup(xmlDictPtr dict, const xmlChar *name, int len) {
 	}
 #ifdef __GNUC__
 	if ((insert->okey == okey) && (insert->len == len)) {
-	    if (!kdMemcmp(insert->name, name, len))
+	    if (!memcmp(insert->name, name, len))
 		return(insert->name);
 	}
 #else
@@ -777,7 +777,7 @@ xmlDictLookup(xmlDictPtr dict, const xmlChar *name, int len) {
 		 tmp = tmp->next) {
 #ifdef __GNUC__
 		if ((tmp->okey == skey) && (tmp->len == len)) {
-		    if (!kdMemcmp(tmp->name, name, len))
+		    if (!memcmp(tmp->name, name, len))
 			return(tmp->name);
 		}
 #else
@@ -789,7 +789,7 @@ xmlDictLookup(xmlDictPtr dict, const xmlChar *name, int len) {
 	    }
 #ifdef __GNUC__
 	    if ((tmp->okey == skey) && (tmp->len == len)) {
-		if (!kdMemcmp(tmp->name, name, len))
+		if (!memcmp(tmp->name, name, len))
 		    return(tmp->name);
 	    }
 #else
@@ -866,7 +866,7 @@ xmlDictExists(xmlDictPtr dict, const xmlChar *name, int len) {
 	     insert = insert->next) {
 #ifdef __GNUC__
 	    if ((insert->okey == okey) && (insert->len == len)) {
-		if (!kdMemcmp(insert->name, name, len))
+		if (!memcmp(insert->name, name, len))
 		    return(insert->name);
 	    }
 #else
@@ -878,7 +878,7 @@ xmlDictExists(xmlDictPtr dict, const xmlChar *name, int len) {
 	}
 #ifdef __GNUC__
 	if ((insert->okey == okey) && (insert->len == len)) {
-	    if (!kdMemcmp(insert->name, name, len))
+	    if (!memcmp(insert->name, name, len))
 		return(insert->name);
 	}
 #else
@@ -908,7 +908,7 @@ xmlDictExists(xmlDictPtr dict, const xmlChar *name, int len) {
 		 tmp = tmp->next) {
 #ifdef __GNUC__
 		if ((tmp->okey == skey) && (tmp->len == len)) {
-		    if (!kdMemcmp(tmp->name, name, len))
+		    if (!memcmp(tmp->name, name, len))
 			return(tmp->name);
 		}
 #else
@@ -920,7 +920,7 @@ xmlDictExists(xmlDictPtr dict, const xmlChar *name, int len) {
 	    }
 #ifdef __GNUC__
 	    if ((tmp->okey == skey) && (tmp->len == len)) {
-		if (!kdMemcmp(tmp->name, name, len))
+		if (!memcmp(tmp->name, name, len))
 		    return(tmp->name);
 	    }
 #else

@@ -2,6 +2,7 @@
 
 int win_vsnprintf(char* str, size_t size, const char* format, va_list ap)
 {
+#ifdef _WIN32
     int count = -1;
 
     if (size != 0)
@@ -10,6 +11,9 @@ int win_vsnprintf(char* str, size_t size, const char* format, va_list ap)
         count = _vscprintf(format, ap);
 
     return count;
+#else
+    return vsnprintf(str,size,format,ap);
+#endif
 }
 
 int win_snprintf(char* str, size_t size, const char* format, ...)

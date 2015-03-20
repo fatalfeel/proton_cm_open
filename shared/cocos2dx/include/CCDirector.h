@@ -182,6 +182,9 @@ public:
 	/** Display the FPS on the bottom-left corner */
 	inline void setDisplayFPS(bool bDisplayFPS) { m_bDisplayFPS = bDisplayFPS; }
 
+	void    SetWinSize(CCSize size);
+    CCSize  GetWinSize();
+    
 	/** Get the CCEGLView, where everything is rendered */
 	inline CC_GLVIEW* getOpenGLView(void) 
 	{ 

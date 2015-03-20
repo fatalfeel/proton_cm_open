@@ -60,8 +60,15 @@ THE SOFTWARE.
 #include "CCCommon.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#include "OpenGLES/ES1/gl.h"
-#include "OpenGLES/ES1/glext.h"
+    #define GL_GLEXT_PROTOTYPES
+
+    #ifdef _IRR_COMPILE_WITH_OGLES1_
+        #include "OpenGLES/ES1/gl.h"
+        #include "OpenGLES/ES1/glext.h"
+    #else
+        #include "OpenGLES/ES2/gl.h"
+        #include "OpenGLES/ES2/glext.h"
+    #endif
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

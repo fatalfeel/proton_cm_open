@@ -440,10 +440,16 @@ CCBMFontConfiguration::~CCBMFontConfiguration()
 const char* CCBMFontConfiguration::description(void)
 {
 	char* pBuf = new char[100];
-	sprintf(pBuf, "<CCBMFontConfiguration = %08X | Glphys:%d Kernings:%d | Image = %s>", (unsigned int)this,
+	/*sprintf(pBuf, "<CCBMFontConfiguration = %08X | Glphys:%d Kernings:%d | Image = %s>", (unsigned int)this,
 		HASH_COUNT(m_pFontDefDictionary),
 		HASH_COUNT(m_pKerningDictionary),
-		m_sAtlasName.c_str());
+		m_sAtlasName.c_str());*/
+    unsigned int* p_this = (unsigned int*)this; //by stone
+	sprintf(pBuf, "<CCBMFontConfiguration = %08X | Glphys:%d Kernings:%d | Image = %s>", p_this,
+            HASH_COUNT(m_pFontDefDictionary),
+            HASH_COUNT(m_pKerningDictionary),
+            m_sAtlasName.c_str());
+    
 	CCString* pRet = new CCString(pBuf);
 	pRet->autorelease();
 	CC_SAFE_DELETE_ARRAY(pBuf);

@@ -4,23 +4,168 @@
  *  For license info, check the license.txt file that should have come with this.
  *
  */
-#include "iOSUtils.h"
+#import "iOSUtils.h"
 #import <UIKit/UIKit.h>
 #import <cstdarg>
-#include <string>
-#include <sys/time.h>
-#include <sys/sysctl.h>
-#include "BaseApp.h"
-#include <SystemConfiguration/SystemConfiguration.h>
-#include "Network/NetUtils.h"
+#import <string>
+#import <sys/time.h>
+#import <sys/sysctl.h>
+#import "BaseApp.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h> 
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <net/if.h>
-#include <net/if_dl.h>
+#import <sys/socket.h>
+#import <netinet/in.h>
+#import <net/if.h>
+#import <net/if_dl.h>
+#import <mach/mach.h>
+#import <mach/mach_host.h>
 
 using namespace std;
 
+unsigned int GetFreeMemory()
+{
+    mach_port_t host_port;
+    mach_msg_type_number_t host_size;
+    vm_size_t pagesize;
+    
+    host_port = mach_host_self();
+    host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    host_page_size(host_port, &pagesize);
+    
+    vm_statistics_data_t vm_stat;
+    
+    if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS)
+        LogMsg("Failed to fetch vm statistics");
+    
+    /* Stats in bytes */
+    natural_t mem_free = vm_stat.free_count * pagesize;
+    //natural_t mem_total = mem_used + mem_free;
+    //natural_t mem_used = (vm_stat.active_count + vm_stat.inactive_count + vm_stat.wire_count) * pagesize;
+    // LogMsg("Mem used: %u free: %u total: %u", mem_used, mem_free, mem_total);
+    return mem_free;
+}
+
+void CreateDirectoryRecursively(string basePath, string path)
+{
+	string fileName = basePath+path;
+	NSString *str =  [NSString stringWithCString: fileName.c_str() encoding: [NSString defaultCStringEncoding]];
+    [[NSFileManager defaultManager] createDirectoryAtPath:str
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:nil];
+}
+
+bool RemoveDirectoryRecursively(string path)
+{
+	RemoveFile(path, false);
+	return true;
+}
+
+vector<string> GetDirectoriesAtPath(string path)
+{
+	
+#ifdef _DEBUG
+    LogMsg("Scanning dir %s", path.c_str());
+#endif
+	vector<string> v;
+	
+	NSString *str =  [NSString stringWithCString: path.c_str() encoding: [NSString defaultCStringEncoding]];
+	NSArray *origContents = [[NSFileManager defaultManager] directoryContentsAtPath:str];
+	NSLog(@"Number of files = %d", origContents.count);
+	
+	string dir;
+	
+	for (int i = 0; i < origContents.count; i++)
+	{
+		dir = [[origContents objectAtIndex:i] cStringUsingEncoding:NSUTF8StringEncoding];
+		if (dir.find(".") == string::npos)
+		{
+			//we're assuming that any name without a . in it is a dir.  Probably dumb, but works since we're controlling what gets written...
+			v.push_back(dir);
+		}
+#ifdef _DEBUG
+        NSLog (@"%d: <%@>", i, [origContents objectAtIndex:i]);
+#endif
+	}
+	
+	return v;
+}
+
+vector<string> GetFilesAtPath(string path)
+{
+	
+	vector<string> v;
+	
+	NSString *str =  [NSString stringWithCString: path.c_str() encoding: [NSString defaultCStringEncoding]];
+	NSArray *origContents = [[NSFileManager defaultManager] directoryContentsAtPath:str];
+	//NSLog(@"Number of files = %d", origContents.count);
+	
+	string dir;
+	
+	for (int i = 0; i < origContents.count; i++)
+	{
+		dir = [[origContents objectAtIndex:i] cStringUsingEncoding:NSUTF8StringEncoding];
+		//if (dir.find(".") != string::npos)
+		{
+			//we're assuming that any name without a . in it is a dir.  Probably dumb, but works since we're controlling what gets written...
+			v.push_back(dir);
+		}
+		//NSLog (@"%d: <%@>", i, [origContents objectAtIndex:i]);
+	}
+	
+	return v;
+}
+
+bool IsIphoneOriPad()
+{
+	return true;
+}
+
+float GetDeviceOSVersion()
+{
+	//TODO
+	return 0.0f;
+}
+
+string GetClipboardText()
+{
+	string text;
+	
+	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    
+	if ([pasteboard containsPasteboardTypes: [NSArray arrayWithObject:@"public.utf8-plain-text"]])
+	{
+		text = [pasteboard.string cStringUsingEncoding:NSUTF8StringEncoding];
+	}
+	return text;
+}
+
+bool IsDesktop() {return false;}
+
+ePlatformID GetPlatformID()
+{
+	return PLATFORM_ID_IOS;
+}
+void NotifyOSOfOrientationPreference(eOrientationMode orientation)
+{
+    
+}
+
+bool HasVibration()
+{
+	if (IsIphone()) return true;
+    
+	return false;
+}
+
+void ForceVideoUpdate()
+{
+    //    LogMsg("TODO..video update");
+}
+
+///////////
+///////
+/////
 void LogMsg(const char *lpFormat, ...)
 {
 	std::va_list argPtr ;
@@ -38,8 +183,6 @@ void LogMsg(const char *lpFormat, ...)
 	va_end(argPtr) ;
 	
 } 
-
-
 
 void LaunchURL(string url)
 {
@@ -176,30 +319,19 @@ bool IsIPodTouchThirdGen()
 	return false;
 }
 
-
 bool IsIPAD()
 {
-	//#if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-#if 30200 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-
-	//LogMsg("Our idiom is %d (iPad is: %d)", UI_USER_INTERFACE_IDIOM(), UIUserInterfaceIdiomPad);
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{
-	/*
-		assert(30200 == __IPHONE_3_2 && "Uh oh, why did this change?");
-		UIScreen* mainscr = [UIScreen mainScreen];
-		float x = mainscr.currentMode.size.width;
-		float y = mainscr.currentMode.size.height;
-	*/	
 		return true;
-	} else
-	{
-		//an iPhone/ipod	
-		
 	}
-	#endif
 	
 	return false;
+}
+
+float GetMainScreenScale()
+{
+    return [[UIScreen mainScreen] scale];
 }
 
 eDeviceMemoryClass GetDeviceMemoryClass()
@@ -480,148 +612,3 @@ bool IsAppInstalled(string packageName)
 	return false;
 }
 
-#import <mach/mach.h>
-#import <mach/mach_host.h>
- 
-//Snippet from http://landonf.bikemonkey.org/2008/12/06
-
-unsigned int GetFreeMemory ()
- {
-    mach_port_t host_port;
-    mach_msg_type_number_t host_size;
-    vm_size_t pagesize;
-    
-    host_port = mach_host_self();
-    host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
-    host_page_size(host_port, &pagesize);        
- 
-    vm_statistics_data_t vm_stat;
-              
-    if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS)
-        LogMsg("Failed to fetch vm statistics");
- 
-    /* Stats in bytes */ 
-	 natural_t mem_free = vm_stat.free_count * pagesize;
-	 //natural_t mem_total = mem_used + mem_free;
-	 //natural_t mem_used = (vm_stat.active_count + vm_stat.inactive_count + vm_stat.wire_count) * pagesize;
-	 // LogMsg("Mem used: %u free: %u total: %u", mem_used, mem_free, mem_total);
-   return mem_free;
-}
-
-void CreateDirectoryRecursively(string basePath, string path)
-{
-	string fileName = basePath+path;
-	NSString *str =  [NSString stringWithCString: fileName.c_str() encoding: [NSString defaultCStringEncoding]];
-[[NSFileManager defaultManager] createDirectoryAtPath:str
-                          withIntermediateDirectories:YES
-                                           attributes:nil
-                                                error:nil];
-}
-
-bool RemoveDirectoryRecursively(string path)
-{
-	RemoveFile(path, false);
-	return true;
-}
-
-vector<string> GetDirectoriesAtPath(string path)
-{
-	
-#ifdef _DEBUG
-    LogMsg("Scanning dir %s", path.c_str());
-#endif
-	vector<string> v;
-	
-	NSString *str =  [NSString stringWithCString: path.c_str() encoding: [NSString defaultCStringEncoding]];
-	NSArray *origContents = [[NSFileManager defaultManager] directoryContentsAtPath:str];
-	NSLog(@"Number of files = %d", origContents.count);
-	
-	string dir;
-	
-	for (int i = 0; i < origContents.count; i++) 
-	{
-		dir = [[origContents objectAtIndex:i] cStringUsingEncoding:NSUTF8StringEncoding];
-		if (dir.find(".") == string::npos)
-		{
-			//we're assuming that any name without a . in it is a dir.  Probably dumb, but works since we're controlling what gets written...
-			v.push_back(dir);
-		}
-#ifdef _DEBUG
-        NSLog (@"%d: <%@>", i, [origContents objectAtIndex:i]);
-#endif
-	}
-	
-	return v;
-}
-
-vector<string> GetFilesAtPath(string path)
-{
-	
-	vector<string> v;
-	
-	NSString *str =  [NSString stringWithCString: path.c_str() encoding: [NSString defaultCStringEncoding]];
-	NSArray *origContents = [[NSFileManager defaultManager] directoryContentsAtPath:str];
-	//NSLog(@"Number of files = %d", origContents.count);
-	
-	string dir;
-	
-	for (int i = 0; i < origContents.count; i++) 
-	{
-		dir = [[origContents objectAtIndex:i] cStringUsingEncoding:NSUTF8StringEncoding];
-		//if (dir.find(".") != string::npos)
-		{
-			//we're assuming that any name without a . in it is a dir.  Probably dumb, but works since we're controlling what gets written...
-			v.push_back(dir);
-		}
-		//NSLog (@"%d: <%@>", i, [origContents objectAtIndex:i]);
-	}
-	
-	return v;
-}
-
-bool IsIphoneOriPad()
-{
-	return true;
-}
-
-float GetDeviceOSVersion()
-{
-	//TODO
-	return 0.0f;
-}
-
-string GetClipboardText()
-{
-	string text;
-	
-	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-
-	if ([pasteboard containsPasteboardTypes: [NSArray arrayWithObject:@"public.utf8-plain-text"]])
-	{
-		text = [pasteboard.string cStringUsingEncoding:NSUTF8StringEncoding];
-	}
-	return text;
-}
-
-bool IsDesktop() {return false;}
-
-ePlatformID GetPlatformID()
-{
-	return PLATFORM_ID_IOS;
-}
-void NotifyOSOfOrientationPreference(eOrientationMode orientation)
-{
-
-}
-
-bool HasVibration()
-{
-	if (IsIphone()) return true;
-
-	return false;
-}
-
-void ForceVideoUpdate()
-{
-//    LogMsg("TODO..video update");
-}

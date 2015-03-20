@@ -120,12 +120,13 @@ void RemoveFile(std::string fileName, bool bAddSavePath = true);
 //std::vector<std::string> GetDirectoriesAtPath(std::string path);
 //std::vector<std::string> GetFilesAtPath(std::string path);
 //std::string GetRegionString();
-bool IsAppInstalled(std::string packageName); // implemented on Android only, send "com.cih.gamecih" to check for that hack tool, for instance
-bool IsIphone();
-bool IsIPAD();
-bool IsIphoneOriPad();
-bool IsIPhone3GS();
-bool IsIphone4(); //also returns true if a iPod Touch g4, or anything else with retina screen dimensions
+bool	IsAppInstalled(std::string packageName); // implemented on Android only, send "com.cih.gamecih" to check for that hack tool, for instance
+bool	IsIphone();
+bool	IsIphoneOriPad();
+bool	IsIPhone3GS();
+bool	IsIphone4(); //also returns true if a iPod Touch g4, or anything else with retina screen dimensions
+bool	IsIPAD();
+float	GetMainScreenScale();
 int GetPrimaryGLX();
 int GetPrimaryGLY();
 #define C_PIRATED_YES 0

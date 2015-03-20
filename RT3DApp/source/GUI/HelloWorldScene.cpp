@@ -46,7 +46,7 @@ bool HelloWorld::init()
 	/////////////////////////////
 	// 3. add your codes below...
 	std::string		e_str;
-	std::wstring	w_str	= L"Hello °Ê·P¥úªi";
+	std::wstring	w_str	= L"Hello å‹•æ„Ÿå…‰æ³¢";
 	CCSize			size	= CCDirector::sharedDirector()->getWinSize();
 
 	WideStrToUTF8(e_str, w_str);

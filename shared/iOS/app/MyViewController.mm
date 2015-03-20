@@ -162,11 +162,8 @@
            SetPrimaryScreenSize(fullScreenRect.size.width* GetProtonPixelScaleFactor(), fullScreenRect.size.height* GetProtonPixelScaleFactor());
        }
     }
-   
-    
     
     SetupScreenInfo( GetPrimaryGLX(), GetPrimaryGLY(), interfaceOrientation);
-	
 }
 
  
