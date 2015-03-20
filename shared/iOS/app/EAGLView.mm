@@ -99,7 +99,7 @@ using namespace cocos2d;
 		return nil;
 	}
     
-    CCSize size = CCSize(GetPrimaryGLX(), GetPrimaryGLY());
+    CCSize size = CCSize(fullScreenRect.size.width, fullScreenRect.size.height);
     CCDirector::sharedDirector()->SetWinSize(size);
     CCDirector::sharedDirector()->setContentScaleFactor(pixelScale);
     CCDirector::sharedDirector()->setOpenGLView(NULL);
