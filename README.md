@@ -45,11 +45,21 @@ return irr::video::EDT_OGLES1;
 
 -> return irr::video::EDT_OGLES2;
 
-(b.) Find in SharedActivity.java (Android need only)
+(b.) In Android
+
+Find function in SharedActivity.java
 
 //setEGLContextClientVersion(2); 
 
 -> setEGLContextClientVersion(2);
+
+(c.) In Win32
+
+Select correct dlls of ogles-1/2 on proton_cm\shared\dep32,
+
+then copy to proton_cm\RT3DApp\bin, 
+
+ogles1 and ogles2 use different libEGL.dll
 
 5.
 
