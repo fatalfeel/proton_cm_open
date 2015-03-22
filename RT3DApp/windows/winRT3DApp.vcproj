@@ -18898,10 +18898,6 @@
 						RelativePath="..\..\shared\cocos2dx\cocoshader\CCShaderCache.h"
 						>
 					</File>
-					<File
-						RelativePath="..\..\shared\cocos2dx\cocoshader\CCShaders.h"
-						>
-					</File>
 				</Filter>
 			</Filter>
 			<Filter

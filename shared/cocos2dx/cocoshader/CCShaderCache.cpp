@@ -69,7 +69,7 @@
 #include "support/data_support/uthash.h"
 #include "cocoshader/CCGLProgram.h"
 #include "cocoshader/CCShaderCache.h"
-#include "cocoshader/CCShaders.h"
+//#include "cocoshader/CCShaders.h"
 
 NS_CC_BEGIN
 
