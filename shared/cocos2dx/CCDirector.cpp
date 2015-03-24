@@ -189,9 +189,6 @@ void CCDirector::setGLDefaultValues(void)
     setDepthTest(false);
 	glDisable(GL_CULL_FACE); //by stone
 	
-	glActiveTexture ( GL_TEXTURE1 );
-	glDisable ( GL_TEXTURE_2D );
-	
 	glActiveTexture ( GL_TEXTURE0 );
 	glEnable( GL_TEXTURE_2D );
 
