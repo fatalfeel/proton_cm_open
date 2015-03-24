@@ -168,8 +168,8 @@ void CCControlSwitchSprite::draw()
 #ifdef USE_OPEN_GLES2
     glUniform1i(m_uTextureLocation, 0);
 #else
-	glClientActiveTexture ( GL_TEXTURE0 );
-	ccGLVertexAttribPointer ( kCCVertexAttrib_TexCoords	, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid *) ( (GLintptr) &m_sQuad + offsetof(ccV3F_C4B_T2F, texCoords) ) );
+	glClientActiveTexture( GL_TEXTURE0 );
+	ccGLVertexAttribPointer( kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*)((long)&m_sQuad + offsetof(ccV3F_C4B_T2F, texCoords)) );
 #endif
 
     glActiveTexture(GL_TEXTURE1);

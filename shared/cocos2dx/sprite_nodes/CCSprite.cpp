@@ -602,11 +602,10 @@ void CCSprite::draw(void)
     // color
     diff = offsetof( ccV3F_C4B_T2F, colors);
     glVertexAttribPointer(kCCVertexAttrib_Color, 4, GL_UNSIGNED_BYTE, GL_TRUE, kQuadSize, (void*)(offset + diff));*/
-	
-	long qaddr = (long)&m_sQuad;
-	ccGLVertexAttribPointer ( kCCVertexAttrib_Position	, 3, GL_FLOAT        , GL_FALSE, kQuadSize, (GLvoid *) ( qaddr + offsetof ( ccV3F_C4B_T2F, vertices  ) ) );
-	ccGLVertexAttribPointer ( kCCVertexAttrib_TexCoords	, 2, GL_FLOAT        , GL_FALSE, kQuadSize, (GLvoid *) ( qaddr + offsetof ( ccV3F_C4B_T2F, texCoords ) ) );
-	ccGLVertexAttribPointer ( kCCVertexAttrib_Color		, 4, GL_UNSIGNED_BYTE, GL_TRUE , kQuadSize, (GLvoid *) ( qaddr + offsetof ( ccV3F_C4B_T2F, colors    ) ) );
+		
+	ccGLVertexAttribPointer ( kCCVertexAttrib_Position	, 3, GL_FLOAT        , GL_FALSE, kQuadSize, (GLvoid*)((long)&m_sQuad + offsetof( ccV3F_C4B_T2F, vertices )) );
+	ccGLVertexAttribPointer ( kCCVertexAttrib_TexCoords	, 2, GL_FLOAT        , GL_FALSE, kQuadSize, (GLvoid*)((long)&m_sQuad + offsetof( ccV3F_C4B_T2F, texCoords)) );
+	ccGLVertexAttribPointer ( kCCVertexAttrib_Color		, 4, GL_UNSIGNED_BYTE, GL_TRUE , kQuadSize, (GLvoid*)((long)&m_sQuad + offsetof( ccV3F_C4B_T2F, colors   )) );
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 

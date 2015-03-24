@@ -220,7 +220,7 @@ bool CCRenderTexture::initWithWidthAndHeight(int w, int h, CCTexture2DPixelForma
 
             // if depth format is the one with stencil part, bind same render buffer as stencil attachment
             //if (uDepthStencilFormat == CC_GL_DEPTH24_STENCIL8)
-			if (uDepthStencilFormat == GL_DEPTH24_STENCIL8_OES)
+			if (uDepthStencilFormat == GL_DEPTH24_STENCIL8)
                 glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_uDepthRenderBufffer);
         }
 
