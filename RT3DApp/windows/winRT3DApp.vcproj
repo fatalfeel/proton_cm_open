@@ -14522,7 +14522,7 @@
 								</FileConfiguration>
 							</File>
 							<File
-								RelativePath="..\..\..\proton_sdk\shared\Irrlicht\source\libpng\pngwrite.c"
+								RelativePath="..\..\shared\Irrlicht\source\libpng\pngwrite.c"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
@@ -14586,7 +14586,7 @@
 								</FileConfiguration>
 							</File>
 							<File
-								RelativePath="..\..\..\proton_sdk\shared\Irrlicht\source\libpng\pngwutil.c"
+								RelativePath="..\..\shared\Irrlicht\source\libpng\pngwutil.c"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
