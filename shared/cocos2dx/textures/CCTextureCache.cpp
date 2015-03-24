@@ -101,10 +101,10 @@ static CCImage::EImageFormat computeImageFormatType(string& filename)
     {
         ret = CCImage::kFmtPng;
     }
-    else if ((std::string::npos != filename.find(".tiff")) || (std::string::npos != filename.find(".TIFF")))
+    /*else if ((std::string::npos != filename.find(".tiff")) || (std::string::npos != filename.find(".TIFF")))
     {
         ret = CCImage::kFmtTiff;
-    }
+    }*/
     
     return ret;
 }
@@ -432,10 +432,10 @@ CCTexture2D * CCTextureCache::addImage(const char * path)
                 {
                     eImageFormat = CCImage::kFmtJpg;
                 }
-                else if (std::string::npos != lowerCase.find(".tif") || std::string::npos != lowerCase.find(".tiff"))
+                /*else if (std::string::npos != lowerCase.find(".tif") || std::string::npos != lowerCase.find(".tiff"))
                 {
                     eImageFormat = CCImage::kFmtTiff;
-                }
+                }*/
                 
                 CCImage image;                
                 unsigned long nSize = 0;

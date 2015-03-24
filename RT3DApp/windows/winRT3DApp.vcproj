@@ -204,7 +204,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\platform\third_party\win32\libtiff;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
+				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;BOOST_ALL_NO_LIB;_USE_32BIT_TIME_T;C_GL_MODE;_IRR_STATIC_LIB_;PTW32_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -227,7 +227,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="audiere.lib wsock32.lib libzlib.lib libtiff.lib"
+				AdditionalDependencies="audiere.lib wsock32.lib libzlib.lib"
 				OutputFile="../bin/winRT3DApp.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\shared\win\lib;..\..\shared\win\fmod\api\lib;..\..\shared\win\audiere\lib"
@@ -286,7 +286,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\platform\third_party\win32\libtiff;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
+				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;BOOST_ALL_NO_LIB;_USE_32BIT_TIME_T;C_GL_MODE;_IRR_STATIC_LIB_;PTW32_STATIC_LIB"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -308,7 +308,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="audiere.lib wsock32.lib libzlib.lib libtiff.lib"
+				AdditionalDependencies="audiere.lib wsock32.lib libzlib.lib"
 				OutputFile="../bin/winRT3DApp.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\shared\win\lib;..\..\shared\win\fmod\api\lib;..\..\shared\win\audiere\lib"

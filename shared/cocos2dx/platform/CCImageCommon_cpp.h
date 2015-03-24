@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include "CCFileUtils.h"
 #include "png.h"
 #include "jpeglib.h"
-#include "tiffio.h"
+//#include "tiffio.h"
 #include <string>
 #include <ctype.h>
 
@@ -150,11 +150,11 @@ bool CCImage::initWithImageData(void * pData,
             bRet = _initWithJpgData(pData, nDataLen);
             break;
         }
-        else if (kFmtTiff == eFmt)
+        /*else if (kFmtTiff == eFmt)
         {
             bRet = _initWithTiffData(pData, nDataLen);
             break;
-        }
+        }*/
         else if (kFmtRawData == eFmt)
         {
             bRet = _initWithRawData(pData, nDataLen, nWidth, nHeight, nBitsPerComponent);
@@ -181,7 +181,7 @@ bool CCImage::initWithImageData(void * pData,
             }
 
             // if it is a tiff file buffer.
-            if (nDataLen > 2)
+            /*if (nDataLen > 2)
             {
                 unsigned char* pHead = (unsigned char*)pData;
                 if (  (pHead[0] == 0x49 && pHead[1] == 0x49)
@@ -191,7 +191,7 @@ bool CCImage::initWithImageData(void * pData,
                     bRet = _initWithTiffData(pData, nDataLen);
                     break;
                 }
-            }
+            }*/
 
             // if it is a jpeg file buffer.
             if (nDataLen > 2)
@@ -488,7 +488,7 @@ out:
     return bRet;
 }
 
-static tmsize_t _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
+/*static tmsize_t _tiffReadProc(thandle_t fd, void* buf, tmsize_t size)
 {
     tImageSource* isource = (tImageSource*)fd;
     uint8* ma;
@@ -641,14 +641,14 @@ bool CCImage::_initWithTiffData(void* pData, int nDataLen)
                 unsigned char* src = (unsigned char*)raster;
                 unsigned int* tmp = (unsigned int*)m_pData;
 
-                /* the raster data is pre-multiplied by the alpha component 
-                   after invoking TIFFReadRGBAImageOriented
-                for(int j = 0; j < m_nWidth * m_nHeight * 4; j += 4)
-                {
-                    *tmp++ = CC_RGB_PREMULTIPLY_APLHA( src[j], src[j + 1], 
-                        src[j + 2], src[j + 3] );
-                }
-                */
+                // the raster data is pre-multiplied by the alpha component 
+                //   after invoking TIFFReadRGBAImageOriented
+                //for(int j = 0; j < m_nWidth * m_nHeight * 4; j += 4)
+                //{
+                //    *tmp++ = CC_RGB_PREMULTIPLY_APLHA( src[j], src[j + 1], 
+                //        src[j + 2], src[j + 3] );
+                //}
+
                 m_bPreMulti = true;
 
                memcpy(m_pData, raster, npixels*sizeof (uint32));
@@ -663,7 +663,7 @@ bool CCImage::_initWithTiffData(void* pData, int nDataLen)
         bRet = true;
     } while (0);
     return bRet;
-}
+}*/
 
 bool CCImage::_initWithRawData(void * pData, int nDatalen, int nWidth, int nHeight, int nBitsPerComponent)
 {
