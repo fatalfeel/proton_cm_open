@@ -185,9 +185,13 @@ void CCDirector::setGLDefaultValues(void)
 {
     // This method SHOULD be called only after openGLView_ was initialized
     //CCAssert(m_pobOpenGLView, "opengl view should not be null");
-    setAlphaBlending(true);
+    glGetBooleanv(GL_BLEND,		&m_origin_blend);
+	glGetBooleanv(GL_DEPTH_TEST,&m_origin_depth);
+	glGetBooleanv(GL_CULL_FACE,	&m_origin_cull);
+		
+	setAlphaBlending(true);
     setDepthTest(false);
-	glDisable(GL_CULL_FACE); //by stone
+	setCullFace(false); //by stone
 
 #ifdef USE_OPEN_GLES2   
 	glEnableVertexAttribArray(kCCVertexAttrib_Position);
@@ -203,6 +207,13 @@ void CCDirector::setGLDefaultValues(void)
 
     // set other opengl default values
     //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+void CCDirector::RestoreGLValues(void)
+{
+	setAlphaBlending(m_origin_blend);
+	setDepthTest(m_origin_depth);
+	setCullFace(m_origin_cull); //by stone
 }
 
 // Draw the SCene
@@ -315,12 +326,12 @@ void CCDirector::setOpenGLView(CCEGLView *pobOpenGLView)
         //m_obWinSizeInPoints = m_pobOpenGLView->getSize();
         m_obWinSizeInPixels = CCSizeMake(m_obWinSizeInPoints.width * m_fContentScaleFactor, m_obWinSizeInPoints.height * m_fContentScaleFactor);
         
-        //createStatsLabel(); //show fps for debug, by stone
+        /*createStatsLabel(); //show fps for debug, by stone
         
-        //if (m_pobOpenGLView)
-        //{
+        if (m_pobOpenGLView)
+        {
             setGLDefaultValues();
-        //}  
+        }*/  
         
         CHECK_GL_ERROR_DEBUG();
 
@@ -465,6 +476,19 @@ void CCDirector::setDepthTest(bool bOn)
     else
     {
         glDisable(GL_DEPTH_TEST);
+    }
+    CHECK_GL_ERROR_DEBUG();
+}
+
+void CCDirector::setCullFace(bool bOn)
+{
+    if (bOn)
+    {
+		glEnable(GL_CULL_FACE); //by stone
+    }
+    else
+    {
+		glDisable(GL_CULL_FACE);
     }
     CHECK_GL_ERROR_DEBUG();
 }

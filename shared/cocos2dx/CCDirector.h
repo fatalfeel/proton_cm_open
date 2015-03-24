@@ -277,11 +277,15 @@ public:
     /** sets the OpenGL default values */
     void setGLDefaultValues(void);
 
+	void RestoreGLValues(void);
+
     /** enables/disables OpenGL alpha blending */
     void setAlphaBlending(bool bOn);
 
     /** enables/disables OpenGL depth test */
     void setDepthTest(bool bOn);
+
+	void setCullFace(bool bOn);
 
     virtual void mainLoop(void) = 0;
 
@@ -417,6 +421,9 @@ protected:
     WatcherCallbackFun m_pWatcherFun;
     void *m_pWatcherSender;
 
+	unsigned char m_origin_blend;
+	unsigned char m_origin_depth;
+	unsigned char m_origin_cull;
 };
 
 /** 

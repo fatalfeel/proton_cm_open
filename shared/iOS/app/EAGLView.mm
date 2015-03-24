@@ -146,6 +146,7 @@ using namespace cocos2d;
     
     CCDirector::sharedDirector()->setGLDefaultValues();
     CCDirector::sharedDirector()->mainLoop();
+	CCDirector::sharedDirector()->RestoreGLValues();
 	
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	// if(main_throttled_update()) 

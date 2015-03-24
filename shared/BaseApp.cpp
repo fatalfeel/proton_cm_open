@@ -140,6 +140,8 @@ bool BaseApp::Init()
 	LogMsg("GL depth buffer: %d bit", depthbits);
 	CHECK_GL_ERROR();*/
 
+	glClearColor(0,0,0,1.0f);
+
 	if (GetAudioManager())
 		GetAudioManager()->Init();
 
