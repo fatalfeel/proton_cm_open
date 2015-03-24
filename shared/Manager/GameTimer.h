@@ -23,7 +23,13 @@ public:
 	GameTimer();
 	virtual ~GameTimer();
 	float GetDelta() {return m_deltaFloat;}
-	float GetGameDelta() {if (m_bGameTimerPaused) return 0; else return m_deltaFloat;}
+	float GetGameDelta() 
+	{
+		if (m_bGameTimerPaused) 
+			return 0; 
+		else return 
+			m_deltaFloat;
+	}
 	int GetDeltaTick() {return m_deltaMS;}
 	int GetDeltaGameTick() {if (m_bGameTimerPaused) return 0; else return m_deltaMS;}
 	void SetGameTickPause(bool bNew);
