@@ -211,9 +211,9 @@ void CCDirector::setGLDefaultValues(void)
 
 void CCDirector::RestoreGLValues(void)
 {
-	setAlphaBlending(m_origin_blend);
-	setDepthTest(m_origin_depth);
-	setCullFace(m_origin_cull); //by stone
+	setAlphaBlending(m_origin_blend>0?true:false);
+	setDepthTest(m_origin_depth>0?true:false);
+	setCullFace(m_origin_cull>0?true:false); //by stone
 }
 
 // Draw the SCene
