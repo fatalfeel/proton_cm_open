@@ -188,17 +188,14 @@ void CCDirector::setGLDefaultValues(void)
     setAlphaBlending(true);
     setDepthTest(false);
 	glDisable(GL_CULL_FACE); //by stone
-	
-	glActiveTexture ( GL_TEXTURE0 );
-	glEnable( GL_TEXTURE_2D );
 
 #ifdef USE_OPEN_GLES2   
-	glEnableVertexAttribArray(kCCVertexAttrib_Color);
 	glEnableVertexAttribArray(kCCVertexAttrib_Position);
+	glEnableVertexAttribArray(kCCVertexAttrib_Color);
 	glEnableVertexAttribArray(kCCVertexAttrib_TexCoords);
 #else
-	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 #endif
 
