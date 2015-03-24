@@ -15,11 +15,11 @@
 		#define GL_GLEXT_PROTOTYPES		
 
 		#include "KHR/khrplatform.h"
+				
+		#include "GLES/gl.h"
+		#include "GLES/glext.h"
 		
-		#ifdef _IRR_COMPILE_WITH_OGLES1_
-			#include "GLES/gl.h"
-			#include "GLES/glext.h"
-		#else
+		#ifdef _IRR_COMPILE_WITH_OGLES2_
 			#include "GLES2/gl2.h"
 			#include "GLES2/gl2ext.h"
 		#endif

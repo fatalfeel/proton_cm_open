@@ -8,10 +8,10 @@ using namespace cocos2d;
 CCScene* HelloWorld::scene()
 {
 	// 'scene' is an autorelease object
-	CCScene *scene = CCScene::node();
+	CCScene* scene = CCScene::create();
 	
 	// 'layer' is an autorelease object
-	HelloWorld* layer = HelloWorld::node();
+	HelloWorld* layer = HelloWorld::create();
 
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -20,7 +20,7 @@ CCScene* HelloWorld::scene()
 	return scene;
 }
 
-HelloWorld* HelloWorld::node() 
+HelloWorld* HelloWorld::create() 
 { 
 	HelloWorld* pRet = new HelloWorld(); 
 	
@@ -52,7 +52,7 @@ bool HelloWorld::init()
 	WideStrToUTF8(e_str, w_str);
 	
 	// create and initialize a label
-	CCLabelTTF* pLabel = CCLabelTTF::labelWithString(e_str.c_str(), "Arial", 24);
+	CCLabelTTF* pLabel = CCLabelTTF::create(e_str.c_str(), "Arial", 24);
 	// ask director the window size
 	
 	// position the label on the center of the screen
@@ -78,14 +78,14 @@ void HelloWorld::onEnter()
 	CCLayer::onEnter();
 
 	CCSize				size		= CCDirector::sharedDirector()->getWinSize();
-	CCActionInterval*	actionUp	= CCJumpBy::actionWithDuration(2, CCPointMake(0,0), 80, 4);
+	CCActionInterval*	actionUp	= CCJumpBy::create(2, CCPointMake(0,0), 80, 4);
 
     // Or you can create an sprite using a filename. only PNG is supported now. Probably TIFF too
-    m_grossini = CCSprite::spriteWithFile((GetBaseAppPath()+"game/grossini.png").c_str());
+    m_grossini = CCSprite::create((GetBaseAppPath()+"game/grossini.png").c_str());
     m_grossini->retain();
 
 	m_grossini->setPosition( CCPointMake(size.width/2, size.height/3));
-	m_grossini->runAction( CCRepeatForever::actionWithAction(actionUp));
+	m_grossini->runAction( CCRepeatForever::create(actionUp));
 
 	this->addChild(m_grossini, 1);
 }

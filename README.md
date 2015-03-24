@@ -55,11 +55,11 @@ Find function in SharedActivity.java
 
 (c.) In Win32
 
-Select correct dlls of ogles-1/2 on proton_cm\shared\dep32,
+Because ogles1 and ogles2 use different libEGL.dll.
 
-then copy to proton_cm\RT3DApp\bin, 
+select correct dlls of ogles-1/2 on RT3DApp/bin,
 
-ogles1 and ogles2 use different libEGL.dll
+RT3DApp/bin/update_OGLES1/2.bat will help you do it.
 
 5.
 

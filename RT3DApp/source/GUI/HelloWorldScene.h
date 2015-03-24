@@ -10,7 +10,7 @@ public:
 	// there's no 'id' in cpp, so we recommand to return the exactly class pointer
 	static CCScene* scene();
 
-	static HelloWorld* node();
+	static HelloWorld* create();
 	
 	// a selector callback
 	virtual void menuCloseCallback(CCObject* pSender);

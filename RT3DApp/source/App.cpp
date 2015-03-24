@@ -17,7 +17,11 @@ using namespace cocos2d;
 
 irr::video::E_DRIVER_TYPE AppGetOGLESType()
 {
+#ifdef _IRR_COMPILE_WITH_OGLES1_
 	return irr::video::EDT_OGLES1;
+#else
+	return irr::video::EDT_OGLES2;
+#endif
 }
 
 ////////////////////////////////////////
@@ -184,8 +188,6 @@ void App::Kill()
 
 void App::Update()
 {
-	CCScene* pScene;
-	
 	BaseApp::Update();
     
 	if (!m_bDidPostInit)
@@ -199,7 +201,7 @@ void App::Update()
 		m_MenuEntity = MainMenuCreate(pGUIEnt);
 		
 		//init
-		pScene = HelloWorld::scene();
+		CCScene* pScene = HelloWorld::scene();
 		// run
 		CCDirector::sharedDirector()->runWithScene(pScene);
 	}

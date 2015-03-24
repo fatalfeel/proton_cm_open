@@ -5,8 +5,7 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in Irrlicht.h
 
-// needed here also because of the create methods' parameters
-#include "CNullDriver.h"
+#include "IrrCompileConfig.h"
 
 #ifdef _IRR_COMPILE_WITH_OGLES2_
 
@@ -26,7 +25,7 @@
 
 //by stone
 #include "BaseApp.h"
-
+#include "CNullDriver.h"
 #include "COGLES2Driver.h"
 #include "COGLES2Texture.h"
 #include "COGLES2MaterialRenderer.h"
@@ -40,6 +39,8 @@
 #ifdef _WIN32
 	#pragma comment(lib, "../../shared/dep32/ogles2/lib/libEGL.lib")
 	#pragma comment(lib, "../../shared/dep32/ogles2/lib/libGLESv2.lib")
+
+	#pragma comment(lib, "../../shared/dep32/ogles1/lib/libgles_cm.lib")
 #endif
 
 /*#if defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_)
