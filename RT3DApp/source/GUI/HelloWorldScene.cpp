@@ -77,15 +77,20 @@ void HelloWorld::onEnter()
 {
 	CCLayer::onEnter();
 
-	CCSize				size		= CCDirector::sharedDirector()->getWinSize();
-	CCActionInterval*	actionUp	= CCJumpBy::create(2, CCPointMake(0,0), 80, 4);
-
-    // Or you can create an sprite using a filename. only PNG is supported now. Probably TIFF too
+	CCActionInterval*	jump;
+    CCFiniteTimeAction*	action;
+	CCActionInterval*	rep;
+	CCSize				wsize	= CCDirector::sharedDirector()->getWinSize();
+	    // Or you can create an sprite using a filename. only PNG is supported now. Probably TIFF too
     m_grossini = CCSprite::create((GetBaseAppPath()+"game/grossini.png").c_str());
     m_grossini->retain();
 
-	m_grossini->setPosition( CCPointMake(size.width/2, size.height/3));
-	m_grossini->runAction( CCRepeatForever::create(actionUp));
+	jump	= CCJumpBy::create(2, CCPointMake(wsize.width-80,0), 50, 4);
+    action	= CCSequence::create( jump, jump->reverse(), NULL);
+	rep		= CCRepeat::create(action, -1);
+	
+	m_grossini->setPosition(CCPointMake(40, wsize.height/2));
+    m_grossini->runAction(rep);
 
 	this->addChild(m_grossini, 1);
 }
