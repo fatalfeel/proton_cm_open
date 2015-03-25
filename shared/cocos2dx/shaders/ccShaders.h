@@ -47,8 +47,6 @@ extern char* ccPositionTextureColor_frag;
 extern char* ccPositionTextureColor_vert;
 extern char* ccPositionTexture_uColor_frag;
 extern char* ccPositionTexture_uColor_vert;
-extern char* ccPositionColorLengthTexture_frag;
-extern char* ccPositionColorLengthTexture_vert;
 extern char* ccPositionTextureColorAlphaTest_frag;
 extern char* ccExSwitchMask_frag;
 

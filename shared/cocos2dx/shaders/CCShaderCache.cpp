@@ -55,8 +55,6 @@ char* ccPositionTextureColor_frag;
 char* ccPositionTextureColor_vert;
 char* ccPositionTexture_uColor_frag;
 char* ccPositionTexture_uColor_vert;
-char* ccPositionColorLengthTexture_frag;
-char* ccPositionColorLengthTexture_vert;
 char* ccPositionTextureColorAlphaTest_frag;
 char* ccExSwitchMask_frag;
 
@@ -110,9 +108,6 @@ CCShaderCache::~CCShaderCache()
     delete ccPositionTexture_uColor_frag;
     delete ccPositionTexture_uColor_vert;
     
-    delete ccPositionColorLengthTexture_frag;
-    delete ccPositionColorLengthTexture_vert;
-    
     delete ccPositionTextureColorAlphaTest_frag;
     delete ccExSwitchMask_frag;
 #endif
@@ -140,9 +135,6 @@ bool CCShaderCache::init()
     
     ccPositionTexture_uColor_frag = GetShaderFile("shaders/ccShader_PositionTexture_uColor_frag.h");
     ccPositionTexture_uColor_vert = GetShaderFile("shaders/ccShader_PositionTexture_uColor_vert.h");
-    
-    ccPositionColorLengthTexture_frag = GetShaderFile("shaders/ccShader_PositionColorLengthTexture_frag.h");
-    ccPositionColorLengthTexture_vert = GetShaderFile("shaders/ccShader_PositionColorLengthTexture_vert.h");
     
     ccPositionTextureColorAlphaTest_frag = GetShaderFile("shaders/ccShader_PositionTextureColorAlphaTest_frag.h");
     ccExSwitchMask_frag = GetShaderFile("shaders/ccShaderEx_SwitchMask_frag.h");
