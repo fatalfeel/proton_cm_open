@@ -19900,6 +19900,7 @@
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -19908,6 +19909,7 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -19918,6 +19920,22 @@
 					<File
 						RelativePath="..\..\shared\cocos2dx\platform\CCEGLViewProtocol.h"
 						>
+						<FileConfiguration
+							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\cocos2dx\platform\CCFileUtils.h"

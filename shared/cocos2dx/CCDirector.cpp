@@ -350,36 +350,25 @@ void CCDirector::setNextDeltaTimeZero(bool bNextDeltaTimeZero)
     m_bNextDeltaTimeZero = bNextDeltaTimeZero;
 }
 
+//copy from CCEGLViewProtocol::setViewPortInPoints
 void CCDirector::setViewPortInPoints(float x , float y , float w , float h)
 {
-    /*if (m_bNeedScale)
-    {
-        //CCAssert(CC_CONTENT_SCALE_FACTOR() == 1.0f, "retina and scale mode can't be opened at the same time!");
-        float factor = m_fScreenScaleFactor / CC_CONTENT_SCALE_FACTOR();
-        glViewport((GLint)(x * factor + m_rcViewPort.origin.x),
-            (GLint)(y * factor + m_rcViewPort.origin.y),
-            (GLsizei)(w * factor),
-            (GLsizei)(h * factor));
-    }
-    else*/
-    {
-        glViewport(	(GLint)(x*m_fContentScaleFactor),
-					(GLint)(y*m_fContentScaleFactor),
-					(GLsizei)(w*m_fContentScaleFactor),
-					(GLsizei)(h*m_fContentScaleFactor) );
-    }
+	glViewport(	(GLint)(x*m_fContentScaleFactor),
+				(GLint)(y*m_fContentScaleFactor),
+				(GLsizei)(w*m_fContentScaleFactor),
+				(GLsizei)(h*m_fContentScaleFactor) );
 }
 
 void CCDirector::setProjection(ccDirectorProjection kProjection)
 {
     CCSize size = m_obWinSizeInPixels;
     CCSize sizePoint = m_obWinSizeInPoints;
-
-    /*if (m_pobOpenGLView)
+    
+	/*if (m_pobOpenGLView)
     {
         m_pobOpenGLView->setViewPortInPoints(0, 0, sizePoint.width, sizePoint.height);
     }*/
-	this->setViewPortInPoints(0, 0, sizePoint.width, sizePoint.height);
+    //this->setViewPortInPoints(0, 0, sizePoint.width, sizePoint.height); //done in irrlicht
 
     switch (kProjection)
     {
