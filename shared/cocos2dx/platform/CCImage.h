@@ -28,6 +28,7 @@ THE SOFTWARE.
 extern "C" {
 #include "jpeglib.h"
 }
+
 #include "cocoa/CCObject.h"
 
 NS_CC_BEGIN

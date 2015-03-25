@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "CCStdC.h"
 #include "CCFileUtils.h"
 #include "png.h"
-#include "jpeglib.h"
+//#include "jpeglib.h" //in CCImage.h
 //#include "tiffio.h"
 #include <string>
 #include <ctype.h>
