@@ -4478,17 +4478,19 @@ xmlTextWriterVSprintf(const char *format, va_list argptr)
     //KD_VA_COPY(locarg, argptr);
 	locarg = argptr;
     while (((count = win_vsnprintf((char *) buf, size, format, locarg)) < 0)
-           || (count == size - 1) || (count == size) || (count > size)) {
-	va_end(locarg);
+           || (count == size - 1) || (count == size) || (count > size)) 
+	{
+		va_end(locarg);
         xmlFree(buf);
         size += BUFSIZ;
         buf = (xmlChar *) xmlMalloc(size);
-        if (buf == NULL) {
+        if (buf == NULL) 
+		{
             xmlWriterErrMsg(NULL, XML_ERR_NO_MEMORY,
                             "xmlTextWriterVSprintf : out of memory!\n");
             return NULL;
         }
-	//KD_VA_COPY(locarg, argptr);
+		//KD_VA_COPY(locarg, argptr);
 		locarg = argptr;
     }
     va_end(locarg);
