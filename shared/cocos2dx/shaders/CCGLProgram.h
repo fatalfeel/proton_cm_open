@@ -42,7 +42,8 @@ NS_CC_BEGIN
  */
 
 enum {
-    kCCVertexAttrib_Position,
+    kCCVertexAttrib_Position = 0,
+    kCCVertexAttrib_Normal, //sync as irrlicht glBindAttribLocation, by stone
     kCCVertexAttrib_Color,
     kCCVertexAttrib_TexCoords,
 
