@@ -185,9 +185,9 @@ void CCDirector::setGLDefaultValues(void)
 {
     // This method SHOULD be called only after openGLView_ was initialized
     //CCAssert(m_pobOpenGLView, "opengl view should not be null");
-    glGetBooleanv(GL_BLEND,		&m_origin_blend);
-	glGetBooleanv(GL_DEPTH_TEST,&m_origin_depth);
-	glGetBooleanv(GL_CULL_FACE,	&m_origin_cull);
+    m_origin_blend	=	glIsEnabled(GL_BLEND);
+	m_origin_depth	=	glIsEnabled(GL_DEPTH_TEST);
+	m_origin_cull	=	glIsEnabled(GL_CULL_FACE);
 		
 	setAlphaBlending(true);
     setDepthTest(false);
