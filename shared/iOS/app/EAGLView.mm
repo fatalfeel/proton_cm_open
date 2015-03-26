@@ -13,7 +13,7 @@
 #import "App.h"
 #import "Irrlicht/IrrlichtManager.h"
 
-#import "CCDirector.h"
+#import "cocos2d.h"
 using namespace cocos2d;
 
 #define USE_DEPTH_BUFFER 1
@@ -91,7 +91,10 @@ using namespace cocos2d;
         SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), 0);
     }
     
-	if (!BaseApp::GetBaseApp()->Init())
+	//init shader program first than irrlicht
+    CCShaderCache::sharedShaderCache();
+    
+    if (!BaseApp::GetBaseApp()->Init())
 	{
 		
 		NSLog(@"Couldn't init app");
@@ -103,8 +106,7 @@ using namespace cocos2d;
     CCDirector::sharedDirector()->setWinSize(size);
     CCDirector::sharedDirector()->setContentScaleFactor(pixelScale);
     CCDirector::sharedDirector()->setOpenGLView(NULL);
-      
-    //BaseApp::GetBaseApp()->OnScreenSizeChange();
+    
 	return self;
 }
 
