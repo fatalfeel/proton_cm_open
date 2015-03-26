@@ -4545,7 +4545,11 @@ xmlTextReaderBuildMessage(const char *msg, va_list ap) {
 
     while (1) {		
         //KD_VA_COPY(aq, ap);
+#ifdef _WIN32		
 		aq = ap;
+#else
+        va_copy(aq, ap);
+#endif
         chars = win_vsnprintf ( str, size, msg, aq );
         va_end ( aq );
         if (chars < 0) {

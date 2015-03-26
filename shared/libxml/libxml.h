@@ -31,10 +31,10 @@
 
 #ifdef _WIN32
     #include <io.h>
-#endif
 
-#define write _write
-#define close _close
+    #define write _write
+    #define close _close
+#endif
 
 extern int win_vsnprintf(char* str, size_t size, const char* format, va_list ap);
 extern int win_snprintf(char* str, size_t size, const char* format, ...);

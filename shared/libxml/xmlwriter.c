@@ -4476,7 +4476,11 @@ xmlTextWriterVSprintf(const char *format, va_list argptr)
     }
 
     //KD_VA_COPY(locarg, argptr);
+#ifdef _WIN32
 	locarg = argptr;
+#else
+    va_copy(locarg, argptr);
+#endif
     while (((count = win_vsnprintf((char *) buf, size, format, locarg)) < 0)
            || (count == size - 1) || (count == size) || (count > size)) 
 	{
@@ -4491,7 +4495,11 @@ xmlTextWriterVSprintf(const char *format, va_list argptr)
             return NULL;
         }
 		//KD_VA_COPY(locarg, argptr);
+#ifdef _WIN32
 		locarg = argptr;
+#else
+        va_copy(locarg, argptr);
+#endif
     }
     va_end(locarg);
 
