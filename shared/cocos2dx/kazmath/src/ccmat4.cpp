@@ -37,7 +37,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ccquaternion.h"
 #include "ccplane.h"
 
-#include "neon_matrix_impl.h"
+//#include "neon_matrix_impl.h"
 
 /**
  * Fills a kmMat4 structure with the values from a 16
@@ -54,7 +54,7 @@ kmMat4* const kmMat4Fill(kmMat4* pOut, const kmScalar* pMat)
 
 /**
  * Sets pOut to an identity matrix returns pOut
- * @Params pOut - A pointer to the matrix to set to identity
+ * @Params pOut - A pointer to the matrix to ccset to identity
  * @Return Returns pOut so that the call can be nested
  */
 kmMat4* const kmMat4Identity(kmMat4* pOut)
@@ -65,21 +65,21 @@ kmMat4* const kmMat4Identity(kmMat4* pOut)
 }
 
 
-float get(const kmMat4 * pIn, int row, int col)
+float ccget(const kmMat4 * pIn, int row, int col)
 {
     return pIn->mat[row + 4*col];
 }
 
-void set(kmMat4 * pIn, int row, int col, float value)
+void ccset(kmMat4 * pIn, int row, int col, float value)
 {
     pIn->mat[row + 4*col] = value;
 }
 
 void swap(kmMat4 * pIn, int r1, int c1, int r2, int c2)
 {
-    float tmp = get(pIn,r1,c1);
-    set(pIn,r1,c1,get(pIn,r2,c2));
-    set(pIn,r2,c2, tmp);
+    float tmp = ccget(pIn,r1,c1);
+    ccset(pIn,r1,c1,ccget(pIn,r2,c2));
+    ccset(pIn,r2,c2, tmp);
 }
 
 //Returns an upper and a lower triangular matrix which are L and R in the Gauss algorithm
@@ -101,8 +101,8 @@ int gaussj(kmMat4 *a, kmMat4 *b)
             if (ipiv[j] != 1) {
                 for (k = 0; k < n; k++) {
                     if (ipiv[k] == 0) {
-                        if (abs(get(a,j, k)) >= big) {
-                            big = abs(get(a,j, k));
+                        if (abs(ccget(a,j, k)) >= big) {
+                            big = abs(ccget(a,j, k));
                             irow = j;
                             icol = k;
                         }
@@ -121,27 +121,27 @@ int gaussj(kmMat4 *a, kmMat4 *b)
         }
         indxr[i] = irow;
         indxc[i] = icol;
-        if (get(a,icol, icol) == 0.0) {
+        if (ccget(a,icol, icol) == 0.0) {
             return KM_FALSE;
         }
-        pivinv = 1.0f / get(a,icol, icol);
-        set(a,icol, icol, 1.0f);
+        pivinv = 1.0f / ccget(a,icol, icol);
+        ccset(a,icol, icol, 1.0f);
         for (l = 0; l < n; l++) {
-            set(a,icol, l, get(a,icol, l) * pivinv);
+            ccset(a,icol, l, ccget(a,icol, l) * pivinv);
         }
         for (l = 0; l < m; l++) {
-            set(b,icol, l, get(b,icol, l) * pivinv);
+            ccset(b,icol, l, ccget(b,icol, l) * pivinv);
         }
 
         for (ll = 0; ll < n; ll++) {
             if (ll != icol) {
-                dum = get(a,ll, icol);
-                set(a,ll, icol, 0.0f);
+                dum = ccget(a,ll, icol);
+                ccset(a,ll, icol, 0.0f);
                 for (l = 0; l < n; l++) {
-                    set(a,ll, l, get(a,ll, l) - get(a,icol, l) * dum);
+                    ccset(a,ll, l, ccget(a,ll, l) - ccget(a,icol, l) * dum);
                 }
                 for (l = 0; l < m; l++) {
-                    set(b,ll, l, get(a,ll, l) - get(b,icol, l) * dum);
+                    ccset(b,ll, l, ccget(a,ll, l) - ccget(b,icol, l) * dum);
                 }
             }
         }
@@ -216,14 +216,14 @@ kmMat4* const kmMat4Transpose(kmMat4* pOut, const kmMat4* pIn)
  */
 kmMat4* const kmMat4Multiply(kmMat4* pOut, const kmMat4* pM1, const kmMat4* pM2)
 {
-#if defined(__ARM_NEON__)
+/*#if defined(__ARM_NEON__)
 
     float mat[16];
 
     // Invert column-order with row-order
     NEON_Matrix4Mul( &pM2->mat[0], &pM1->mat[0], &mat[0] );
 
-#else
+#else*/
     float mat[16];
 
     const float *m1 = pM1->mat, *m2 = pM2->mat;
@@ -248,7 +248,7 @@ kmMat4* const kmMat4Multiply(kmMat4* pOut, const kmMat4* pM1, const kmMat4* pM2)
     mat[14] = m1[2] * m2[12] + m1[6] * m2[13] + m1[10] * m2[14] + m1[14] * m2[15];
     mat[15] = m1[3] * m2[12] + m1[7] * m2[13] + m1[11] * m2[14] + m1[15] * m2[15];
 
-#endif
+//#endif
 
     memcpy(pOut->mat, mat, sizeof(float)*16);
 
@@ -509,7 +509,7 @@ kmMat4* const kmMat4Scaling(kmMat4* pOut, const kmScalar x, const kmScalar y,
 
 /**
  * Builds a translation matrix. All other elements in the matrix
- * will be set to zero except for the diagonal which is set to 1.0
+ * will be ccset to zero except for the diagonal which is ccset to 1.0
  */
 kmMat4* const kmMat4Translation(kmMat4* pOut, const kmScalar x,
                           const kmScalar y, const kmScalar z)

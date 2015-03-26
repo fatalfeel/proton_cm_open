@@ -40,7 +40,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-class CCLock;
+//class CCLock; //by stone
 class CCImage;
 
 /**

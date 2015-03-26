@@ -103,10 +103,6 @@
 	#define _IRR_COMPILE_WITH_IPHONE_DEVICE_
 	
 	#define _IRR_COMPILE_WITH_OGLES1_
-	
-	//#if defined(__APPLE__) || defined(ANDROID_NDK)
-	//	#define _IRR_COMPILE_WITH_OGLES2_
-	//#endif
 #endif
 
 #ifdef _IRR_COMPILE_WITH_OGLES2_
