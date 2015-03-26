@@ -54,13 +54,13 @@ Entity* MainMenuCreate(Entity* pParentEnt)
             pBG = HouseMenuCreate(pParentEnt);
             break;
             
-        /*case HIGHSHADER:	//plz enable irr::video::EDT_OGLES2
+        case HIGHSHADER:	//plz enable irr::video::EDT_OGLES2
             pBG = ShaderMenuCreate(pParentEnt);
             break;
 
         case STENCIL:		//plz enable irr::video::EDT_OGLES2
             pBG = StencilMenuCreate(pParentEnt);
-            break;*/
+            break;
     }
 
 	return pBG;
