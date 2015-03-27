@@ -55,7 +55,20 @@ private:
 
 #ifdef _IRR_COMPILE_WITH_LIBJPEG_
 	// several methods used via function pointers by jpeglib
-	
+
+	/* Receives control for a fatal error. Information sufficient to
+	generate the error message has been stored in cinfo->err; call
+	output_message to display it. Control must NOT return to the caller;
+	generally this routine will exit() or longjmp() somewhere.
+	Typically you would override this routine to get rid of the exit()
+	default behavior. Note that if you continue processing, you should
+	clean up the JPEG object with jpeg_abort() or jpeg_destroy().
+	*/
+	static void Irr_error_exit (j_common_ptr cinfo);
+
+	/* output error messages via Irrlicht logger. */
+	static void Irr_output_message(j_common_ptr cinfo);
+
 	/* Initialize source. This is called by jpeg_read_header() before any
 	data is actually read. Unlike init_destination(), it may leave
 	bytes_in_buffer set to 0 (in which case a fill_input_buffer() call
@@ -86,20 +99,7 @@ private:
 	/* Terminate source --- called by jpeg_finish_decompress() after all
 	data has been read. Often a no-op. */
 	static void Irr_term_source (j_decompress_ptr cinfo);
-
-	/* Receives control for a fatal error. Information sufficient to
-	generate the error message has been stored in cinfo->err; call
-	output_message to display it. Control must NOT return to the caller;
-	generally this routine will exit() or longjmp() somewhere.
-	Typically you would override this routine to get rid of the exit()
-	default behavior. Note that if you continue processing, you should
-	clean up the JPEG object with jpeg_abort() or jpeg_destroy().
-	*/
-	static void Irr_error_exit (j_common_ptr cinfo);
-
-	/* output error messages via Irrlicht logger. */
-	static void Irr_output_message(j_common_ptr cinfo);
-
+	
 	// Copy filename to have it around for error-messages
 	static io::path Filename;
 

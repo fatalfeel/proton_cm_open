@@ -603,6 +603,7 @@ namespace
 		//HWND hWnd;
 		irr::CIrrDeviceWin32* irrDev;
 	};
+	
 	//irr::core::list<SEnvMapper> EnvMap;
 
 	//HKL KEYBOARD_INPUT_HKL=0;
@@ -1051,9 +1052,9 @@ CIrrDeviceWin32::~CIrrDeviceWin32()
 			EnvMap.erase(it);
 			break;
 		}
-	}*/
+	}
 
-	switchToFullScreen(true);
+	switchToFullScreen(true);*/
 }
 
 
