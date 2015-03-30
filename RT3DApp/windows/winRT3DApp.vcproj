@@ -204,7 +204,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
+				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\extensions;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;BOOST_ALL_NO_LIB;_USE_32BIT_TIME_T;C_GL_MODE;_IRR_STATIC_LIB_;PTW32_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -286,7 +286,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
+				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\extensions;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;BOOST_ALL_NO_LIB;_USE_32BIT_TIME_T;C_GL_MODE;_IRR_STATIC_LIB_;PTW32_STATIC_LIB"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -443,6 +443,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\source\GUI\HelloWorldScene.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\license.txt"
 				>
 			</File>
@@ -476,10 +480,6 @@
 							UsePrecompiledHeader="0"
 						/>
 					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\source\GUI\HelloWorldScene.h"
-					>
 				</File>
 				<File
 					RelativePath="..\source\GUI\HouseMenu.cpp"
@@ -18187,6 +18187,14 @@
 				<Filter
 					Name="extensions"
 					>
+					<File
+						RelativePath="..\..\shared\cocos2dx\extensions\cocos-ext.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\extensions\ExtensionMacros.h"
+						>
+					</File>
 					<Filter
 						Name="CCControlExtension"
 						>
@@ -18291,6 +18299,30 @@
 							>
 						</File>
 						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCControlPotentiometer.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCControlPotentiometer.h"
+							>
+						</File>
+						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCControlSaturationBrightnessPicker.cpp"
 							>
 							<FileConfiguration
@@ -18336,6 +18368,30 @@
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCControlSlider.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCControlStepper.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCControlStepper.h"
 							>
 						</File>
 						<File
@@ -18411,30 +18467,6 @@
 							>
 						</File>
 						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCMenuPassive.cpp"
-							>
-							<FileConfiguration
-								Name="Debug GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCMenuPassive.h"
-							>
-						</File>
-						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCScale9Sprite.cpp"
 							>
 							<FileConfiguration
@@ -18458,146 +18490,34 @@
 							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCScale9Sprite.h"
 							>
 						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCSpacer.cpp"
-							>
-							<FileConfiguration
-								Name="Debug GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCControlExtension\CCSpacer.h"
-							>
-						</File>
-					</Filter>
-					<Filter
-						Name="CCNotificationCenter"
-						>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCNotificationCenter\CCNotificationCenter.cpp"
-							>
-							<FileConfiguration
-								Name="Debug GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCNotificationCenter\CCNotificationCenter.h"
-							>
-						</File>
-					</Filter>
-					<Filter
-						Name="CCTextureWatcher"
-						>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCTextureWatcher\CCTextureWatcher.cpp"
-							>
-							<FileConfiguration
-								Name="Debug GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCTextureWatcher\CCTextureWatcher.h"
-							>
-						</File>
-					</Filter>
-					<Filter
-						Name="CCListView"
-						>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCListView\CCControlDefine.h"
-							>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCListView\CCListView.cpp"
-							>
-							<FileConfiguration
-								Name="Debug GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCListView\CCListView.h"
-							>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCListView\CCListViewCell.cpp"
-							>
-							<FileConfiguration
-								Name="Debug GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-						</File>
-						<File
-							RelativePath="..\..\shared\cocos2dx\extensions\CCListView\CCListViewCell.h"
-							>
-						</File>
 					</Filter>
 					<Filter
 						Name="CCBReader"
 						>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBAnimationManager.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBAnimationManager.h"
+							>
+						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBFileLoader.cpp"
 							>
@@ -18620,6 +18540,30 @@
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBFileLoader.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBKeyframe.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBKeyframe.h"
 							>
 						</File>
 						<File
@@ -18652,6 +18596,78 @@
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBSelectorResolver.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBSequence.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBSequence.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBSequenceProperty.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBSequenceProperty.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBValue.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCBValue.h"
 							>
 						</File>
 						<File
@@ -18700,6 +18716,30 @@
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCControlLoader.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCData.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCData.h"
 							>
 						</File>
 						<File
@@ -18872,6 +18912,30 @@
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCMenuLoader.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCNode+CCBRelativePositioning.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCBReader\CCNode+CCBRelativePositioning.h"
 							>
 						</File>
 						<File
@@ -20562,6 +20626,30 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\shared\cocos2dx\support\CCNotificationCenter.cpp"
+						>
+						<FileConfiguration
+							Name="Debug GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath="..\..\shared\cocos2dx\support\CCNotificationCenter.h"
+						>
+					</File>
+					<File
 						RelativePath="..\..\shared\cocos2dx\support\CCPointExtension.cpp"
 						>
 						<FileConfiguration
@@ -21203,6 +21291,26 @@
 				<Filter
 					Name="touch_dispatcher"
 					>
+					<File
+						RelativePath="..\..\shared\cocos2dx\touch_dispatcher\CCTouch.cpp"
+						>
+						<FileConfiguration
+							Name="Debug GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
+					</File>
 					<File
 						RelativePath="..\..\shared\cocos2dx\touch_dispatcher\CCTouch.h"
 						>
