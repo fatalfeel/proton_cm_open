@@ -591,10 +591,10 @@ void CCSprite::draw(void)
     }
     
     //black sprite bug fixed, by stone
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, m_pobTexture->m_MinFilter );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, m_pobTexture->m_MagFilter );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, m_pobTexture->m_WrapS );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, m_pobTexture->m_WrapT );
     
     //
     // Attributes

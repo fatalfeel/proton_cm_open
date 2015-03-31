@@ -71,6 +71,10 @@ CCTexture2D::CCTexture2D()
 , m_bPVRHaveAlphaPremultiplied(true)
 , m_pShaderProgram(NULL)
 {
+    m_MinFilter = GL_LINEAR;
+    m_MagFilter = GL_LINEAR;
+    m_WrapS     = GL_CLAMP_TO_EDGE;
+    m_WrapT     = GL_CLAMP_TO_EDGE;
 }
 
 CCTexture2D::~CCTexture2D()
@@ -191,6 +195,12 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+    
+    m_MinFilter = GL_LINEAR;
+    m_MagFilter = GL_LINEAR;
+    m_WrapS     = GL_CLAMP_TO_EDGE;
+    m_WrapT     = GL_CLAMP_TO_EDGE;
+
 
     // Specify OpenGL texture image
 
@@ -627,6 +637,11 @@ void CCTexture2D::setTexParameters(ccTexParams *texParams)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, texParams->magFilter );
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, texParams->wrapS );
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, texParams->wrapT );
+    
+    m_MinFilter = texParams->minFilter;
+    m_MagFilter = texParams->magFilter;
+    m_WrapS     = texParams->wrapS;
+    m_WrapT     = texParams->wrapT;
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     VolatileTexture::setTexParameters(this, texParams);
@@ -640,13 +655,17 @@ void CCTexture2D::setAliasTexParameters()
     if( ! m_bHasMipmaps )
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+        m_MinFilter = GL_NEAREST;
     }
     else
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST );
+        m_MinFilter = GL_NEAREST_MIPMAP_NEAREST;
     }
 
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+    m_MagFilter = GL_NEAREST;
+    
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     ccTexParams texParams = {m_bHasMipmaps?GL_NEAREST_MIPMAP_NEAREST:GL_NEAREST,GL_NEAREST,GL_NONE,GL_NONE};
     VolatileTexture::setTexParameters(this, &texParams);
@@ -660,13 +679,17 @@ void CCTexture2D::setAntiAliasTexParameters()
     if( ! m_bHasMipmaps )
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+        m_MinFilter = GL_LINEAR;
     }
     else
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST );
+        m_MinFilter = GL_LINEAR_MIPMAP_NEAREST;
     }
 
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    m_MagFilter = GL_LINEAR;
+    
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     ccTexParams texParams = {m_bHasMipmaps?GL_LINEAR_MIPMAP_NEAREST:GL_LINEAR,GL_LINEAR,GL_NONE,GL_NONE};
     VolatileTexture::setTexParameters(this, &texParams);

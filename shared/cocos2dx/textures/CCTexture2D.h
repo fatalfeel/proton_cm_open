@@ -241,6 +241,13 @@ public:
     
     bool hasPremultipliedAlpha();
     bool hasMipmaps();
+    
+    //by stone
+    unsigned int m_MinFilter;
+    unsigned int m_MagFilter;
+    unsigned int m_WrapS;
+    unsigned int m_WrapT;
+    
 private:
     bool initPremultipliedATextureWithImage(CCImage * image, unsigned int pixelsWide, unsigned int pixelsHigh);
     
