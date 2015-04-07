@@ -65,8 +65,10 @@ void StencilInitScene()
     
 	s_node = smgr->addWaterSurfaceSceneNode(mesh->getMesh(0), 3.0f, 300.0f, 30.0f);
 	s_node->setPosition(core::vector3df(0,7,0));
-    
+
+#ifdef _IRR_COMPILE_WITH_OGLES2_
 	s_node->setMaterialTexture(0, driver->getTexture((GetBaseAppPath()+"game/stones.jpg").c_str()));
+#endif
 	s_node->setMaterialTexture(1, driver->getTexture((GetBaseAppPath()+"game/water.jpg").c_str()));
     
 	s_node->setMaterialType(video::EMT_REFLECTION_2_LAYER);
