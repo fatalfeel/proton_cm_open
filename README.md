@@ -39,11 +39,11 @@ xxxxxx/media/update_media.sh
 
 Switch between OGLES1 and OGLES2
 
-(a.) Find in App.cpp
+(a.) Find IrrCompileConfig.h
 
-return irr::video::EDT_OGLES1;
+#define _IRR_COMPILE_WITH_OGLES1_;
 
--> return irr::video::EDT_OGLES2;
+-> #define _IRR_COMPILE_WITH_OGLES2_;
 
 (b.) In Android
 
