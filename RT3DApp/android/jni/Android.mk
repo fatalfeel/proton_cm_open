@@ -37,8 +37,12 @@ else
 	LOCAL_CPPFLAGS := -DGC_BUILD_C -DANDROID_NDK -DBUILD_ANDROID -D_DEBUG -D_IRR_STATIC_LIB_ -DHAVE_NEON=1 -mfpu=neon -mfloat-abi=softfp
 endif
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SHARED) $(LOCAL_PATH)/$(SHARED)/Irrlicht/include \
- $(LOCAL_PATH)/$(APP) $(LOCAL_PATH)/$(SHARED)/ClanLib-2.0/Sources $(LOCAL_PATH)/$(SHARED)/util/boost
+LOCAL_C_INCLUDES := \
+$(LOCAL_PATH)/$(APP) \
+$(LOCAL_PATH)/$(SHARED) \
+$(LOCAL_PATH)/$(SHARED)/Irrlicht/include \
+$(LOCAL_PATH)/$(SHARED)/ClanLib-2.0/Sources \
+$(LOCAL_PATH)/$(SHARED)/util/boost
                 
 
 LOCAL_SRC_FILES := \
