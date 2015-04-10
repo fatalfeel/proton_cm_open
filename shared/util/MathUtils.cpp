@@ -1,8 +1,8 @@
 #include "PlatformPrecomp.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "MathUtils.h"
 #include "MiscUtils.h"
-
-#define M_PI 3.141592f
 
 void ApplyOffset(CL_Rectf *pR, const CL_Vec2f &vOffset)
 {
@@ -282,7 +282,7 @@ bool AnglesAreClose(float a, float b, float angleTolerance)
 
 float GetAngleBetweenTwoAnglesRadians(float a, float b)
 {
-	return ModNearestInt(a-b, M_PI*2);
+	return ModNearestInt(a-b, (float)M_PI*2);
 }
 
 void TurnAngleToward_Degrees(float *angle,float target,float amount)

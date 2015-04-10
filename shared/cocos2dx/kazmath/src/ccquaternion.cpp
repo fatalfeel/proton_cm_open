@@ -23,9 +23,8 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
+#include <string.h>
 #include <assert.h>
-#include <memory.h>
 
 #include "ccutility.h"
 #include "ccmat3.h"

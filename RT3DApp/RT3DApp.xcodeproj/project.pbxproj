@@ -436,7 +436,6 @@
 		B7DB92091AC9202000A9B856 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB912A1AC9202000A9B856 /* CCParticleExamples.cpp */; };
 		B7DB920A1AC9202000A9B856 /* CCParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB912C1AC9202000A9B856 /* CCParticleSystem.cpp */; };
 		B7DB920B1AC9202000A9B856 /* CCParticleSystemQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB912E1AC9202000A9B856 /* CCParticleSystemQuad.cpp */; };
-		B7DB920C1AC9202000A9B856 /* CCEGLViewProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91341AC9202000A9B856 /* CCEGLViewProtocol.cpp */; };
 		B7DB920D1AC9202000A9B856 /* CCSAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB913A1AC9202000A9B856 /* CCSAXParser.cpp */; };
 		B7DB92111AC9202000A9B856 /* CCCommon.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91431AC9202000A9B856 /* CCCommon.mm */; };
 		B7DB92121AC9202000A9B856 /* CCDirectorCaller.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91451AC9202000A9B856 /* CCDirectorCaller.mm */; };
@@ -465,8 +464,6 @@
 		B7DB922E1AC9202000A9B856 /* ccCArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91921AC9202000A9B856 /* ccCArray.cpp */; };
 		B7DB922F1AC9202000A9B856 /* TGAlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91971AC9202000A9B856 /* TGAlib.cpp */; };
 		B7DB92301AC9202000A9B856 /* TransformUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB919A1AC9202000A9B856 /* TransformUtils.cpp */; };
-		B7DB92311AC9202000A9B856 /* ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB919C1AC9202000A9B856 /* ioapi.cpp */; };
-		B7DB92321AC9202000A9B856 /* unzip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB919E1AC9202000A9B856 /* unzip.cpp */; };
 		B7DB92331AC9202000A9B856 /* ZipUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91A01AC9202000A9B856 /* ZipUtils.cpp */; };
 		B7DB92341AC9202000A9B856 /* CCIMEDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91A51AC9202000A9B856 /* CCIMEDispatcher.cpp */; };
 		B7DB92351AC9202000A9B856 /* CCTextFieldTTF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DB91A71AC9202000A9B856 /* CCTextFieldTTF.cpp */; };
@@ -1556,8 +1553,6 @@
 		B7DB91311AC9202000A9B856 /* CCAccelerometerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAccelerometerDelegate.h; sourceTree = "<group>"; };
 		B7DB91321AC9202000A9B856 /* CCApplicationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplicationProtocol.h; sourceTree = "<group>"; };
 		B7DB91331AC9202000A9B856 /* CCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCommon.h; sourceTree = "<group>"; };
-		B7DB91341AC9202000A9B856 /* CCEGLViewProtocol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEGLViewProtocol.cpp; sourceTree = "<group>"; };
-		B7DB91351AC9202000A9B856 /* CCEGLViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEGLViewProtocol.h; sourceTree = "<group>"; };
 		B7DB91361AC9202000A9B856 /* CCFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFileUtils.h; sourceTree = "<group>"; };
 		B7DB91371AC9202000A9B856 /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
 		B7DB91381AC9202000A9B856 /* CCPlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPlatformConfig.h; sourceTree = "<group>"; };
@@ -1621,10 +1616,6 @@
 		B7DB91981AC9202000A9B856 /* TGAlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGAlib.h; sourceTree = "<group>"; };
 		B7DB919A1AC9202000A9B856 /* TransformUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformUtils.cpp; sourceTree = "<group>"; };
 		B7DB919B1AC9202000A9B856 /* TransformUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformUtils.h; sourceTree = "<group>"; };
-		B7DB919C1AC9202000A9B856 /* ioapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ioapi.cpp; sourceTree = "<group>"; };
-		B7DB919D1AC9202000A9B856 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		B7DB919E1AC9202000A9B856 /* unzip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unzip.cpp; sourceTree = "<group>"; };
-		B7DB919F1AC9202000A9B856 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
 		B7DB91A01AC9202000A9B856 /* ZipUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZipUtils.cpp; sourceTree = "<group>"; };
 		B7DB91A11AC9202000A9B856 /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		B7DB91A41AC9202000A9B856 /* CCIMEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCIMEDelegate.h; sourceTree = "<group>"; };
@@ -3239,8 +3230,6 @@
 				B7DB91311AC9202000A9B856 /* CCAccelerometerDelegate.h */,
 				B7DB91321AC9202000A9B856 /* CCApplicationProtocol.h */,
 				B7DB91331AC9202000A9B856 /* CCCommon.h */,
-				B7DB91341AC9202000A9B856 /* CCEGLViewProtocol.cpp */,
-				B7DB91351AC9202000A9B856 /* CCEGLViewProtocol.h */,
 				B7DB91361AC9202000A9B856 /* CCFileUtils.h */,
 				B7DB91371AC9202000A9B856 /* CCImage.h */,
 				B7DB91381AC9202000A9B856 /* CCPlatformConfig.h */,
@@ -3319,10 +3308,6 @@
 		B7DB91A21AC9202000A9B856 /* zip_support */ = {
 			isa = PBXGroup;
 			children = (
-				B7DB919C1AC9202000A9B856 /* ioapi.cpp */,
-				B7DB919D1AC9202000A9B856 /* ioapi.h */,
-				B7DB919E1AC9202000A9B856 /* unzip.cpp */,
-				B7DB919F1AC9202000A9B856 /* unzip.h */,
 				B7DB91A01AC9202000A9B856 /* ZipUtils.cpp */,
 				B7DB91A11AC9202000A9B856 /* ZipUtils.h */,
 			);
@@ -3723,7 +3708,6 @@
 				5D8486DC0F92409B007338A2 /* signal_base.cpp in Sources */,
 				5D8486DD0F92409B007338A2 /* slot.cpp in Sources */,
 				B7DB92FA1AC9236100A9B856 /* ccray2.cpp in Sources */,
-				B7DB92311AC9202000A9B856 /* ioapi.cpp in Sources */,
 				5D8486DE0F92409B007338A2 /* trackable.cpp in Sources */,
 				5D7C5EA30F930CB900D81AC8 /* Variant.cpp in Sources */,
 				5DE84C090FB9469A00DDAE64 /* angle.cpp in Sources */,
@@ -3892,7 +3876,6 @@
 				B7DB92B71AC9217400A9B856 /* CCMenuItemImageLoader.cpp in Sources */,
 				5D59D1F910B64E2700BA1F75 /* CZBuffer.cpp in Sources */,
 				B7DB92411AC9202000A9B856 /* CCTouchDispatcher.cpp in Sources */,
-				B7DB920C1AC9202000A9B856 /* CCEGLViewProtocol.cpp in Sources */,
 				5D59D1FA10B64E2700BA1F75 /* CZipReader.cpp in Sources */,
 				B7BD035E1ABC24330053A19A /* schematron.c in Sources */,
 				5D59D1FB10B64E2700BA1F75 /* irrXML.cpp in Sources */,
@@ -4105,7 +4088,6 @@
 				B7DB91FA1AC9202000A9B856 /* CCKeypadDispatcher.cpp in Sources */,
 				B7BD03571ABC24330053A19A /* parser.c in Sources */,
 				B7320E011807C65900A41E79 /* CCgMaterialRenderer.cpp in Sources */,
-				B7DB92321AC9202000A9B856 /* unzip.cpp in Sources */,
 				B7320E031807C65A00A41E79 /* CDMFLoader.cpp in Sources */,
 				B7320E091807C65A00A41E79 /* CLMTSMeshFileLoader.cpp in Sources */,
 				B7320E0A1807C65A00A41E79 /* CLWOMeshFileLoader.cpp in Sources */,
@@ -4258,6 +4240,7 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -4306,6 +4289,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;

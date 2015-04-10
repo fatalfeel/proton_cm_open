@@ -11,6 +11,8 @@ CCConfiguration.cpp \
 CCDrawingPrimitives.cpp \
 CCScheduler.cpp \
 CCCamera.cpp \
+cocos2d.cpp \
+CCDirector.cpp \
 actions/CCAction.cpp \
 actions/CCActionCamera.cpp \
 actions/CCActionCatmullRom.cpp \
@@ -36,8 +38,6 @@ cocoa/CCSet.cpp \
 cocoa/CCString.cpp \
 cocoa/CCZone.cpp \
 cocoa/CCArray.cpp \
-cocos2d.cpp \
-CCDirector.cpp \
 effects/CCGrabber.cpp \
 effects/CCGrid.cpp \
 kazmath/src/aabb.c \

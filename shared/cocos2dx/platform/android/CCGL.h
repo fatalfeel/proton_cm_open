@@ -25,15 +25,9 @@ THE SOFTWARE.
 #ifndef __CCGL_H__
 #define __CCGL_H__
 
-#define glClearDepth                glClearDepthf
-#define glDeleteVertexArrays        glDeleteVertexArraysOES
-#define glGenVertexArrays           glGenVertexArraysOES
-#define glBindVertexArray           glBindVertexArrayOES
-#define CC_GL_DEPTH24_STENCIL8      GL_DEPTH24_STENCIL8_OES
-
 // GL_GLEXT_PROTOTYPES isn't defined in glplatform.h on android ndk r7 
 // we manually define it here
-#include <GLES2/gl2platform.h>
+/*#include <GLES2/gl2platform.h>
 #ifndef GL_GLEXT_PROTOTYPES
 #define GL_GLEXT_PROTOTYPES 1
 #endif
@@ -41,17 +35,36 @@ THE SOFTWARE.
 // normal process
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
+
 // gl2.h doesn't define GLchar on Android
-typedef char GLchar;
+typedef char GLchar;*/
+
+//////////////////
+/////////////
+////////
+#define GL_GLEXT_PROTOTYPES
+
+#include <GLES/gl.h>
+#include <GLES/glext.h>
+
+#ifdef _IRR_COMPILE_WITH_OGLES2_
+	#include <GLES2/gl2.h>
+	#include <GLES2/gl2ext.h>
+#endif	
+
+#define glClearDepth                glClearDepthf
+#define glDeleteVertexArrays        glDeleteVertexArraysOES
+#define glGenVertexArrays           glGenVertexArraysOES
+#define glBindVertexArray           glBindVertexArrayOES
+#define CC_GL_DEPTH24_STENCIL8      GL_DEPTH24_STENCIL8_OES
 
 //declare here while define in CCEGLView_android.cpp
-extern PFNGLGENVERTEXARRAYSOESPROC glGenVertexArraysOESEXT;
-extern PFNGLBINDVERTEXARRAYOESPROC glBindVertexArrayOESEXT;
-extern PFNGLDELETEVERTEXARRAYSOESPROC glDeleteVertexArraysOESEXT;
+extern PFNGLGENVERTEXARRAYSOESPROC		glGenVertexArraysOESEXT;
+extern PFNGLBINDVERTEXARRAYOESPROC		glBindVertexArrayOESEXT;
+extern PFNGLDELETEVERTEXARRAYSOESPROC	glDeleteVertexArraysOESEXT;
 
 #define glGenVertexArraysOES glGenVertexArraysOESEXT
 #define glBindVertexArrayOES glBindVertexArrayOESEXT
 #define glDeleteVertexArraysOES glDeleteVertexArraysOESEXT
-
 
 #endif // __CCGL_H__

@@ -416,7 +416,7 @@ protected:
     CCDirectorDelegate *m_pProjectionDelegate;
     
     // CCEGLViewProtocol will recreate stats labels to fit visible rect
-    friend class CCEGLViewProtocol;
+    //friend class CCEGLViewProtocol;
 
 	unsigned char m_origin_blend;
 	unsigned char m_origin_depth;

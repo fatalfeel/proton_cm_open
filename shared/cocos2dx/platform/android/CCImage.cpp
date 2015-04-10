@@ -25,6 +25,7 @@ THE SOFTWARE.
 //#define COCOS2D_DEBUG 1
 
 #define __CC_PLATFORM_IMAGE_CPP__
+#include <stdio.h>
 #include "platform/CCImageCommon_cpp.h"
 #include "platform/CCPlatformMacros.h"
 #include "platform/CCImage.h"

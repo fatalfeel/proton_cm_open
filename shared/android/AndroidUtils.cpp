@@ -21,9 +21,9 @@
 
 extern JavaVM* g_pJavaVM;
 
-const char* GetAppName();
-const char* GetBundlePrefix();
-const char* GetBundleName();
+//const char* GetAppName();
+//const char* GetBundlePrefix();
+//const char* GetBundleName();
 
 uint32		g_callAppResumeASAPTimer = 0;
 bool		g_pauseASAP = false;
@@ -105,7 +105,9 @@ int GetPrimaryGLY()
 
 void LogMsg ( const char* traceStr, ... )
 {
-	va_list argsVA;
+	std::string	strapp;
+	va_list		argsVA;
+	
 	const int logSize = 4096;
 	char buffer[logSize];
 	memset ( (void*)buffer, 0, logSize );
@@ -113,9 +115,10 @@ void LogMsg ( const char* traceStr, ... )
 	va_start ( argsVA, traceStr );
 	vsnprintf( buffer, logSize, traceStr, argsVA );
 	va_end( argsVA );
-	
-	
-	__android_log_write(ANDROID_LOG_INFO,GetAppName(), buffer);
+			
+	//__android_log_write(ANDROID_LOG_INFO,GetAppName(), buffer);
+	strapp = WstringToString(GetAppName());
+	__android_log_write(ANDROID_LOG_INFO, strapp.c_str(), buffer);
 
 	if (IsBaseAppInitted())
 	{
@@ -567,17 +570,6 @@ int GetDaysSinceDate(int month,int day, int year)
 	return 0;
 }
 
-bool RTCreateDirectory(const std::string &dir_name)
-{
-#ifdef _DEBUG
-	LogMsg("CreateDirectory: %s", dir_name.c_str());
-#endif
-
-	std::string temp = dir_name;
-	CreateDirectoryRecursively("", temp);
-	return true;
-}
-
 void CreateDirectoryRecursively(std::string basePath, std::string path)
 {
 #ifdef _DEBUG
@@ -595,6 +587,16 @@ void CreateDirectoryRecursively(std::string basePath, std::string path)
 	return;
 }
 
+bool RTCreateDirectory(const std::string &dir_name)
+{
+#ifdef _DEBUG
+	LogMsg("CreateDirectory: %s", dir_name.c_str());
+#endif
+
+	std::string temp = dir_name;
+	CreateDirectoryRecursively("", temp);
+	return true;
+}
 
 std::vector<std::string> GetDirectoriesAtPath(std::string path)
 {
@@ -783,7 +785,7 @@ void AppResize( JNIEnv*  env, jobject  thiz, jint w, jint h )
 
 	}
 
-	BaseApp::GetBaseApp()->OnScreenSizeChange();
+	//BaseApp::GetBaseApp()->OnScreenSizeChange();
 }
 
 void AppRender(JNIEnv*  env)

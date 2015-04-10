@@ -25,7 +25,6 @@ THE SOFTWARE.
 #ifndef __CCGL_H__
 #define __CCGL_H__
 
-
 #define GL_GLEXT_PROTOTYPES
 
 #include <OpenGLES/ES1/gl.h>
