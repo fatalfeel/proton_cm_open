@@ -22,14 +22,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include <libxml/parser.h>
-#include <libxml/parserInternals.h>
-#include <libxml/tree.h>
-#include <libxml/uri.h>
-#include <libxml/xmlreader.h>
+#include <parser.h>
+#include <parserInternals.h>
+#include <tree.h>
+#include <uri.h>
+#include <xmlreader.h>
 
-#include <libxml/xpath.h>
-#include <libxml/xpathInternals.h>
+#include <xpath.h>
+#include <xpathInternals.h>
 
 #define LOGFILE "runxmlconf.log"
 static FILE *logfile = NULL;

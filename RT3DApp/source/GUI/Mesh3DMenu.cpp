@@ -1,6 +1,7 @@
 #include "PlatformPrecomp.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "Mesh3DMenu.h"
-//#include "Entity/EntityUtils.h"
 #include "MainMenu.h"
 #include "Irrlicht/IrrlichtManager.h"
 #include "driverChoice.h"
@@ -11,8 +12,6 @@ using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
-
-#define M_PI 3.141592f
 
 void Mesh3DInitScene()
 {
@@ -117,7 +116,7 @@ void Mesh3DInitScene()
 	camera->setPosition(core::vector3df(0,5,-20));
 	float fov = float(GetPrimaryGLX())/ float(GetPrimaryGLY());
 	camera->setAspectRatio(fov);
-	camera->setFOV((120 * M_PI / 360.0f));
+	camera->setFOV((120 * (float)M_PI / 360.0f));
 
 #ifdef _IRR_COMPILE_WITH_GUI_
 	EventControlComponent* receiver = new EventControlComponent();

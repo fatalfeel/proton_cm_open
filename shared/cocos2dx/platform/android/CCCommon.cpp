@@ -46,7 +46,8 @@ void CCLog(const char * pszFormat, ...)
 
 void CCMessageBox(const char * pszMsg, const char * pszTitle)
 {
-    showDialogJNI(pszMsg, pszTitle);
+    //showDialogJNI(pszMsg, pszTitle);
+	__android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x messagebox", pszMsg);
 }
 
 void CCLuaLog(const char * pszFormat)

@@ -1,9 +1,7 @@
 #include "PlatformPrecomp.h"
 #include "QuakeShaderMenu.h"
-//#include "Entity/EntityUtils.h"
 #include "MainMenu.h"
 #include "Irrlicht/IrrlichtManager.h"
-//#include "Component/FPSControlComponent.h"
 #include "FileSystem/FileSystemZip.h"
 #include "Component/EventControlComponent.h"
 

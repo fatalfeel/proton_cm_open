@@ -30,7 +30,7 @@ public class Main extends SharedActivity
     protected void onCreate(Bundle savedInstanceState) 
 	{
 		//*************** EDIT THESE TO MATCH YOUR PROJECT STUFF ****************
-		dllname= "RTPhysics";
+		dllname= "rtphysics";
 		BASE64_PUBLIC_KEY = "public key from android market, if used, set securityEnabled to true below";
 		securityEnabled = false; 
    		IAPEnabled = false;

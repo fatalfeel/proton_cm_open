@@ -1,36 +1,15 @@
 #include "PlatformPrecomp.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "HouseMenu.h"
-//#include "Entity/EntityUtils.h"
 #include "MainMenu.h"
 #include "Irrlicht/IrrlichtManager.h"
-//#include "Component/FPSControlComponent.h"
 #include "Component/EventControlComponent.h"
 
 using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
-
-#define M_PI 3.141592f
-
-
-/*void HouseMenuOnSelect(VariantList *pVList) //0=vec2 point of click, 1=entity sent from
-{
-	Entity *pEntClicked = pVList->m_variant[1].GetEntity();
-
-	LogMsg("Clicked %s entity at %s", pEntClicked->GetName().c_str(),pVList->m_variant[1].Print().c_str());
-
-	if (pEntClicked->GetName() == "Back")
-	{
-		//SlideScreen(pEntClicked->GetParent(), false);
-		MessageManager::GetMessageManager()->CallEntityFunction(pEntClicked->GetParent(), 500, "OnDelete", NULL);
-		MainMenuCreate(pEntClicked->GetParent()->GetParent());
-		IrrlichtManager::GetIrrlichtManager()->ClearScene();
-		DestroyUnusedTextures();
-	}
-
-	Entity::GetEntityManager()->PrintTreeAsText(); //useful for debugging
-}*/
 
 void HouseInitScene()
 {
@@ -115,7 +94,7 @@ void HouseInitScene()
 	float fov = float(GetPrimaryGLX())/ float(GetPrimaryGLY());
 	LogMsg("Setting fov to %.2f", fov);
 	camera->setAspectRatio(fov);
-	camera->setFOV((120 * M_PI / 360.0f));
+	camera->setFOV((120 * (float)M_PI / 360.0f));
 
 #ifdef _IRR_COMPILE_WITH_GUI_
     EventControlComponent* receiver = new EventControlComponent();

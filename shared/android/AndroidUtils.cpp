@@ -132,7 +132,7 @@ std::string GetBaseAppPath()
 	return ""; //we mount the assets as zip, there really isn't a base path
 }
 
-JNIEnv * GetJavaEnv()
+JNIEnv* GetJavaEnv()
 {
 	assert(g_pJavaVM);
 
@@ -735,57 +735,52 @@ bool HasVibration()
 
 void AppResize( JNIEnv*  env, jobject  thiz, jint w, jint h )
 {
+	std::string		apkpath;
+	FileSystemZip*	pFileSystem = NULL;
+
 	g_winVideoScreenX = w;
 	g_winVideoScreenY = h;
-#ifdef _DEBUG
-	LogMsg("Resizing screen to %d %d", w, h);
-#endif
-	
+		
 	if (!BaseApp::GetBaseApp()->IsInitted())
 	{
-		SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), ORIENTATION_PORTRAIT);
-		LogMsg("Initializing BaseApp.  APK filename is %s", GetAPKFile().c_str());
 		srand( (unsigned)time(NULL) );
-		FileSystemZip *pFileSystem = new FileSystemZip();
-#ifdef _DEBUG
-		LogMsg("Filesystem new'ed");
-#endif
-		if (!pFileSystem->Init_unz(GetAPKFile()))
-		{
-			LogMsg("Error finding APK file to load resources (%s", GetAPKFile().c_str());
-		}
 
 #ifdef _DEBUG
-		LogMsg("APK based Filesystem mounted.");
+	LogMsg("Setup screen to %d %d", w, h);
 #endif
-		/*
-		vector<std::string> contents = pFileSystem->GetContents();
-		for (int i=0; i < contents.size(); i++)
+		SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), ORIENTATION_PORTRAIT);
+		
+		pFileSystem = new FileSystemZip();
+
+		apkpath = GetAPKFile();
+
+#ifdef _DEBUG
+		LogMsg("Initializing BaseApp.  APK filename is %s", apkpath.c_str());
+#endif				
+
+		if( pFileSystem->Init_unz(apkpath) )
 		{
-		LogMsg("%s", contents[i].c_str());
+			LogMsg("APK based Filesystem mounted.");
 		}
-		*/
+		else
+		{
+			LogMsg("Error finding APK file to load resources (%s", apkpath.c_str());
+		}
 
 		pFileSystem->SetRootDirectory("assets");
 
 		FileManager::GetFileManager()->MountFileSystem(pFileSystem);
-		LogMsg("Assets mounted");
-
+		
 		if (!BaseApp::GetBaseApp()->Init())
 		{
 			LogMsg("Unable to initalize BaseApp");
 		}
 
-
-		//let's also create our save directory on the sd card if needed, so we don't get errors when just assuming we can save
+		//let's also create our save directory on the sd card if needed
+		//so we don't get errors when just assuming we can save
 		//settings later in the app.
-
 		CreateDirectoryRecursively("", GetAppCachePath());
-
-
 	}
-
-	//BaseApp::GetBaseApp()->OnScreenSizeChange();
 }
 
 void AppRender(JNIEnv*  env)

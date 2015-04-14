@@ -23,9 +23,22 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #define __CC_PLATFORM_FILEUTILS_CPP__
+#define	CLASS_NAME "org/cocos2dx/lib/Cocos2dxHelper"
+
+#include <cstdio>
+#include <vector>
+#include <cmath>
+#include <deque>
+#include <map>
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include "FileSystem/FileManager.h"
+
+#include "jni/JniHelper.h"
 #include "platform/CCFileUtilsCommon_cpp.h"
 
-using namespace std;
+//using namespace std;
 
 NS_CC_BEGIN
 
@@ -33,16 +46,34 @@ NS_CC_BEGIN
 #include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 
 // record the resource path
-static string s_strResourcePath = "";
+//static string s_strResourcePath = "";
     
 static CCFileUtils* s_pFileUtils = NULL;
+
+static const char* CCFileUtils_GetPackageNameJNI() 
+{
+    JniMethodInfo t;
+
+    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getCocos2dxPackageName", "()Ljava/lang/String;")) 
+	{
+        jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+        CCString *ret = new CCString(JniHelper::jstring2string(str).c_str());
+        ret->autorelease();
+        t.env->DeleteLocalRef(str);
+
+        return ret->m_sString.c_str();
+    }
+
+    return 0;
+}
 
 CCFileUtils* CCFileUtils::sharedFileUtils()
 {
     if (s_pFileUtils == NULL)
     {
         s_pFileUtils = new CCFileUtils();
-        s_strResourcePath = getApkPath();
+        //s_strResourcePath = getApkPath();
     }
     return s_pFileUtils;
 }
@@ -79,8 +110,10 @@ const char* CCFileUtils::fullPathFromRelativeFile(const char *pszFilename, const
 
 unsigned char* CCFileUtils::getFileData(const char* pszFileName, const char* pszMode, unsigned long * pSize)
 {    
-    unsigned char * pData = 0;
-    string fullPath(pszFileName);
+    int				size;
+	unsigned char*	pData = 0;
+    
+	/*string fullPath(pszFileName);
 
     if ((! pszFileName) || (! pszMode))
     {
@@ -132,16 +165,21 @@ unsigned char* CCFileUtils::getFileData(const char* pszFileName, const char* psz
         std::string msg = "Get data from file(";
         msg.append(fullPath.c_str()).append(") failed!");
         CCMessageBox(msg.c_str(), title.c_str());
-    }
+    }*/
+
+	//by stone
+	pData = FileManager::GetFileManager()->Get(pszFileName, &size, false);
 
     return pData;
 }
 
-string CCFileUtils::getWriteablePath()
+std::string CCFileUtils::getWriteablePath()
 {
     // the path is: /data/data/ + package name
-    string dir("/data/data/");
-    const char *tmp = getPackageNameJNI();
+	std::string dir("/data/data/");
+    
+	//const char *tmp = getPackageNameJNI();
+	const char *tmp = CCFileUtils_GetPackageNameJNI();
 
     if (tmp)
     {

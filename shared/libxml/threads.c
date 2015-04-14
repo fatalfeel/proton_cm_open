@@ -12,8 +12,8 @@
 
 #include <string.h>
 
-#include <libxml/threads.h>
-#include <libxml/globals.h>
+#include <threads.h>
+#include <globals.h>
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>

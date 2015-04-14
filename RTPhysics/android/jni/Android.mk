@@ -2,22 +2,18 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := RTPhysics
+LOCAL_MODULE := rtphysics
 SHARED := ../../../shared
 APP := ../../source
-APPCOMP := ../../source/Component
 LOCAL_ARM_MODE := arm
 
 ENTITYSRC := $(SHARED)/Entity
 CLANCORE := $(SHARED)/ClanLib-2.0/Sources/Core
-ZLIBPATH := $(SHARED)/util/zlib
 IRRSRC :=  $(SHARED)/Irrlicht/source
 IRRMESH := $(IRRSRC)
-IRRPARTICLE := $(IRRSRC)
 IRRSCENE := $(IRRSRC)
-PNGSRC :=  $(SHARED)/Irrlicht/source/libpng
-JPGSRC :=  $(SHARED)/Irrlicht/source/jpeglib
-LZMASRC :=  $(SHARED)/Irrlicht/source/lzma
+PNGSRC := $(SHARED)/Irrlicht/source/libpng
+JPGSRC := $(SHARED)/Irrlicht/source/jpeglib
 
 IRRBULLET := $(SHARED)/Irrlicht/irrBullet
 EXTBULLET := $(SHARED)/Bullet

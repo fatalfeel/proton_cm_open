@@ -1,9 +1,9 @@
 #include "PlatformPrecomp.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "QuakeMenu.h"
-//#include "Entity/EntityUtils.h"
 #include "MainMenu.h"
 #include "Irrlicht/IrrlichtManager.h"
-//#include "Component/FPSControlComponent.h"
 #include "FileSystem/FileSystemZip.h"
 #include "Component/EventControlComponent.h"
 
@@ -11,8 +11,6 @@ using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
-
-#define M_PI 3.141592f
 
 void QuakeInitScene()
 {
@@ -86,7 +84,7 @@ void QuakeInitScene()
     float fov = float(GetPrimaryGLX())/ float(GetPrimaryGLY());
     LogMsg("Setting fov to %.2f", fov);
     camera->setAspectRatio(fov);
-    camera->setFOV((120 * M_PI / 360.0f));
+    camera->setFOV((120 * (float)M_PI / 360.0f));
 
 #ifdef _IRR_COMPILE_WITH_GUI_
     EventControlComponent* receiver = new EventControlComponent();
