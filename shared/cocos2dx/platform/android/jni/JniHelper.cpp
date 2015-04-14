@@ -34,6 +34,8 @@ THE SOFTWARE.
 
 #define JAVAVM    cocos2d::JniHelper::getJavaVM()
 
+extern JavaVM* g_pJavaVM;
+
 using namespace std;
 
 extern "C"
@@ -185,7 +187,8 @@ JavaVM* JniHelper::m_psJavaVM = NULL;
 
 JavaVM* JniHelper::getJavaVM()
 {
-    return m_psJavaVM;
+    //return m_psJavaVM;
+	return g_pJavaVM;
 }
 
 void JniHelper::setJavaVM(JavaVM *javaVM)

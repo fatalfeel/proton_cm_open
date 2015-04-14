@@ -19,7 +19,7 @@
 
 #define C_DELAY_BEFORE_RESTORING_SURFACES_MS 1
 
-extern JavaVM* g_pJavaVM;
+JavaVM* g_pJavaVM = NULL;
 
 //const char* GetAppName();
 //const char* GetBundlePrefix();
@@ -64,7 +64,7 @@ public:
 
 std::list<AndroidMessageCache> g_messageCache;
 
-JavaVM* g_pJavaVM = NULL;
+//JavaVM* g_pJavaVM = NULL;
 
 int g_winVideoScreenX = 0;
 int g_winVideoScreenY = 0;
@@ -79,8 +79,6 @@ extern "C"
 
 	JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) 
 	{
-		//LogMsg("JNI_OnLoad(): you are here");
-
 		JNIEnv* env;
 		if (vm->GetEnv((void**)&env, JNI_VERSION_1_4) != JNI_OK) 
 		{
@@ -88,6 +86,9 @@ extern "C"
 			return -1;
 		}
 		g_pJavaVM = vm; //save to use this for the rest of the app.  Not neccesarily safe to use the Env passed in though.
+
+		LogMsg("JNI_OnLoad(): you are here");
+
 		return JNI_VERSION_1_4;
 	}
 
