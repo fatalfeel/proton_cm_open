@@ -17,6 +17,9 @@
 #include "FileSystem/FileSystemZip.h"
 #include "Irrlicht/IrrlichtManager.h"
 
+#include "cocos2d.h"
+using namespace cocos2d;
+
 #define C_DELAY_BEFORE_RESTORING_SURFACES_MS 1
 
 JavaVM* g_pJavaVM = NULL;
@@ -231,9 +234,6 @@ std::string GetAPKFile()
 	env->ReleaseStringUTFChars(ret, ss);
 	return std::string(tmp);
 }
-
-//returns the SD card user save path (will be deleted when app is uninstalled on 2.2+)
-//returns "" if no SD card/external writable storage available
 
 std::string GetAppCachePath()
 {
@@ -771,11 +771,19 @@ void AppResize( JNIEnv*  env, jobject  thiz, jint w, jint h )
 		pFileSystem->SetRootDirectory("assets");
 
 		FileManager::GetFileManager()->MountFileSystem(pFileSystem);
+
+		//init shader first
+		CCShaderCache::sharedShaderCache();
 		
 		if (!BaseApp::GetBaseApp()->Init())
 		{
 			LogMsg("Unable to initalize BaseApp");
 		}
+
+		CCSize size = CCSize(w, h);
+		CCDirector::sharedDirector()->setWinSize(size);
+		CCDirector::sharedDirector()->setContentScaleFactor(1.0f);
+		CCDirector::sharedDirector()->setOpenGLView(NULL);
 
 		//let's also create our save directory on the sd card if needed
 		//so we don't get errors when just assuming we can save
@@ -789,9 +797,13 @@ void AppRender(JNIEnv*  env)
 	if (BaseApp::GetBaseApp()->IsInBackground() || g_pauseASAP) 
 		return;
 
-	glViewport(0, 0, GetPrimaryGLX(), GetPrimaryGLY());
+	//glViewport(0, 0, GetPrimaryGLX(), GetPrimaryGLY());
+	
 	BaseApp::GetBaseApp()->Draw();
-	//appRender(0, sWindowWidth, sWindowHeight);
+	
+	CCDirector::sharedDirector()->setGLDefaultValues();
+	CCDirector::sharedDirector()->mainLoop();
+	CCDirector::sharedDirector()->RestoreGLValues();
 }
 
 void AppUpdate(JNIEnv*  env)
@@ -810,7 +822,6 @@ void AppUpdate(JNIEnv*  env)
 		BaseApp::GetBaseApp()->m_sig_loadSurfaces();
 		
 		//BaseApp::GetBaseApp()->OnEnterBackground();
-
 		//GetAudioManager()->Kill(); //already done in AppPause
 	}
 	else
@@ -841,16 +852,6 @@ void AppUpdate(JNIEnv*  env)
 		
 		if (!BaseApp::GetBaseApp()->IsInBackground())
 		{
-			//by stone, no chance enable
-			/*if (s_bSurfacesUnloaded)
-			{
-				//this is a work around for a problem where surfaces don't get reloaded on the Xoom right after IAB is used
-				if (IsXoomSize)
-					s_bSurfacesUnloaded = false;
-				
-				AppInit(NULL);
-			}*/
-
 			BaseApp::GetBaseApp()->Update();
 		}
 	}//end if (g_pauseASAP)
@@ -908,21 +909,6 @@ void AppResume(JNIEnv*  env)
 
 void AppInit(JNIEnv*  env)
 {
-	//by stone
-	/*LogMsg("Initialized GL surfaces for game");
-	BaseApp::GetBaseApp()->InitializeGLDefaults();
-	LogMsg("gl defaults set");
-	BaseApp::GetBaseApp()->OnScreenSizeChange();
-	LogMsg("OnScreensizechange done");*/
-
-	/*if (s_bSurfacesUnloaded)
-	{
-		s_bSurfacesUnloaded = false;
-		
-		//signal to IrrlichtManager::OnLoadSurfaces()
-		BaseApp::GetBaseApp()->m_sig_loadSurfaces(); 
-	}*/
-	
 	LogMsg("AppInit finish");
 }
 

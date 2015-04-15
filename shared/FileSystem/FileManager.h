@@ -67,7 +67,7 @@ public:
 	 *
 	 * The caller is responsible for freeing the returned memory later.
 	 */
-	byte* Get(std::string fileName, int *pSizeOut, bool bAddBasePath = true, bool bAutoDecompress = true); //you must SAFE_DELETE_ARRAY() what it returns...
+	byte* Get(std::string fileName, int* pSizeOut, bool bAddBasePath = true, bool bAutoDecompress = true); //you must SAFE_DELETE_ARRAY() what it returns...
 	StreamingInstance * GetStreaming(std::string fileName, int *pSizeOut, bool bAddBasePath = true); //pSizeOut currently always set to 0.  Returns null on fail. You must DELETE !
 	void MountFileSystem(FileSystem* pFileSystem);
 	bool FileExists(std::string fileName, bool bAddBasePath = true);

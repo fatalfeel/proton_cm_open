@@ -23,7 +23,9 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #define __CC_PLATFORM_FILEUTILS_CPP__
-#define	CLASS_NAME "org/cocos2dx/lib/Cocos2dxHelper"
+
+//#define CLASS_NAME "org/cocos2dx/lib/Cocos2dxHelper"
+#define	CLASS_NAME "com/cocos2dx/lib/Cocos2dxHelper"
 
 #include <cstdio>
 #include <vector>
@@ -108,9 +110,8 @@ const char* CCFileUtils::fullPathFromRelativeFile(const char *pszFilename, const
     return pRet->m_sString.c_str();
 }
 
-unsigned char* CCFileUtils::getFileData(const char* pszFileName, const char* pszMode, unsigned long * pSize)
+unsigned char* CCFileUtils::getFileData(const char* pszFileName, const char* pszMode, unsigned long* pSize)
 {    
-    int				size;
 	unsigned char*	pData = 0;
     
 	/*string fullPath(pszFileName);
@@ -168,7 +169,7 @@ unsigned char* CCFileUtils::getFileData(const char* pszFileName, const char* psz
     }*/
 
 	//by stone
-	pData = FileManager::GetFileManager()->Get(pszFileName, &size, false);
+	pData = FileManager::GetFileManager()->Get(pszFileName, (int*)pSize, false);
 
     return pData;
 }

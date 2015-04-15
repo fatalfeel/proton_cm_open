@@ -32,9 +32,10 @@ THE SOFTWARE.
 #define  LOGD(...) 
 #endif
 
-#define JAVAVM    cocos2d::JniHelper::getJavaVM()
+#define JAVAVM	cocos2d::JniHelper::getJavaVM()
 
-extern JavaVM* g_pJavaVM;
+//in AndroidUtils.cpp
+extern JavaVM*	g_pJavaVM;
 
 using namespace std;
 
@@ -188,21 +189,23 @@ JavaVM* JniHelper::m_psJavaVM = NULL;
 JavaVM* JniHelper::getJavaVM()
 {
     //return m_psJavaVM;
-	return g_pJavaVM;
+	return g_pJavaVM; //by stone
 }
 
-void JniHelper::setJavaVM(JavaVM *javaVM)
+/*void JniHelper::setJavaVM(JavaVM *javaVM)
 {
     m_psJavaVM = javaVM;
-}
+}*/
 
 string JniHelper::m_externalAssetPath;
 
-const char* JniHelper::getExternalAssetPath() {
+const char* JniHelper::getExternalAssetPath()
+{
     return m_externalAssetPath.c_str();
 }
 
-void JniHelper::setExternalAssetPath(const char * externalAssetPath) {
+void JniHelper::setExternalAssetPath(const char * externalAssetPath)
+{
     m_externalAssetPath = externalAssetPath;
 }
 

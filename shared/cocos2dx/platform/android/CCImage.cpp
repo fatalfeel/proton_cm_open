@@ -35,7 +35,6 @@ THE SOFTWARE.
 #include <string.h>
 #include <jni.h>
 
-
 NS_CC_BEGIN
 
 class BitmapDC
@@ -106,13 +105,12 @@ static BitmapDC& sharedBitmapDC()
     return s_BmpDC;
 }
 
-bool CCImage::initWithString(
-                               const char *    pText, 
-                               int             nWidth/* = 0*/, 
-                               int             nHeight/* = 0*/,
-                               ETextAlign      eAlignMask/* = kAlignCenter*/,
-                               const char *    pFontName/* = nil*/,
-                               int             nSize/* = 0*/)
+bool CCImage::initWithString(const char *    pText, 
+							 int             nWidth/* = 0*/, 
+                             int             nHeight/* = 0*/,
+                             ETextAlign      eAlignMask/* = kAlignCenter*/,
+                             const char *    pFontName/* = nil*/,
+							 int             nSize/* = 0*/)
 {
     bool bRet = false;
 
@@ -142,12 +140,11 @@ bool CCImage::initWithString(
 
 NS_CC_END
 
+///////////////////////////////////////////////////
 // this method is called by Cocos2dxBitmap
+// init width, height and pixels data
 extern "C"
 {
-    /**
-    * this method is called by java code to init width, height and pixels data
-    */
     //void Java_org_cocos2dx_lib_Cocos2dxBitmap_nativeInitBitmapDC(JNIEnv*  env, jobject thiz, int width, int height, jbyteArray pixels)
 	void Java_com_cocos2dx_lib_Cocos2dxBitmap_nativeInitBitmapDC(JNIEnv*  env, jobject thiz, int width, int height, jbyteArray pixels)
     {
@@ -158,9 +155,10 @@ extern "C"
         env->GetByteArrayRegion(pixels, 0, size, (jbyte*)cocos2d::sharedBitmapDC().m_pData);
 
         // swap data
-        unsigned int *tempPtr = (unsigned int*)cocos2d::sharedBitmapDC().m_pData;
-        unsigned int tempdata = 0;
-        for (int i = 0; i < height; ++i)
+        unsigned int*	tempPtr = (unsigned int*)cocos2d::sharedBitmapDC().m_pData;
+        unsigned int	tempdata = 0;
+        
+		for (int i = 0; i < height; ++i)
         {
             for (int j = 0; j < width; ++j)
             {

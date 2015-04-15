@@ -41,7 +41,7 @@ class CC_DLL JniHelper
 {
 public:
     static JavaVM* getJavaVM();
-    static void setJavaVM(JavaVM *javaVM);
+    //static void setJavaVM(JavaVM *javaVM);
     static const char* getExternalAssetPath();
     static void setExternalAssetPath(const char* externalAssetPath);
     static jclass getClassID(const char *className, JNIEnv *env=0);
@@ -50,8 +50,8 @@ public:
     static std::string jstring2string(jstring str);
 
 private:
-    static JavaVM *m_psJavaVM;
-    static std::string m_externalAssetPath;
+    static JavaVM*		m_psJavaVM;
+    static std::string	m_externalAssetPath;
 };
 
 NS_CC_END

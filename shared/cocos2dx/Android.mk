@@ -72,16 +72,19 @@ particle_nodes/CCParticleExamples.cpp \
 particle_nodes/CCParticleSystem.cpp \
 particle_nodes/CCParticleBatchNode.cpp \
 particle_nodes/CCParticleSystemQuad.cpp \
+
 platform/CCSAXParser.cpp \
 platform/CCThread.cpp \
 platform/platform.cpp \
 platform/CCEGLViewProtocol.cpp \
+
 platform/android/CCEGLView.cpp \
 platform/android/CCAccelerometer.cpp \
 platform/android/CCApplication.cpp \
 platform/android/CCCommon.cpp \
 platform/android/CCFileUtils.cpp \
 platform/android/CCImage.cpp \
+
 platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp \
 platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.cpp \
 platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp \
@@ -89,17 +92,20 @@ platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp \
 platform/android/jni/JniHelper.cpp \
 platform/android/jni/IMEJni.cpp \
 platform/android/jni/TouchesJni.cpp \
+
 script_support/CCScriptSupport.cpp \
 shaders/ccShaders.cpp \
 shaders/CCGLProgram.cpp \
 shaders/ccGLStateCache.cpp \
 shaders/CCShaderCache.cpp \
+
 sprite_nodes/CCAnimation.cpp \
 sprite_nodes/CCAnimationCache.cpp \
 sprite_nodes/CCSprite.cpp \
 sprite_nodes/CCSpriteBatchNode.cpp \
 sprite_nodes/CCSpriteFrame.cpp \
 sprite_nodes/CCSpriteFrameCache.cpp \
+
 support/CCNotificationCenter.cpp \
 support/CCProfiling.cpp \
 support/CCPointExtension.cpp \
@@ -108,23 +114,29 @@ support/CCUserDefault.cpp \
 support/base64.cpp \
 support/ccUtils.cpp \
 support/CCVertex.cpp \
+
 support/data_support/ccCArray.cpp \
 support/image_support/TGAlib.cpp \
+
 support/zip_support/ZipUtils.cpp \
 support/zip_support/ioapi.cpp \
 support/zip_support/unzip.cpp \
+
 text_input_node/CCIMEDispatcher.cpp \
 text_input_node/CCTextFieldTTF.cpp \
+
 textures/CCTexture2D.cpp \
 textures/CCTextureAtlas.cpp \
 textures/CCTextureCache.cpp \
 textures/CCTexturePVR.cpp \
+
 tilemap_parallax_nodes/CCParallaxNode.cpp \
 tilemap_parallax_nodes/CCTMXLayer.cpp \
 tilemap_parallax_nodes/CCTMXObjectGroup.cpp \
 tilemap_parallax_nodes/CCTMXTiledMap.cpp \
 tilemap_parallax_nodes/CCTMXXMLParser.cpp \
 tilemap_parallax_nodes/CCTileMapAtlas.cpp \
+
 touch_dispatcher/CCTouchDispatcher.cpp \
 touch_dispatcher/CCTouchHandler.cpp \
 touch_dispatcher/CCTouch.cpp
