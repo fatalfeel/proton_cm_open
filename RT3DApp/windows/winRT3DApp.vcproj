@@ -19114,6 +19114,78 @@
 							RelativePath="..\..\shared\cocos2dx\extensions\CCScrollView\CCScrollView.h"
 							>
 						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCScrollView\CCSorting.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCScrollView\CCSorting.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCScrollView\CCTableView.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCScrollView\CCTableView.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCScrollView\CCTableViewCell.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									UsePrecompiledHeader="0"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\extensions\CCScrollView\CCTableViewCell.h"
+							>
+						</File>
 					</Filter>
 				</Filter>
 				<Filter
@@ -20318,6 +20390,290 @@
 							RelativePath="..\..\shared\cocos2dx\platform\win32\CCStdC.h"
 							>
 						</File>
+					</Filter>
+					<Filter
+						Name="android"
+						>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCAccelerometer.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCAccelerometer.h"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCApplication.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCApplication.h"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCCommon.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCEGLView.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCEGLView.h"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCFileUtils.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCGL.h"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCImage.cpp"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCPlatformDefine.h"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath="..\..\shared\cocos2dx\platform\android\CCStdC.h"
+							>
+							<FileConfiguration
+								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+						</File>
+						<Filter
+							Name="jni"
+							>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\IMEJni.cpp"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\IMEJni.h"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.h"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.cpp"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.h"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\JniHelper.cpp"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\JniHelper.h"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+							</File>
+							<File
+								RelativePath="..\..\shared\cocos2dx\platform\android\jni\TouchesJni.cpp"
+								>
+								<FileConfiguration
+									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+							</File>
+						</Filter>
 					</Filter>
 				</Filter>
 				<Filter
