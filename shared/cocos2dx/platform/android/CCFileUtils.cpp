@@ -24,9 +24,6 @@ THE SOFTWARE.
 
 #define __CC_PLATFORM_FILEUTILS_CPP__
 
-//#define CLASS_NAME "org/cocos2dx/lib/Cocos2dxHelper"
-#define	CLASS_NAME "com/cocos2dx/lib/Cocos2dxHelper"
-
 #include <cstdio>
 #include <vector>
 #include <cmath>
@@ -47,16 +44,19 @@ NS_CC_BEGIN
 #include "platform/CCCommon.h"
 #include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 
-// record the resource path
 //static string s_strResourcePath = "";
     
 static CCFileUtils* s_pFileUtils = NULL;
 
+//from Java_org_cocos2dx_lib_Cocos2dxHelper.cpp
 static const char* CCFileUtils_GetPackageNameJNI() 
 {
     JniMethodInfo t;
 
-    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getCocos2dxPackageName", "()Ljava/lang/String;")) 
+    if (JniHelper::getStaticMethodInfo(	t, 
+										"com/cocos2dx/lib/Cocos2dxBitmap",
+										"getCocos2dxPackageName", 
+										"()Ljava/lang/String;")) 
 	{
         jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
         t.env->DeleteLocalRef(t.classID);
@@ -180,7 +180,7 @@ std::string CCFileUtils::getWriteablePath()
 	std::string dir("/data/data/");
     
 	//const char *tmp = getPackageNameJNI();
-	const char *tmp = CCFileUtils_GetPackageNameJNI();
+	const char* tmp = CCFileUtils_GetPackageNameJNI();
 
     if (tmp)
     {

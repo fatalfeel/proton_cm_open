@@ -78,28 +78,15 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-
-
-
-
-
-
-
 //Android in app billing
-
 import com.rtsoft.rt3dapp.BillingService.RequestPurchase;
 import com.rtsoft.rt3dapp.BillingService.RestoreTransactions;
 import com.rtsoft.rt3dapp.Consts.PurchaseState;
 import com.rtsoft.rt3dapp.Consts.ResponseCode;
 
-
-
-
 import android.view.View.OnClickListener;
 
-
-	public class SharedActivity extends Activity implements SensorEventListener
-
+public class SharedActivity extends Activity implements SensorEventListener
 {
 
 	//********** THESE WILL BE OVERRIDDEN IN YOUR Main.java file **************
@@ -407,10 +394,6 @@ import android.view.View.OnClickListener;
 
         ResponseHandler.register(mIABPurchaseObserver);
 		//initializeOwnedItems();
-
-
-
-
     }
 
     @Override
@@ -419,20 +402,13 @@ import android.view.View.OnClickListener;
         super.onStop();
 
         ResponseHandler.unregister(mIABPurchaseObserver);
-
-
-
     }
-	
-	
+		
 	@Override
 	public void onBackPressed() 
-{
-	
-    
+	{
         super.onBackPressed();
-}
-
+	}
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -1277,10 +1253,6 @@ import android.view.View.OnClickListener;
 	public static native void nativeOnAccelerometerUpdate(float x, float y, float z);
 	public static native void nativeSendGUIEx(int messageType, int parm1, int parm2, int finger);
 	public static native void nativeSendGUIStringEx(int messageType, int parm1, int parm2, int finger, String s);
-	static 
-    {
-		//System.loadLibrary(dllname);
-    }
 }
 
 class AppGLSurfaceView extends GLSurfaceView

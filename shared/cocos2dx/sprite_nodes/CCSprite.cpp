@@ -573,7 +573,9 @@ void CCSprite::updateTransform(void)
 
 void CCSprite::draw(void)
 {
-    CC_PROFILER_START_CATEGORY(kCCProfilerCategorySprite, "CCSprite - draw");
+	VolatileTexture* vtexture;
+	
+	CC_PROFILER_START_CATEGORY(kCCProfilerCategorySprite, "CCSprite - draw");
 
     CCAssert(!m_pobBatchNode, "If CCSprite is being rendered by CCSpriteBatchNode, CCSprite#draw SHOULD NOT be called");
 
@@ -590,11 +592,16 @@ void CCSprite::draw(void)
         ccGLBindTexture2D(0);
     }
     
-    //black sprite bug fixed, by stone
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, m_pobTexture->m_MinFilter );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, m_pobTexture->m_MagFilter );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, m_pobTexture->m_WrapS );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, m_pobTexture->m_WrapT );
+	//black sprite bug fixed, by stone
+	vtexture = VolatileTexture::findVolotileTexture(m_pobTexture);
+	
+    if( vtexture )
+	{
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,	vtexture->m_texParams.minFilter );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,	vtexture->m_texParams.magFilter );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,		vtexture->m_texParams.wrapS );
+		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,		vtexture->m_texParams.wrapT );
+	}
     
     //
     // Attributes

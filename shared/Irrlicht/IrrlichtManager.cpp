@@ -1,7 +1,9 @@
 #include "IrrlichtManager.h"
-//#include "Renderer/Surface.h"
 #include "BaseApp.h"
 #include "App.h"
+
+#include "cocos2d.h"
+using namespace cocos2d;
 
 using namespace irr;
 using namespace core;
@@ -256,6 +258,8 @@ int IrrlichtManager::isNeedInitAgain()
 	{
 		m_againInit = 0;
 
+		CCTextureCache::sharedTextureCache()->removeAllTextures();
+		
 		GetApp()->GetMainScene()->OnUnLoad();
 
 		if (m_pDevice->getGUIEnvironment())
@@ -266,11 +270,13 @@ int IrrlichtManager::isNeedInitAgain()
 			m_pDriver->OnAgainDriverInit();	
 						
 			m_pDriver->OnReLoad();
-
+			
 		if (m_pDevice->getGUIEnvironment())
 			m_pDevice->getGUIEnvironment()->OnReLoad();
 
 		GetApp()->GetMainScene()->OnReLoad();
+
+		CCTextureCache::sharedTextureCache()->reloadAllTextures();
 	}
 
 	return m_againInit;

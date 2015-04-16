@@ -71,25 +71,21 @@ CCTexture2D::CCTexture2D()
 , m_bPVRHaveAlphaPremultiplied(true)
 , m_pShaderProgram(NULL)
 {
-    m_MinFilter = GL_LINEAR;
-    m_MagFilter = GL_LINEAR;
-    m_WrapS     = GL_CLAMP_TO_EDGE;
-    m_WrapT     = GL_CLAMP_TO_EDGE;
 }
 
 CCTexture2D::~CCTexture2D()
 {
-#if CC_ENABLE_CACHE_TEXTURE_DATA
-    VolatileTexture::removeTexture(this);
-#endif
-
-    CCLOGINFO("cocos2d: deallocing CCTexture2D %u.", m_uName);
-    CC_SAFE_RELEASE(m_pShaderProgram);
+	CC_SAFE_RELEASE(m_pShaderProgram);
 
     if(m_uName)
     {
         ccGLDeleteTexture(m_uName);
+		CCLOGINFO("cocos2d: deallocing CCTexture2D %u.", m_uName);
     }
+
+#if CC_ENABLE_CACHE_TEXTURE_DATA
+    VolatileTexture::removeTexture(this);
+#endif
 }
 
 CCTexture2DPixelFormat CCTexture2D::getPixelFormat()
@@ -110,6 +106,11 @@ unsigned int CCTexture2D::getPixelsHigh()
 GLuint CCTexture2D::getName()
 {
     return m_uName;
+}
+
+void CCTexture2D::setName(GLuint uname)
+{
+	m_uName = uname;
 }
 
 CCSize CCTexture2D::getContentSize()
@@ -196,14 +197,7 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
     
-    m_MinFilter = GL_LINEAR;
-    m_MagFilter = GL_LINEAR;
-    m_WrapS     = GL_CLAMP_TO_EDGE;
-    m_WrapT     = GL_CLAMP_TO_EDGE;
-
-
     // Specify OpenGL texture image
-
     switch(pixelFormat)
     {
     case kCCTexture2DPixelFormat_RGBA8888:
@@ -431,14 +425,13 @@ bool CCTexture2D::initWithString(const char *text, const char *fontName, float f
 
 bool CCTexture2D::initWithString(const char *text, const CCSize& dimensions, CCTextAlignment hAlignment, CCVerticalTextAlignment vAlignment, const char *fontName, float fontSize)
 {
+	CCImage				image;
+    CCImage::ETextAlign	eAlign;
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     // cache the texture data
     VolatileTexture::addStringTexture(this, text, dimensions, hAlignment, vAlignment, fontName, fontSize);
 #endif
-
-    CCImage image;
-
-    CCImage::ETextAlign eAlign;
 
     if (kCCVerticalTextAlignmentTop == vAlignment)
     {
@@ -637,11 +630,6 @@ void CCTexture2D::setTexParameters(ccTexParams *texParams)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, texParams->magFilter );
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, texParams->wrapS );
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, texParams->wrapT );
-    
-    m_MinFilter = texParams->minFilter;
-    m_MagFilter = texParams->magFilter;
-    m_WrapS     = texParams->wrapS;
-    m_WrapT     = texParams->wrapT;
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     VolatileTexture::setTexParameters(this, texParams);
@@ -652,19 +640,16 @@ void CCTexture2D::setAliasTexParameters()
 {
     ccGLBindTexture2D( m_uName );
 
-    if( ! m_bHasMipmaps )
+    if( !m_bHasMipmaps )
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-        m_MinFilter = GL_NEAREST;
     }
     else
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST );
-        m_MinFilter = GL_NEAREST_MIPMAP_NEAREST;
     }
 
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    m_MagFilter = GL_NEAREST;
     
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     ccTexParams texParams = {m_bHasMipmaps?GL_NEAREST_MIPMAP_NEAREST:GL_NEAREST,GL_NEAREST,GL_NONE,GL_NONE};
@@ -679,16 +664,13 @@ void CCTexture2D::setAntiAliasTexParameters()
     if( ! m_bHasMipmaps )
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-        m_MinFilter = GL_LINEAR;
     }
     else
     {
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST );
-        m_MinFilter = GL_LINEAR_MIPMAP_NEAREST;
     }
 
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-    m_MagFilter = GL_LINEAR;
     
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     ccTexParams texParams = {m_bHasMipmaps?GL_LINEAR_MIPMAP_NEAREST:GL_LINEAR,GL_LINEAR,GL_NONE,GL_NONE};

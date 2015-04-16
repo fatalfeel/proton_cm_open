@@ -242,12 +242,6 @@ public:
     bool hasPremultipliedAlpha();
     bool hasMipmaps();
     
-    //by stone
-    unsigned int m_MinFilter;
-    unsigned int m_MagFilter;
-    unsigned int m_WrapS;
-    unsigned int m_WrapT;
-    
 private:
     bool initPremultipliedATextureWithImage(CCImage * image, unsigned int pixelsWide, unsigned int pixelsHigh);
     
@@ -262,7 +256,8 @@ private:
     CC_PROPERTY_READONLY(unsigned int, m_uPixelsHigh, PixelsHigh)
 
     /** texture name */
-    CC_PROPERTY_READONLY(GLuint, m_uName, Name)
+    //CC_PROPERTY_READONLY(GLuint, m_uName, Name)
+	CC_PROPERTY(GLuint, m_uName, Name); //by stone
 
     /** texture max S */
     CC_PROPERTY(GLfloat, m_fMaxS, MaxS)

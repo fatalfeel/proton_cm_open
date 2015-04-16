@@ -31,29 +31,32 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-#ifdef _IRR_COMPILE_WITH_OGLES1_
-	#define glGenerateMipmap					glGenerateMipmapOES
-	#define glGenFramebuffers					glGenFramebuffersOES
-	#define glGenRenderbuffers					glGenRenderbuffersOES
-	#define glDeleteFramebuffers				glDeleteFramebuffersOES
-	#define glDeleteRenderbuffers				glDeleteRenderbuffersOES
-	#define glBindFramebuffer					glBindFramebufferOES
-	#define glBindRenderbuffer					glBindRenderbufferOES
-	#define glFramebufferTexture2D				glFramebufferTexture2DOES
-	#define glFramebufferRenderbuffer			glFramebufferRenderbufferOES
-	#define glRenderbufferStorage				glRenderbufferStorageOES
-	#define glCheckFramebufferStatus			glCheckFramebufferStatusOES
+#define GL_DEPTH24_STENCIL8			GL_DEPTH24_STENCIL8_OES
 
-	#define GL_FRAMEBUFFER					GL_FRAMEBUFFER_OES
-	#define GL_RENDERBUFFER					GL_RENDERBUFFER_OES
-	#define GL_FRAMEBUFFER_BINDING			GL_FRAMEBUFFER_BINDING_OES
-	#define GL_RENDERBUFFER_BINDING			GL_RENDERBUFFER_BINDING_OES
-	#define GL_COLOR_ATTACHMENT0			GL_COLOR_ATTACHMENT0_OES
-	#define GL_DEPTH_ATTACHMENT				GL_DEPTH_ATTACHMENT_OES
-	#define GL_STENCIL_ATTACHMENT			GL_STENCIL_ATTACHMENT_OES
-	#define GL_FRAMEBUFFER_COMPLETE			GL_FRAMEBUFFER_COMPLETE_OES
+#ifdef _IRR_COMPILE_WITH_OGLES1_
+#define glGenerateMipmap			glGenerateMipmapOES
+#define glGenFramebuffers			glGenFramebuffersOES
+#define glGenRenderbuffers			glGenRenderbuffersOES
+#define glDeleteFramebuffers		glDeleteFramebuffersOES
+#define glDeleteRenderbuffers		glDeleteRenderbuffersOES
+#define glBindFramebuffer			glBindFramebufferOES
+#define glBindRenderbuffer			glBindRenderbufferOES
+#define glFramebufferTexture2D		glFramebufferTexture2DOES
+#define glFramebufferRenderbuffer	glFramebufferRenderbufferOES
+#define glRenderbufferStorage		glRenderbufferStorageOES
+#define glCheckFramebufferStatus	glCheckFramebufferStatusOES
+
+#define GL_FRAMEBUFFER				GL_FRAMEBUFFER_OES
+#define GL_RENDERBUFFER				GL_RENDERBUFFER_OES
+#define GL_FRAMEBUFFER_BINDING		GL_FRAMEBUFFER_BINDING_OES
+#define GL_RENDERBUFFER_BINDING		GL_RENDERBUFFER_BINDING_OES
+#define GL_COLOR_ATTACHMENT0		GL_COLOR_ATTACHMENT0_OES
+#define GL_DEPTH_ATTACHMENT			GL_DEPTH_ATTACHMENT_OES
+#define GL_STENCIL_ATTACHMENT		GL_STENCIL_ATTACHMENT_OES
+#define GL_FRAMEBUFFER_COMPLETE		GL_FRAMEBUFFER_COMPLETE_OES
+#define GL_NONE                     0
 #endif
-	#define GL_DEPTH24_STENCIL8				GL_DEPTH24_STENCIL8_OES
+
 
 class CCGLProgram;
 

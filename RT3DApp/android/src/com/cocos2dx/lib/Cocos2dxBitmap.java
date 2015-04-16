@@ -28,6 +28,7 @@ import java.nio.ByteOrder;
 import java.util.LinkedList;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -41,7 +42,8 @@ import android.text.TextUtils;
 import android.util.FloatMath;
 import android.util.Log;
 
-public class Cocos2dxBitmap {
+public class Cocos2dxBitmap 
+{
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -58,7 +60,8 @@ public class Cocos2dxBitmap {
 	// Fields
 	// ===========================================================
 
-	private static Context sContext;
+	private static Context	sContext;
+	private static String	sPackageName;
 
 	// ===========================================================
 	// Constructors
@@ -68,8 +71,17 @@ public class Cocos2dxBitmap {
 	// Getter & Setter
 	// ===========================================================
 
-	public static void setContext(final Context pContext) {
-		Cocos2dxBitmap.sContext = pContext;
+	public static void setContext(final Context pContext) 
+	{
+		ApplicationInfo	appinfo 	= pContext.getApplicationInfo();
+		
+		Cocos2dxBitmap.sContext 	= pContext;
+		Cocos2dxBitmap.sPackageName = appinfo.packageName;
+	}
+	
+	public static String getCocos2dxPackageName() 
+	{
+		return Cocos2dxBitmap.sPackageName;
 	}
 
 	// ===========================================================
@@ -89,7 +101,8 @@ public class Cocos2dxBitmap {
 	 * @param pHeight
 	 *            the height to draw, it can be 0
 	 */
-	public static void createTextBitmap(String pString, final String pFontName, final int pFontSize, final int pAlignment, final int pWidth, final int pHeight) {
+	public static void createTextBitmap(String pString, final String pFontName, final int pFontSize, final int pAlignment, final int pWidth, final int pHeight) 
+	{
 		final int horizontalAlignment = pAlignment & 0x0F;
 		final int verticalAlignment = (pAlignment >> 4) & 0x0F;
 
@@ -108,7 +121,9 @@ public class Cocos2dxBitmap {
 		int x = 0;
 		int y = Cocos2dxBitmap.computeY(fontMetricsInt, pHeight, textProperty.mTotalHeight, verticalAlignment);
 		final String[] lines = textProperty.mLines;
-		for (final String line : lines) {
+		
+		for (final String line : lines) 
+		{
 			x = Cocos2dxBitmap.computeX(line, textProperty.mMaxWidth, horizontalAlignment);
 			canvas.drawText(line, x, y, paint);
 			y += textProperty.mHeightPerLine;

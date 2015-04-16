@@ -146,7 +146,7 @@ NS_CC_END
 extern "C"
 {
     //void Java_org_cocos2dx_lib_Cocos2dxBitmap_nativeInitBitmapDC(JNIEnv*  env, jobject thiz, int width, int height, jbyteArray pixels)
-	void Java_com_cocos2dx_lib_Cocos2dxBitmap_nativeInitBitmapDC(JNIEnv*  env, jobject thiz, int width, int height, jbyteArray pixels)
+	void Java_com_cocos2dx_lib_Cocos2dxBitmap_nativeInitBitmapDC(JNIEnv* env, jobject thiz, int width, int height, jbyteArray pixels)
     {
         int size = width * height * 4;
         cocos2d::sharedBitmapDC().m_nWidth = width;

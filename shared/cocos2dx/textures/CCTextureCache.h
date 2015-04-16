@@ -197,38 +197,36 @@ public:
 
     static void setTexParameters(CCTexture2D *t, ccTexParams *texParams);
     static void removeTexture(CCTexture2D *t);
-    static void reloadAllTextures();
+    
+	static void removeAllTextures();
+	static void reloadAllTextures();
 
 public:
     static std::list<VolatileTexture*> textures;
     static bool isReloading;
     
-private:
-    // find VolatileTexture by CCTexture2D*
-    // if not found, create a new one
+//private:
+    // find VolatileTexture, if not found, create a new one
     static VolatileTexture* findVolotileTexture(CCTexture2D *tt);
 
-protected:
-    CCTexture2D *texture;
-    
-    CCImage *uiImage;
+//protected:
+    CCTexture2D*	m_texture;
+    CCImage*		m_uiImage;
 
-    ccCachedImageType m_eCashedImageType;
+    ccCachedImageType		m_eCashedImageType;
+    void*					m_pTextureData;
+    CCSize					m_TextureSize;
+    CCTexture2DPixelFormat	m_PixelFormat;
+    std::string				m_strFileName;
+    CCImage::EImageFormat	m_FmtImage;
 
-    void *m_pTextureData;
-    CCSize m_TextureSize;
-    CCTexture2DPixelFormat m_PixelFormat;
-
-    std::string m_strFileName;
-    CCImage::EImageFormat m_FmtImage;
-
-    ccTexParams     m_texParams;
-    CCSize          m_size;
-    CCTextAlignment m_alignment;
+    ccTexParams				m_texParams;
+    CCSize					m_size;
+    CCTextAlignment			m_alignment;
     CCVerticalTextAlignment m_vAlignment;
-    std::string     m_strFontName;
-    std::string     m_strText;
-    float           m_fFontSize;
+    std::string				m_strFontName;
+    std::string				m_strText;
+    float					m_fFontSize;
 };
 
 #endif

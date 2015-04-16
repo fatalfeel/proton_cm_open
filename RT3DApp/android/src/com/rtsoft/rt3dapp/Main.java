@@ -17,12 +17,11 @@
 //**********************************************
 
 package com.rtsoft.rt3dapp;
+
 import com.rtsoft.rt3dapp.SharedActivity;
+import com.cocos2dx.lib.Cocos2dxBitmap;
+
 import android.os.Bundle;
-
-
-
-
 
 public class Main extends SharedActivity
 {
@@ -43,9 +42,11 @@ public class Main extends SharedActivity
    		PackageName= "com.rtsoft.rt3dapp"; //edit build.xml to change this setting, not here
 	
 		System.loadLibrary(dllname);
-		
-		
+				
 		super.onCreate(savedInstanceState);
+		
+		Cocos2dxBitmap.setContext(this);
+				
 		if (HookedEnabled)
 		{
 			
