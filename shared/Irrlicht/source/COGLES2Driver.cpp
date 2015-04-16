@@ -80,6 +80,7 @@ COGLES2Driver::COGLES2Driver(const SIrrlichtCreationParameters& params,
 	, ViewFramebuffer(0)
 	, ViewRenderbuffer(0)
 	, ViewDepthRenderbuffer(0)
+	, MaterialRenderer2D(0)
 #endif
 {
 #ifdef _DEBUG
@@ -718,8 +719,12 @@ void COGLES2Driver::createMaterialRenderers()
 	
 	vs2DData = (char*)FileManager::GetFileManager()->Get(R2DVSPath.c_str(), &size, true);
     fs2DData = (char*)FileManager::GetFileManager()->Get(R2DFSPath.c_str(), &size, true);
+
+	if( MaterialRenderer2D )
+		delete MaterialRenderer2D;
 	
 	MaterialRenderer2D = new COGLES2Renderer2D(vs2DData, fs2DData, this);
+	
 	delete[] vs2DData;
 	delete[] fs2DData;
 }
