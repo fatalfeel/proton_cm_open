@@ -80,8 +80,8 @@ COGLES2Driver::COGLES2Driver(const SIrrlichtCreationParameters& params,
 	, ViewFramebuffer(0)
 	, ViewRenderbuffer(0)
 	, ViewDepthRenderbuffer(0)
-	, MaterialRenderer2D(0)
 #endif
+	, MaterialRenderer2D(0)
 {
 #ifdef _DEBUG
 	setDebugName("COGLES2Driver");
