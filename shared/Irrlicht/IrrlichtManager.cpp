@@ -259,7 +259,7 @@ int IrrlichtManager::isNeedInitAgain()
 		m_againInit = 0;
 
 		CCTextureCache::sharedTextureCache()->removeAllTextures();
-		
+				
 		GetApp()->GetMainScene()->OnUnLoad();
 
 		if (m_pDevice->getGUIEnvironment())
@@ -267,7 +267,8 @@ int IrrlichtManager::isNeedInitAgain()
 			
 			m_pDriver->OnUnLoad();
 
-			m_pDriver->OnAgainDriverInit();	
+			CCShaderCache::sharedShaderCache()->InitAgainAllShaders();
+			m_pDriver->OnAgainDriverInit();
 						
 			m_pDriver->OnReLoad();
 			

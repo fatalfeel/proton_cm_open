@@ -24,6 +24,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include <cstdio>
+#include <vector>
+#include <cmath>
+#include <deque>
+#include <map>
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include "FileSystem/FileManager.h"
+
 #include "ccMacros.h"
 #include "CCShaderCache.h"
 #include "CCGLProgram.h"
@@ -145,35 +155,12 @@ bool CCShaderCache::init()
 
 char* CCShaderCache::GetShaderFile(std::string filename)
 {
-    long    SizeOut;
+    int		SizeOut;
     char*   pData;
-    FILE*   fp;
     
     filename = GetBaseAppPath() + filename;
     
-    fp = fopen(filename.c_str(), "rb");
-    
-    if (!fp)
-    {
-        //file not found
-        if (!fp)
-            return NULL;
-    }
-    
-    fseek(fp, 0, SEEK_END);
-    SizeOut = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    
-    pData = new char[SizeOut+1];
-
-    if (!pData)
-    {
-        return 0;
-    }
-
-    pData[SizeOut] = 0;
-    fread(pData, 1, SizeOut, fp);
-    fclose(fp);
+    pData = (char*)FileManager::GetFileManager()->Get(filename, &SizeOut, false);
     
     return pData;
 }
@@ -238,6 +225,16 @@ void CCShaderCache::loadDefaultShaders()
     
     m_pPrograms->setObject(p, kCCShader_Position_uColor);
     p->release();    
+}
+
+void CCShaderCache::InitAgainAllShaders()
+{
+	if( m_pPrograms )
+		delete m_pPrograms; //call removeAllObjects of ~CCDictionary()
+	
+	m_pPrograms = new CCDictionary();
+
+	loadDefaultShaders();
 }
 
 void CCShaderCache::reloadDefaultShaders()

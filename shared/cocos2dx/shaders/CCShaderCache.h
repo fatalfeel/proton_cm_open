@@ -84,6 +84,8 @@ public:
 	char* GetShaderFile(std::string filename);
     /** loads the default shaders */
     void loadDefaultShaders();
+
+	void InitAgainAllShaders();
     
     /** reload the default shaders */
     void reloadDefaultShaders();
