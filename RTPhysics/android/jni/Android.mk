@@ -286,7 +286,7 @@ $(EXTBULLET)/BulletSoftBody/btSoftBodyHelpers.cpp \
 $(EXTBULLET)/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.cpp \
 $(EXTBULLET)/BulletSoftBody/btSoftRigidCollisionAlgorithm.cpp \
 $(EXTBULLET)/BulletSoftBody/btSoftRigidDynamicsWorld.cpp \
-$(EXTBULLET)/BulletSoftBody/btSoftSoftCollisionAlgorithm.cpp \
+$(EXTBULLET)/BulletSoftBody/btSoftSoftCollisionAlgorithm.cpp
 
 include $(BUILD_STATIC_LIBRARY)
 
