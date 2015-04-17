@@ -1266,7 +1266,7 @@ class AppGLSurfaceView extends GLSurfaceView
 		//getHolder().setFormat(PixelFormat.TRANSLUCENT);
         
         //by stone, Create an OGLES2 context
-        //setEGLContextClientVersion(2);
+        setEGLContextClientVersion(2);
 		
 		mRenderer = new AppRenderer(_app);
    
