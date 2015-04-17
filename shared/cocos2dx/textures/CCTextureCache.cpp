@@ -670,7 +670,7 @@ void CCTextureCache::removeAllTextures()
     VolatileTexture::removeAllTextures();
 #endif
 
-	m_pTextures->removeAllObjects();
+	//m_pTextures->removeAllObjects();
 }
 
 void CCTextureCache::reloadAllTextures()
