@@ -1,5 +1,9 @@
 LOCAL_PATH := $(call my-dir)
 
+##################################
+########### cocos2dx.a ###########
+##################################
+
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := cocos2dx
