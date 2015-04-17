@@ -59,9 +59,9 @@ Because ogles1 and ogles2 use different libEGL.dll.
 
 select correct dlls of ogles-1/2 on RT3DApp/bin,
 
-RT3DApp/bin/update_OGLES1/2.bat will help you do it.
+xxxxxx/bin/update_OGLES1/2.bat will help you do it.
 
-When meet some texture black in win32, its libGLESv2.dll simulator problem.
+When meet some texture black in win32, its libGLESv2.dll simulator's problem.
 
 5.
 
