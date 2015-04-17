@@ -420,7 +420,8 @@ $(IRRSRC)/COGLES2Driver.cpp $(IRRSRC)/COGLES2ExtensionHandler.cpp $(IRRSRC)/COGL
 $(IRRBULLET)/boxshape.cpp $(IRRBULLET)/bulletworld.cpp $(IRRBULLET)/bvhtrianglemeshshape.cpp $(IRRBULLET)/collisioncallbackinformation.cpp $(IRRBULLET)/collisionobject.cpp \
 $(IRRBULLET)/collisionobjectaffector.cpp $(IRRBULLET)/collisionobjectaffectorattract.cpp $(IRRBULLET)/collisionobjectaffectordelete.cpp $(IRRBULLET)/collisionshape.cpp $(IRRBULLET)/convexhullshape.cpp \
 $(IRRBULLET)/gimpactmeshshape.cpp $(IRRBULLET)/irrbullet.cpp $(IRRBULLET)/irrbulletcommon.cpp $(IRRBULLET)/liquidbody.cpp $(IRRBULLET)/motionstate.cpp \
-$(IRRBULLET)/physicsdebug.cpp $(IRRBULLET)/raycastvehicle.cpp $(IRRBULLET)/rigidbody.cpp $(IRRBULLET)/softbody.cpp $(IRRBULLET)/sphereshape.cpp $(IRRBULLET)/trianglemeshshape.cpp \
+$(IRRBULLET)/physicsdebug.cpp $(IRRBULLET)/raycastvehicle.cpp $(IRRBULLET)/rigidbody.cpp $(IRRBULLET)/softbody.cpp $(IRRBULLET)/sphereshape.cpp \
+$(IRRBULLET)/trianglemeshshape.cpp \
 \
 $(APP)/App.cpp $(APP)/GUI/MainMenu.cpp $(APP)/GUI/PhysicsHelloMenu.cpp $(APP)/GUI/HelloWorldScene.cpp \
 $(APP)/Component/EventControlComponent.cpp
