@@ -453,8 +453,7 @@ CCTexture2D * CCTextureCache::addImage(const char * path)
 
                 texture = new CCTexture2D();
                 
-                if( texture &&
-                    texture->initWithImage(&image) )
+                if( texture && texture->initWithImage(&image) )
                 {
 #if CC_ENABLE_CACHE_TEXTURE_DATA
                     // cache the texture file name
