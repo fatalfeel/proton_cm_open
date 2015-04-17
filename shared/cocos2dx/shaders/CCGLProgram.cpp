@@ -64,6 +64,7 @@ CCGLProgram::~CCGLProgram()
     if (m_uProgram) 
     {
         ccGLDeleteProgram(m_uProgram);
+		m_uProgram = 0;
     }
 
     tHashUniformEntry *current_element, *tmp;
@@ -439,8 +440,11 @@ void CCGLProgram::reset()
     
 
     // it is already deallocated by android
-    //ccGLDeleteProgram(m_uProgram);
-    m_uProgram = 0;
+	if( m_uProgram )
+	{
+		ccGLDeleteProgram(m_uProgram);
+		m_uProgram = 0;
+	}
 
     
     tHashUniformEntry *current_element, *tmp;

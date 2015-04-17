@@ -227,16 +227,6 @@ void CCShaderCache::loadDefaultShaders()
     p->release();    
 }
 
-void CCShaderCache::InitAgainAllShaders()
-{
-	if( m_pPrograms )
-		delete m_pPrograms; //call removeAllObjects of ~CCDictionary()
-	
-	m_pPrograms = new CCDictionary();
-
-	loadDefaultShaders();
-}
-
 void CCShaderCache::reloadDefaultShaders()
 {
     // reset all programs and reload them

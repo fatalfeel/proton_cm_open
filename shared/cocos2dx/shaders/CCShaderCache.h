@@ -82,11 +82,10 @@ public:
     static void purgeSharedShaderCache();
 
 	char* GetShaderFile(std::string filename);
-    /** loads the default shaders */
-    void loadDefaultShaders();
-
-	void InitAgainAllShaders();
     
+	/** loads the default shaders */
+    void loadDefaultShaders();
+	    
     /** reload the default shaders */
     void reloadDefaultShaders();
 

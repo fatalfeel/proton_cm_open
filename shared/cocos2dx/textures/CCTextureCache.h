@@ -177,15 +177,16 @@ public:
 
 class VolatileTexture
 {
-typedef enum {
-    kInvalid = 0,
-    kImageFile,
-    kImageData,
-    kString,
-    kImage,
-}ccCachedImageType;
-
 public:
+	typedef enum 
+	{
+		kInvalid = 0,
+		kImageFile,
+		kImageData,
+		kString,
+		kImage,
+	}ccCachedImageType;
+
     VolatileTexture(CCTexture2D *t);
     ~VolatileTexture();
 

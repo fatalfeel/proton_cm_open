@@ -886,8 +886,9 @@ void VolatileTexture::reloadAllTextures()
         {
         case kImageFile:
             {
-                CCImage image;
+                //CCImage	image;
                 std::string lowerCase(vt->m_strFileName.c_str());
+                
                 for (unsigned int i = 0; i < lowerCase.length(); ++i)
                 {
                     lowerCase[i] = tolower(lowerCase[i]);
@@ -903,8 +904,9 @@ void VolatileTexture::reloadAllTextures()
                 } 
                 else 
                 {
-                    unsigned long nSize = 0;
-                    unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(vt->m_strFileName.c_str(), "rb", &nSize);
+                    CCImage			image;
+					unsigned long	nSize	= 0;
+                    unsigned char*	pBuffer = CCFileUtils::sharedFileUtils()->getFileData(vt->m_strFileName.c_str(), "rb", &nSize);
 
                     if (image.initWithImageData((void*)pBuffer, nSize, vt->m_FmtImage))
                     {

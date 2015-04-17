@@ -265,12 +265,12 @@ int IrrlichtManager::isNeedInitAgain()
 		if (m_pDevice->getGUIEnvironment())
 			m_pDevice->getGUIEnvironment()->OnUnLoad();
 			
-			m_pDriver->OnUnLoad();
+		m_pDriver->OnUnLoad();
 
-			CCShaderCache::sharedShaderCache()->InitAgainAllShaders();
-			m_pDriver->OnAgainDriverInit();
+		CCShaderCache::sharedShaderCache()->reloadDefaultShaders();
+		m_pDriver->OnAgainDriverInit();
 						
-			m_pDriver->OnReLoad();
+		m_pDriver->OnReLoad();
 			
 		if (m_pDevice->getGUIEnvironment())
 			m_pDevice->getGUIEnvironment()->OnReLoad();
