@@ -39,11 +39,11 @@ xxxxxx/media/update_media.sh
 
 Switch between OGLES1 and OGLES2
 
-(a.) Find IrrCompileConfig.h
+(a.) Find define of IrrCompileConfig.h
 
-#define _IRR_COMPILE_WITH_OGLES1_;
+_IRR_COMPILE_WITH_OGLES1_;
 
--> #define _IRR_COMPILE_WITH_OGLES2_;
+->_IRR_COMPILE_WITH_OGLES2_;
 
 (b.) In Android
 
