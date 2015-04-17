@@ -421,10 +421,11 @@ CCTexture2D * CCTextureCache::addImage(const char * path)
             }
             else
             {
-                //~CCImage() CC_SAFE_DELETE_ARRAY(m_pData);
-				CCImage					image;
 				CCImage::EImageFormat	eImageFormat	= CCImage::kFmtUnKnown;
-                unsigned long			nSize			= 0;
+                
+				//CC_SAFE_DELETE_ARRAY(m_pData) of ~CCImage()
+				CCImage					image;
+				unsigned long			nSize			= 0;
                 unsigned char*			pBuffer			= CCFileUtils::sharedFileUtils()->getFileData(fullpath.c_str(), "rb", &nSize);
 
 				if (std::string::npos != lowerCase.find(".png"))
