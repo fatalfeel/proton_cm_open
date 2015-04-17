@@ -3077,6 +3077,7 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -3089,6 +3090,14 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -3110,6 +3119,7 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -3122,6 +3132,14 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -3143,6 +3161,7 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -3161,12 +3180,28 @@
 										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLMaterialRenderer.h"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -3188,6 +3223,7 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -3200,6 +3236,14 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -3221,6 +3265,7 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -3233,6 +3278,14 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -3254,6 +3307,7 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -3266,6 +3320,14 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -3287,6 +3349,7 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -3305,6 +3368,14 @@
 										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLTexture.cpp"
@@ -3317,12 +3388,28 @@
 										Name="VCCLCompilerTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLTexture.h"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -16890,6 +16977,7 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -16902,6 +16990,14 @@
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -17022,6 +17118,7 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -17034,6 +17131,14 @@
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17055,6 +17160,7 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -17067,6 +17173,14 @@
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17108,6 +17222,7 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -17120,6 +17235,14 @@
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17214,12 +17337,28 @@
 									Name="VCCLCompilerTool"
 								/>
 							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\android\CCAccelerometer.h"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17238,12 +17377,28 @@
 									Name="VCCLCompilerTool"
 								/>
 							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\android\CCApplication.h"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17262,12 +17417,28 @@
 									Name="VCCLCompilerTool"
 								/>
 							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\android\CCEGLView.cpp"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17286,12 +17457,28 @@
 									Name="VCCustomBuildTool"
 								/>
 							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\android\CCFileUtils.cpp"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17310,12 +17497,28 @@
 									Name="VCCustomBuildTool"
 								/>
 							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\android\CCImage.cpp"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17334,12 +17537,28 @@
 									Name="VCCustomBuildTool"
 								/>
 							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\cocos2dx\platform\android\CCStdC.h"
 							>
 							<FileConfiguration
 								Name="Debug GL|Win32"
+								ExcludedFromBuild="true"
+								>
+								<Tool
+									Name="VCCustomBuildTool"
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release GL|Win32"
 								ExcludedFromBuild="true"
 								>
 								<Tool
@@ -17361,12 +17580,28 @@
 										Name="VCCLCompilerTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\cocos2dx\platform\android\jni\IMEJni.h"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -17385,12 +17620,28 @@
 										Name="VCCLCompilerTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -17409,12 +17660,28 @@
 										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.cpp"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -17433,12 +17700,28 @@
 										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\cocos2dx\platform\android\jni\Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -17457,6 +17740,14 @@
 										Name="VCCLCompilerTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\cocos2dx\platform\android\jni\JniHelper.h"
@@ -17469,12 +17760,28 @@
 										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCustomBuildTool"
+									/>
+								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\cocos2dx\platform\android\jni\TouchesJni.cpp"
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
+									ExcludedFromBuild="true"
+									>
+									<Tool
+										Name="VCCLCompilerTool"
+									/>
+								</FileConfiguration>
+								<FileConfiguration
+									Name="Release GL|Win32"
 									ExcludedFromBuild="true"
 									>
 									<Tool
@@ -19485,12 +19792,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\barrier.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19509,12 +19832,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\cleanup.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19533,12 +19872,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\config.h"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19557,12 +19912,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\dll.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19581,12 +19952,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\exit.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19605,12 +19992,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\global.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19629,12 +20032,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\mutex.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19653,12 +20072,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\private.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19677,12 +20112,28 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								UsePrecompiledHeader="0"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19701,12 +20152,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_getinheritsched.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19725,12 +20192,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_getschedpolicy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19749,12 +20232,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_getstackaddr.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19773,12 +20272,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_init.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19797,12 +20312,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_setinheritsched.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19821,12 +20352,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_setschedpolicy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19845,12 +20392,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_attr_setstackaddr.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19869,12 +20432,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_barrier_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19893,12 +20472,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_barrier_wait.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19917,12 +20512,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_barrierattr_getpshared.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19941,12 +20552,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_barrierattr_setpshared.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19965,12 +20592,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_cond_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -19989,12 +20632,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_cond_signal.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20013,12 +20672,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_condattr_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20037,12 +20712,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_condattr_init.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20061,12 +20752,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_delay_np.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20085,12 +20792,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_equal.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20109,12 +20832,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_getconcurrency.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20133,12 +20872,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_getspecific.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20157,12 +20912,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_join.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20181,12 +20952,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_key_delete.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20205,12 +20992,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_mutex_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20229,12 +21032,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_mutex_lock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20253,12 +21072,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_mutex_trylock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20277,12 +21112,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_mutexattr_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20301,12 +21152,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_mutexattr_getpshared.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20325,12 +21192,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_mutexattr_init.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20349,12 +21232,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_mutexattr_setpshared.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20373,12 +21272,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_num_processors_np.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20397,12 +21312,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_rwlock_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20421,12 +21352,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_rwlock_rdlock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20445,12 +21392,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_rwlock_timedwrlock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20469,12 +21432,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_rwlock_trywrlock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20493,12 +21472,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_rwlock_wrlock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20517,12 +21512,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_rwlockattr_getpshared.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20541,12 +21552,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_rwlockattr_setpshared.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20565,12 +21592,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_setcancelstate.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20589,12 +21632,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_setconcurrency.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20613,12 +21672,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_setspecific.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20637,12 +21712,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_spin_init.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20661,12 +21752,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_spin_trylock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20685,12 +21792,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_testcancel.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20709,12 +21832,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\pthread_win32_attach_detach_np.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20733,12 +21872,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_callUserDestroyRoutines.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20757,12 +21912,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_getprocessors.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20781,12 +21952,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_is_attr.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20805,12 +21992,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_mutex_check_need_init.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20829,12 +22032,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_processInitialize.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20853,12 +22072,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_relmillisecs.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20877,12 +22112,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_rwlock_cancelwrwait.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20901,12 +22152,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_semwait.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20925,12 +22192,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_threadDestroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20949,12 +22232,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_throw.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20973,12 +22272,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\ptw32_tkAssocCreate.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -20997,12 +22312,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\rwlock.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21021,12 +22352,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sched_get_priority_max.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21045,12 +22392,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sched_getscheduler.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21069,12 +22432,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sched_yield.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21093,12 +22472,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sem_destroy.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21117,12 +22512,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sem_init.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21141,12 +22552,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sem_post.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21165,12 +22592,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sem_timedwait.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21189,12 +22632,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\sem_unlink.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21213,12 +22672,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\semaphore.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21237,12 +22712,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\spin.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
@@ -21261,6 +22752,14 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\tsd.c"
@@ -21273,12 +22772,28 @@
 								Name="VCCLCompilerTool"
 							/>
 						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\pthreadwin\w32_CancelableWait.c"
 						>
 						<FileConfiguration
 							Name="Debug GL|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release GL|Win32"
 							ExcludedFromBuild="true"
 							>
 							<Tool
