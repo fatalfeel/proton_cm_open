@@ -1,9 +1,10 @@
 #include "PlatformPrecomp.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "PhysicsHelloMenu.h"
 #include "Entity/EntityUtils.h"
 #include "MainMenu.h"
 #include "Irrlicht/IrrlichtManager.h"
-//#include "Component/FPSControlComponent.h"
 #include "Component/EventControlComponent.h"
 
 using namespace irr;

@@ -6,14 +6,22 @@
  */
 #include "PlatformPrecomp.h"
 #include "App.h"
-#include "GUI/MainMenu.h"
 #include "Entity/EntityUtils.h"
 #include "Irrlicht/IrrlichtManager.h"
 #include "FileSystem/FileSystemZip.h"
 
+#include "cocos2d.h"
+using namespace cocos2d;
+#include "GUI/MainMenu.h"
+#include "GUI/HelloWorldScene.h"
+
 irr::video::E_DRIVER_TYPE AppGetOGLESType()
 {
-    return irr::video::EDT_OGLES2;
+#ifdef _IRR_COMPILE_WITH_OGLES1_
+	return irr::video::EDT_OGLES1;
+#else
+	return irr::video::EDT_OGLES2;
+#endif
 }
 
 ///////////////////////////////////////
@@ -217,8 +225,10 @@ void App::Update()
 		//MainMenuCreate(pGUIEnt);
 		m_MenuEntity = MainMenuCreate(pGUIEnt);
 
-        //only applicable to iOS, makes the keyboard pop up faster
-        //PreloadKeyboard();
+        //init
+		CCScene* pScene = HelloWorld::scene();
+		// run
+		CCDirector::sharedDirector()->runWithScene(pScene);
 	}
 }
 
@@ -227,29 +237,21 @@ void App::Draw()
 {
 	IrrlichtManager::GetIrrlichtManager()->isNeedInitAgain();
 	
-	//GetBaseApp()->OnScreenSizeChange();
+	//turn normal GL back on
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	IrrlichtManager::GetIrrlichtManager()->IsRunning(); //let it do its own update tick
 	IrrlichtManager::GetIrrlichtManager()->BeginScene(); //turn on irrlicht's 3d mode renderstates
 	IrrlichtManager::GetIrrlichtManager()->Render(); //render its scenegraph
 	IrrlichtManager::GetIrrlichtManager()->EndScene(); //tell irrlicht to go into 2d mode renderstates
-    //IrrlichtManager::GetIrrlichtManager()->RenderDebugProperty2D(); //give irrlicht manager a chance to draw its debug stuff
-	BaseApp::Draw();
-
-	//g_lastBound = 0;
 	
-	//GetFont(FONT_SMALL)->Draw(0,50, " white `2Green `3Cyan `4Red `5Purp ");
-    //SetupOrtho();
-   	
-	//BaseApp::Draw();
-	//PrepareForGL();
+	BaseApp::Draw();
 }
 
-void App::OnScreenSizeChange()
+/*void App::OnScreenSizeChange()
 {
 	BaseApp::OnScreenSizeChange();
-}
+}*/
 
 void App::GetServerInfo( string &server, uint32 &port )
 {
@@ -316,9 +318,9 @@ void App::OnExitApp(VariantList *pVarList)
 	BaseApp::GetBaseApp()->AddOSMessage(o);
 }
 
-const char * GetAppName() 
+const wchar_t* GetAppName() 
 {
-	return "RTPhysics";
+	return L"RTPhysics";
 }
 
 //for palm webos, android, App Store
@@ -335,4 +337,65 @@ const char * GetBundleName()
 	return bundleName;
 }
 
+
+std::wstring StringToWstring(std::string str)
+{
+    unsigned len = str.size() * 2;
+    setlocale(LC_CTYPE, "");
+    wchar_t *p = new wchar_t[len];
+    mbstowcs(p,str.c_str(),len);
+    std::wstring str1(p);
+    delete[] p;
+    return str1;
+}
+
+std::string WstringToString(std::wstring str)
+{
+    unsigned len = str.size() * 4;
+    setlocale(LC_CTYPE, "");
+    char *p = new char[len];
+    wcstombs(p,str.c_str(),len);
+    std::string str1(p);
+    delete[] p;
+    return str1;
+}
+
+void WideStrToUTF8(std::string& dest, wstring& src)
+{
+	wchar_t w;
+	
+	dest.clear();
+    
+	for (size_t i = 0; i < src.size(); i++)
+	{
+		w = src[i];
+        
+		if (w <= 0x7f)
+		{
+			dest.push_back((char)w);
+		}
+		else if (w <= 0x7ff)
+		{
+			dest.push_back(0xc0 | ((w >> 6)& 0x1f));
+			dest.push_back(0x80| (w & 0x3f));
+		}
+		else if (w <= 0xffff)
+		{
+			dest.push_back(0xe0 | ((w >> 12)& 0x0f));
+			dest.push_back(0x80| ((w >> 6) & 0x3f));
+			dest.push_back(0x80| (w & 0x3f));
+		}
+		else if (sizeof(wchar_t) > 2 && w <= 0x10ffff)
+		{
+			dest.push_back(0xf0 | ((w >> 18)& 0x07)); // wchar_t 4-bytes situation
+			dest.push_back(0x80| ((w >> 12) & 0x3f));
+			dest.push_back(0x80| ((w >> 6) & 0x3f));
+			dest.push_back(0x80| (w & 0x3f));
+		}
+		else
+		{
+			dest.push_back('?');
+		}
+	}
+}
 

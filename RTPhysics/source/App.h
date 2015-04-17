@@ -29,7 +29,7 @@ public:
 	virtual bool Init();
 	virtual void Kill();
 	virtual void Draw();
-	virtual void OnScreenSizeChange();
+	//virtual void OnScreenSizeChange();
 	virtual void Update();
 
 	string GetVersionString();
@@ -60,6 +60,10 @@ extern AudioManager*	GetAudioManager();  //supply this yourself
 extern void             FreeAudioManager();
 
 App*					GetApp();
-extern const char*		GetAppName();
+extern const wchar_t*	GetAppName();
 extern const char*		GetBundleName();
 extern const char*		GetBundlePrefix();
+
+extern std::wstring StringToWstring(std::string str);
+extern std::string  WstringToString(std::wstring str);
+extern void			WideStrToUTF8(std::string& dest, wstring& src);

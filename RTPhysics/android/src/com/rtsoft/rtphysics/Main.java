@@ -17,7 +17,10 @@
 //**********************************************
 
 package com.rtsoft.rtphysics;
+
+import com.cocos2dx.lib.Cocos2dxBitmap;
 import com.rtsoft.rtphysics.SharedActivity;
+
 import android.os.Bundle;
 
 
@@ -47,6 +50,9 @@ public class Main extends SharedActivity
 	
 		
 		super.onCreate(savedInstanceState);
+		
+		Cocos2dxBitmap.setContext(this);
+		
 		if (HookedEnabled)
 		{
 			

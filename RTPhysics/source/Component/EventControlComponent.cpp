@@ -1,7 +1,7 @@
 #include "PlatformPrecomp.h"
 #include "Irrlicht/source/CCameraSceneNode.h"
 #include "EventControlComponent.h"
-#include "util/GLESUtils.h"
+//#include "util/GLESUtils.h"
 #include "Entity/EntityUtils.h"
 #include "BaseApp.h"
 #include "App.h"
@@ -86,7 +86,7 @@ void EventControlComponent::AddGuiButton()
     gui::IGUIEnvironment*   gui    = device->getGUIEnvironment();
     core::dimension2d<u32>  screen = driver->getScreenSize();
     
-#ifdef __APPLE__
+#if defined(_WIN32) || defined(__APPLE__)
 	if( screen.Width * screen.Height > 320 * 480 )
     {
         image	= driver->getTexture((GetBaseAppPath()+"game/ar_up.png").c_str());
