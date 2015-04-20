@@ -860,8 +860,6 @@ void AppUpdate(JNIEnv*  env)
 void AppDone(JNIEnv*  env)
 {
 	LogMsg("Killing base app.");
-	if (IsBaseAppInitted())
-		BaseApp::GetBaseApp()->Kill();
 }
 
 void AppPause(JNIEnv*  env)
