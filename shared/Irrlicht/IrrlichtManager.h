@@ -40,45 +40,48 @@ public:
 	IrrlichtManager();
 	virtual ~IrrlichtManager();
 
-	bool Init(irr::IEventReceiver *pEventReceiver);
-	void Kill();
+	bool Init();
+	//void Kill();
 
-	void ClearScene();
+	//void ClearScene();
 	void BeginScene();
 	void Render();
 	void EndScene();
 	bool IsRunning();
-	int  isNeedInitAgain();
-	
-	//void Render2D();
-    //void RenderDebugProperty2D();
-	bool GetLightingEnabled() {return m_bLightingEnabled;}
-	void SetLightingEnabled(bool bNew) {m_bLightingEnabled = bNew;}
-
-	bool GetDebugEnabled() {return m_bDebugEnabled;}
-	void SetDebugEnabled(bool bNew) {m_bDebugEnabled = bNew;}
-		
 	void SetReSize(core::dimension2d<u32> size);
-	void OnUnloadSurfaces();
-	void OnReLoadSurfaces();
-
-	//only applicable if RT_IRRBULLET was defined
-	void SetBulletPhysicsEnabled(bool bNew) 
-	{ 
-		m_bBulletPhysicsEnabled = bNew;
+		
+	bool GetDebugEnabled() 
+	{
+		return m_bDebugEnabled;
 	}
-	    
+	
+	void SetDebugEnabled(bool bNew) 
+	{
+		m_bDebugEnabled = bNew;
+	}
+		
+	bool GetLightingEnabled()			
+	{
+		return m_bLightingEnabled;
+	}
+	
+	void SetLightingEnabled(bool bNew)	
+	{
+		m_bLightingEnabled = bNew;
+	}
+		    
 #ifdef RT_IRRBULLET
 	irrBulletWorld * GetBulletWorld() {return m_pWorld;}
 #endif
     
     irr::IrrlichtDevice*        GetDevice() {return m_pDevice;}
-    irr::video::ITexture*       GetTexture(const std::string &fileName);
     irr::video::IVideoDriver*   GetDriver() {return m_pDriver;}
-	irr::scene::ISceneManager*  GetScene() {return m_pScene;}
+	irr::scene::ISceneManager*  GetScene()	{return m_pScene;}
+
+	irr::video::ITexture*       GetTexture(const std::string &fileName);
    
 private:
-	irr::IrrlichtDevice *       m_pDevice;
+	irr::IrrlichtDevice*		m_pDevice;
 	irr::video::IVideoDriver*   m_pDriver;
 	irr::scene::ISceneManager*  m_pScene;
    	
@@ -89,15 +92,12 @@ private:
 	bool    m_bLightingEnabled;
 	bool    m_bDebugEnabled;
 	bool    m_bPhysicsEnabled;
-	bool    m_bBulletPhysicsEnabled;
-	int		m_againInit;
-	int     m_connect_set; //by jesse stone
 };
 
-//IrrlichtManager * GetIrrlichtManager();
 core::rect<s32> CLRectToIrrlichtRect32(CL_Rectf clR);
 core::vector3df GetVectorHeadingFromNode(scene::ISceneNode *pNode);
 core::vector3df RotatePositionByDirectionalVector(core::vector3df vPos, core::vector3df vNormal );
-float Vector3DToAngleRadians(core::vector3df v);
-std::string PrintVector3(core::vector3df v);
+float			Vector3DToAngleRadians(core::vector3df v);
+std::string		PrintVector3(core::vector3df v);
+
 #endif // IrrlichtManager_h__

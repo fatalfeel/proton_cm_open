@@ -15,6 +15,10 @@ using namespace cocos2d;
 #include "GUI/MainMenu.h"
 #include "GUI/HelloWorldScene.h"
 
+//by jesse stone
+App* g_pApp = NULL;
+
+
 irr::video::E_DRIVER_TYPE AppGetOGLESType()
 {
 #ifdef _IRR_COMPILE_WITH_OGLES1_
@@ -88,21 +92,25 @@ void FreeAudioManager()
 }
 
 //////////////////App////////////////////////
-App* g_pApp = NULL;
-
-App* GetApp()
-{
-	return g_pApp;
-}
-
 App::App()
 {
+	m_initagain		= 0;
+	m_connect_set   = 0;
+
 	m_bDidPostInit	= false;
 	m_MenuEntity	= NULL;
 }
 
 App::~App()
 {
+	if( m_connect_set )
+	{
+		m_connect_set = 0;
+				
+		m_sig_unloadSurfaces.disconnect(boost::bind(&App::OnUnloadSurfaces, this));
+		m_sig_loadSurfaces.disconnect(boost::bind(&App::OnReLoadSurfaces, this));
+	}
+		
 	FreeAudioManager();
 
 	Entity::Free();
@@ -116,75 +124,73 @@ bool App::Init()
 {
     bool bFileExisted;
 	
-    //SetDefaultButtonStyle(Button2DComponent::BUTTON_STYLE_CLICK_ON_TOUCH_RELEASE);
+    if( m_connect_set == 0 )
+	{
+		m_connect_set = 1;
+				
+		m_sig_unloadSurfaces.connect(1, boost::bind(&App::OnUnloadSurfaces, this));
+		m_sig_loadSurfaces.connect(1, boost::bind(&App::OnReLoadSurfaces, this));
+	}
 	
 	if (GetEmulatedPlatformID() == PLATFORM_ID_IOS)
 	{
-        //we don't allow portrait mode for this game.  Android doesn't count
+		SetLockedLandscape(true); //we don't allow portrait mode for this game.  Android doesn't count
 		//because its landscape mode is addressed like portrait mode when set in the manifest.
-		SetLockedLandscape(true);
 	}
-    
+	
 	if (GetEmulatedPlatformID() == PLATFORM_ID_WEBOS && IsIPADSize)
 	{
 		LogMsg("Special handling for touchpad landscape mode..");
 		SetLockedLandscape(false);
 		SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), ORIENTATION_PORTRAIT);
 	}
-    
-	//SetupFakePrimaryScreenSize(320,480); //game will think its this size, and will be scaled up
-	//L_ParticleSystem::init(2000); //if we wanted to use the 2d particle system
-    
-	if (m_bInitted)
-	{
-		return true;
-	}
-    
-    SetManualRotationMode(true);
-    
-	if (!BaseApp::Init())
-		return false;
-    
-	LogMsg("Save path is %s", GetSavePath().c_str());
-    
-	m_varDB.Load("save.dat", &bFileExisted);
-    
-	//preload audio
-	if( GetAudioManager() )
-	{
-		GetAudioManager()->Preload("audio/click.wav");
-		//GetAudioManager()->Play("audio/real.mp3",1,1); //ios 128bps mp3
-		//GetAudioManager()->Play("audio/real.ogg",1,1); //android play ogg
-	}
 	
-	if (!IrrlichtManager::GetIrrlichtManager()->Init(0))
-		return false;
-    
+	SetManualRotationMode(true);
+	
+	if ( !BaseApp::IsInitted() )
+	{
+		BaseApp::Init();
+			    
+		m_varDB.Load("save.dat", &bFileExisted);
+		LogMsg("Save path is %s", GetSavePath().c_str());
+	    
+		//preload audio
+		if( GetAudioManager() )
+		{
+			GetAudioManager()->Preload("audio/click.wav");
+			//GetAudioManager()->Play("audio/real.mp3",1,1); //ios 128bps mp3
+			//GetAudioManager()->Play("audio/real.ogg",1,1); //android play ogg
+		}
+		
+		if( IrrlichtManager::GetIrrlichtManager()->Init() )
+		{	
 #ifdef	_IRR_COMPILE_WITH_GUI_
-    SetFPSVisible(true);
+			SetFPSVisible(true);
 #else
-    SetFPSVisible(false);
+			SetFPSVisible(false);
 #endif
-    
-    if( GetFPSVisible() )
-    {
-        IrrlichtDevice*         device  = IrrlichtManager::GetIrrlichtManager()->GetDevice();
-        gui::IGUIEnvironment*   gui     = device->getGUIEnvironment();
-		gui::IGUIStaticText*    text    = gui->addStaticText(L"FPS:", core::rect<s32>(0,0,GetScreenSizeX()-1,10), true, false, NULL, 0x10000, true);
-        
-        text->setOverrideColor(video::SColor(255,0,0,0));
-        text->setBackgroundColor(video::SColor(255,255,255,255));
-    }
+	    
+			if( GetFPSVisible() )
+			{
+				IrrlichtDevice*         device  = IrrlichtManager::GetIrrlichtManager()->GetDevice();
+				gui::IGUIEnvironment*   gui     = device->getGUIEnvironment();
+				gui::IGUIStaticText*    text    = gui->addStaticText(L"FPS:", core::rect<s32>(0,0,GetScreenSizeX()-1,10), true, false, NULL, 0x10000, true);
+		        
+				text->setOverrideColor(video::SColor(255,0,0,0));
+				text->setBackgroundColor(video::SColor(255,255,255,255));
+			}
+		}
+	}
     
 	return true;
 }
 
-void App::Kill()
+/*void App::Kill()
 {
 	Entity::GetEntityManager()->RemoveAllEntities();
 	IrrlichtManager::GetIrrlichtManager()->Kill();
 	BaseApp::Kill();
-}
+}*/
 
 void App::Update()
 {
@@ -192,24 +198,23 @@ void App::Update()
     
 	if (!m_bDidPostInit)
 	{
-		m_bDidPostInit = true;
-		m_special = GetSystemData() != C_PIRATED_NO;
+		m_bDidPostInit	= true;
+						
+		//init
+		CCScene* pScene = HelloWorld::scene();
+		// run
+		CCDirector::sharedDirector()->runWithScene(pScene);
 		
 		//build a GUI node
 		Entity *pGUIEnt = Entity::GetEntityManager()->AddEntity(new Entity("GUI"));
 		//by stone, highlevel shader used
 		m_MenuEntity = MainMenuCreate(pGUIEnt);
-		
-		//init
-		CCScene* pScene = HelloWorld::scene();
-		// run
-		CCDirector::sharedDirector()->runWithScene(pScene);
 	}
 }
 
 void App::Draw()
 {
-	IrrlichtManager::GetIrrlichtManager()->isNeedInitAgain();
+	this->isNeedInitAgain();
 	
 	//turn normal GL back on
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -222,29 +227,81 @@ void App::Draw()
 	BaseApp::Draw();
 }
 
-/*void App::OnScreenSizeChange()
- {
- BaseApp::OnScreenSizeChange();
- }*/
+int App::isNeedInitAgain()
+{
+	irr::IrrlichtDevice*		pdevice = IrrlichtManager::GetIrrlichtManager()->GetDevice();
+	irr::video::IVideoDriver*	pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
+		
+	if( m_initagain )
+	{
+		m_initagain = 0;
+
+		CCTextureCache::sharedTextureCache()->removeAllTextures();
+				
+		m_MenuEntity->OnUnLoad();
+
+		if (pdevice->getGUIEnvironment())
+			pdevice->getGUIEnvironment()->OnUnLoad();
+			
+		pdriver->OnUnLoad();
+
+		CCShaderCache::sharedShaderCache()->reloadDefaultShaders();
+		pdriver->OnAgainDriverInit();
+						
+		pdriver->OnReLoad();
+			
+		if (pdevice->getGUIEnvironment())
+			pdevice->getGUIEnvironment()->OnReLoad();
+
+		m_MenuEntity->OnReLoad();
+
+		CCTextureCache::sharedTextureCache()->reloadAllTextures();
+	}
+
+	return m_initagain;
+}
+
+void App::OnUnloadSurfaces()
+{
+	irr::video::IVideoDriver* pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
+	
+	if (pdriver)
+	{
+		LogMsg("Irrlicht unloading surfaces..");
+	}
+}
+
+//m_sig_loadSurfaces trigger
+void App::OnReLoadSurfaces()
+{
+	irr::video::IVideoDriver* pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
+	
+	if (pdriver)
+	{
+		LogMsg("Irrlicht loading surfaces..");
+
+		m_initagain = 1;
+	}
+}
+
+Entity*	App::GetMainScene() 
+{
+	return m_MenuEntity;
+}
 
 void App::GetServerInfo( string &server, uint32 &port )
 {
 #if defined (_DEBUG) && defined(WIN32)
 	server = "localhost";
 	port = 8080;
-    
+
 	//server = "www.rtsoft.com";
 	//port = 80;
 #else
-    
+
 	server = "rtsoft.com";
 	port = 80;
 #endif
-}
-
-int App::GetSpecial()
-{
-	return m_special; //1 means pirated copy
 }
 
 Variant * App::GetVar( const string &keyName )

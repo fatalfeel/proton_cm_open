@@ -2,22 +2,11 @@
 #include "BaseApp.h"
 #include "App.h"
 
-#include "cocos2d.h"
-using namespace cocos2d;
-
 using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
 using namespace io;
-
-//poor man's singleton
-/*IrrlichtManager g_irrlichtManager;
-
-IrrlichtManager* GetIrrlichtManager()
-{
-	return &g_irrlichtManager;
-}*/
 
 //by jesse stone
 static IrrlichtManager* irr_manager_instance = NULL;
@@ -41,38 +30,19 @@ void IrrlichtManager::Free()
 IrrlichtManager::IrrlichtManager()
 {
 	m_bLightingEnabled = false;
-	m_pDevice = NULL;
-	m_pScene = NULL;
-	m_pDriver = NULL;
+	
+	m_pDevice	= NULL;
+	m_pScene	= NULL;
+	m_pDriver	= NULL;
 #ifdef RT_IRRBULLET
-	m_pWorld = NULL;
+	m_pWorld	= NULL;
 #endif
-	m_bBulletPhysicsEnabled = true; //only applicable if RT_IRRBULLET was defined
-
+	
 	m_bDebugEnabled = false;
-	m_againInit		= 0;
-	m_connect_set   = 0;
 }
 
-//by jesse stone
 IrrlichtManager::~IrrlichtManager()
 {
-	if( m_connect_set )
-	{
-		m_connect_set = 0;
-				
-		BaseApp::GetBaseApp()->m_sig_unloadSurfaces.disconnect(boost::bind(&IrrlichtManager::OnUnloadSurfaces, this));
-		BaseApp::GetBaseApp()->m_sig_loadSurfaces.disconnect(boost::bind(&IrrlichtManager::OnReLoadSurfaces, this));
-	}
-		
-	Kill();
-}
-
-
-void IrrlichtManager::Kill()
-{
-	//LogMsg("Killing irrlicht");
-
 	if (m_pDevice)
 	{
 #ifdef RT_IRRBULLET
@@ -82,56 +52,51 @@ void IrrlichtManager::Kill()
 		}
 #endif
 		m_pDevice->drop();
-		m_pDevice = NULL;
-		m_pDriver = NULL;
-		m_pScene = NULL;
+		m_pDevice	= NULL;
+		m_pDriver	= NULL;
+		m_pScene	= NULL;
 	}
 }
 
 //by jesse stone
-bool IrrlichtManager::Init(irr::IEventReceiver *pEventReceiver)
+bool IrrlichtManager::Init()
 {
 	LogMsg("initting irrlicht");
 
-	bool bStencilBuffer = true;
-	
-    //E_DRIVER_TYPE driverType = video::EDT_OGLES1;
+	bool					bStencilBuffer	= true;
+	irr::IEventReceiver*	pEventReceiver	= NULL;
+	    
     E_DRIVER_TYPE driverType = AppGetOGLESType(); //by stone
 
 /*#ifdef C_GL_MODE
 	driverType = video::EDT_OPENGL;
-	bStencilBuffer = true;
 #endif*/
 	
-	m_pDevice = createDevice( driverType, dimension2d<u32>(GetPrimaryGLX(), GetPrimaryGLY()), 16, false, bStencilBuffer, false, pEventReceiver);
+	m_pDevice = createDevice(	driverType, 
+								dimension2d<u32>(GetPrimaryGLX(), GetPrimaryGLY()), 
+								16, 
+								false, 
+								bStencilBuffer, 
+								false, 
+								pEventReceiver	);
   
 	if (!m_pDevice)
 	{
 		LogError("Unable to create video driver");
 		return false;
 	}
-
 	
-	m_pDriver = m_pDevice->getVideoDriver();
-	m_pScene = m_pDevice->getSceneManager();
+	m_pDriver	= m_pDevice->getVideoDriver();
+	m_pScene	= m_pDevice->getSceneManager();
 
 	if (!m_pDevice->getFileSystem()->addFileArchive("", true, false, EFAT_PROTON))
 	{
 		LogMsg("Unable to mount Proton filesystem");
 	}
-	
-	if( m_connect_set == 0 )
-	{
-		m_connect_set = 1;
-				
-		BaseApp::GetBaseApp()->m_sig_unloadSurfaces.connect(1, boost::bind(&IrrlichtManager::OnUnloadSurfaces, this));
-		BaseApp::GetBaseApp()->m_sig_loadSurfaces.connect(1, boost::bind(&IrrlichtManager::OnReLoadSurfaces, this));
-	}
-	
-	LogMsg("Irrlicht initted");
+		
+	//if (!m_bBulletPhysicsEnabled) 
+	//	return true;
 
-
-	if (!m_bBulletPhysicsEnabled) return true;
 #ifdef RT_IRRBULLET
 
 	////////////////////////////
@@ -142,47 +107,14 @@ bool IrrlichtManager::Init(irr::IEventReceiver *pEventReceiver)
 	m_pWorld = createIrrBulletWorld(m_pDevice, true, true);
 	m_pWorld->setGravity(vector3df(0,-10,0));
 
-#ifdef _DEBUG
-	m_pWorld->setDebugMode(EPDM_DrawAabb | EPDM_DrawContactPoints);
-	
-
-#endif
+	#ifdef _DEBUG
+		m_pWorld->setDebugMode(EPDM_DrawAabb | EPDM_DrawContactPoints);
+	#endif
 #endif
 
+	LogMsg("Irrlicht init done");
 
 	return true;
-}
-
-irr::video::ITexture * IrrlichtManager::GetTexture(const std::string &fileName)
-{
-
-	return m_pDriver->getTexture( (GetBaseAppPath() + fileName).c_str() );
-}
-
-void IrrlichtManager::ClearScene()
-{
-	video::SMaterial vm;
-	
-	if (m_pScene)
-	{
-	
-#ifdef RT_IRRBULLET
-		if (m_bBulletPhysicsEnabled)
-		{
-			while(m_pWorld->getNumCollisionObjects() > 0)
-			{
-				m_pWorld->removeCollisionObject(m_pWorld->getCollisionObject(0));
-			}
-		}
-#endif
-		
-		m_pScene->getRootSceneNode()->removeAll();
-		m_pScene->getMeshCache()->clear(); 
-		m_pScene->clear();	
-		//const video::SMaterial m;
-		m_pDriver->setMaterial(vm); 
-		m_pDriver->removeAllTextures();
-	}
 }
 
 void IrrlichtManager::BeginScene()
@@ -205,7 +137,6 @@ void IrrlichtManager::BeginScene()
 
 void IrrlichtManager::Render()
 {
-
 	if (m_pScene)
 	{
 		m_pScene->drawAll();
@@ -223,16 +154,6 @@ void IrrlichtManager::Render()
         CHECK_GL_ERROR();
 	}
 }
-
-/*void IrrlichtManager::RenderDebugProperty2D()
-{
-#ifdef RT_IRRBULLET
-	if (m_pWorld)
-	{
-		BaseApp::GetBaseApp()->GetFont(FONT_SMALL)->Draw(5,60, m_pWorld->debugDrawProperties(true).c_str());
-	}
-#endif
-}*/
 
 void IrrlichtManager::EndScene()
 {
@@ -252,37 +173,22 @@ bool IrrlichtManager::IsRunning()
 	return false;
 }
 
-int IrrlichtManager::isNeedInitAgain()
+irr::video::ITexture* IrrlichtManager::GetTexture(const std::string &fileName)
 {
-	if( m_againInit )
-	{
-		m_againInit = 0;
-
-		CCTextureCache::sharedTextureCache()->removeAllTextures();
-				
-		GetApp()->GetMainScene()->OnUnLoad();
-
-		if (m_pDevice->getGUIEnvironment())
-			m_pDevice->getGUIEnvironment()->OnUnLoad();
-			
-		m_pDriver->OnUnLoad();
-
-		CCShaderCache::sharedShaderCache()->reloadDefaultShaders();
-		m_pDriver->OnAgainDriverInit();
-						
-		m_pDriver->OnReLoad();
-			
-		if (m_pDevice->getGUIEnvironment())
-			m_pDevice->getGUIEnvironment()->OnReLoad();
-
-		GetApp()->GetMainScene()->OnReLoad();
-
-		CCTextureCache::sharedTextureCache()->reloadAllTextures();
-	}
-
-	return m_againInit;
+	return m_pDriver->getTexture( (GetBaseAppPath()+fileName).c_str() );
 }
 
+void IrrlichtManager::SetReSize(core::dimension2d<u32> size)
+{
+	if (m_pDriver)
+	{
+		m_pDriver->OnResize(size);
+	}
+}
+
+/////////
+///////
+/////
 core::rect<s32> CLRectToIrrlichtRect32(CL_Rectf clR)
 {
 	core::rect<s32> r;
@@ -328,30 +234,4 @@ float Vector3DToAngleRadians(core::vector3df v)
 std::string PrintVector3(core::vector3df v)
 {
 	return PrintVector3(ToCLVector3(v));
-}
-
-void IrrlichtManager::SetReSize(core::dimension2d<u32> size)
-{
-	if (m_pDriver)
-	{
-		m_pDriver->OnResize(size);
-	}
-}
-
-void IrrlichtManager::OnUnloadSurfaces()
-{
-	if (m_pScene && m_pDriver)
-	{
-		LogMsg("Irrlicht unloading surfaces..");
-	}
-}
-
-void IrrlichtManager::OnReLoadSurfaces()
-{
-	if (m_pScene && m_pDriver)
-	{
-		LogMsg("Irrlicht loading surfaces..");
-
-		m_againInit = 1;
-	}
 }

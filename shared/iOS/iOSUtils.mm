@@ -12,6 +12,7 @@
 #import <sys/sysctl.h>
 #import "BaseApp.h"
 #import <SystemConfiguration/SystemConfiguration.h>
+//#include "Network/NetUtils.h"
 #import <MobileCoreServices/MobileCoreServices.h> 
 #import <sys/socket.h>
 #import <netinet/in.h>
@@ -192,31 +193,6 @@ void LaunchURL(string url)
 
 eNetworkType IsNetReachable(string url)
 {
-		
-	assert(!"Uh.. I don't really use this, and the emulator build was giving me problems with it");
-	
-	/*
-	// Before trying to connect, verify we have a network connection
-	
-	NSString *str =  [NSString stringWithCString: url.c_str() encoding: [NSString defaultCStringEncoding]];
-	
-	SCNetworkReachabilityFlags          flags;
-	SCNetworkReachabilityRef reachability =  SCNetworkReachabilityCreateWithName(NULL, [str UTF8String]);
-	BOOL gotFlags = SCNetworkReachabilityGetFlags(reachability, &flags);
-	
-	CFRelease(reachability);
-	
-	if (!gotFlags || flags & kSCNetworkReachabilityFlagsConnectionRequired || !(flags & kSCNetworkReachabilityFlagsReachable)) {
-		return C_NETWORK_NONE;
-	}else{
-		if (flags & kSCNetworkReachabilityFlagsIsWWAN){
-			return C_NETWORK_CELL;
-		}else{
-			return C_NETWORK_WIFI;
-		}
-		
-	}
-	 */
 	return C_NETWORK_CELL;
 }
 

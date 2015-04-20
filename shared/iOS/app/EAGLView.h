@@ -46,6 +46,6 @@
 - (void)drawView;
 - (void)destroyFramebuffer;
 - (BOOL)createFramebuffer;
-- (void)onKill;
+//- (void)onKill;
 
 @end

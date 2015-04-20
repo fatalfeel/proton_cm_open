@@ -17,16 +17,19 @@ public:
 	App();
 	virtual ~App();
 	
-	virtual bool Init();
-	virtual void Kill();
-	virtual void Draw();
-	//virtual void OnScreenSizeChange();
-	virtual void Update();
+	virtual bool	Init();
+	//virtual void	Kill();
+	virtual void	Draw();
+	virtual void	Update();
 
-	string GetVersionString();
-	float GetVersion();
-	int GetBuild();
-	void GetServerInfo(string &server, uint32 &port);
+	int				isNeedInitAgain();
+	void			OnUnloadSurfaces();
+	void			OnReLoadSurfaces();
+
+	string			GetVersionString();
+	float			GetVersion();
+	int				GetBuild();
+	void			GetServerInfo(string &server, uint32 &port);
 	VariantDB*		GetShared() {return &m_varDB;}
 	Variant*		GetVar(const string &keyName );
 	Variant*		GetVarWithDefault(const string &varName, const Variant &var) {return m_varDB.GetVarWithDefault(varName, var);}
@@ -35,13 +38,16 @@ public:
 	virtual void	OnEnterForeground();
 	void			OnExitApp(VariantList *pVarList);
     void            SaveStuff();
-	Entity*			GetMainScene() {return m_MenuEntity;}
+	Entity*			GetMainScene();
 
 private:
-	bool		m_bDidPostInit;
-	int			m_special;
-	VariantDB	m_varDB;		//holds all data we want to save/load
-	Entity*		m_MenuEntity;	//by stone, high level shader used
+	bool			m_bDidPostInit;
+	//int				m_special;
+	int				m_connect_set; //by jesse stone
+	int				m_initagain;
+	
+	VariantDB		m_varDB;		//holds all data we want to save/load
+	Entity*			m_MenuEntity;	//by stone, high level shader used
 };
 
 extern irr::video::E_DRIVER_TYPE AppGetOGLESType();

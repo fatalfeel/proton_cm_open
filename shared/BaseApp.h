@@ -143,16 +143,9 @@ class TouchTrackInfo
 {
 public:
 
-	TouchTrackInfo()
-	{
-		m_bHandled = false;
-		m_bIsDown = false;
-		m_vPos = m_vLastPos = CL_Vec2f(-1,-1);
-		m_pEntityThatHandledIt = NULL;
-		m_bPreHandled = false;
-		m_pEntityThatPreHandledIt = NULL;
-	}
-	
+	TouchTrackInfo();
+	~TouchTrackInfo();
+		
 	bool WasHandled() {return m_bHandled;}
 	CL_Vec2f GetPos() {return m_vPos;}
 	CL_Vec2f GetLastPos() {return m_vLastPos;}  //normally you wouldn't care, but this helps if you need to emulate the way iOS gives touch data
@@ -174,10 +167,10 @@ public:
 
 private:
 
-	bool m_bHandled, m_bPreHandled;
-	bool m_bIsDown;
-	CL_Vec2f m_vPos, m_vLastPos;
-	Entity *m_pEntityThatHandledIt, *m_pEntityThatPreHandledIt;
+	bool		m_bHandled, m_bPreHandled;
+	bool		m_bIsDown;
+	CL_Vec2f	m_vPos, m_vLastPos;
+	Entity		*m_pEntityThatHandledIt, *m_pEntityThatPreHandledIt;
 };
 
 
@@ -200,7 +193,7 @@ public:
 	virtual ~BaseApp();
 
 	virtual bool Init();
-	virtual void Kill();
+	//virtual void Kill();
 	//virtual bool OnPreInitVideo();
 	virtual void Draw();
 	virtual void Update();
@@ -232,7 +225,7 @@ public:
 	void SetInputMode(eInputMode mode){m_inputMode = mode;}
 	eInputMode GetInputMode()					{return m_inputMode;}
 	virtual void OnMemoryWarning();
-	//FocusComponents connect to these, which will tricky down their hierarchy
+	
 	/**
 	 * Taps, clicks, and basic keyboard input.
 	 *
@@ -329,41 +322,42 @@ public:
 	 * Signal to notify that it's time to release surfaces.
 	 * Sent for example when the app goes to background.
 	 */
-	boost::signal<void (void)> m_sig_unloadSurfaces;
-	boost::signal<void (void)> m_sig_loadSurfaces; ///< Signal to notify that it's time to reload surfaces.
+	boost::signal<void (void)>			m_sig_unloadSurfaces;
+	boost::signal<void (void)>			m_sig_loadSurfaces; ///< Signal to notify that it's time to reload surfaces.
+	boost::signal<void (VariantList*)>	m_sig_joypad_events; //only used for the android Moga game controller implementation
+	boost::signal<void (VariantList*)>	m_sig_native_input_state_changed; //first part is a uint32 that is 1 if input box is open, 0 if closed.  Useful for turning off WASD while inputting a name on desktops
 
-	boost::signal<void (VariantList*)> m_sig_joypad_events; //only used for the android Moga game controller implementation
-
-	boost::signal<void (VariantList*)> m_sig_native_input_state_changed; //first part is a uint32 that is 1 if input box is open, 0 if closed.  Useful for turning off WASD while inputting a name on desktops
-
-	deque <OSMessage> * GetOSMessages() {return &m_OSMessages;}
-	void AddOSMessage(OSMessage &m);
+	deque<OSMessage>* GetOSMessages() 
+	{
+		return &m_OSMessages;
+	}
+	
+	bool GetManualRotationMode();
 	void SetManualRotationMode(bool bRotation); //if true, we manually rotate our GL and coordinates for the screen.
-	bool GetManualRotationMode() {return m_bManualRotation;}
-	//ResourceManager * GetResourceManager() {return &m_resourceManager;}
-	//Entity * GetEntityRoot() {return &m_entityRoot;} //an entity created by default, add children to become your entity hierarchy
-	//Entity * GetEntityManager() {return &m_entityRoot;}
-
+	
 	void ModMemUsed(int mod) {m_memUsed += mod;}
 	void ModTexUsed(int mod) {m_texMemUsed += mod;}
 
-	int GetMemUsed() {return m_memUsed;}
+	int GetMemUsed()	{return m_memUsed;}
 	int GetTexMemUsed() {return m_texMemUsed;}
 	
-	eErrorType GetLastError() {return m_error;}
-	void ClearError() {m_error = ERROR_NONE;}
-	void SetLastError(eErrorType error) {m_error = error;}
-	bool IsInBackground() {return m_bIsInBackground;} 
-	bool GetDisableSubPixelBlits() {return m_bDisableSubPixelBlits;}
-	void SetDisableSubPixelBlits(bool bNew) {m_bDisableSubPixelBlits = bNew;} //fixes issue where scaling makes 2d tile based games have cracks
+	eErrorType GetLastError()				{return m_error;}
+	void ClearError()						{m_error = ERROR_NONE;}
+	void SetLastError(eErrorType error)		{m_error = error;}
+	bool IsInBackground()					{return m_bIsInBackground;} 
+	//bool GetDisableSubPixelBlits() {return m_bDisableSubPixelBlits;}
+	//void SetDisableSubPixelBlits(bool bNew) {m_bDisableSubPixelBlits = bNew;} //fixes issue where scaling makes 2d tile based games have cracks
 	void AddCommandLineParm(string parm);
-	vector<string> GetCommandLineParms();
+	//vector<string> GetCommandLineParms();
 	void SetAccelerometerUpdateHz(float hz); //another way to think of hz is "how many times per second to update"
 	void SetAllowScreenDimming(bool bAllowDimming); //respected by iOS only for now
     void PrintGLString(const char *name, GLenum s);
-	bool IsInitted() {return m_bInitted;}
-	//virtual void InitializeGLDefaults();
 	
+	bool IsInitted()
+	{
+		return m_bInitted;
+	}
+		
 	//by jesse stone
 	CL_Mat4f* GetProjectionMatrix() 
 	{ 
@@ -378,6 +372,8 @@ public:
 	void SetCheatMode(bool bCheatMode) {m_bCheatMode = bCheatMode;}
 	bool GetCheatMode() {return m_bCheatMode;}
 	void SetVideoMode(int width, int height, bool bFullScreen, float aspectRatio = 0) /*aspectRatio should be 0 to ignore */;
+	
+	void AddOSMessage(OSMessage &m);
 	void KillOSMessagesByType(OSMessage::eMessageType type);
 
 	/**
@@ -409,11 +405,8 @@ protected:
 	bool                    m_bInitted;
 	GameTimer               m_gameTimer;
 	Console                 m_console;
-	//RTFont                  m_fontArray[FONT_BASE_COUNT];
 	deque <OSMessage>       m_OSMessages; //simple way to send things to the OS, it will poll this
 	bool                    m_bManualRotation;
-	//ResourceManager m_resourceManager; 
-	//Entity m_entityRoot;
 	eInputMode              m_inputMode;
 	int                     m_memUsed;
 	int                     m_texMemUsed;
@@ -425,24 +418,11 @@ protected:
 	bool                    m_bCheatMode;
 	vector<TouchTrackInfo>  m_touchTracker;
 	string                  m_version;
-	bool                    m_bDisableSubPixelBlits;
+	//bool                    m_bDisableSubPixelBlits;
 };
 
-//BaseApp* BaseApp::GetBaseApp(); //supply this yourself.  You create it on the first call if needed.
-//MessageManager * GetMessageManager(); //supply this yourself
-//FileManager * GetFileManager(); //supply this yourself
-//AudioManager*	GetAudioManager();  //supply this yourself
-//void			FreeAudioManager();
-//Entity* GetEntityRoot(); //we supply this
-//Entity* GetEntityManager(); //we supply this
-//GamepadManager* GetGamepadManager(); //supply this yourself, if you want gamepads
-//ResourceManager* GetResourceManager();
-
-//unsigned int GetTick(eTimingSystem timingSystem = BaseApp::GetBaseApp()->GetActiveTimingSystem()); //faster to write
 extern bool             IsBaseAppInitted();
 extern unsigned int     GetTick(eTimingSystem timingSystem);
 extern eTimingSystem    GetTiming();
-//extern RenderBatcher    g_globalBatcher; //can be used by anyone
-
 
 #endif // BaseApp_h__

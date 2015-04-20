@@ -9,20 +9,15 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <Carbon/Carbon.h>
-//#include </System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSUtilities.h>
-//#include <Foundation/Foundation.h>
 #include <stdint.h>
-//#include <MacTypes.h>
-#include "OSXUtils.h"
 #include <OpenGL/gl.h>
 #include <OpenGL/glext.h>
+#include "OSXUtils.h"
 
-#define glTexParameterx glTexParameteri
-#define glFrustumf glFrustum
-#define glOrthof glOrtho
-#define glColor4x(r,g,b,a) glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
-
-
+#define glTexParameterx		glTexParameteri
+#define glFrustumf			glFrustum
+#define glOrthof			glOrtho
+#define glColor4x(r,g,b,a)	glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
 
 #ifndef _SINT64
 typedef int64_t sint64;

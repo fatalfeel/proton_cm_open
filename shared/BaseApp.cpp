@@ -1,24 +1,31 @@
 #include "PlatformPrecomp.h"
 #include "BaseApp.h"
 #include "App.h"
-//#include "Renderer/RTGLESExt.h"
 
 #ifdef _IRR_STATIC_LIB_
-#include "Irrlicht/IrrlichtManager.h"
+	#include "Irrlicht/IrrlichtManager.h"
 #endif
 
-/*Entity * Entity::GetEntityManager() 
-{
-	assert(IsBaseAppInitted() && "Base app should be initted before calling this");
-	return BaseApp::GetBaseApp()->Entity::GetEntityManager();
-}*/
-
-bool            g_isLoggerInitted = false;
-bool            g_isBaseAppInitted = false;
-//RenderBatcher   g_globalBatcher;
+bool g_isLoggerInitted	= false;
+bool g_isBaseAppInitted	= false;
 
 //by jesse stone
 extern App* g_pApp;
+
+TouchTrackInfo::TouchTrackInfo()
+{
+	m_bHandled = false;
+	m_bIsDown = false;
+	m_vPos = m_vLastPos = CL_Vec2f(-1,-1);
+	m_pEntityThatHandledIt = NULL;
+	m_bPreHandled = false;
+	m_pEntityThatPreHandledIt = NULL;
+}
+
+TouchTrackInfo::~TouchTrackInfo()
+{
+
+}
 
 void TouchTrackInfo::SetWasHandled( bool bNew, Entity *pEntity )
 {
@@ -32,10 +39,13 @@ void TouchTrackInfo::SetWasPreHandled( bool bNew, Entity *pEntity /*= NULL*/ )
 	m_pEntityThatPreHandledIt = pEntity;
 }
 
+////////////
+//////////
+////////
 BaseApp* BaseApp::GetBaseApp()
 {
 	if (!g_pApp)
-		g_pApp = new App;
+		g_pApp = new App();
 	
 	return g_pApp;
 }
@@ -51,38 +61,39 @@ void BaseApp::Free()
 
 BaseApp::BaseApp()
 {
-	m_bDisableSubPixelBlits = false;
-	m_bCheatMode = false;
-	m_memUsed = m_texMemUsed = 0;	
-	g_isLoggerInitted = true;	
-	m_bInitted = false;
-	m_bConsoleVisible = false;
-	m_bManualRotation = false;
-	SetFPSVisible(false);
-	m_bIsInBackground = false;
-	SetInputMode(INPUT_MODE_NORMAL);
-	m_version = "No default Version"; // this is over written by network messages that come from IOS and Android. For other platforms (like windows), it will remain this.
+	//m_bDisableSubPixelBlits = false;
+	m_bCheatMode		= false;
+	
+	m_memUsed			= 0;	
+	m_texMemUsed		= 0;	
+	
+	g_isLoggerInitted	= true;
+	g_isBaseAppInitted	= true;
+
+	m_bInitted			= false;
+	m_bConsoleVisible	= false;
+	m_bManualRotation	= false;
+	m_bIsInBackground	= false;
+	
+	m_version			= "No default Version"; // this is over written by network messages that come from IOS and Android. For other platforms (like windows), it will remain this.
 
 	m_touchTracker.resize(C_MAX_TOUCHES_AT_ONCE);
+	
+	SetFPSVisible(false);
+	SetInputMode(INPUT_MODE_NORMAL);
 	ClearError();
-	g_isBaseAppInitted = true;
 }
 
 //by jesse stone
 BaseApp::~BaseApp()
 {
-	//m_entityRoot.RemoveAllEntities();
-	//m_resourceManager.KillAllResources();
-	m_commandLineParms.clear();
 	g_isLoggerInitted	= false;
 	g_isBaseAppInitted	= false;
 }
 
-void BaseApp::Kill()
+/*void BaseApp::Kill()
 {
-	g_isBaseAppInitted = false;
-	delete this;
-}
+}*/
 
 void BaseApp::PrintGLString(const char *name, GLenum s)
 {
@@ -90,75 +101,33 @@ void BaseApp::PrintGLString(const char *name, GLenum s)
 	LogMsg("GL %s = %s\n", name, v);
 }
 
-/*void BaseApp::InitializeGLDefaults()
-{
-	glMatrixMode(GL_MODELVIEW);
-	glDepthMask(GL_TRUE);
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_ALPHA_TEST);
-	glDisable( GL_BLEND );
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);	
-	glEnableClientState(GL_VERTEX_ARRAY);	
-	glDisableClientState(GL_COLOR_ARRAY);	
-	glDisableClientState(GL_NORMAL_ARRAY);
-	glDisable( GL_LIGHTING );
-	glDepthFunc(GL_LEQUAL);
-	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-	glColor4x(1 << 16, 1 << 16, 1 << 16, 1 << 16);
-	glClearColor(0,0,0,255);
-}*/
-
 //by jesse stone
 bool BaseApp::Init()
 {
-    //GLint depthbits;
-	
-    m_gameTimer.Reset();
 	Entity::GetEntityManager()->SetName("root");
 
-	if (m_bInitted)	
+	m_gameTimer.Reset();
+
+	if ( !m_bInitted )
 	{
-		LogMsg("Why are we initting more than once?");
-		return true;
-	}
-
-	m_bInitted = true;
-	
-	PrintGLString("Version",    GL_VERSION);
-	PrintGLString("Vendor",     GL_VENDOR);
-	PrintGLString("Renderer",   GL_RENDERER);
-	PrintGLString("Extensions", GL_EXTENSIONS);
-
-	//by stone
-    /*InitializeGLDefaults();
-    CHECK_GL_ERROR();
+		m_bInitted = true;
 		
-	glGetIntegerv(GL_DEPTH_BITS, &depthbits);
-	LogMsg("GL depth buffer: %d bit", depthbits);
-	CHECK_GL_ERROR();*/
+		glClearColor(0,0,0,1.0f);
+				
+		if (GetAudioManager())
+			GetAudioManager()->Init();
 
-	glClearColor(0,0,0,1.0f);
-
-	if (GetAudioManager())
-		GetAudioManager()->Init();
+		PrintGLString("Version",    GL_VERSION);
+		PrintGLString("Vendor",     GL_VENDOR);
+		PrintGLString("Renderer",   GL_RENDERER);
+		PrintGLString("Extensions", GL_EXTENSIONS);
+	}
 
 	return true;
 }
 
-/*void DrawConsole()
-{
-	//not implemented
-}*/
-
 void BaseApp::Draw()
 {
-    //by stone
-    //VariantList vList(Variant(0,0));
-    //m_sig_render(&vList);
-
 	if (GetFPSVisible())
 	{
 		char            	stTemp[256] = {0};
@@ -212,30 +181,7 @@ void BaseApp::Draw()
         if ( guistat )
             guistat->setText(strB.c_str());
 	}
-
-	//draw the console messages?
-	/*if (GetConsoleVisible())
-	{
-		DrawConsole();
-	}
-
-	switch (GetLastError())
-	{
-		case ERROR_MEM:
-			GetFont(FONT_SMALL)->DrawScaled(2,14, "LOW MEM!", 0.7f);
-			break;
-
-		case ERROR_SPACE:
-			GetFont(FONT_SMALL)->DrawScaled(2,14, "LOW STORAGE SPACE!", 0.7f);
-			break;
-            
-		case ERROR_NONE:
-			break;
-	}*/
-
-	//by stone
-    //SetupOrtho();
-	//g_globalBatcher.Flush();
+	
     CHECK_GL_ERROR();
 }
 
@@ -547,6 +493,11 @@ void LogError ( const char* traceStr, ... )
 	return BaseApp::GetBaseApp()->GetResourceManager();
 }*/
 
+bool BaseApp::GetManualRotationMode() 
+{
+	return m_bManualRotation;
+}
+
 void BaseApp::SetManualRotationMode( bool bRotation )
 {
 	//if (GetPlatformID() == PLATFORM_ID_BBX) bRotation = false; //on BBX we never have to do that
@@ -572,8 +523,6 @@ void BaseApp::OnEnterBackground()
 
 	if (GetAudioManager())
 		GetAudioManager()->Suspend();
-	//ResetTouches(); //Turns out we don't need this
-    
 }
 
 void BaseApp::OnEnterForeground()
@@ -591,7 +540,7 @@ void BaseApp::OnEnterForeground()
 	}
 }
 
-void BaseApp::AddCommandLineParm( string parm )
+/*void BaseApp::AddCommandLineParm( string parm )
 {
 	m_commandLineParms.push_back(parm);
 }
@@ -599,7 +548,7 @@ void BaseApp::AddCommandLineParm( string parm )
 vector<string> BaseApp::GetCommandLineParms()
 {
 	return m_commandLineParms;
-}
+}*/
 
 void BaseApp::SetAccelerometerUpdateHz(float hz) //another way to think of hz is "how many times per second to update"
 {
@@ -708,7 +657,7 @@ void BaseApp::ResetTouches()
 
 }
 
-TouchTrackInfo * BaseApp::GetTouch( int index )
+TouchTrackInfo* BaseApp::GetTouch( int index )
 {
 	if (this == 0) return NULL;
 	if (index >= C_MAX_TOUCHES_AT_ONCE)

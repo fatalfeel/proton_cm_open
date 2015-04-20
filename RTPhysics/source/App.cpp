@@ -1,6 +1,6 @@
 /*
  *  App.cpp
- *  Created by Seth Robinson on 4/27/11.
+ *  Created by Seth Robinson on 3/6/09.
  *  For license info, check the license.txt file that should have come with this.
  *
  */
@@ -15,6 +15,9 @@ using namespace cocos2d;
 #include "GUI/MainMenu.h"
 #include "GUI/HelloWorldScene.h"
 
+//by jesse stone
+App* g_pApp = NULL;
+
 irr::video::E_DRIVER_TYPE AppGetOGLESType()
 {
 #ifdef _IRR_COMPILE_WITH_OGLES1_
@@ -24,29 +27,29 @@ irr::video::E_DRIVER_TYPE AppGetOGLESType()
 #endif
 }
 
-///////////////////////////////////////
+////////////////////////////////////////
 #ifdef __MACH__
-    #if (TARGET_OS_IPHONE == 1)
+	#if (TARGET_OS_IPHONE == 1)
         //it's an iPhone or iPad
-        #include "Audio/AudioManagerOS.h"
-        AudioManagerOS*		g_audioManager = NULL;
-    #else
+		#include "Audio/AudioManagerOS.h"
+		AudioManagerOS*		g_audioManager = NULL;
+	#else
         //it's being compiled as a native OSX app
-        #include "Audio/AudioManagerDenshion.h"
-        AudioManagerDenshion*	g_audioManager = NULL; //dummy with no sound
-    #endif
+		#include "Audio/AudioManagerDenshion.h"
+		AudioManagerDenshion*	g_audioManager = NULL; //dummy with no sound
+	#endif
 #else
-    #include "Audio/AudioManagerSDL.h"
-    #include "Audio/AudioManagerAndroid.h"
+	#include "Audio/AudioManagerSDL.h"
+	#include "Audio/AudioManagerAndroid.h"
 
-    #if defined RT_WEBOS || defined RT_USE_SDL_AUDIO
-        AudioManagerSDL*		g_audioManager = NULL; //sound in windows and WebOS
-    #elif defined ANDROID_NDK
-        AudioManagerAndroid*	g_audioManager = NULL; //sound for android
-    #else
-        #include "Audio/AudioManagerAudiere.h"
-        AudioManagerAudiere*	g_audioManager = NULL;  //Use Audiere for audio
-    #endif
+	#if defined RT_WEBOS || defined RT_USE_SDL_AUDIO
+		AudioManagerSDL*		g_audioManager = NULL; //sound in windows and WebOS
+	#elif defined ANDROID_NDK
+		AudioManagerAndroid*	g_audioManager = NULL; //sound for android
+	#else
+		#include "Audio/AudioManagerAudiere.h"
+		AudioManagerAudiere*	g_audioManager = NULL;  //Use Audiere for audio
+	#endif
 #endif
 
 AudioManager* GetAudioManager()
@@ -88,24 +91,27 @@ void FreeAudioManager()
 }
 
 //////////////////App////////////////////////
-App *g_pApp = NULL;
-
-App * GetApp() 
-{
-	return g_pApp;
-}
-
 App::App()
 {
+	m_initagain		= 0;
+	m_connect_set   = 0;
+
 	m_bDidPostInit	= false;
 	m_MenuEntity	= NULL;
 }
 
 App::~App()
 {
-	//L_ParticleSystem::deinit(); //if we wanted to use the 2d particle system
+	if( m_connect_set )
+	{
+		m_connect_set = 0;
+				
+		m_sig_unloadSurfaces.disconnect(boost::bind(&App::OnUnloadSurfaces, this));
+		m_sig_loadSurfaces.disconnect(boost::bind(&App::OnReLoadSurfaces, this));
+	}
+		
 	FreeAudioManager();
-	
+
 	Entity::Free();
 	FileManager::Free();
 	ResourceManager::Free();
@@ -115,9 +121,15 @@ App::~App()
 
 bool App::Init()
 {
-	bool bFileExisted;
-    
-	//SetDefaultButtonStyle(Button2DComponent::BUTTON_STYLE_CLICK_ON_TOUCH_RELEASE);
+    bool bFileExisted;
+	
+    if( m_connect_set == 0 )
+	{
+		m_connect_set = 1;
+				
+		m_sig_unloadSurfaces.connect(1, boost::bind(&App::OnUnloadSurfaces, this));
+		m_sig_loadSurfaces.connect(1, boost::bind(&App::OnReLoadSurfaces, this));
+	}
 	
 	if (GetEmulatedPlatformID() == PLATFORM_ID_IOS)
 	{
@@ -131,111 +143,77 @@ bool App::Init()
 		SetLockedLandscape(false);
 		SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), ORIENTATION_PORTRAIT);
 	}
-	//SetupFakePrimaryScreenSize(768,1024); //game will think its this size, and will be scaled up
-	//SetupFakePrimaryScreenSize(1024,768); //game will think its this size, and will be scaled up
-
-	//L_ParticleSystem::init(2000); //if we wanted to use the 2d particle system
-
-	if (m_bInitted)	
-	{
-		return true;
-	}
 	
 	SetManualRotationMode(true);
-    
-    if (!BaseApp::Init())
-        return false;
 	
-	LogMsg("Save path is %s", GetSavePath().c_str());
-
-
-	//we'll load a .zip as our filesystem if we can, this isn't really needed, but useful for testing Android style
-	//loading from a zip from windows to debug it.
-
-    /*if (GetPlatformID() != PLATFORM_ID_ANDROID)
+	if ( !BaseApp::IsInitted() )
 	{
-        FileSystemZip *pFileSystem = new FileSystemZip();
-		      
-        pFileSystem->SetRootDirectory("assets");
-        
-		FileManager::GetFileManager()->MountFileSystem(pFileSystem);
-	}*/
-	
-	m_varDB.Load("save.dat", &bFileExisted);
-    
-    /*if (!GetFont(FONT_SMALL)->Load("interface/font_mono.rtfont"))
-        return false;
-	if (!GetFont(FONT_LARGE)->Load("interface/font_mono_big.rtfont"))
-        return false;*/
-
-	//preload audio
-	if( GetAudioManager() )
-	{
-		GetAudioManager()->Preload("audio/click.wav");
-		//GetAudioManager()->Play("audio/real.mp3",1,1); //ios 128bps mp3
-		//GetAudioManager()->Play("audio/real.ogg",1,1); //android play ogg
-	}
+		BaseApp::Init();
+			    
+		m_varDB.Load("save.dat", &bFileExisted);
+		LogMsg("Save path is %s", GetSavePath().c_str());
+	    
+		//preload audio
+		if( GetAudioManager() )
+		{
+			GetAudioManager()->Preload("audio/click.wav");
+			//GetAudioManager()->Play("audio/real.mp3",1,1); //ios 128bps mp3
+			//GetAudioManager()->Play("audio/real.ogg",1,1); //android play ogg
+		}
 		
-	if (!IrrlichtManager::GetIrrlichtManager()->Init(0)) 
-		return false;
-    
+		if( IrrlichtManager::GetIrrlichtManager()->Init() )
+		{	
 #ifdef	_IRR_COMPILE_WITH_GUI_
-    SetFPSVisible(true);
+			SetFPSVisible(true);
 #else
-    SetFPSVisible(false);
+			SetFPSVisible(false);
 #endif
-        
-    if( GetFPSVisible() )
-    {
-        IrrlichtDevice*         device  = IrrlichtManager::GetIrrlichtManager()->GetDevice();
-        gui::IGUIEnvironment*   gui     = device->getGUIEnvironment();
-
-//#ifdef _WIN32
-//		gui::IGUIStaticText*    text    = gui->addStaticText(L"FPS:", core::rect<s32>(0,25,GetScreenSizeX()-1,35), true, false, NULL, 0x10000, true);
-//#else
-		gui::IGUIStaticText*    text    = gui->addStaticText(L"FPS:", core::rect<s32>(0,0,GetScreenSizeX()-1,10), true, false, NULL, 0x10000, true);
-//#endif
-        
-        text->setOverrideColor(video::SColor(255,0,0,0));
-        text->setBackgroundColor(video::SColor(255,255,255,255));
-    }
-	
+	    
+			if( GetFPSVisible() )
+			{
+				IrrlichtDevice*         device  = IrrlichtManager::GetIrrlichtManager()->GetDevice();
+				gui::IGUIEnvironment*   gui     = device->getGUIEnvironment();
+				gui::IGUIStaticText*    text    = gui->addStaticText(L"FPS:", core::rect<s32>(0,0,GetScreenSizeX()-1,10), true, false, NULL, 0x10000, true);
+		        
+				text->setOverrideColor(video::SColor(255,0,0,0));
+				text->setBackgroundColor(video::SColor(255,255,255,255));
+			}
+		}
+	}
+    
 	return true;
 }
 
-void App::Kill()
+/*void App::Kill()
 {
 	Entity::GetEntityManager()->RemoveAllEntities();
 	IrrlichtManager::GetIrrlichtManager()->Kill();
 	BaseApp::Kill();
-}
+}*/
 
 void App::Update()
 {
 	BaseApp::Update();
-
+    
 	if (!m_bDidPostInit)
 	{
-		m_bDidPostInit = true;
-		m_special = GetSystemData() != C_PIRATED_NO;
-		
-		//build a GUI node
-		Entity *pGUIEnt = Entity::GetEntityManager()->AddEntity(new Entity("GUI"));
-	
-		//MainMenuCreate(pGUIEnt);
-		m_MenuEntity = MainMenuCreate(pGUIEnt);
-
-        //init
+		m_bDidPostInit	= true;
+						
+		//init
 		CCScene* pScene = HelloWorld::scene();
 		// run
 		CCDirector::sharedDirector()->runWithScene(pScene);
+		
+		//build a GUI node
+		Entity *pGUIEnt = Entity::GetEntityManager()->AddEntity(new Entity("GUI"));
+		//by stone, highlevel shader used
+		m_MenuEntity = MainMenuCreate(pGUIEnt);
 	}
 }
 
-
 void App::Draw()
 {
-	IrrlichtManager::GetIrrlichtManager()->isNeedInitAgain();
+	this->isNeedInitAgain();
 	
 	//turn normal GL back on
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -248,10 +226,67 @@ void App::Draw()
 	BaseApp::Draw();
 }
 
-/*void App::OnScreenSizeChange()
+int App::isNeedInitAgain()
 {
-	BaseApp::OnScreenSizeChange();
-}*/
+	irr::IrrlichtDevice*		pdevice = IrrlichtManager::GetIrrlichtManager()->GetDevice();
+	irr::video::IVideoDriver*	pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
+		
+	if( m_initagain )
+	{
+		m_initagain = 0;
+
+		CCTextureCache::sharedTextureCache()->removeAllTextures();
+				
+		m_MenuEntity->OnUnLoad();
+
+		if (pdevice->getGUIEnvironment())
+			pdevice->getGUIEnvironment()->OnUnLoad();
+			
+		pdriver->OnUnLoad();
+
+		CCShaderCache::sharedShaderCache()->reloadDefaultShaders();
+		pdriver->OnAgainDriverInit();
+						
+		pdriver->OnReLoad();
+			
+		if (pdevice->getGUIEnvironment())
+			pdevice->getGUIEnvironment()->OnReLoad();
+
+		m_MenuEntity->OnReLoad();
+
+		CCTextureCache::sharedTextureCache()->reloadAllTextures();
+	}
+
+	return m_initagain;
+}
+
+void App::OnUnloadSurfaces()
+{
+	irr::video::IVideoDriver* pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
+	
+	if (pdriver)
+	{
+		LogMsg("Irrlicht unloading surfaces..");
+	}
+}
+
+//m_sig_loadSurfaces trigger
+void App::OnReLoadSurfaces()
+{
+	irr::video::IVideoDriver* pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
+	
+	if (pdriver)
+	{
+		LogMsg("Irrlicht loading surfaces..");
+
+		m_initagain = 1;
+	}
+}
+
+Entity*	App::GetMainScene() 
+{
+	return m_MenuEntity;
+}
 
 void App::GetServerInfo( string &server, uint32 &port )
 {
@@ -266,11 +301,6 @@ void App::GetServerInfo( string &server, uint32 &port )
 	server = "rtsoft.com";
 	port = 80;
 #endif
-}
-
-int App::GetSpecial()
-{
-	return m_special; //1 means pirated copy
 }
 
 Variant * App::GetVar( const string &keyName )
@@ -312,13 +342,14 @@ void App::OnEnterForeground()
 void App::OnExitApp(VariantList *pVarList)
 {
 	LogMsg("Exiting the app");
-
+    
 	OSMessage o;
 	o.m_type = OSMessage::MESSAGE_FINISH_APP;
 	BaseApp::GetBaseApp()->AddOSMessage(o);
 }
 
-const wchar_t* GetAppName() 
+///////////////////////////////////////////////////////
+const wchar_t* GetAppName()
 {
 	return L"RTPhysics";
 }
@@ -336,7 +367,6 @@ const char * GetBundleName()
 	const char * bundleName = "rtphysics";
 	return bundleName;
 }
-
 
 std::wstring StringToWstring(std::string str)
 {
@@ -398,4 +428,3 @@ void WideStrToUTF8(std::string& dest, wstring& src)
 		}
 	}
 }
-

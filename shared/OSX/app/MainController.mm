@@ -397,7 +397,7 @@
 	if (BaseApp::GetBaseApp()->IsInitted())
 	{
 		BaseApp::GetBaseApp()->OnEnterBackground();
-		BaseApp::GetBaseApp()->Kill();
+		//BaseApp::GetBaseApp()->Kill();
 	}
     self.openGLView->m_bQuitASAP = true;
 	

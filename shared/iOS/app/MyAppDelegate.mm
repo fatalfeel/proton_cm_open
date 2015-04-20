@@ -409,7 +409,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	[_glView onKill];
+	//[_glView onKill];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application 
