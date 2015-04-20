@@ -258,6 +258,7 @@ private:
     /** texture name */
     //CC_PROPERTY_READONLY(GLuint, m_uName, Name)
 	CC_PROPERTY(GLuint, m_uName, Name); //by stone
+	void deleteName();
 
     /** texture max S */
     CC_PROPERTY(GLfloat, m_fMaxS, MaxS)

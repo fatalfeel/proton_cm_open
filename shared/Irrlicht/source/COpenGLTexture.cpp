@@ -898,22 +898,9 @@ void COpenGLTexture::Reload()
 	{
 		m_bRequestReload = false;
 		
-		if (getName().getPath().find("#DefaultFont") != -1)
-		{
-#ifdef _IRR_COMPILE_WITH_GUI_
-			bIsFont = true;
-
-				//special case for the default font.  This is ugly but I don't know how else to do it...
-			io::path filename = "#DefaultFont";
-			io::IReadFile* file = io::createMemoryReadFile((void*)gui::BuiltInFontData, gui::BuiltInFontDataSize, filename, false);
-
-			// disable mipmaps+filtering
-			origImage= Driver->createImageFromFile(file);
-#else
-			assert(!"You have a font?  You may need _IRR_COMPILE_WITH_GUI_ defined.  Confused.");
-#endif
-		}
-		else if(getName().getPath().find(".lightmap.") != -1)
+		//SpriteBank->addTexture(Driver->addTexture(name, tmpImage));
+		//of CGUIFont::loadTexture will glGenTextures(1, &TextureName);
+		if(getName().getPath().find(".lightmap.") != -1)
 		{
 			pbuffer		= FileManager::GetFileManager()->Get(getName().getPath().c_str(), &fsize, false, false);
 			origImage	= Driver->createImageFromData(video::ECF_R8G8B8, lmapsize, pbuffer, false, true );

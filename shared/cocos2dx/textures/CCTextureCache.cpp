@@ -850,8 +850,6 @@ void VolatileTexture::removeTexture(CCTexture2D *t)
 
 void VolatileTexture::removeAllTextures() 
 {
-    GLuint texname;
-
 	std::list<VolatileTexture *>::iterator i = textures.begin();
     
 	while (i != textures.end())
@@ -860,13 +858,7 @@ void VolatileTexture::removeAllTextures()
         
 		if (vt->m_texture) 
         {
-            texname = vt->m_texture->getName();
-			
-			if( texname )
-			{
-				ccGLDeleteTexture(texname);
-				vt->m_texture->setName(0);
-			}
+			vt->m_texture->deleteName();
         }
     }
 }

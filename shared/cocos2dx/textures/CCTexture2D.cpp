@@ -113,6 +113,12 @@ void CCTexture2D::setName(GLuint uname)
 	m_uName = uname;
 }
 
+void CCTexture2D::deleteName()
+{
+	ccGLDeleteTexture(m_uName);
+	m_uName = 0;
+}
+
 CCSize CCTexture2D::getContentSize()
 {
 
