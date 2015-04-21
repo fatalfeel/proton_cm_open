@@ -4226,7 +4226,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = RT3DApp;
 				PROVISIONING_PROFILE = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
@@ -4354,7 +4354,7 @@
 					../shared/cocos2dx/kazmath/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "";
 				PROVISIONING_PROFILE = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
