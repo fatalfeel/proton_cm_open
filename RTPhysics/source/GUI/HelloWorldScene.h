@@ -11,12 +11,12 @@ public:
 	static CCScene* scene();
 
 	static HelloWorld* create();
-	
-	// a selector callback
-	virtual void menuCloseCallback(CCObject* pSender);
-
+		
 	virtual void onEnter();
 	virtual void onExit();
+
+	// a selector callback
+	void menuCallback(CCObject* pSender);
 		
 	CCSprite*	m_grossini;
 };

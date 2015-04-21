@@ -2,6 +2,7 @@
 #include "App.h"
 
 #include "cocos2d.h"
+#include "cocos-ext.h" //for test header
 using namespace cocos2d;
 #include "HelloWorldScene.h"
 
