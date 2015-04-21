@@ -1,8 +1,6 @@
 #ifndef ShaderMenu_h__
 #define ShaderMenu_h__
 
-#include "App.h"
-
 class CShaderMenu : public Entity
 {
 public:

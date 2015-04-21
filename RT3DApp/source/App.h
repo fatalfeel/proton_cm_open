@@ -13,7 +13,6 @@
 class App: public BaseApp
 {
 public:
-	
 	App();
 	virtual ~App();
 	
@@ -26,6 +25,7 @@ public:
 	void			OnUnloadSurfaces();
 	void			OnReLoadSurfaces();
 
+	Entity*			GetMainScene();
 	string			GetVersionString();
 	float			GetVersion();
 	int				GetBuild();
@@ -38,13 +38,19 @@ public:
 	virtual void	OnEnterForeground();
 	void			OnExitApp(VariantList *pVarList);
     void            SaveStuff();
-	Entity*			GetMainScene();
+	
+	int				getUnUsedIndex();
+	void			removeUsedIndexBit(int index);
+	void			HandleTouchesBegin(int num, int ids[], float xs[], float ys[]);
+	void			HandleTouchesMove(int num, int ids[], float xs[], float ys[]);
+    void			HandleTouchesEnd(int num, int ids[], float xs[], float ys[]);
 
 private:
 	bool			m_bDidPostInit;
-	//int				m_special;
+	//int			m_special;
 	int				m_connect_set; //by jesse stone
 	int				m_initagain;
+	unsigned int	m_indexBitsUsed;
 	
 	VariantDB		m_varDB;		//holds all data we want to save/load
 	Entity*			m_MenuEntity;	//by stone, high level shader used

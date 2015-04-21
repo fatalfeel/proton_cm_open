@@ -1,19 +1,18 @@
 #include "PlatformPrecomp.h"
-#include "Irrlicht/IrrlichtManager.h"
-using namespace irr;
-using namespace scene;
-using namespace io;
-
 #include "App.h"
+#include "Irrlicht/IrrlichtManager.h"
 #include "MainMenu.h"
 #include "Mesh3DMenu.h"
-
 #include "TerrainMenu.h"
 #include "QuakeMenu.h"
 #include "QuakeShaderMenu.h"
 #include "HouseMenu.h"
 #include "ShaderMenu.h"
 #include "StencilMenu.h"
+
+using namespace irr;
+using namespace scene;
+using namespace io;
 
 //by stone
 enum EnMenuSelect

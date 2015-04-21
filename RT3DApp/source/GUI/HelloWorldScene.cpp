@@ -1,8 +1,7 @@
-#include "PlatformEnums.h"
+#include "PlatformPrecomp.h"
 #include "App.h"
 
 #include "cocos2d.h"
-#include "cocos-ext.h" //for test header
 using namespace cocos2d;
 #include "HelloWorldScene.h"
 
@@ -37,6 +36,8 @@ HelloWorld* HelloWorld::create()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+	m_grossini = NULL;
+	
 	//////////////////////////////
 	// 1. super init first
 	if ( !CCLayer::init() )
@@ -61,43 +62,52 @@ bool HelloWorld::init()
 
 	// add the label as a child to this layer
 	this->addChild(pLabel, 0);
+
+	CCMenuItemImage*	pItem = CCMenuItemImage::create((GetBaseAppPath()+"game/btnplay-normal.png").c_str(),
+														(GetBaseAppPath()+"game/btnplay-pressed.png").c_str(),
+														this,
+														menu_selector(HelloWorld::menuCallback)	);
+										
+	// create menu, it'win_size an autorelease object
+	CCMenu* pMenu = CCMenu::create(pItem, NULL);
+	pMenu->setPosition( ccp(60, size.height - 50) );
+	this->addChild(pMenu, 1);
 		
 	return true;
-}
-
-void HelloWorld::menuCloseCallback(CCObject* pSender)
-{
-	CCDirector::sharedDirector()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
 }
 
 void HelloWorld::onEnter()
 {
 	CCLayer::onEnter();
-
-	CCActionInterval*	jump;
-    CCFiniteTimeAction*	action;
-	CCActionInterval*	rep;
-	CCSize				wsize	= CCDirector::sharedDirector()->getWinSize();
-	    // Or you can create an sprite using a filename. only PNG is supported now. Probably TIFF too
-    m_grossini = CCSprite::create((GetBaseAppPath()+"game/grossini.png").c_str());
-    m_grossini->retain();
-
-	jump	= CCJumpBy::create(2, CCPointMake(wsize.width-80,0), 50, 4);
-    action	= CCSequence::create( jump, jump->reverse(), NULL);
-	rep		= CCRepeat::create(action, -1);
-	
-	m_grossini->setPosition(CCPointMake(40, wsize.height/2));
-    m_grossini->runAction(rep);
-
-	this->addChild(m_grossini, 1);
 }
 
 void HelloWorld::onExit()
 {
-    m_grossini->release();
+    if( m_grossini )
+		m_grossini->release();
+	
 	CCLayer::onExit();
+}
+
+void HelloWorld::menuCallback(CCObject* pSender)
+{
+	CCActionInterval*	jump;
+    CCFiniteTimeAction*	action;
+	CCActionInterval*	rep;
+	CCSize				wsize	= CCDirector::sharedDirector()->getWinSize();
+	    
+	if( m_grossini == NULL )
+	{
+		m_grossini = CCSprite::create((GetBaseAppPath()+"game/grossini.png").c_str());
+		m_grossini->retain();
+
+		jump	= CCJumpBy::create(2, CCPointMake(wsize.width-80,0), 50, 4);
+		action	= CCSequence::create( jump, jump->reverse(), NULL);
+		rep		= CCRepeat::create(action, -1);
+		
+		m_grossini->setPosition(CCPointMake(40, wsize.height/2));
+		m_grossini->runAction(rep);
+
+		this->addChild(m_grossini, 2);
+	}
 }

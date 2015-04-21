@@ -5,18 +5,22 @@
  *
  */
 #include "PlatformPrecomp.h"
-#include "App.h"
 #include "Entity/EntityUtils.h"
 #include "Irrlicht/IrrlichtManager.h"
 #include "FileSystem/FileSystemZip.h"
+#include "App.h"
 
 #include "cocos2d.h"
 using namespace cocos2d;
+
 #include "GUI/MainMenu.h"
 #include "GUI/HelloWorldScene.h"
 
-//by jesse stone
-App* g_pApp = NULL;
+#define CC_MAX_TOUCHES  5
+
+App*				g_pApp = NULL;
+static CCDictionary s_TouchesIntergerDict;
+static CCTouch*		s_pTouches[CC_MAX_TOUCHES] = { NULL };
 
 irr::video::E_DRIVER_TYPE AppGetOGLESType()
 {
@@ -95,6 +99,7 @@ App::App()
 {
 	m_initagain		= 0;
 	m_connect_set   = 0;
+	m_indexBitsUsed = 0;
 
 	m_bDidPostInit	= false;
 	m_MenuEntity	= NULL;
@@ -346,6 +351,181 @@ void App::OnExitApp(VariantList *pVarList)
 	OSMessage o;
 	o.m_type = OSMessage::MESSAGE_FINISH_APP;
 	BaseApp::GetBaseApp()->AddOSMessage(o);
+}
+
+int App::getUnUsedIndex()
+{
+    int i;
+    int temp = m_indexBitsUsed;
+
+    for (i = 0; i < CC_MAX_TOUCHES; i++) 
+	{
+        if (! (temp & 0x00000001)) 
+		{
+            m_indexBitsUsed |= (1 <<  i);
+            return i;
+        }
+
+        temp >>= 1;
+    }
+
+    // all bits are used
+    return -1;
+}
+
+void App::removeUsedIndexBit(int index)
+{
+    if (index < 0 || index >= CC_MAX_TOUCHES) 
+    {
+        return;
+    }
+
+    unsigned int temp = 1 << index;
+    temp = ~temp;
+    m_indexBitsUsed &= temp;
+}
+
+void App::HandleTouchesBegin(int num, int ids[], float xs[], float ys[])
+{
+	int			i;
+	int			id;
+	int			nUnusedIndex;
+    float		x;
+    float		y;
+	CCSet		set;
+	CCTouch*	pTouch;
+	CCInteger*	pIndex;
+	CCInteger*	pInterObj;
+
+    for (i = 0; i < num; ++i)
+    {
+        id	= ids[i];
+        x	= xs[i];
+        y	= ys[i];
+
+        pIndex = (CCInteger*)s_TouchesIntergerDict.objectForKey(id);
+        nUnusedIndex = 0;
+
+        // it is a new touch
+        if (pIndex == NULL)
+        {
+            nUnusedIndex = getUnUsedIndex();
+
+            // The touches is more than MAX_TOUCHES ?
+            if (nUnusedIndex == -1) 
+			{
+                CCLOG("The touches is more than MAX_TOUCHES, nUnusedIndex = %d", nUnusedIndex);
+                continue;
+            }
+
+            pTouch = s_pTouches[nUnusedIndex] = new CCTouch();
+			pTouch->setTouchInfo( nUnusedIndex, x, y );
+                        
+            pInterObj = new CCInteger(nUnusedIndex);
+            s_TouchesIntergerDict.setObject(pInterObj, id);
+            set.addObject(pTouch);
+            pInterObj->release();
+        }
+    }
+
+    if (set.count() > 0)
+    {
+        CCDirector::sharedDirector()->getTouchDispatcher()->touchesBegan(&set, NULL);
+    }
+}
+
+void App::HandleTouchesMove(int num, int ids[], float xs[], float ys[])
+{
+	int			i;
+	int			id;
+    float		x;
+    float		y;
+	CCSet		set;
+	CCTouch*	pTouch;
+	CCInteger*	pIndex;
+
+    for (i = 0; i < num; ++i)
+    {
+        id	= ids[i];
+        x	= xs[i];
+        y	= ys[i];
+
+        pIndex = (CCInteger*)s_TouchesIntergerDict.objectForKey(id);
+        if (pIndex == NULL) 
+		{
+            CCLOG("if the index doesn't exist, it is an error");
+            continue;
+        }
+
+        CCLOGINFO("Moving touches with id: %d, x=%f, y=%f", id, x, y);
+        pTouch = s_pTouches[pIndex->getValue()];
+        
+		if (pTouch)
+        {
+			pTouch->setTouchInfo(pIndex->getValue(), x, y);
+            set.addObject(pTouch);
+        }
+        else
+        {
+            // It is error, should return.
+            CCLOG("Moving touches with id: %d error", id);
+            return;
+        }
+    }
+
+    if (set.count() > 0)
+    {
+        CCDirector::sharedDirector()->getTouchDispatcher()->touchesMoved(&set, NULL);
+    }
+}
+
+void App::HandleTouchesEnd(int num, int ids[], float xs[], float ys[])
+{
+	int			i;
+	int			id;
+    float		x;
+    float		y;
+	CCSet		set;
+	CCTouch*	pTouch;
+	CCInteger*	pIndex;
+	
+	for (i = 0; i < num; ++i)
+    {
+        id	= ids[i];
+        x	= xs[i];
+        y	= ys[i];
+
+        pIndex = (CCInteger*)s_TouchesIntergerDict.objectForKey(id);
+        if (pIndex == NULL)
+        {
+            CCLOG("if the index doesn't exist, it is an error");
+            continue;
+        }
+        
+        pTouch = s_pTouches[pIndex->getValue()];        
+		if (pTouch)
+        {
+            CCLOGINFO("Ending touches with id: %d, x=%f, y=%f", id, x, y);
+			pTouch->setTouchInfo(pIndex->getValue(), x, y);
+
+            set.addObject(pTouch);
+
+            // release the object
+            pTouch->release();
+            s_pTouches[pIndex->getValue()] = NULL;
+            removeUsedIndexBit(pIndex->getValue());
+
+            s_TouchesIntergerDict.removeObjectForKey(id);
+        } 
+        else
+        {
+            CCLOG("Ending touches with id: %d error", id);
+            return;
+        } 
+
+    }
+
+    CCDirector::sharedDirector()->getTouchDispatcher()->touchesEnded(&set, NULL);
 }
 
 ///////////////////////////////////////////////////////
