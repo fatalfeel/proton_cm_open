@@ -50,7 +50,7 @@ bool HelloWorld::init()
 	// 3. add your codes below...
 	std::string		e_str;
 	std::wstring	w_str	= L"Hello";
-	CCSize			size	= CCDirector::sharedDirector()->getWinSize();
+	CCSize			wsize	= CCDirector::sharedDirector()->getWinSize();
 
 	WideStrToUTF8(e_str, w_str);
 	
@@ -59,7 +59,7 @@ bool HelloWorld::init()
 	// ask director the window size
 	
 	// position the label on the center of the screen
-	pLabel->setPosition( ccp(size.width / 2, size.height - 50) );
+	pLabel->setPosition( ccp(wsize.width / 2, wsize.height - 50) );
 
 	// add the label as a child to this layer
 	this->addChild(pLabel, 0);
@@ -71,7 +71,7 @@ bool HelloWorld::init()
 										
 	// create menu, it'win_size an autorelease object
 	CCMenu* pMenu = CCMenu::create(pItem, NULL);
-	pMenu->setPosition( ccp(60, size.height - 50) );
+	pMenu->setPosition( ccp(60, wsize.height - 50) );
 	this->addChild(pMenu, 1);
 		
 	return true;
