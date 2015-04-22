@@ -9,8 +9,6 @@
 bool g_isLoggerInitted	= false;
 bool g_isBaseAppInitted	= false;
 
-//by jesse stone
-extern App* g_pApp;
 
 TouchTrackInfo::TouchTrackInfo()
 {

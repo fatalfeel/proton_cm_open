@@ -912,6 +912,7 @@ void AppInit(JNIEnv*  env)
 
 void AppOnTouch( JNIEnv*  env, jobject jobj,jint action, jfloat x, jfloat y, jint finger)
 {
+	int							keyid;
 	static AndroidMessageCache	am;
 	eMessageType				messageType = MESSAGE_TYPE_UNKNOWN;
 	
@@ -933,6 +934,9 @@ void AppOnTouch( JNIEnv*  env, jobject jobj,jint action, jfloat x, jfloat y, jin
 			ev.MouseInput.Y				= y;
 			IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
 #endif
+			keyid = 0;
+			g_pApp->HandleTouchesBegin(1, &keyid, &x, &y);
+
 			break;
 
 		case ACTION_UP:
@@ -947,10 +951,15 @@ void AppOnTouch( JNIEnv*  env, jobject jobj,jint action, jfloat x, jfloat y, jin
 			ev.MouseInput.Y				= y;
 			IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
 #endif
+			keyid = 0;
+			g_pApp->HandleTouchesEnd(1, &keyid, &x, &y);
 			break;
 
 		case ACTION_MOVE:
 			messageType = MESSAGE_TYPE_GUI_CLICK_MOVE;
+
+			keyid = 0;
+			g_pApp->HandleTouchesMove(1, &keyid, &x, &y);
 			break;
 
 	default:
