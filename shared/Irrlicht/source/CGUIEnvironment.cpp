@@ -134,11 +134,13 @@ CGUIEnvironment::~CGUIEnvironment()
 
 	// delete all sprite banks
 	for (i=0; i<Banks.size(); ++i)
+	{
 		if (Banks[i].Bank)
 			Banks[i].Bank->drop();
+	}
 	Banks.clear(); //by Stone
 
-	// drop skin
+	// drop skin will delete remain Fonts and Banks
 	if (CurrentSkin)
 	{
 		CurrentSkin->drop();
@@ -176,7 +178,9 @@ void CGUIEnvironment::loadBuiltInFont()
 	io::IReadFile* file = FileSystem->createMemoryReadFile(BuiltInFontData,
 				BuiltInFontDataSize, DefaultFontName, false);
 
+	//CGUIFont have new SpriteBank from Environment->addEmptySpriteBank
 	CGUIFont* font = new CGUIFont(this, DefaultFontName );
+
 	if (!font->load(file))
 	{
 		os::Printer::log("Error: Could not load built-in Font. Did you compile without the BMP loader?", ELL_ERROR);
