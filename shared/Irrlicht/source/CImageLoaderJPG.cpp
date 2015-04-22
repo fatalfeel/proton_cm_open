@@ -148,9 +148,9 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 
 	// allocate and initialize JPEG decompression object
 	struct jpeg_decompress_struct	cinfo;
+	struct irr_jpeg_error_mgr		jerr;
 	// specify data source
 	struct jpeg_source_mgr			jsrc;
-	struct irr_jpeg_error_mgr		jerr;
 
 	//We have to set up the error handler first, in case the initialization
 	//step fails.  (Unlikely, but it could happen if you are out of memory.)
@@ -182,7 +182,6 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 
 	// Now we can initialize the JPEG decompression object.
 	jpeg_create_decompress(&cinfo);
-
 	
 	// Set up data pointer
 	jsrc.bytes_in_buffer = file->getSize();
