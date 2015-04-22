@@ -1277,10 +1277,6 @@ import android.view.View.OnClickListener;
 	public static native void nativeOnAccelerometerUpdate(float x, float y, float z);
 	public static native void nativeSendGUIEx(int messageType, int parm1, int parm2, int finger);
 	public static native void nativeSendGUIStringEx(int messageType, int parm1, int parm2, int finger, String s);
-	static 
-    {
-		//System.loadLibrary(dllname);
-    }
 }
 
 class AppGLSurfaceView extends GLSurfaceView
@@ -1346,10 +1342,13 @@ class AppGLSurfaceView extends GLSurfaceView
 		} 
 		else
 		{
-			float x = e.getX(); float y = e.getY();
-     		int finger = 0; //planning ahead for multi touch
+			int		finger	= 0; //planning ahead for multi touch
+			float	x 		= e.getX(); 
+			float	y		= e.getY();
+     		
 			nativeOnTouch(e.getAction(), x,y,finger);
 		}
+		
 		return true;
     }
     

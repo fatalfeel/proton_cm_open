@@ -1318,10 +1318,13 @@ class AppGLSurfaceView extends GLSurfaceView
 		} 
 		else
 		{
-			float x = e.getX(); float y = e.getY();
-     		int finger = 0; //planning ahead for multi touch
-			nativeOnTouch(e.getAction(), x,y,finger);
+			int		finger	= 0; //planning ahead for multi touch
+			float	x 		= e.getX(); 
+			float	y		= e.getY();
+     		
+			nativeOnTouch(e.getAction(), x, y, finger);
 		}
+		
 		return true;
     }
     

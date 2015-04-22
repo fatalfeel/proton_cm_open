@@ -19,6 +19,7 @@ public:
 	void menuCallback(CCObject* pSender);
 		
 	CCSprite*	m_grossini;
+	int			m_runact;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

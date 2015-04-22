@@ -37,9 +37,9 @@ HelloWorld* HelloWorld::create()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-	m_grossini = NULL;
+	m_runact = 0;
 	
-	//////////////////////////////
+//////////////////////////////
 	// 1. super init first
 	if ( !CCLayer::init() )
 	{
@@ -73,6 +73,12 @@ bool HelloWorld::init()
 	CCMenu* pMenu = CCMenu::create(pItem, NULL);
 	pMenu->setPosition( ccp(60, wsize.height - 50) );
 	this->addChild(pMenu, 1);
+
+////////////////////////
+	//in android jni 
+	//glGenTextures can not create on onTouchEvent of GLSurfaceView
+	m_grossini = CCSprite::create((GetBaseAppPath()+"game/grossini.png").c_str());
+	m_grossini->retain();
 		
 	return true;
 }
@@ -95,16 +101,15 @@ void HelloWorld::menuCallback(CCObject* pSender)
 	CCActionInterval*	jump;
     CCFiniteTimeAction*	action;
 	CCActionInterval*	rep;
-	CCSize				wsize	= CCDirector::sharedDirector()->getWinSize();
+	CCSize				wsize = CCDirector::sharedDirector()->getWinSize();
 	    
-	if( m_grossini == NULL )
+	if( m_runact <= 0 )
 	{
-		m_grossini = CCSprite::create((GetBaseAppPath()+"game/grossini.png").c_str());
-		m_grossini->retain();
+		m_runact	= 1;
 
-		jump	= CCJumpBy::create(2, CCPointMake(wsize.width-80,0), 50, 4);
-		action	= CCSequence::create( jump, jump->reverse(), NULL);
-		rep		= CCRepeat::create(action, -1);
+		jump		= CCJumpBy::create(2, CCPointMake(wsize.width-80,0), 50, 4);
+		action		= CCSequence::create( jump, jump->reverse(), NULL);
+		rep			= CCRepeat::create(action, -1);
 		
 		m_grossini->setPosition(CCPointMake(40, wsize.height/2));
 		m_grossini->runAction(rep);
