@@ -3,7 +3,7 @@ Proton_CM cross platform 2D 3D engine open source
 1.
 
 (a.)
-Proton CM Open implement Irrlicht and Bullet Physics with OpenGL ES1.1 ES2.0
+Proton CM Open implement Irrlicht, Cocos2dx, Bullet Physics with OpenGL ES1.1 ES2.0
 
 (b.)
 Full open source
@@ -19,10 +19,6 @@ GLSL shading language full control
 
 2.
 
-This Project is Proton CM Open + Cocos2D on OGLES1.1 OGLES2.0
-
-3.
-
 First run need to do
 
 On Win32 or Android --->
@@ -35,7 +31,7 @@ chmod 777 xxxxxx/media/update_media.sh
 
 xxxxxx/media/update_media.sh
 
-4.
+3.
 
 Switch between OGLES1 and OGLES2
 
@@ -63,17 +59,17 @@ xxxxxx/bin/update_OGLES1/2.bat will help you do it.
 
 When meet some texture black in win32, its libGLESv2.dll simulator's problem.
 
-5.
+4.
 
 When debug NDK c++ on Android, please set
 
 android:installLocation="internalOnly" of AndroidManifest.xml
 
-6.
+5.
 Demo screenshots
 
 https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
 
-7.
+6.
 
 The Brother site is https://github.com/fatalfeel/proton_sdk_source
