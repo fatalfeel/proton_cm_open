@@ -370,18 +370,18 @@ return count;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
   	// Enumerate through all the touch objects.
+    int						keyid;
+    float                   cx,cy;
+    float                   scale       = 1.0f;
     UITouch*                touch       = [touches anyObject];
+    CGPoint                 touchPoint  = [touch locationInView:self];
+    UIInterfaceOrientation  orientation = [UIDevice currentDevice].orientation;
 
 #ifdef _IRR_COMPILE_WITH_GUI_ 	
-	CGPoint                 touchPoint  = [touch locationInView:self];
-    UIInterfaceOrientation  orientation = [UIDevice currentDevice].orientation;
-    irr::SEvent             ev;
-    
-    float scale = 1.0f;
+    irr::SEvent ev;
     
     //if ([self respondsToSelector:@selector(setContentScaleFactor:)])
     //    scale = [[UIScreen mainScreen] scale];
-    
     if (orientation == UIInterfaceOrientationLandscapeLeft
         ||
         orientation == UIInterfaceOrientationLandscapeRight)
@@ -403,6 +403,22 @@ return count;
 	ev.MouseInput.ButtonStates = 0;
     IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
 #endif	
+    
+    keyid = 0;
+    if (orientation == UIInterfaceOrientationLandscapeLeft
+        ||
+        orientation == UIInterfaceOrientationLandscapeRight)
+    {
+        //Landscape
+        cx = touchPoint.y*scale;
+        cy = touchPoint.x*scale;
+    }
+    else
+    {
+        cx = touchPoint.x*scale;
+        cy = touchPoint.y*scale;
+    }
+    g_pApp->HandleTouchesBegin(1, &keyid, &cx, &cy);
 
 	for (touch in touches)
 	{
@@ -434,18 +450,18 @@ return count;
 //by stone
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    int						keyid;
+    float                   cx,cy;
+    float                   scale       = 1.0f;
     UITouch*                touch       = [touches anyObject];
+    CGPoint                 touchPoint  = [touch locationInView:self];
+    UIInterfaceOrientation  orientation = [UIDevice currentDevice].orientation;
 	
 #ifdef _IRR_COMPILE_WITH_GUI_ 	
-	CGPoint                 touchPoint  = [touch locationInView:self];
-    UIInterfaceOrientation  orientation = [UIDevice currentDevice].orientation;
-    irr::SEvent             ev;
-    
-    float scale = 1.0f;
+    irr::SEvent ev;
     
     //if ([self respondsToSelector:@selector(setContentScaleFactor:)])
     //    scale = [[UIScreen mainScreen] scale];
-    
     if (orientation == UIInterfaceOrientationLandscapeLeft
         ||
         orientation == UIInterfaceOrientationLandscapeRight)
@@ -465,7 +481,23 @@ return count;
            
 	ev.MouseInput.ButtonStates = 0;
 	IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
-#endif	
+#endif
+    
+    keyid = 0;
+    if (orientation == UIInterfaceOrientationLandscapeLeft
+        ||
+        orientation == UIInterfaceOrientationLandscapeRight)
+    {
+        //Landscape
+        cx = touchPoint.y*scale;
+        cy = touchPoint.x*scale;
+    }
+    else
+    {
+        cx = touchPoint.x*scale;
+        cy = touchPoint.y*scale;
+    }
+    g_pApp->HandleTouchesEnd(1, &keyid, &cx, &cy);
     
     // Enumerate through all the touch objects.
 	for (touch in touches)
@@ -496,8 +528,10 @@ return count;
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  	// Enumerate through all the touch objects.
-	for (UITouch *touch in touches)
+    UITouch*    touch = [touches anyObject];
+
+    // Enumerate through all the touch objects.
+	for (touch in touches)
 	{
 		//found a touch.  Is it already on our list?
 		int fingerID = GetFingerTrackIDByTouch(touch);
@@ -522,11 +556,34 @@ return count;
 	}	
 }
 
-
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   // Enumerate through all the touch objects.
-	for (UITouch *touch in touches)
+    // Enumerate through all the touch objects.
+    int						keyid;
+    float                   cx,cy;
+    float                   scale       = 1.0f;
+    UITouch*                touch       = [touches anyObject];
+    CGPoint                 touchPoint  = [touch locationInView:self];
+    UIInterfaceOrientation  orientation = [UIDevice currentDevice].orientation;
+    
+    keyid = 0;
+    
+    if (orientation == UIInterfaceOrientationLandscapeLeft
+        ||
+        orientation == UIInterfaceOrientationLandscapeRight)
+    {
+        //Landscape
+        cx = touchPoint.y*scale;
+        cy = touchPoint.x*scale;
+    }
+    else
+    {
+        cx = touchPoint.x*scale;
+        cy = touchPoint.y*scale;
+    }
+    g_pApp->HandleTouchesMove(1, &keyid, &cx, &cy);
+    
+    for (touch in touches)
 	{
 	
 		//found a touch.  Is it already on our list?
