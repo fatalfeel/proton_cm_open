@@ -93,7 +93,7 @@ namespace irr
 		You will not have to drop the pointer to the loaded texture,
 		because the name of the method does not start with 'create'.
 		The texture is stored somewhere by the driver. */
-		void grab() const 
+		void grab() const
 		{ 
 			++ReferenceCounter; 
 		}
