@@ -64,7 +64,7 @@ When debug NDK c++ on Android, please set
 
 android:installLocation="internalOnly" of AndroidManifest.xml
 
-5. 
+5.
 Enable or Disable Gui
 
 Find define _IRR_COMPILE_WITH_GUI_ of IrrCompileConfig.h
