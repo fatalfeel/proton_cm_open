@@ -514,10 +514,12 @@ CCSize CCDirector::getVisibleSize()
     {
         return m_pobOpenGLView->getVisibleSize();
     }
-    else*/
+    else
     {
         return CCSizeZero;
-    }
+    }*/
+
+	return this->getWinSize();
 }
 
 CCPoint CCDirector::getVisibleOrigin()
