@@ -65,11 +65,17 @@ When debug NDK c++ on Android, please set
 
 android:installLocation="internalOnly" of AndroidManifest.xml
 
-5.
+5. Enable or Disable Gui
+
+Find define _IRR_COMPILE_WITH_GUI_ of IrrCompileConfig.h
+
+Enable or disable it, will use irrlicht GUI or not
+
+6.
 Demo screenshots
 
 https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
 
-6.
+7.
 
 The Brother site is https://github.com/fatalfeel/proton_sdk_source
