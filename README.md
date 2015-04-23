@@ -60,12 +60,12 @@ xxxxxx/bin/update_OGLES1/2.bat will help you do it.
 When meet some texture black in win32, its libGLESv2.dll simulator's problem.
 
 4.
-
 When debug NDK c++ on Android, please set
 
 android:installLocation="internalOnly" of AndroidManifest.xml
 
-5. Enable or Disable Gui
+5. 
+Enable or Disable Gui
 
 Find define _IRR_COMPILE_WITH_GUI_ of IrrCompileConfig.h
 
