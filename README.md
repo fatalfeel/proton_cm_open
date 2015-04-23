@@ -18,7 +18,6 @@ All platform can play music and sound easily
 GLSL shading language full control
 
 2.
-
 First run need to do
 
 On Win32 or Android --->
@@ -32,7 +31,6 @@ chmod 777 xxxxxx/media/update_media.sh
 xxxxxx/media/update_media.sh
 
 3.
-
 Switch between OGLES1 and OGLES2
 
 (a.) Find define of IrrCompileConfig.h
