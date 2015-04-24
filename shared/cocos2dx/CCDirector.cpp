@@ -519,7 +519,12 @@ CCSize CCDirector::getVisibleSize()
         return CCSizeZero;
     }*/
 
-	return this->getWinSize();
+    CCSize wsize = this->getWinSize();
+    
+    //wsize.width  = wsize.width  / m_fContentScaleFactor;
+    //wsize.height = wsize.height / m_fContentScaleFactor;
+    
+    return wsize;
 }
 
 CCPoint CCDirector::getVisibleOrigin()

@@ -47,7 +47,10 @@ bool GuiScroll::init()
 	CCSpriteFrameCache*	pCache;
 	CCLayer*			pLayer;
 	bool				bRet		= false;
-	char				helpstr[64] = {0};
+	char				pngstr[64]  = {0};
+    
+    //ratio is special for ios
+    float               ratio       = CCDirector::sharedDirector()->getContentScaleFactor();
 
 	m_nCurPage = 1;
 
@@ -58,16 +61,16 @@ bool GuiScroll::init()
 		pLayer = CCLayer::create();
 		for (i=1; i<=3; i++)
 		{
-			sprintf(helpstr,"bgscroll.png");
+			sprintf(pngstr,"bgscroll.png");
 			file_name	 = (GetBaseAppPath()+"interface/").c_str();
-			file_name	+= helpstr;
+			file_name	+= pngstr;
 		   
 			pSprite = CCSprite::create(file_name.c_str());
-			pSprite->setPosition(ccp( ((float)i - 0.5f)*visibleSize.width, visibleSize.height/2.0f+100.0f ));
+			pSprite->setPosition(ccp( ((float)i - 0.5f)*visibleSize.width, visibleSize.height/2.0f));
 			pLayer->addChild(pSprite);
 		}
 				
-		m_pScrollView = CCScrollView::create(CCSizeMake(visibleSize.width, visibleSize.height), pLayer);
+		m_pScrollView = CCScrollView::create(CCSizeMake(visibleSize.width*ratio, visibleSize.height*ratio), pLayer);
 		m_pScrollView->setContentOffset(CCPointZero);
 		m_pScrollView->setTouchEnabled(false);
 		m_pScrollView->setDelegate(this);
@@ -75,8 +78,8 @@ bool GuiScroll::init()
 		this->addChild(m_pScrollView,1);
 
 		pCache = CCSpriteFrameCache::sharedSpriteFrameCache();
-		pCache->addSpriteFrame(CCSpriteFrame::create((GetBaseAppPath()+"interface/button_normal.png").c_str(),CCRectMake(0, 0, 32, 32)),"button_normal.png");
-		pCache->addSpriteFrame(CCSpriteFrame::create((GetBaseAppPath()+"interface/button_selected.png").c_str(),CCRectMake(0, 0, 32, 32)),"button_selected.png");
+		pCache->addSpriteFrame(CCSpriteFrame::create((GetBaseAppPath()+"interface/button_normal.png").c_str(),CCRectMake(0, 0, 32/ratio, 32/ratio)),"button_normal.png");
+		pCache->addSpriteFrame(CCSpriteFrame::create((GetBaseAppPath()+"interface/button_selected.png").c_str(),CCRectMake(0, 0, 32/ratio, 32/ratio)),"button_selected.png");
 		
 		for (i=1; i<=3; i++)
 		{

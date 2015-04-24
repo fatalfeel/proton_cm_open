@@ -6,7 +6,6 @@
 .txt
 .svn
 .psd
-.png
 .fbx
 .tmp
 .fnt

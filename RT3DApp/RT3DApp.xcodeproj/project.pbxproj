@@ -336,6 +336,7 @@
 		B753EB63198F773F0070F0D5 /* StencilMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B753EB61198F773F0070F0D5 /* StencilMenu.cpp */; };
 		B75647B51823AE5A00B42188 /* CProtonReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B75647B31823AE5A00B42188 /* CProtonReader.cpp */; };
 		B78CDB361802820400C202B0 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = B78CDB341802820400C202B0 /* zip.c */; };
+		B7A42E0B1AEA328A00B1078C /* GuiScroll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A42E091AEA328A00B1078C /* GuiScroll.cpp */; };
 		B7BD02D81ABC1D830053A19A /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7BD02D61ABC1D830053A19A /* HelloWorldScene.cpp */; };
 		B7BD03461ABC24330053A19A /* c14n.c in Sources */ = {isa = PBXBuildFile; fileRef = B7BD02DD1ABC24320053A19A /* c14n.c */; };
 		B7BD03471ABC24330053A19A /* catalog.c in Sources */ = {isa = PBXBuildFile; fileRef = B7BD02DF1ABC24320053A19A /* catalog.c */; };
@@ -1339,6 +1340,8 @@
 		B78C6CD418153EEB00FEC242 /* BuiltInFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuiltInFont.h; path = ../shared/Irrlicht/source/BuiltInFont.h; sourceTree = "<group>"; };
 		B78CDB341802820400C202B0 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = util/unzip/zip.c; sourceTree = "<group>"; };
 		B78CDB351802820400C202B0 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = util/unzip/zip.h; sourceTree = "<group>"; };
+		B7A42E091AEA328A00B1078C /* GuiScroll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GuiScroll.cpp; path = source/GUI/GuiScroll.cpp; sourceTree = "<group>"; };
+		B7A42E0A1AEA328A00B1078C /* GuiScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuiScroll.h; path = source/GUI/GuiScroll.h; sourceTree = "<group>"; };
 		B7BD02D61ABC1D830053A19A /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = source/GUI/HelloWorldScene.cpp; sourceTree = "<group>"; };
 		B7BD02D71ABC1D830053A19A /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = source/GUI/HelloWorldScene.h; sourceTree = "<group>"; };
 		B7BD02DC1ABC24320053A19A /* acconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = acconfig.h; path = libxml/acconfig.h; sourceTree = "<group>"; };
@@ -1868,6 +1871,10 @@
 		5D4760860FBB1D04008400E3 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				5D4760830FBB1CFF008400E3 /* MainMenu.cpp */,
+				5D4760840FBB1CFF008400E3 /* MainMenu.h */,
+				B7A42E091AEA328A00B1078C /* GuiScroll.cpp */,
+				B7A42E0A1AEA328A00B1078C /* GuiScroll.h */,
 				B7BD02D61ABC1D830053A19A /* HelloWorldScene.cpp */,
 				B7BD02D71ABC1D830053A19A /* HelloWorldScene.h */,
 				5DC44E0710C3D8C000F67CC5 /* HouseMenu.cpp */,
@@ -1884,8 +1891,6 @@
 				B753EB62198F773F0070F0D5 /* StencilMenu.h */,
 				5D59D38E10B6E08600BA1F75 /* TerrainMenu.cpp */,
 				5D59D38F10B6E08600BA1F75 /* TerrainMenu.h */,
-				5D4760830FBB1CFF008400E3 /* MainMenu.cpp */,
-				5D4760840FBB1CFF008400E3 /* MainMenu.h */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -4174,6 +4179,7 @@
 				B7DB922D1AC9202000A9B856 /* CCVertex.cpp in Sources */,
 				B7322136183CC04900DB39B1 /* CGUIMeshViewer.cpp in Sources */,
 				B7BD036D1ABC24330053A19A /* xmlmodule.c in Sources */,
+				B7A42E0B1AEA328A00B1078C /* GuiScroll.cpp in Sources */,
 				B7322137183CC04900DB39B1 /* CGUIMessageBox.cpp in Sources */,
 				B7BD03561ABC24330053A19A /* nanohttp.c in Sources */,
 				B7DB923D1AC9202000A9B856 /* CCTMXObjectGroup.cpp in Sources */,
