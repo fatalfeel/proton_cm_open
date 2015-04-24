@@ -34,6 +34,14 @@ HelloWorld* HelloWorld::create()
 	return NULL;
 } 
 
+HelloWorld::HelloWorld()
+{
+}
+
+HelloWorld::~HelloWorld()
+{
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {

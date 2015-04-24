@@ -36,6 +36,14 @@ GuiScroll* GuiScroll::create()
 	return NULL;
 } 
 
+GuiScroll::GuiScroll()
+{
+}
+
+GuiScroll::~GuiScroll()
+{
+}
+
 // on "init" you need to initialize your instance
 bool GuiScroll::init()
 {
@@ -71,6 +79,8 @@ bool GuiScroll::init()
 		}
 				
 		m_pScrollView = CCScrollView::create(CCSizeMake(visibleSize.width*ratio, visibleSize.height*ratio), pLayer);
+		m_pScrollView->retain();
+
 		m_pScrollView->setContentOffset(CCPointZero);
 		m_pScrollView->setTouchEnabled(false);
 		m_pScrollView->setDelegate(this);
@@ -83,7 +93,7 @@ bool GuiScroll::init()
 		
 		for (i=1; i<=3; i++)
 		{
-		   CCSprite* pPoint = CCSprite::createWithSpriteFrameName("button_normal.png");
+		   pPoint = CCSprite::createWithSpriteFrameName("button_normal.png");
 		   pPoint->setTag(i);
 		   pPoint->setPosition(ccp( (visibleSize.width/2 - pPoint->getContentSize().width)+ pPoint->getContentSize().width * (i-1), 30));
 		   this->addChild(pPoint,1);
@@ -98,29 +108,22 @@ bool GuiScroll::init()
 	return bRet;
 }
 
-void GuiScroll::scrollViewDidScroll(cocos2d::extension::CCScrollView *view)
-{
-	CCLOG("scroll");
-}
-
-void GuiScroll::scrollViewDidZoom(cocos2d::extension::CCScrollView *view)
-{
-	CCLOG("zoom");
-}
-
 void GuiScroll::onEnter()
 {
 	CCLayer::onEnter();
-	
+
 	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 1, false);
 }
 
 void GuiScroll::onExit()
 {
 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-	CCLayer::onExit();
-	
 	CCSpriteFrameCache::sharedSpriteFrameCache()->removeUnusedSpriteFrames();
+
+	if( m_pScrollView )
+		m_pScrollView->release();
+	
+	CCLayer::onExit();
 }
 
 bool GuiScroll::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
@@ -152,6 +155,16 @@ void GuiScroll::ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEv
 	{
 		adjustScrollView(distance);
 	}
+}
+
+void GuiScroll::scrollViewDidScroll(cocos2d::extension::CCScrollView *view)
+{
+	CCLOG("scroll");
+}
+
+void GuiScroll::scrollViewDidZoom(cocos2d::extension::CCScrollView *view)
+{
+	CCLOG("zoom");
 }
 
 void GuiScroll::adjustScrollView(float offset)

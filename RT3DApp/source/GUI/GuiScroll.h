@@ -7,11 +7,10 @@ public:
     static CCScene*		scene();
 	static GuiScroll*	create();
 
-	virtual bool init();
-    
-	void scrollViewDidScroll(CCScrollView* view);
-	void scrollViewDidZoom(CCScrollView* view);
+	GuiScroll();
+	~GuiScroll();
 
+	virtual bool init();
 	virtual void onEnter();
 	virtual void onExit();
 
@@ -20,8 +19,11 @@ public:
 	virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
 	virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
 
+	void scrollViewDidScroll(CCScrollView* view);
+	void scrollViewDidZoom(CCScrollView* view);
+	void adjustScrollView(float offset);
+
 private:
-	 void			adjustScrollView(float offset);
 	 CCScrollView*	m_pScrollView;
 	 CCPoint		m_touchPoint;
 	 int			m_nCurPage;
