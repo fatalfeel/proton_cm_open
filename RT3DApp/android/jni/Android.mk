@@ -241,7 +241,8 @@ $(IRRSRC)/COGLES2Driver.cpp $(IRRSRC)/COGLES2ExtensionHandler.cpp $(IRRSRC)/COGL
 \
 $(APP)/App.cpp \
 $(APP)/GUI/MainMenu.cpp $(APP)/GUI/Mesh3DMenu.cpp $(APP)/GUI/QuakeMenu.cpp $(APP)/GUI/QuakeShaderMenu.cpp $(APP)/GUI/HouseMenu.cpp \
-$(APP)/GUI/TerrainMenu.cpp $(APP)/GUI/ShaderMenu.cpp $(APP)/GUI/StencilMenu.cpp $(APP)/GUI/HelloWorldScene.cpp \
+$(APP)/GUI/TerrainMenu.cpp $(APP)/GUI/ShaderMenu.cpp $(APP)/GUI/StencilMenu.cpp \
+$(APP)/GUI/HelloWorldScene.cpp $(APP)/GUI/GuiScroll.cpp \
 $(APP)/Component/EventControlComponent.cpp
 
 LOCAL_STATIC_LIBRARIES := cocos2dx

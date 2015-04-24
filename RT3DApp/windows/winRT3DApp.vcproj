@@ -458,6 +458,14 @@
 				Name="GUI"
 				>
 				<File
+					RelativePath="..\source\GUI\GuiScroll.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\source\GUI\GuiScroll.h"
+					>
+				</File>
+				<File
 					RelativePath="..\source\GUI\HelloWorldScene.cpp"
 					>
 					<FileConfiguration
@@ -465,7 +473,7 @@
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"
+							UsePrecompiledHeader="2"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -473,7 +481,7 @@
 						>
 						<Tool
 							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"
+							UsePrecompiledHeader="2"
 						/>
 					</FileConfiguration>
 				</File>

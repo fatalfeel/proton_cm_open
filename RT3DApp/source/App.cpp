@@ -11,10 +11,13 @@
 #include "App.h"
 
 #include "cocos2d.h"
+#include "cocos-ext.h"
 using namespace cocos2d;
+using namespace cocos2d::extension;
 
 #include "GUI/MainMenu.h"
 #include "GUI/HelloWorldScene.h"
+#include "GUI/GuiScroll.h"
 
 #define CC_MAX_TOUCHES  5
 
@@ -204,8 +207,9 @@ void App::Update()
 	{
 		m_bDidPostInit	= true;
 						
-		//init
+		//init for HelloWorld or GuiScroll
 		CCScene* pScene = HelloWorld::scene();
+		//CCScene* pScene = GuiScroll::scene();
 		// run
 		CCDirector::sharedDirector()->runWithScene(pScene);
 		
