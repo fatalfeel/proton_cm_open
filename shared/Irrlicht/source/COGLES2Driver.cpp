@@ -729,7 +729,6 @@ void COGLES2Driver::createMaterialRenderers()
 	delete[] fs2DData;
 }
 
-
 //! presents the rendered scene on the screen, returns false if failed
 bool COGLES2Driver::endScene()
 {
