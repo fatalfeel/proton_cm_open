@@ -521,8 +521,8 @@ CCSize CCDirector::getVisibleSize()
 
     CCSize wsize = this->getWinSize();
     
-    //wsize.width  = wsize.width  / m_fContentScaleFactor;
-    //wsize.height = wsize.height / m_fContentScaleFactor;
+    //wsize.width  = [[EAGLView sharedEGLView] getWidth]  / m_fContentScaleFactor;
+    //wsize.height = [[EAGLView sharedEGLView] getHeight] / m_fContentScaleFactor;
     
     return wsize;
 }
