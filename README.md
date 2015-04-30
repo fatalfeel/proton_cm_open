@@ -76,4 +76,6 @@ https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
 
 7.
 
-The Brother site is https://github.com/fatalfeel/proton_sdk_source
+The brother site only implement 3D part
+
+https://github.com/fatalfeel/proton_sdk_source
