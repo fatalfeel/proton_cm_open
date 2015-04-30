@@ -60,9 +60,9 @@ static void lazy_init( void )
 
 #ifdef USE_OPEN_GLES2
         s_nColorLocation = glGetUniformLocation( s_pShader->getProgram(), "u_color");
-    CHECK_GL_ERROR_DEBUG();
+		CHECK_GL_ERROR_DEBUG();
         s_nPointSizeLocation = glGetUniformLocation( s_pShader->getProgram(), "u_pointSize");
-    CHECK_GL_ERROR_DEBUG();
+		CHECK_GL_ERROR_DEBUG();
 #endif
 
         s_bInitialized = true;
@@ -435,6 +435,10 @@ void ccDrawColor4F( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
     s_tColor.g = g;
     s_tColor.b = b;
     s_tColor.a = a;
+
+#ifndef USE_OPEN_GLES2
+	glColor4f ( s_tColor.r, s_tColor.g, s_tColor.b, s_tColor.a );
+#endif
 }
 
 void ccPointSize( GLfloat pointSize )
@@ -442,7 +446,9 @@ void ccPointSize( GLfloat pointSize )
     s_fPointSize = pointSize * CC_CONTENT_SCALE_FACTOR();
 
     //TODO :glPointSize( pointSize );
-
+#ifndef USE_OPEN_GLES2
+	glPointSize ( s_fPointSize );
+#endif
 }
 
 void ccDrawColor4B( GLubyte r, GLubyte g, GLubyte b, GLubyte a )
@@ -451,6 +457,10 @@ void ccDrawColor4B( GLubyte r, GLubyte g, GLubyte b, GLubyte a )
     s_tColor.g = g/255.0f;
     s_tColor.b = b/255.0f;
     s_tColor.a = a/255.0f;
+
+#ifndef USE_OPEN_GLES2
+	glColor4f ( s_tColor.r, s_tColor.g, s_tColor.b, s_tColor.a );
+#endif
 }
 
 NS_CC_END
