@@ -72,7 +72,9 @@ Enable or disable it, will use irrlicht GUI or not
 6.
 Demo screenshots
 
-https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
+(a) https://github.com/fatalfeel/proton_cm_open/tree/master/DemoPicture
+
+(b) https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
 
 7.
 
