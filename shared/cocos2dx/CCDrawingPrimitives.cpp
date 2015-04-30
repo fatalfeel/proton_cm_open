@@ -445,7 +445,6 @@ void ccPointSize( GLfloat pointSize )
 {
     s_fPointSize = pointSize * CC_CONTENT_SCALE_FACTOR();
 
-    //TODO :glPointSize( pointSize );
 #ifndef USE_OPEN_GLES2
 	glPointSize ( s_fPointSize );
 #endif
