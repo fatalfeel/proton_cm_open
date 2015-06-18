@@ -37,7 +37,8 @@
 	#endif
 	#include <OpenGL/gl.h>
 	#if defined(_IRR_OPENGL_USE_EXTPOINTER_)
-		#include "glext.h"
+		//#include "glext.h"
+		#include "Irrlicht/source/glext.h"
 	#endif
 #elif defined(_IRR_COMPILE_WITH_SDL_DEVICE_) && !defined(_IRR_COMPILE_WITH_X11_DEVICE_)
 	#if defined(_IRR_OPENGL_USE_EXTPOINTER_)
@@ -50,7 +51,8 @@
 	#define NO_SDL_GLEXT
 	#include <SDL/SDL_video.h>
 	#include <SDL/SDL_opengl.h>
-	#include "glext.h"
+	//#include "glext.h"
+	#include "Irrlicht/source/glext.h"
 #else
 	#if defined(_IRR_OPENGL_USE_EXTPOINTER_)
 		#define GL_GLEXT_LEGACY 1
@@ -70,7 +72,8 @@
     #endif
 
 	#if defined(_IRR_OPENGL_USE_EXTPOINTER_)
-	#include "glext.h"
+	//#include "glext.h"
+	#include "Irrlicht/source/glext.h"
 	#undef GLX_ARB_get_proc_address // avoid problems with local glxext.h
 	#include "glxext.h"
 	#endif

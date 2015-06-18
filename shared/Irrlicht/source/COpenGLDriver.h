@@ -7,6 +7,8 @@
 
 #include "IrrCompileConfig.h"
 
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+
 #include "SIrrCreationParameters.h"
 
 namespace irr
@@ -16,8 +18,6 @@ namespace irr
 	class CIrrDeviceSDL;
 	class CIrrDeviceMacOSX;
 }
-
-#ifdef _IRR_COMPILE_WITH_OPENGL_
 
 #include "CNullDriver.h"
 #include "IMaterialRendererServices.h"

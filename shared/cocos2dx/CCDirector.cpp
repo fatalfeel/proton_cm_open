@@ -452,7 +452,11 @@ void CCDirector::setDepthTest(bool bOn)
 {
     if (bOn)
     {
-        glClearDepthf(1.0f);
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+        glClearDepth(1.0f);
+#else
+		glClearDepthf(1.0f);
+#endif
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LEQUAL);
 //        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

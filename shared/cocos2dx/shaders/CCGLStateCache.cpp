@@ -27,6 +27,7 @@ THE SOFTWARE.
 #include "ccConfig.h"
 #include "CCGL.h"
 #include "ccGLStateCache.h"
+#include "CCShaderCache.h"
 #include "CCGLProgram.h"
 #include "CCDirector.h"
 #include "ccConfig.h"

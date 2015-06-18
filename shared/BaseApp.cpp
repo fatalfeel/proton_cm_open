@@ -118,7 +118,7 @@ bool BaseApp::Init()
 		PrintGLString("Version",    GL_VERSION);
 		PrintGLString("Vendor",     GL_VENDOR);
 		PrintGLString("Renderer",   GL_RENDERER);
-		PrintGLString("Extensions", GL_EXTENSIONS);
+		//PrintGLString("Extensions", GL_EXTENSIONS);
 	}
 
 	return true;

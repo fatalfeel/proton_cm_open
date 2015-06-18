@@ -7,57 +7,37 @@
 #include "IrrCompileConfig.h"
 
 #ifndef PLATFORM_WINDOWS
-#define PLATFORM_WINDOWS
+	#define PLATFORM_WINDOWS
 #endif
 
-#ifndef _CONSOLE
-	#ifdef C_GL_MODE
-		#define GL_GLEXT_PROTOTYPES		
+#if defined(_IRR_COMPILE_WITH_OGLES1_)
+	#define GL_GLEXT_PROTOTYPES
 
-		#include "KHR/khrplatform.h"
-				
-		#include "GLES/gl.h"
-		#include "GLES/glext.h"
-		
-		#ifdef _IRR_COMPILE_WITH_OGLES2_
-			#include "GLES2/gl2.h"
-			#include "GLES2/gl2ext.h"
-		#endif
+	#include "KHR/khrplatform.h"
+	#include "GLES/gl.h"
+	#include "GLES/glext.h"
+
+	#define glTexParameterx			glTexParameteri
+	#define glFrustumf				glFrustum
+	#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
+
+#elif defined(_IRR_COMPILE_WITH_OGLES2_)
+	#define GL_GLEXT_PROTOTYPES
+
+	#include "KHR/khrplatform.h"
+	#include "GLES/gl.h"
+	#include "GLES/glext.h"
+	
+	#include "GLES2/gl2.h"
+	#include "GLES2/gl2ext.h"
 						
-		#define glTexParameterx			glTexParameteri
-		#define glFrustumf				glFrustum
-		//#define glOrthof				glOrtho
-		#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
-		//#define glActiveTexture		glActiveTextureARB
-		//#define glClientActiveTexture glClientActiveTextureARB
-	#else
-		#ifdef RT_WEBOS
-			#include <GLES/gl.h>
-			#ifdef _IRR_STATIC_LIB_
-				#include "Irrlicht/source/glext.h"
-			#else
-				#include <GLES/glext.h>
-			#endif
-		#else
-			#ifdef RT_FLASH_TEST
-				//Allow us to use our fake flash functions from GLFlashAdaptor.cpp, can help with debugging certain things
-				//even though we can't really talk to Flash from MSVC++
-				#define _DLL_EXPORTS
-				#define inline_as3(...)  ((void)0)
-			#endif
+	#define glTexParameterx			glTexParameteri
+	#define glFrustumf				glFrustum
+	#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
 
-			#include <EGL/egl.h>
-			#include <GLES/gl.h>
-			#include "Irrlicht/source/glext.h"
-		#endif
-
-		#ifdef _IRR_STATIC_LIB_
-			#include "Irrlicht/source/gles-ext.h"
-		#endif
-
-		typedef GLfloat		GLdouble;
-		#define glClipPlane glClipPlanef
-	#endif
+#else
+	#include <GL/gl.h>
+	#include "Irrlicht/source/glext.h"
 #endif
 
 //#ifndef M_PI

@@ -97,7 +97,10 @@
 
 //SETH Make my own C_GL_MODE define control if normal gl is used or not in irrlicht
 #if defined(C_GL_MODE)
+	//one of 3 options can choice
+	//#define _IRR_COMPILE_WITH_OGLES1_
 	#define _IRR_COMPILE_WITH_OGLES2_
+	//#define _IRR_COMPILE_WITH_OPENGL_
 #else
 	#define _IRR_IPHONE_PLATFORM_	//share with android setting
 	#define _IRR_COMPILE_WITH_IPHONE_DEVICE_

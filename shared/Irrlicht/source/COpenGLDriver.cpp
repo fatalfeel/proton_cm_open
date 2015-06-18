@@ -2,13 +2,13 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#include "COpenGLDriver.h"
-// needed here also because of the create methods' parameters
-#include "CNullDriver.h"
+#include "IrrCompileConfig.h"
 
 #ifdef _IRR_COMPILE_WITH_OPENGL_
 
 #include "COpenGLTexture.h"
+#include "CNullDriver.h"
+#include "COpenGLDriver.h"
 #include "COpenGLMaterialRenderer.h"
 #include "COpenGLShaderMaterialRenderer.h"
 #include "COpenGLSLMaterialRenderer.h"
@@ -19,6 +19,7 @@
 
 #ifdef _WIN32
 	#pragma comment(lib, "opengl32.lib")
+	#pragma comment(lib, "glew32.lib")
 #endif
 
 #ifdef _IRR_COMPILE_WITH_SDL_DEVICE_
@@ -5411,8 +5412,6 @@ void COpenGLCallBridge::setTexture(u32 stage, bool fixedPipeline)
 } // end namespace
 } // end namespace
 
-#endif // _IRR_COMPILE_WITH_OPENGL_
-
 namespace irr
 {
 namespace video
@@ -5497,4 +5496,4 @@ IVideoDriver* createOpenGLDriver(const SIrrlichtCreationParameters& params,
 } // end namespace
 } // end namespace
 
-
+#endif // _IRR_COMPILE_WITH_OPENGL_

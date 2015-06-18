@@ -30,6 +30,7 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
+#include "shaders/CCShaderCache.h"
 #include "support/CCNotificationCenter.h"
 #include "CCEventType.h"
 // support

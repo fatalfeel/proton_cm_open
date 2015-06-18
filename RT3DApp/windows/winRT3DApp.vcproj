@@ -7969,7 +7969,6 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -7978,7 +7977,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -7991,18 +7989,16 @@
 								>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 							</File>
@@ -8027,7 +8023,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8036,7 +8031,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8074,18 +8068,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
@@ -8118,7 +8110,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8127,7 +8118,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8165,18 +8155,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
@@ -8209,18 +8197,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
@@ -8253,7 +8239,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8262,7 +8247,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8300,18 +8284,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
@@ -8344,7 +8326,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8353,7 +8334,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8391,18 +8371,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
@@ -8435,7 +8413,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8444,7 +8421,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8482,18 +8458,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
@@ -8526,7 +8500,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8535,7 +8508,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8573,18 +8545,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
@@ -8617,7 +8587,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8626,7 +8595,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -8664,18 +8632,16 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Debug GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
-										Name="VCCLCompilerTool"
+										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 								<FileConfiguration

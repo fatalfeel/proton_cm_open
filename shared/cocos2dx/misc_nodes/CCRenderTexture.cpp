@@ -337,12 +337,21 @@ void CCRenderTexture::beginWithClear(float r, float g, float b, float a, float d
     glGetFloatv(GL_DEPTH_CLEAR_VALUE, &depthClearValue);
 
     glClearColor(r, g, b, a);
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+	glClearDepth(depthValue);
+#else
     glClearDepthf(depthValue);
+#endif
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // restore clear color
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+	glClearDepth(depthClearValue);
+#else
     glClearDepthf(depthClearValue);
+#endif
+
 }
 
 void CCRenderTexture::beginWithClear(float r, float g, float b, float a, float depthValue, int stencilValue)
@@ -358,13 +367,21 @@ void CCRenderTexture::beginWithClear(float r, float g, float b, float a, float d
     glGetIntegerv(GL_STENCIL_CLEAR_VALUE, &stencilClearValue);
 
     glClearColor(r, g, b, a);
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+	glClearDepth(depthValue);
+#else
     glClearDepthf(depthValue);
+#endif
     glClearStencil(stencilValue);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
     // restore clear color
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+	glClearDepth(depthClearValue);
+#else
     glClearDepthf(depthClearValue);
+#endif
     glClearStencil(stencilClearValue);
 }
 
@@ -402,11 +419,21 @@ void CCRenderTexture::clearDepth(float depthValue)
     GLfloat depthClearValue;
     glGetFloatv(GL_DEPTH_CLEAR_VALUE, &depthClearValue);
 
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+	glClearDepth(depthValue);
+#else
     glClearDepthf(depthValue);
+#endif
+
     glClear(GL_DEPTH_BUFFER_BIT);
 
     // restore clear color
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+	glClearDepth(depthClearValue);
+#else
     glClearDepthf(depthClearValue);
+#endif
+
     this->end();
 }
 

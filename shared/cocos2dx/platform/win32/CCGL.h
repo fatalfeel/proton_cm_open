@@ -25,16 +25,22 @@ THE SOFTWARE.
 #ifndef __CCGL_H__
 #define __CCGL_H__
 
-//#include "GL/glew.h"
-#define GL_GLEXT_PROTOTYPES
+#ifdef _IRR_COMPILE_WITH_OPENGL_
+	#include <windows.h>
+	#include <GL/gl.h>
+	#include "Irrlicht/source/glext.h"
+#else
+	#define GL_GLEXT_PROTOTYPES	
 
-#include "GLES/gl.h"
-#include "GLES/glext.h"
+	#include "GLES/gl.h"
+	#include "GLES/glext.h"
 
-#ifdef _IRR_COMPILE_WITH_OGLES2_
-	#include "GLES2/gl2.h"
-	#include "GLES2/gl2ext.h"
+	#ifdef _IRR_COMPILE_WITH_OGLES2_
+		#include "GLES2/gl2.h"
+		#include "GLES2/gl2ext.h"
+	#endif
 #endif
 
 //#define CC_GL_DEPTH24_STENCIL8		GL_DEPTH24_STENCIL8
+
 #endif // __CCGL_H__

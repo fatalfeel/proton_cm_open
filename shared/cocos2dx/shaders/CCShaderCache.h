@@ -29,34 +29,86 @@ THE SOFTWARE.
 
 #include "cocoa/CCDictionary.h"
 
-NS_CC_BEGIN
+#if defined(_IRR_COMPILE_WITH_OGLES1_)
+	#define GL_DEPTH24_STENCIL8			GL_DEPTH24_STENCIL8_OES
 
-#define GL_DEPTH24_STENCIL8			GL_DEPTH24_STENCIL8_OES
+	#define glGenerateMipmap			glGenerateMipmapOES
+	#define glGenFramebuffers			glGenFramebuffersOES
+	#define glGenRenderbuffers			glGenRenderbuffersOES
+	#define glDeleteFramebuffers		glDeleteFramebuffersOES
+	#define glDeleteRenderbuffers		glDeleteRenderbuffersOES
+	#define glBindFramebuffer			glBindFramebufferOES
+	#define glBindRenderbuffer			glBindRenderbufferOES
+	#define glFramebufferTexture2D		glFramebufferTexture2DOES
+	#define glFramebufferRenderbuffer	glFramebufferRenderbufferOES
+	#define glRenderbufferStorage		glRenderbufferStorageOES
+	#define glCheckFramebufferStatus	glCheckFramebufferStatusOES
 
-#ifdef _IRR_COMPILE_WITH_OGLES1_
-#define glGenerateMipmap			glGenerateMipmapOES
-#define glGenFramebuffers			glGenFramebuffersOES
-#define glGenRenderbuffers			glGenRenderbuffersOES
-#define glDeleteFramebuffers		glDeleteFramebuffersOES
-#define glDeleteRenderbuffers		glDeleteRenderbuffersOES
-#define glBindFramebuffer			glBindFramebufferOES
-#define glBindRenderbuffer			glBindRenderbufferOES
-#define glFramebufferTexture2D		glFramebufferTexture2DOES
-#define glFramebufferRenderbuffer	glFramebufferRenderbufferOES
-#define glRenderbufferStorage		glRenderbufferStorageOES
-#define glCheckFramebufferStatus	glCheckFramebufferStatusOES
+	#define GL_FRAMEBUFFER				GL_FRAMEBUFFER_OES
+	#define GL_RENDERBUFFER				GL_RENDERBUFFER_OES
+	#define GL_FRAMEBUFFER_BINDING		GL_FRAMEBUFFER_BINDING_OES
+	#define GL_RENDERBUFFER_BINDING		GL_RENDERBUFFER_BINDING_OES
+	#define GL_COLOR_ATTACHMENT0		GL_COLOR_ATTACHMENT0_OES
+	#define GL_DEPTH_ATTACHMENT			GL_DEPTH_ATTACHMENT_OES
+	#define GL_STENCIL_ATTACHMENT		GL_STENCIL_ATTACHMENT_OES
+	#define GL_FRAMEBUFFER_COMPLETE		GL_FRAMEBUFFER_COMPLETE_OES
+	#define GL_NONE                     0
 
-#define GL_FRAMEBUFFER				GL_FRAMEBUFFER_OES
-#define GL_RENDERBUFFER				GL_RENDERBUFFER_OES
-#define GL_FRAMEBUFFER_BINDING		GL_FRAMEBUFFER_BINDING_OES
-#define GL_RENDERBUFFER_BINDING		GL_RENDERBUFFER_BINDING_OES
-#define GL_COLOR_ATTACHMENT0		GL_COLOR_ATTACHMENT0_OES
-#define GL_DEPTH_ATTACHMENT			GL_DEPTH_ATTACHMENT_OES
-#define GL_STENCIL_ATTACHMENT		GL_STENCIL_ATTACHMENT_OES
-#define GL_FRAMEBUFFER_COMPLETE		GL_FRAMEBUFFER_COMPLETE_OES
-#define GL_NONE                     0
+#elif defined(_IRR_COMPILE_WITH_OGLES2_)
+	#define GL_DEPTH24_STENCIL8			GL_DEPTH24_STENCIL8_OES
+
+#else
+	#define GLEWAPI extern __declspec(dllimport)
+	
+	extern "C" 
+	{
+		GLEWAPI PFNGLGENBUFFERSPROC								__glewGenBuffers;
+		GLEWAPI PFNGLDELETEBUFFERSPROC							__glewDeleteBuffers;
+		GLEWAPI PFNGLBINDBUFFERPROC								__glewBindBuffer;
+		GLEWAPI PFNGLBUFFERDATAPROC								__glewBufferData;
+		GLEWAPI PFNGLBUFFERSUBDATAPROC							__glewBufferSubData;
+		GLEWAPI PFNGLACTIVETEXTUREPROC							__glewActiveTexture;
+		GLEWAPI PFNGLCLIENTACTIVETEXTUREPROC					__glewClientActiveTexture;
+		GLEWAPI PFNGLBINDFRAMEBUFFERPROC						__glewBindFramebuffer;
+		GLEWAPI PFNGLBINDRENDERBUFFERPROC						__glewBindRenderbuffer;
+		GLEWAPI PFNGLCHECKFRAMEBUFFERSTATUSPROC					__glewCheckFramebufferStatus;
+		GLEWAPI PFNGLDELETEFRAMEBUFFERSPROC						__glewDeleteFramebuffers;
+		GLEWAPI PFNGLDELETERENDERBUFFERSPROC					__glewDeleteRenderbuffers;
+		GLEWAPI PFNGLFRAMEBUFFERRENDERBUFFERPROC				__glewFramebufferRenderbuffer;
+		GLEWAPI PFNGLFRAMEBUFFERTEXTURE1DPROC					__glewFramebufferTexture1D;
+		GLEWAPI PFNGLFRAMEBUFFERTEXTURE2DPROC					__glewFramebufferTexture2D;
+		GLEWAPI PFNGLFRAMEBUFFERTEXTURELAYERPROC				__glewFramebufferTextureLayer;
+		GLEWAPI PFNGLCOMPRESSEDTEXIMAGE2DPROC					__glewCompressedTexImage2D;
+		GLEWAPI PFNGLGENFRAMEBUFFERSPROC						__glewGenFramebuffers;
+		GLEWAPI PFNGLGENRENDERBUFFERSPROC						__glewGenRenderbuffers;
+		GLEWAPI PFNGLGENERATEMIPMAPPROC							__glewGenerateMipmap;
+		GLEWAPI PFNGLRENDERBUFFERSTORAGEPROC					__glewRenderbufferStorage;
+
+		#define glGenBuffers							__glewGenBuffers
+		#define glDeleteBuffers							__glewDeleteBuffers
+		#define glBindBuffer							__glewBindBuffer
+		#define glBufferData							__glewBufferData
+		#define glBufferSubData							__glewBufferSubData
+		#define glActiveTexture							__glewActiveTexture
+		#define glClientActiveTexture					__glewClientActiveTexture
+		#define glBindFramebuffer						__glewBindFramebuffer
+		#define glBindRenderbuffer						__glewBindRenderbuffer
+		#define glCheckFramebufferStatus				__glewCheckFramebufferStatus
+		#define glDeleteFramebuffers					__glewDeleteFramebuffers
+		#define glDeleteRenderbuffers					__glewDeleteRenderbuffers
+		#define glFramebufferRenderbuffer				__glewFramebufferRenderbuffer
+		#define glFramebufferTexture1D					__glewFramebufferTexture1D
+		#define glFramebufferTexture2D					__glewFramebufferTexture2D
+		#define glFramebufferTextureLayer				__glewFramebufferTextureLayer
+		#define glCompressedTexImage2D					__glewCompressedTexImage2D
+		#define glGenFramebuffers						__glewGenFramebuffers
+		#define glGenRenderbuffers						__glewGenRenderbuffers
+		#define glGenerateMipmap						__glewGenerateMipmap
+		#define glRenderbufferStorage					__glewRenderbufferStorage
+	}
 #endif
 
+NS_CC_BEGIN
 
 class CCGLProgram;
 
