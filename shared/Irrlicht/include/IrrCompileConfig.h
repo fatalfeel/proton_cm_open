@@ -108,10 +108,6 @@
 	#define _IRR_COMPILE_WITH_OGLES2_
 #endif
 
-#ifdef _IRR_COMPILE_WITH_OGLES2_
-	#define USE_OPEN_GLES2
-#endif
-
 #if defined(__SVR4) && defined(__sun)
 #define _IRR_SOLARIS_PLATFORM_
 #if defined(__sparc)

@@ -114,7 +114,7 @@ bool CCAtlasNode::initWithTileFile(const char *tile, unsigned int tileWidth, uns
     // shader stuff
     setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTexture_uColor));
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     m_nUniformColor = glGetUniformLocation( getShaderProgram()->getProgram(), "u_color");
 #endif
 
@@ -145,7 +145,7 @@ void CCAtlasNode::draw(void)
 
     GLfloat colors[4] = {m_tColor.r / 255.0f, m_tColor.g / 255.0f, m_tColor.b / 255.0f, m_cOpacity / 255.0f};
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	getShaderProgram()->setUniformLocationWith4fv(m_nUniformColor, colors, 1);
 #else
 	glColor4f ( colors [ 0 ], colors [ 1 ], colors [ 2 ], colors [ 3 ] );

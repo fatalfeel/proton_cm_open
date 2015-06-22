@@ -137,7 +137,7 @@ bool CCControlSwitchSprite::initWithMaskSprite(
         getShaderProgram()->updateUniforms();
         CHECK_GL_ERROR_DEBUG();                
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
         m_uTextureLocation    = glGetUniformLocation( getShaderProgram()->getProgram(), "u_texture");
         m_uMaskLocation       = glGetUniformLocation( getShaderProgram()->getProgram(), "u_mask");
         CHECK_GL_ERROR_DEBUG();
@@ -167,7 +167,7 @@ void CCControlSwitchSprite::draw()
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture( GL_TEXTURE_2D, getTexture()->getName());
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     glUniform1i(m_uTextureLocation, 0);
 #else
 	glClientActiveTexture( GL_TEXTURE0 );
@@ -176,7 +176,7 @@ void CCControlSwitchSprite::draw()
 
     glActiveTexture(GL_TEXTURE1);
     glBindTexture( GL_TEXTURE_2D, m_pMaskTexture->getName() );
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     glUniform1i(m_uMaskLocation, 1);
 #else
 	glClientActiveTexture ( GL_TEXTURE1 );
@@ -204,7 +204,7 @@ void CCControlSwitchSprite::draw()
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);    
     glActiveTexture(GL_TEXTURE0);
 
-#ifndef USE_OPEN_GLES2 //OGLES1 use
+#ifndef _IRR_COMPILE_WITH_OGLES2_ //OGLES1 use
 	glClientActiveTexture ( GL_TEXTURE0 );
 #endif
 }

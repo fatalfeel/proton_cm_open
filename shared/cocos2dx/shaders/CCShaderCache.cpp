@@ -98,7 +98,7 @@ CCShaderCache::~CCShaderCache()
     CCLOGINFO("cocos2d deallocing 0x%X", this);
     m_pPrograms->release();
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     delete ccPosition_uColor_frag;
     delete ccPosition_uColor_vert;
 
@@ -126,7 +126,7 @@ bool CCShaderCache::init()
 {
     m_pPrograms = new CCDictionary();
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     ccPosition_uColor_frag = GetShaderFile("shaders/ccShader_Position_uColor_frag.h");
     ccPosition_uColor_vert = GetShaderFile("shaders/ccShader_Position_uColor_vert.h");
     

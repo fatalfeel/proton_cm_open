@@ -288,7 +288,8 @@ public:
 	void RestoreGLValues(void);
 
     /** enables/disables OpenGL alpha blending */
-    void setAlphaBlending(bool bOn);
+    //void setAlphaBlending(bool bOn);
+	void setAlphaBlending(bool bOn, GLenum src, GLenum dst);
 
     /** enables/disables OpenGL depth test */
     void setDepthTest(bool bOn);
@@ -418,9 +419,11 @@ protected:
     // CCEGLViewProtocol will recreate stats labels to fit visible rect
     //friend class CCEGLViewProtocol;
 
-	unsigned char m_origin_blend;
-	unsigned char m_origin_depth;
-	unsigned char m_origin_cull;
+	unsigned char	m_origin_blend;
+	unsigned char	m_origin_depth;
+	unsigned char	m_origin_cull;
+	unsigned int	m_origin_blendSrc;
+	unsigned int	m_origin_blendDst;
 };
 
 /** 

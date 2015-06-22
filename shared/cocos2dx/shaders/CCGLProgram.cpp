@@ -25,9 +25,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "ccMacros.h"
 #include "CCGLProgram.h"
 #include "ccGLStateCache.h"
-#include "ccMacros.h"
+#include "CCShaderCache.h"
 #include "platform/CCFileUtils.h"
 #include "support/data_support/uthash.h"
 #include "cocoa/CCString.h"
@@ -79,8 +80,7 @@ CCGLProgram::~CCGLProgram()
 
 bool CCGLProgram::initWithVertexShaderByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
 {
-
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	m_uProgram = glCreateProgram();
     CHECK_GL_ERROR_DEBUG();
 
@@ -138,7 +138,7 @@ bool CCGLProgram::compileShader(GLuint * shader, GLenum type, const GLchar* sour
     if (!source)
         return false;
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     *shader = glCreateShader(type);
     glShaderSource(*shader, 1, &source, NULL);
     CHECK_GL_ERROR_DEBUG();
@@ -163,7 +163,7 @@ bool CCGLProgram::compileShader(GLuint * shader, GLenum type, const GLchar* sour
 
 void CCGLProgram::addAttribute(const char* attributeName, GLuint index)
 {
-#ifdef USE_OPEN_GLES2    
+#if defined(_IRR_COMPILE_WITH_OGLES2_)    
 	glBindAttribLocation(m_uProgram, index, attributeName);
 #endif
 }
@@ -171,7 +171,7 @@ void CCGLProgram::addAttribute(const char* attributeName, GLuint index)
 void CCGLProgram::updateUniforms()
 {
     // Since sample most probably won't change, set it to 0 now.
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     m_uUniforms[kCCUniformMVPMatrix] = glGetUniformLocation(m_uProgram, kCCUniformMVPMatrix_s);
 
     m_uUniforms[kCCUniformSampler] = glGetUniformLocation(m_uProgram, kCCUniformSampler_s);
@@ -183,7 +183,7 @@ void CCGLProgram::updateUniforms()
 
 bool CCGLProgram::link()
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	glLinkProgram(m_uProgram);
 
 	#if DEBUG
@@ -221,7 +221,7 @@ void CCGLProgram::use()
 
 const char* CCGLProgram::logForOpenGLObject(GLuint object, GLInfoFunction infoFunc, GLLogFunction logFunc)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	GLint logLength = 0, charsWritten = 0;
 
     infoFunc(object, GL_INFO_LOG_LENGTH, &logLength);
@@ -242,7 +242,7 @@ const char* CCGLProgram::logForOpenGLObject(GLuint object, GLInfoFunction infoFu
 
 const char* CCGLProgram::vertexShaderLog()
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	return this->logForOpenGLObject(m_uVertShader, (GLInfoFunction)&glGetShaderiv, (GLLogFunction)&glGetShaderInfoLog);
 #else
 	return NULL;
@@ -251,7 +251,7 @@ const char* CCGLProgram::vertexShaderLog()
 
 const char* CCGLProgram::fragmentShaderLog()
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	return this->logForOpenGLObject(m_uFragShader, (GLInfoFunction)&glGetShaderiv, (GLLogFunction)&glGetShaderInfoLog);
 #else
 	return NULL;
@@ -260,7 +260,7 @@ const char* CCGLProgram::fragmentShaderLog()
 
 const char* CCGLProgram::programLog()
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	return this->logForOpenGLObject(m_uProgram, (GLInfoFunction)&glGetProgramiv, (GLLogFunction)&glGetProgramInfoLog);
 #else
 	return NULL;
@@ -301,7 +301,7 @@ bool CCGLProgram::updateUniformLocation(unsigned int location, GLvoid* data, uns
 
 void CCGLProgram::setUniformLocationWith1i(unsigned int location, GLint i1)
 {
-#ifdef USE_OPEN_GLES2    
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	bool updated =  updateUniformLocation(location, &i1, sizeof(i1)*1);
 
     if( updated ) 
@@ -313,7 +313,7 @@ void CCGLProgram::setUniformLocationWith1i(unsigned int location, GLint i1)
 
 void CCGLProgram::setUniformLocationWith1f(unsigned int location, GLfloat f1)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	bool updated =  updateUniformLocation(location, &f1, sizeof(f1)*1);
 
     if( updated )
@@ -325,7 +325,7 @@ void CCGLProgram::setUniformLocationWith1f(unsigned int location, GLfloat f1)
 
 void CCGLProgram::setUniformLocationWith2f(unsigned int location, GLfloat f1, GLfloat f2)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	GLfloat floats[2] = {f1,f2};
     bool updated =  updateUniformLocation(location, floats, sizeof(floats));
 
@@ -338,7 +338,7 @@ void CCGLProgram::setUniformLocationWith2f(unsigned int location, GLfloat f1, GL
 
 void CCGLProgram::setUniformLocationWith3f(unsigned int location, GLfloat f1, GLfloat f2, GLfloat f3)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	GLfloat floats[3] = {f1,f2,f3};
     bool updated =  updateUniformLocation(location, floats, sizeof(floats));
 
@@ -351,7 +351,7 @@ void CCGLProgram::setUniformLocationWith3f(unsigned int location, GLfloat f1, GL
 
 void CCGLProgram::setUniformLocationWith4f(unsigned int location, GLfloat f1, GLfloat f2, GLfloat f3, GLfloat f4)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	GLfloat floats[4] = {f1,f2,f3,f4};
     bool updated =  updateUniformLocation(location, floats, sizeof(floats));
 
@@ -364,7 +364,7 @@ void CCGLProgram::setUniformLocationWith4f(unsigned int location, GLfloat f1, GL
 
 void CCGLProgram::setUniformLocationWith2fv(unsigned int location, GLfloat* floats, unsigned int numberOfArrays)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	bool updated =  updateUniformLocation(location, floats, sizeof(float)*2*numberOfArrays);
 
     if( updated )
@@ -376,7 +376,7 @@ void CCGLProgram::setUniformLocationWith2fv(unsigned int location, GLfloat* floa
 
 void CCGLProgram::setUniformLocationWith3fv(unsigned int location, GLfloat* floats, unsigned int numberOfArrays)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	bool updated =  updateUniformLocation(location, floats, sizeof(float)*3*numberOfArrays);
 
     if( updated )
@@ -388,7 +388,7 @@ void CCGLProgram::setUniformLocationWith3fv(unsigned int location, GLfloat* floa
 
 void CCGLProgram::setUniformLocationWith4fv(unsigned int location, GLfloat* floats, unsigned int numberOfArrays)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	bool updated =  updateUniformLocation(location, floats, sizeof(float)*4*numberOfArrays);
 
     if( updated )
@@ -401,7 +401,7 @@ void CCGLProgram::setUniformLocationWith4fv(unsigned int location, GLfloat* floa
 
 void CCGLProgram::setUniformLocationwithMatrix4fv(unsigned int location, GLfloat* matrixArray, unsigned int numberOfMatrices)
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	bool updated =  updateUniformLocation(location, matrixArray, sizeof(float)*16*numberOfMatrices);
 
     if( updated )
@@ -420,7 +420,7 @@ void CCGLProgram::setUniformForModelViewProjectionMatrix()
     kmGLGetMatrix(KM_GL_PROJECTION, &matrixP );
     kmGLGetMatrix(KM_GL_MODELVIEW, &matrixMV );
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     kmMat4Multiply(&matrixMVP, &matrixP, &matrixMV);
 
     setUniformLocationwithMatrix4fv(m_uUniforms[kCCUniformMVPMatrix], matrixMVP.mat, 1);

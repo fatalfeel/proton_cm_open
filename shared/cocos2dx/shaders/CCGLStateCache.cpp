@@ -81,19 +81,19 @@ void ccGLInvalidateStateCache( void )
 
 void ccGLDeleteProgram( GLuint program )
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	#if CC_ENABLE_GL_STATE_CACHE
 		if( program == s_uCurrentShaderProgram )
 			s_uCurrentShaderProgram = -1;
 	#endif // CC_ENABLE_GL_STATE_CACHE
 
-		glDeleteProgram( program );
+	glDeleteProgram( program );
 #endif
 }
 
 void ccGLUseProgram( GLuint program )
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	#if CC_ENABLE_GL_STATE_CACHE
 		if( program != s_uCurrentShaderProgram ) 
 		{
@@ -200,7 +200,7 @@ void ccGLEnableVertexAttribs( unsigned int flags )
 
     if( enablePosition != s_bVertexAttribPosition ) 
 	{
-#ifdef USE_OPEN_GLES2        
+#if defined(_IRR_COMPILE_WITH_OGLES2_)        
 		if( enablePosition )
             glEnableVertexAttribArray( kCCVertexAttrib_Position );
         else
@@ -220,7 +220,7 @@ void ccGLEnableVertexAttribs( unsigned int flags )
 
     if( enableColor != s_bVertexAttribColor ) 
 	{
-#ifdef USE_OPEN_GLES2         
+#if defined(_IRR_COMPILE_WITH_OGLES2_)         
 		if( enableColor )
             glEnableVertexAttribArray( kCCVertexAttrib_Color );
         else
@@ -240,7 +240,7 @@ void ccGLEnableVertexAttribs( unsigned int flags )
 
     if( enableTexCoords != s_bVertexAttribTexCoords ) 
 	{
-#ifdef USE_OPEN_GLES2        
+#if defined(_IRR_COMPILE_WITH_OGLES2_)        
 		if( enableTexCoords )
             glEnableVertexAttribArray( kCCVertexAttrib_TexCoords );
         else
@@ -271,7 +271,7 @@ void ccSetProjectionMatrixDirty( void )
 
 void ccGLVertexAttribPointer( GLuint uAttrib, GLint nSize, GLenum uType, GLboolean bNormalized, GLsizei nStride, const GLvoid* pPtr )
 {
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	glVertexAttribPointer ( uAttrib, nSize, uType, bNormalized, nStride, pPtr );
 #else
 	switch ( uAttrib )

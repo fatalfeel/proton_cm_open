@@ -58,19 +58,19 @@ bool CCConfiguration::init(void)
 
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_nMaxTextureSize);
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &m_nMaxTextureUnits);
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	#ifdef USE_OPEN_GLES2
+	#if defined(_IRR_COMPILE_WITH_OGLES2_)
 		glGetIntegerv(GL_MAX_SAMPLES_APPLE, &m_nMaxSamplesAllowed);
 	#endif
 #endif
 
     m_bSupportsPVRTC = checkForGLExtension("GL_IMG_texture_compression_pvrtc");
 
-#ifdef USE_OPEN_GLES2
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     m_bSupportsNPOT = true;
 #else
 	glGetIntegerv ( GL_MAX_MODELVIEW_STACK_DEPTH, &m_nMaxModelviewStackDepth );

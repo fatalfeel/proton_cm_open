@@ -194,12 +194,15 @@ void CCDirector::setGLDefaultValues(void)
     m_origin_blend	=	glIsEnabled(GL_BLEND);
 	m_origin_depth	=	glIsEnabled(GL_DEPTH_TEST);
 	m_origin_cull	=	glIsEnabled(GL_CULL_FACE);
+	
+	glGetIntegerv(GL_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
+	glGetIntegerv(GL_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
 		
-	setAlphaBlending(true);
+	setAlphaBlending(true, CC_BLEND_SRC, CC_BLEND_DST);
     setDepthTest(false);
 	setCullFace(false); //by stone
 
-#ifdef USE_OPEN_GLES2   
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 	glEnableVertexAttribArray(kCCVertexAttrib_Position);
 	glEnableVertexAttribArray(kCCVertexAttrib_Color);
 	glEnableVertexAttribArray(kCCVertexAttrib_TexCoords);
@@ -217,7 +220,8 @@ void CCDirector::setGLDefaultValues(void)
 
 void CCDirector::RestoreGLValues(void)
 {
-	setAlphaBlending(m_origin_blend>0?true:false);
+	//setAlphaBlending(m_origin_blend>0?true:false);
+	setAlphaBlending(m_origin_blend>0?true:false, m_origin_blendSrc, m_origin_blendDst);
 	setDepthTest(m_origin_depth>0?true:false);
 	setCullFace(m_origin_cull>0?true:false); //by stone
 }
@@ -433,12 +437,13 @@ float CCDirector::getZEye(void)
     return (m_obWinSizeInPoints.height / 1.1566f);
 }
 
-void CCDirector::setAlphaBlending(bool bOn)
+void CCDirector::setAlphaBlending(bool bOn, GLenum src, GLenum dst)
 {
     if (bOn)
     {
         ccGLEnable(CC_GL_BLEND);
-        ccGLBlendFunc(CC_BLEND_SRC, CC_BLEND_DST);
+        //ccGLBlendFunc(CC_BLEND_SRC, CC_BLEND_DST);
+		ccGLBlendFunc(src, dst);
     }
     else
     {
