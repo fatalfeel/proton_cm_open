@@ -211,7 +211,6 @@ void App::Update()
 						
 		//init for HelloWorld or GuiScroll
 		CCScene* pScene = HelloWorld::scene();
-		//CCScene* pScene = GuiScroll::scene();
 		// run
 		CCDirector::sharedDirector()->runWithScene(pScene);
 		

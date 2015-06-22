@@ -24,10 +24,12 @@ static CCTouch*		s_pTouches[CC_MAX_TOUCHES] = { NULL };
 
 irr::video::E_DRIVER_TYPE AppGetOGLESType()
 {
-#ifdef _IRR_COMPILE_WITH_OGLES1_
+#if defined(_IRR_COMPILE_WITH_OGLES1_)
 	return irr::video::EDT_OGLES1;
-#else
+#elif defined(_IRR_COMPILE_WITH_OGLES2_)
 	return irr::video::EDT_OGLES2;
+#else
+	return irr::video::EDT_OPENGL;
 #endif
 }
 
