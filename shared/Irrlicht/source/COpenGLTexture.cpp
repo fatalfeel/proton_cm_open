@@ -15,9 +15,6 @@
 #include "BuiltInFont.h"
 #include "FileSystem/FileManager.h"
 
-//SETH
-#include "PlatformSetup.h"
-
 namespace irr
 {
 namespace video

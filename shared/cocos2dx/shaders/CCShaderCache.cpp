@@ -40,6 +40,58 @@ THE SOFTWARE.
 //#include "ccShaders.h"
 #include "PlatFormEnums.h"
 
+#if defined(_IRR_COMPILE_WITH_OPENGL_)
+#define COCOS2D_GLSL_EXTENSION(x)		wglGetProcAddress(reinterpret_cast<const char*>(x))
+
+PFNGLGENBUFFERSPROC						__glewGenBuffers;
+PFNGLDELETEBUFFERSPROC					__glewDeleteBuffers;
+PFNGLBINDBUFFERPROC						__glewBindBuffer;
+PFNGLBUFFERDATAPROC						__glewBufferData;
+PFNGLBUFFERSUBDATAPROC					__glewBufferSubData;
+PFNGLACTIVETEXTUREPROC					__glewActiveTexture;
+PFNGLCLIENTACTIVETEXTUREPROC			__glewClientActiveTexture;
+PFNGLBINDFRAMEBUFFERPROC				__glewBindFramebuffer;
+PFNGLBINDRENDERBUFFERPROC				__glewBindRenderbuffer;
+PFNGLGENFRAMEBUFFERSPROC				__glewGenFramebuffers;
+PFNGLGENRENDERBUFFERSPROC				__glewGenRenderbuffers;
+PFNGLDELETEFRAMEBUFFERSPROC				__glewDeleteFramebuffers;
+PFNGLDELETERENDERBUFFERSPROC			__glewDeleteRenderbuffers;
+PFNGLFRAMEBUFFERRENDERBUFFERPROC		__glewFramebufferRenderbuffer;
+PFNGLRENDERBUFFERSTORAGEPROC			__glewRenderbufferStorage;
+PFNGLCHECKFRAMEBUFFERSTATUSPROC			__glewCheckFramebufferStatus;
+PFNGLGENERATEMIPMAPPROC					__glewGenerateMipmap;
+PFNGLFRAMEBUFFERTEXTURE2DPROC			__glewFramebufferTexture2D;
+PFNGLCOMPRESSEDTEXIMAGE2DPROC			__glewCompressedTexImage2D;
+	
+/*PFNGLCREATEPROGRAMPROC					__glewCreateProgram;
+PFNGLDELETEPROGRAMPROC					__glewDeleteProgram;
+PFNGLLINKPROGRAMPROC					__glewLinkProgram;
+PFNGLUSEPROGRAMPROC						__glewUseProgram;
+PFNGLGETPROGRAMINFOLOGPROC				__glewGetProgramInfoLog;
+PFNGLGETPROGRAMIVPROC					__glewGetProgramiv;
+PFNGLCREATESHADERPROC					__glewCreateShader;
+PFNGLATTACHSHADERPROC					__glewAttachShader;
+PFNGLSHADERSOURCEPROC					__glewShaderSource;
+PFNGLCOMPILESHADERPROC					__glewCompileShader;
+PFNGLDELETESHADERPROC					__glewDeleteShader;
+PFNGLGETSHADERINFOLOGPROC				__glewGetShaderInfoLog;
+PFNGLGETSHADERIVPROC					__glewGetShaderiv;
+PFNGLBINDATTRIBLOCATIONPROC				__glewBindAttribLocation;
+PFNGLGETUNIFORMLOCATIONPROC				__glewGetUniformLocation;
+PFNGLVERTEXATTRIBPOINTERPROC			__glewVertexAttribPointer;
+PFNGLENABLEVERTEXATTRIBARRAYPROC		__glewEnableVertexAttribArray;
+PFNGLDISABLEVERTEXATTRIBARRAYPROC		__glewDisableVertexAttribArray;
+PFNGLUNIFORM1FPROC						__glewUniform1f;
+PFNGLUNIFORM1FVPROC						__glewUniform1fv;
+PFNGLUNIFORM2FPROC						__glewUniform2f;
+PFNGLUNIFORM2FVPROC						__glewUniform2fv;
+PFNGLUNIFORM3FPROC						__glewUniform3f;
+PFNGLUNIFORM3FVPROC						__glewUniform3fv;
+PFNGLUNIFORM4FPROC						__glewUniform4f;
+PFNGLUNIFORM4FVPROC						__glewUniform4fv;
+PFNGLUNIFORMMATRIX4FVPROC				__glewUniformMatrix4fv;*/
+#endif
+
 NS_CC_BEGIN
 
 enum {
@@ -72,7 +124,8 @@ static CCShaderCache* _sharedShaderCache = 0;
 
 CCShaderCache* CCShaderCache::sharedShaderCache()
 {
-    if (!_sharedShaderCache) {
+    if (!_sharedShaderCache) 
+	{
         _sharedShaderCache = new CCShaderCache();
         if (!_sharedShaderCache->init())
         {
@@ -147,11 +200,69 @@ bool CCShaderCache::init()
     
     ccPositionTextureColorAlphaTest_frag = GetShaderFile("shaders/ccShader_PositionTextureColorAlphaTest_frag.h");
     ccExSwitchMask_frag = GetShaderFile("shaders/ccShaderEx_SwitchMask_frag.h");
+
+#elif defined(_IRR_COMPILE_WITH_OPENGL_)
+	glewInit();
+
 #endif
 
     loadDefaultShaders();
     return true;
 }
+
+#if defined(_IRR_COMPILE_WITH_OPENGL_)	
+void CCShaderCache::glewInit()
+{
+	__glewGenBuffers				= (PFNGLGENBUFFERSPROC)COCOS2D_GLSL_EXTENSION("glGenBuffersARB");
+	__glewDeleteBuffers				= (PFNGLDELETEBUFFERSPROC)COCOS2D_GLSL_EXTENSION("glDeleteBuffersARB");
+	__glewBindBuffer				= (PFNGLBINDBUFFERPROC)COCOS2D_GLSL_EXTENSION("glBindBufferARB");
+	__glewBufferData				= (PFNGLBUFFERDATAPROC)COCOS2D_GLSL_EXTENSION("glBufferDataARB");
+	__glewBufferSubData				= (PFNGLBUFFERSUBDATAPROC)COCOS2D_GLSL_EXTENSION("glBufferSubDataARB");
+	__glewActiveTexture				= (PFNGLACTIVETEXTUREPROC)COCOS2D_GLSL_EXTENSION("glActiveTextureARB");
+	__glewClientActiveTexture		= (PFNGLCLIENTACTIVETEXTUREPROC)COCOS2D_GLSL_EXTENSION("glClientActiveTextureARB");
+	__glewBindFramebuffer			= (PFNGLBINDFRAMEBUFFERPROC)COCOS2D_GLSL_EXTENSION("glBindFramebuffer");
+	__glewBindRenderbuffer			= (PFNGLBINDRENDERBUFFERPROC)COCOS2D_GLSL_EXTENSION("glBindRenderbuffer");
+	__glewGenFramebuffers			= (PFNGLGENFRAMEBUFFERSPROC)COCOS2D_GLSL_EXTENSION("glGenFramebuffers");
+	__glewGenRenderbuffers			= (PFNGLGENRENDERBUFFERSPROC)COCOS2D_GLSL_EXTENSION("glGenRenderbuffers");
+	__glewDeleteFramebuffers		= (PFNGLDELETEFRAMEBUFFERSPROC)COCOS2D_GLSL_EXTENSION("glDeleteFramebuffers");
+	__glewDeleteRenderbuffers		= (PFNGLDELETERENDERBUFFERSPROC)COCOS2D_GLSL_EXTENSION("glDeleteRenderbuffers");
+	__glewFramebufferRenderbuffer	= (PFNGLFRAMEBUFFERRENDERBUFFERPROC)COCOS2D_GLSL_EXTENSION("glFramebufferRenderbuffer");
+	__glewRenderbufferStorage		= (PFNGLRENDERBUFFERSTORAGEPROC)COCOS2D_GLSL_EXTENSION("glRenderbufferStorage");
+	__glewCheckFramebufferStatus	= (PFNGLCHECKFRAMEBUFFERSTATUSPROC)COCOS2D_GLSL_EXTENSION("glCheckFramebufferStatus");
+	__glewGenerateMipmap			= (PFNGLGENERATEMIPMAPPROC)COCOS2D_GLSL_EXTENSION("glGenerateMipmap");
+	__glewFramebufferTexture2D		= (PFNGLFRAMEBUFFERTEXTURE2DPROC)COCOS2D_GLSL_EXTENSION("glFramebufferTexture2D");
+	__glewCompressedTexImage2D		= (PFNGLCOMPRESSEDTEXIMAGE2DPROC)COCOS2D_GLSL_EXTENSION("glCompressedTexImage2D");
+	
+	/*__glewCreateProgram				= (PFNGLCREATEPROGRAMPROC)COCOS2D_GLSL_EXTENSION("glCreateProgram");
+	__glewDeleteProgram				= (PFNGLDELETEPROGRAMPROC)COCOS2D_GLSL_EXTENSION("glDeleteProgram");
+	__glewLinkProgram				= (PFNGLLINKPROGRAMPROC)COCOS2D_GLSL_EXTENSION("glLinkProgram");
+	__glewUseProgram				= (PFNGLUSEPROGRAMPROC)COCOS2D_GLSL_EXTENSION("glUseProgram");
+	__glewGetProgramInfoLog			= (PFNGLGETPROGRAMINFOLOGPROC)COCOS2D_GLSL_EXTENSION("glGetProgramInfoLog");
+	__glewGetProgramiv				= (PFNGLGETPROGRAMIVPROC)COCOS2D_GLSL_EXTENSION("glGetProgramiv");
+	__glewCreateShader				= (PFNGLCREATESHADERPROC)COCOS2D_GLSL_EXTENSION("glCreateShader");
+	__glewAttachShader				= (PFNGLATTACHSHADERPROC)COCOS2D_GLSL_EXTENSION("glAttachShader");
+	__glewShaderSource				= (PFNGLSHADERSOURCEPROC)COCOS2D_GLSL_EXTENSION("glShaderSource");
+	__glewCompileShader				= (PFNGLCOMPILESHADERPROC)COCOS2D_GLSL_EXTENSION("glCompileShader");
+	__glewDeleteShader				= (PFNGLDELETESHADERPROC)COCOS2D_GLSL_EXTENSION("glDeleteShader");
+	__glewGetShaderInfoLog			= (PFNGLGETSHADERINFOLOGPROC)COCOS2D_GLSL_EXTENSION("glGetShaderInfoLog");
+	__glewGetShaderiv				= (PFNGLGETSHADERIVPROC)COCOS2D_GLSL_EXTENSION("glGetShaderiv");
+	__glewBindAttribLocation		= (PFNGLBINDATTRIBLOCATIONPROC)COCOS2D_GLSL_EXTENSION("glBindAttribLocation");
+	__glewGetUniformLocation		= (PFNGLGETUNIFORMLOCATIONPROC)COCOS2D_GLSL_EXTENSION("glGetUniformLocation");
+	__glewVertexAttribPointer		= (PFNGLVERTEXATTRIBPOINTERPROC)COCOS2D_GLSL_EXTENSION("glVertexAttribPointer");
+	__glewEnableVertexAttribArray	= (PFNGLENABLEVERTEXATTRIBARRAYPROC)COCOS2D_GLSL_EXTENSION("glEnableVertexAttribArray");
+	__glewDisableVertexAttribArray	= (PFNGLDISABLEVERTEXATTRIBARRAYPROC)COCOS2D_GLSL_EXTENSION("glDisableVertexAttribArray");
+	
+	__glewUniform1f			= (PFNGLUNIFORM1FPROC)COCOS2D_GLSL_EXTENSION("glUniform1fARB");
+	__glewUniform1fv		= (PFNGLUNIFORM1FVPROC)COCOS2D_GLSL_EXTENSION("glUniform1fvARB");
+	__glewUniform2f			= (PFNGLUNIFORM2FPROC)COCOS2D_GLSL_EXTENSION("glUniform2fARB");
+	__glewUniform2fv		= (PFNGLUNIFORM2FVPROC)COCOS2D_GLSL_EXTENSION("glUniform2fvARB");
+	__glewUniform3f			= (PFNGLUNIFORM3FPROC)COCOS2D_GLSL_EXTENSION("glUniform3fARB");
+	__glewUniform3fv		= (PFNGLUNIFORM3FVPROC)COCOS2D_GLSL_EXTENSION("glUniform3fvARB");
+	__glewUniform4f			= (PFNGLUNIFORM4FPROC)COCOS2D_GLSL_EXTENSION("glUniform4fARB");
+	__glewUniform4fv		= (PFNGLUNIFORM4FVPROC)COCOS2D_GLSL_EXTENSION("glUniform4fvARB");
+	__glewUniformMatrix4fv	= (PFNGLUNIFORMMATRIX4FVPROC)COCOS2D_GLSL_EXTENSION("glUniformMatrix4fvARB");*/
+}
+#endif
 
 char* CCShaderCache::GetShaderFile(std::string filename)
 {

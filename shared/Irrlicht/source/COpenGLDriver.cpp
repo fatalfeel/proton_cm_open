@@ -19,7 +19,6 @@
 
 #ifdef _WIN32
 	#pragma comment(lib, "opengl32.lib")
-	#pragma comment(lib, "glew32.lib")
 #endif
 
 #ifdef _IRR_COMPILE_WITH_SDL_DEVICE_
