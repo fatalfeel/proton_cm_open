@@ -209,7 +209,7 @@ void App::Update()
 	{
 		m_bDidPostInit	= true;
 						
-		//init for HelloWorld or GuiScroll
+		//select for HelloWorld::scene() or GuiScroll::scene()
 		CCScene* pScene = HelloWorld::scene();
 		// run
 		CCDirector::sharedDirector()->runWithScene(pScene);
