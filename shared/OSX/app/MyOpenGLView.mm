@@ -362,11 +362,10 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
     cy      = GetPrimaryGLY() - touchPoint.y*scale;
     g_pApp->HandleTouchesBegin(1, &keyid, &cx, &cy);
 
-	NSPoint pt = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-	pt.y = GetPrimaryGLY()-pt.y; //flip it to upper left hand coords
+	touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
 	
-	ConvertCoordinatesIfRequired(pt.x, pt.y);
-	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_START,pt.x, pt.y);			
+	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
+	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_START,touchPoint.x, touchPoint.y);
 
 	//LogMsg("Got mouse down: %.2f, %0.2f", pt.x, pt.y);
 	// [controller mouseDown:theEvent];
@@ -399,33 +398,42 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
     g_pApp->HandleTouchesEnd(1, &keyid, &cx, &cy);
     
     // Delegate to the controller object for handling mouse events
-	NSPoint pt = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-	pt.y = GetPrimaryGLY()-pt.y; //flip it to upper left hand coords
+	touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
 	
-	ConvertCoordinatesIfRequired(pt.x, pt.y);
-	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_END,pt.x, pt.y);			
+	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
+	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_END,touchPoint.x, touchPoint.y);
 	// [controller mouseDown:theEvent];
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
     // Delegate to the controller object for handling mouse events
-	NSPoint pt = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-	pt.y = GetPrimaryGLY()-pt.y; //flip it to upper left hand coords
+    int			keyid;
+    float       cx,cy;
+    float       scale      = 1.0f;
+    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+    keyid   = 0;
+    cx      = touchPoint.x*scale;
+    cy      = GetPrimaryGLY() - touchPoint.y*scale;
+    g_pApp->HandleTouchesMove(1, &keyid, &cx, &cy);
 	
-	ConvertCoordinatesIfRequired(pt.x, pt.y);
-	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_MOVE,pt.x, pt.y);			
+    touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
+	
+	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
+	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_MOVE,touchPoint.x, touchPoint.y);
 	// [controller mouseDown:theEvent];
 }
 
 - (void)mouseMovedMessage:(NSEvent *)theEvent
 {
     // Delegate to the controller object for handling mouse events
-	NSPoint pt = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-	pt.y = GetPrimaryGLY()-pt.y; //flip it to upper left hand coords
+    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+	touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
 	
-	ConvertCoordinatesIfRequired(pt.x, pt.y);
-	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_MOVE_RAW,pt.x, pt.y);			
+	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
+	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_MOVE_RAW,touchPoint.x, touchPoint.y);
 	// [controller mouseDown:theEvent];
 }
 

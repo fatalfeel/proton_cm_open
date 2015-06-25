@@ -567,7 +567,6 @@ return count;
     UIInterfaceOrientation  orientation = [UIDevice currentDevice].orientation;
     
     keyid = 0;
-    
     if (orientation == UIInterfaceOrientationLandscapeLeft
         ||
         orientation == UIInterfaceOrientationLandscapeRight)
