@@ -395,6 +395,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath="..\source\GUI\HelloWorldScene.h"
+					>
+				</File>
+				<File
 					RelativePath="..\source\GUI\MainMenu.cpp"
 					>
 				</File>
