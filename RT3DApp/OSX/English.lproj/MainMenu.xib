@@ -25,7 +25,7 @@
                             <menuItem isSeparatorItem="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Preferences?? keyEquivalent="," id="129"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="129"/>
                             <menuItem isSeparatorItem="YES" id="143">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -70,7 +70,7 @@
                                     <action selector="newDocument:" target="-1" id="373"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open?? keyEquivalent="o" id="72">
+                            <menuItem title="Open…" keyEquivalent="o" id="72">
                                 <connections>
                                     <action selector="openDocument:" target="-1" id="374"/>
                                 </connections>
@@ -99,7 +99,7 @@
                                     <action selector="saveDocument:" target="-1" id="362"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save As?? keyEquivalent="S" id="80">
+                            <menuItem title="Save As…" keyEquivalent="S" id="80">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="363"/>
@@ -120,7 +120,7 @@
                                     <action selector="runPageLayout:" target="-1" id="87"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Print?? keyEquivalent="p" id="78">
+                            <menuItem title="Print…" keyEquivalent="p" id="78">
                                 <connections>
                                     <action selector="print:" target="-1" id="86"/>
                                 </connections>
@@ -182,7 +182,7 @@
                             <menuItem title="Find" id="218">
                                 <menu key="submenu" title="Find" id="220">
                                     <items>
-                                        <menuItem title="Find?? tag="1" keyEquivalent="f" id="209">
+                                        <menuItem title="Find…" tag="1" keyEquivalent="f" id="209">
                                             <connections>
                                                 <action selector="performFindPanelAction:" target="-1" id="241"/>
                                             </connections>
@@ -600,7 +600,7 @@
                                     <action selector="toggleToolbarShown:" target="-1" id="366"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Customize Toolbar?? id="298">
+                            <menuItem title="Customize Toolbar…" id="298">
                                 <connections>
                                     <action selector="runToolbarCustomizationPalette:" target="-1" id="365"/>
                                 </connections>
