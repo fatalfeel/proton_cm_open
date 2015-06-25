@@ -48,10 +48,19 @@ Config of cocos2d-x project, per target platform.
 #define CC_TARGET_PLATFORM             CC_PLATFORM_UNKNOWN
 
 // iphone
-#if ! CC_TARGET_PLATFORM && (defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR))
+//#if ! CC_TARGET_PLATFORM && (defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR))
+#if ! CC_TARGET_PLATFORM && (TARGET_OS_MAC == 1 && (TARGET_OS_IPHONE == 1 || TARGET_IPHONE_SIMULATOR == 1))
     #undef  CC_TARGET_PLATFORM
     #define CC_TARGET_PLATFORM         CC_PLATFORM_IOS
     #define CC_SUPPORT_PVRTC
+#endif
+
+// mac
+//#if ! CC_TARGET_PLATFORM && defined(TARGET_OS_MAC)
+#if ! CC_TARGET_PLATFORM && (TARGET_OS_MAC == 1 && (TARGET_OS_IPHONE == 0 && TARGET_IPHONE_SIMULATOR == 0))
+#undef  CC_TARGET_PLATFORM
+#define CC_TARGET_PLATFORM         CC_PLATFORM_MAC
+//#define CC_SUPPORT_PVRTC
 #endif
 
 // android
@@ -88,13 +97,6 @@ Config of cocos2d-x project, per target platform.
 #if ! CC_TARGET_PLATFORM && defined(__QNX__)
     #undef  CC_TARGET_PLATFORM
     #define CC_TARGET_PLATFORM     CC_PLATFORM_BLACKBERRY
-#endif
-
-// mac
-#if ! CC_TARGET_PLATFORM && defined(TARGET_OS_MAC)
-    #undef  CC_TARGET_PLATFORM
-    #define CC_TARGET_PLATFORM         CC_PLATFORM_MAC
-    //#define CC_SUPPORT_PVRTC
 #endif
 
 //////////////////////////////////////////////////////////////////////////

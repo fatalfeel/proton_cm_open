@@ -11,7 +11,7 @@
 
 #include "../PlatformEnums.h"
 
-void InitDeviceScreenInfoEx(int width, int height, int orientation);
+void InitDeviceScreenInfoEx(int width, int height);
 int ConvertOSXKeycodeToProtonVirtualKey(int c);
 #endif
 

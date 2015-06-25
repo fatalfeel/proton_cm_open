@@ -97,6 +97,8 @@
 
 //SETH Make my own C_GL_MODE define control if normal gl is used or not in irrlicht
 #if defined(C_GL_MODE)
+	#define	_IRR_COMPILE_WITH_WINDOWS_DEVICE_
+	
 	//one of 3 options can choice
 	//#define _IRR_COMPILE_WITH_OGLES1_
 	#define _IRR_COMPILE_WITH_OGLES2_

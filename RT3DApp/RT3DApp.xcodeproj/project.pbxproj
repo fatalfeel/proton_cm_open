@@ -1154,6 +1154,9 @@
 		B706F63518112D1300DC9F99 /* ShaderMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderMenu.h; path = source/GUI/ShaderMenu.h; sourceTree = "<group>"; };
 		B71A572F1ABC5A0A00E7BBA4 /* PlatformEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformEnums.h; sourceTree = "<group>"; };
 		B71CED681815584700ED6CAF /* BuiltInFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BuiltInFont.cpp; path = ../shared/Irrlicht/source/BuiltInFont.cpp; sourceTree = "<group>"; };
+		B72C18551B3BDE4500B853FC /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
+		B72C18571B3BDF5400B853FC /* CCAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAccelerometer.h; sourceTree = "<group>"; };
+		B72C18591B3BDFD000B853FC /* CCEGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEGLView.h; sourceTree = "<group>"; };
 		B7320D6A1807BCB600A41E79 /* driverChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = driverChoice.h; path = ../shared/Irrlicht/include/driverChoice.h; sourceTree = "<group>"; };
 		B7320D6B1807BCB600A41E79 /* EPrimitiveTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EPrimitiveTypes.h; path = ../shared/Irrlicht/include/EPrimitiveTypes.h; sourceTree = "<group>"; };
 		B7320D6C1807BCB700A41E79 /* EShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EShaderTypes.h; path = ../shared/Irrlicht/include/EShaderTypes.h; sourceTree = "<group>"; };
@@ -3215,6 +3218,9 @@
 			isa = PBXGroup;
 			children = (
 				B7DB91581AC9202000A9B856 /* Simulation */,
+				B72C18571B3BDF5400B853FC /* CCAccelerometer.h */,
+				B72C18551B3BDE4500B853FC /* CCApplication.h */,
+				B72C18591B3BDFD000B853FC /* CCEGLView.h */,
 				B7DB91431AC9202000A9B856 /* CCCommon.mm */,
 				B7DB91441AC9202000A9B856 /* CCDirectorCaller.h */,
 				B7DB91451AC9202000A9B856 /* CCDirectorCaller.mm */,
@@ -4227,6 +4233,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);
@@ -4274,6 +4281,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);
@@ -4311,6 +4319,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);
@@ -4356,6 +4365,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);

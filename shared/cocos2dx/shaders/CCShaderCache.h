@@ -57,7 +57,7 @@ THE SOFTWARE.
 #elif defined(_IRR_COMPILE_WITH_OGLES2_)
 	#define GL_DEPTH24_STENCIL8			GL_DEPTH24_STENCIL8_OES
 
-#else
+#elif defined(_IRR_COMPILE_WITH_OPENGL_) && defined(_IRR_OPENGL_USE_EXTPOINTER_)
 	extern PFNGLGENBUFFERSPROC						__glewGenBuffers;
 	extern PFNGLDELETEBUFFERSPROC					__glewDeleteBuffers;
 	extern PFNGLBINDBUFFERPROC						__glewBindBuffer;
@@ -200,7 +200,7 @@ private:
     bool init();
     void loadDefaultShader(CCGLProgram *program, int type);
 
-#if defined(_IRR_COMPILE_WITH_OPENGL_)		
+#if defined(_IRR_COMPILE_WITH_OPENGL_) && defined(_IRR_OPENGL_USE_EXTPOINTER_)	
 	void glewInit();
 #endif
 

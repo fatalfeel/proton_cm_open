@@ -2245,6 +2245,9 @@
 		B78C6C72181505EC00FEC242 /* CImageLoaderBMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CImageLoaderBMP.h; path = ../shared/Irrlicht/source/CImageLoaderBMP.h; sourceTree = "<group>"; };
 		B78C6C73181505EC00FEC242 /* CImageLoaderTGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CImageLoaderTGA.cpp; path = ../shared/Irrlicht/source/CImageLoaderTGA.cpp; sourceTree = "<group>"; };
 		B78C6C74181505EC00FEC242 /* CImageLoaderTGA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CImageLoaderTGA.h; path = ../shared/Irrlicht/source/CImageLoaderTGA.h; sourceTree = "<group>"; };
+		B79DF9151B3C131300F79268 /* CCAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAccelerometer.h; sourceTree = "<group>"; };
+		B79DF9161B3C131300F79268 /* CCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCApplication.h; sourceTree = "<group>"; };
+		B79DF9171B3C131300F79268 /* CCEGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEGLView.h; sourceTree = "<group>"; };
 		B7D2ECB518188AC100D3702B /* EventControlComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EventControlComponent.cpp; path = source/Component/EventControlComponent.cpp; sourceTree = "<group>"; };
 		B7D2ECB618188AC100D3702B /* EventControlComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventControlComponent.h; path = source/Component/EventControlComponent.h; sourceTree = "<group>"; };
 		B7DC4AE718310C9E00319BE0 /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shaders; path = bin/shaders; sourceTree = "<group>"; };
@@ -3995,6 +3998,9 @@
 			isa = PBXGroup;
 			children = (
 				B720D5271AE13F360055D4B5 /* Simulation */,
+				B79DF9151B3C131300F79268 /* CCAccelerometer.h */,
+				B79DF9161B3C131300F79268 /* CCApplication.h */,
+				B79DF9171B3C131300F79268 /* CCEGLView.h */,
 				B720D5281AE13F360055D4B5 /* CCCommon.mm */,
 				B720D5291AE13F360055D4B5 /* CCDirectorCaller.h */,
 				B720D52A1AE13F360055D4B5 /* CCDirectorCaller.mm */,
@@ -5319,6 +5325,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);
@@ -5365,6 +5372,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);
@@ -5408,6 +5416,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);
@@ -5452,6 +5461,7 @@
 					../shared/cocos2dx,
 					../shared/cocos2dx/include,
 					../shared/cocos2dx/platform,
+					../shared/cocos2dx/platform/ios,
 					../shared/cocos2dx/extensions,
 					../shared/cocos2dx/kazmath/include,
 				);

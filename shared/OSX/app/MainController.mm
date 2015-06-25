@@ -314,7 +314,7 @@
 		NSRect bounds = [self.openGLView bounds];
 		LogMsg("Finished resizing");
 		CGLLockContext( (_CGLContextObject*)[[self.openGLView openGLContext] CGLContextObj]);
-		InitDeviceScreenInfoEx(bounds.size.width, bounds.size.height, ORIENTATION_LANDSCAPE_LEFT);
+		InitDeviceScreenInfoEx(bounds.size.width, bounds.size.height);
 		CGLUnlockContext( (_CGLContextObject*) [[self.openGLView openGLContext] CGLContextObj]);
 	
 }

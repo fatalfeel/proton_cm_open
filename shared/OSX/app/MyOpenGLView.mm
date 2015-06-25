@@ -7,6 +7,9 @@
 #import "App.h"
 #import "Irrlicht/IrrlichtManager.h"
 
+#import "cocos2d.h"
+using namespace cocos2d;
+
 @implementation MyOpenGLView
 
 // This is the renderer output callback function
@@ -103,6 +106,9 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 	[openGLContext release];
     openGLContext = NULL;
 	[pixelFormat release];
+    
+    CCDirector::sharedDirector()->end();
+	CCDirector::sharedDirector()->purgeDirector();
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSViewGlobalFrameDidChangeNotification 
@@ -197,6 +203,10 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
         {
             BaseApp::GetBaseApp()->Draw();
         }
+        
+        CCDirector::sharedDirector()->setGLDefaultValues();
+        CCDirector::sharedDirector()->mainLoop();
+        CCDirector::sharedDirector()->RestoreGLValues();
     }
 	
 	[[self openGLContext] flushBuffer];
@@ -207,11 +217,12 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 {
 	// This method will be called on the main thread when resizing
     // Add a mutex around to avoid the threads accessing the context simultaneously
+    core::dimension2d<u32>  size;
+    NSRect                  bounds;
+    
 	CGLLockContext( (_CGLContextObject*)[[self openGLContext] CGLContextObj]);
 	
-	core::dimension2d<u32>  size;
-    NSRect                  bounds = [self bounds];
-    
+    bounds      = [self bounds];
     size.Width  = bounds.size.width;
     size.Height = bounds.size.height;
 	
@@ -220,8 +231,30 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 	
 	if (![self inLiveResize])
 	{
-		LogMsg("Reshaping: %.2f %.2f",  bounds.size.width, bounds.size.height);
-		InitDeviceScreenInfoEx(bounds.size.width, bounds.size.height, ORIENTATION_LANDSCAPE_LEFT);
+		LogMsg("Reshaping: %.2f %.2f", bounds.size.width, bounds.size.height);
+		
+        InitDeviceScreenInfoEx(bounds.size.width, bounds.size.height);
+        
+        //init shader program first than irrlicht
+        if (!BaseApp::GetBaseApp()->IsInitted())
+        {
+            if (!BaseApp::GetBaseApp()->Init())
+            {
+                NSLog(@"Couldn't init app");
+            }
+        
+            CCShaderCache::sharedShaderCache();
+        
+            if (!BaseApp::GetBaseApp()->Init())
+            {
+                NSLog(@"Couldn't init app");
+            }
+        
+            CCSize size = CCSize(bounds.size.width, bounds.size.height);
+            CCDirector::sharedDirector()->setWinSize(size);
+            CCDirector::sharedDirector()->setContentScaleFactor(1.0f);
+            CCDirector::sharedDirector()->setOpenGLView(NULL);
+        }
 	}
 	
 	[[self openGLContext] update];
@@ -305,10 +338,13 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-
+    int			keyid;
+    float       cx,cy;
+    float       scale      = 1.0f;
+    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
 #ifdef _IRR_COMPILE_WITH_GUI_
     irr::SEvent ev;
-    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     ev.MouseInput.X = touchPoint.x;
     ev.MouseInput.Y = GetPrimaryGLY() - touchPoint.y;
@@ -320,7 +356,11 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
     ev.MouseInput.ButtonStates = 0;
     IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
 #endif
-
+    
+    keyid   = 0;
+    cx      = touchPoint.x*scale;
+    cy      = GetPrimaryGLY() - touchPoint.y*scale;
+    g_pApp->HandleTouchesBegin(1, &keyid, &cx, &cy);
 
 	NSPoint pt = [self convertPoint:[theEvent locationInWindow] fromView:nil];
 	pt.y = GetPrimaryGLY()-pt.y; //flip it to upper left hand coords
@@ -334,10 +374,13 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-
+    int			keyid;
+    float       cx,cy;
+    float       scale      = 1.0f;
+    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
 #ifdef _IRR_COMPILE_WITH_GUI_
     irr::SEvent ev;
-    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     ev.MouseInput.X = touchPoint.x;
     ev.MouseInput.Y = GetPrimaryGLY() - touchPoint.y;
@@ -350,6 +393,10 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
     IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
 #endif
 
+    keyid   = 0;
+    cx      = touchPoint.x*scale;
+    cy      = GetPrimaryGLY() - touchPoint.y*scale;
+    g_pApp->HandleTouchesEnd(1, &keyid, &cx, &cy);
     
     // Delegate to the controller object for handling mouse events
 	NSPoint pt = [self convertPoint:[theEvent locationInWindow] fromView:nil];

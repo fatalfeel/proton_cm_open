@@ -191,12 +191,15 @@ void CCDirector::setGLDefaultValues(void)
 {
     // This method SHOULD be called only after openGLView_ was initialized
     //CCAssert(m_pobOpenGLView, "opengl view should not be null");
+	int COCOS2DX_BLEND_SRC_ALPHA  = 0x80CB;
+	int COCOS2DX_BLEND_DST_ALPHA  = 0x80CA;
+	
     m_origin_blend	=	glIsEnabled(GL_BLEND);
 	m_origin_depth	=	glIsEnabled(GL_DEPTH_TEST);
 	m_origin_cull	=	glIsEnabled(GL_CULL_FACE);
 	
-	glGetIntegerv(GL_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
-	glGetIntegerv(GL_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
+	glGetIntegerv(COCOS2DX_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
+	glGetIntegerv(COCOS2DX_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
 		
 	setAlphaBlending(true, CC_BLEND_SRC, CC_BLEND_DST);
     setDepthTest(false);
