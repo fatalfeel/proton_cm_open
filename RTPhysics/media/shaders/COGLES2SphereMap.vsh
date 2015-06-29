@@ -154,6 +154,7 @@ void main()
 		vec4 Diffuse = vec4(0.0, 0.0, 0.0, 0.0);
 		vec4 Specular = vec4(0.0, 0.0, 0.0, 0.0);
 
+		//for (i = 0; i < int(uLightCount); i++) //will failed on win32 libGLESv2.dll
 		for (i = 0; i < int(MAX_LIGHTS); i++)
 		{
 			if( i >= uLightCount )
