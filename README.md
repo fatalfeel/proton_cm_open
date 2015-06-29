@@ -41,7 +41,7 @@ _IRR_COMPILE_WITH_OGLES1_;
 
 (b.) In Android
 
-Find function in SharedActivity.java
+public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.java
 
 //setEGLContextClientVersion(2); 
 

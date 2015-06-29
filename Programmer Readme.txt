@@ -30,11 +30,16 @@ C_GL_MODE of IrrCompileConfig.h
 #define _IRR_COMPILE_WITH_OGLES2_
 
 5.
+Switch between OGLES1 and OGLES2 on Android
+public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.java
+//setEGLContextClientVersion(2); -> setEGLContextClientVersion(2);
+
+6.
 Win32 OGLES1 and OGLES2 use different libEGL.dll
 please run update_OGLES1.bat or update_OGLES2.bat
 the .bat file will copy correct libEGL.dll
 
-6.
+7.
 Win32 libGLESv2.dll use AngelProject instruction set with SSE(not SSE2)
 git clone https://chromium.googlesource.com/angle/angle
 Revision: cc4ec64cda54f4b138f8d16ce0fe40b8fcedb459
