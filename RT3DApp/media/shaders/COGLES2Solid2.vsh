@@ -135,6 +135,8 @@ void spotLight(in int index, in vec3 position, in vec3 normal, inout vec4 ambien
 
 void main()
 {
+	int i;
+	
 	gl_Position = uWVPMatrix * vec4(inVertexPosition, 1.0);
 	
 	vec4 TextureCoord0 = vec4(inTexCoord0.x, inTexCoord0.y, 0.0, 0.0);
@@ -155,20 +157,30 @@ void main()
 		vec4 Diffuse = vec4(0.0, 0.0, 0.0, 0.0);
 		vec4 Specular = vec4(0.0, 0.0, 0.0, 0.0);
 
-		for (int i = 0; i < int(uLightCount); i++)
+		//for (i = 0; i < int(uLightCount); i++) //will failed on libGLESv2.dll
+		for (i = 0; i < int(MAX_LIGHTS); i++)
 		{
+			if( i >= uLightCount )
+				break;
+			
 			if (uLightType[i] == 0)
 				pointLight(i, Position, Normal, Ambient, Diffuse, Specular);
 		}
 
-		for (int i = 0; i < int(uLightCount); i++)
+		for (i = 0; i < int(MAX_LIGHTS); i++)
 		{
+			if( i >= uLightCount )
+				break;
+			
 			if (uLightType[i] == 1)
 				spotLight(i, Position, Normal, Ambient, Diffuse, Specular);
 		}
 
-		for (int i = 0; i < int(uLightCount); i++)
+		for (i = 0; i < int(MAX_LIGHTS); i++)
 		{
+			if( i >= uLightCount )
+				break;
+			
 			if (uLightType[i] == 2)
 				dirLight(i, Position, Normal, Ambient, Diffuse, Specular);
 		}
