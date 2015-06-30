@@ -199,6 +199,7 @@ void CCDirector::setGLDefaultValues(void)
 	m_origin_depth	=	glIsEnabled(GL_DEPTH_TEST);
 	m_origin_cull	=	glIsEnabled(GL_CULL_FACE);
 	
+	//libgles_cm.dll not support glGetIntegerv
 	glGetIntegerv(COCOS2DX_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
 	glGetIntegerv(COCOS2DX_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
 		
