@@ -91,7 +91,8 @@ CCDirector* CCDirector::sharedDirector(void)
 
 CCDirector::CCDirector(void)
 {
-
+	m_origin_blendSrc = GL_SRC_ALPHA;
+	m_origin_blendDst = GL_ONE_MINUS_SRC_ALPHA;
 }
 
 bool CCDirector::init(void)
