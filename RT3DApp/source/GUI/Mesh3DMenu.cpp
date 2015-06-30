@@ -89,8 +89,8 @@ void Mesh3DInitScene()
     node->addAnimator(anim);
     anim->drop();
 
-	u32 alpha_val = 180;
-	u32 MaterialCount = node->getMaterialCount();
+	u32 alpha_val		= 90;
+	u32 MaterialCount	= node->getMaterialCount();
 	
 	for(u32 i=0; i<MaterialCount; i++)
 	{
@@ -103,6 +103,19 @@ void Mesh3DInitScene()
 		tex_mat.SpecularColor.setAlpha(alpha_val);
 		tex_mat.EmissiveColor.setAlpha(alpha_val);
 	}
+
+#if	defined(_IRR_COMPILE_WITH_OGLES2_)
+	for(u32 i=0; i<mesh->getMeshBufferCount(); i++)
+	{
+		scene::IMeshBuffer* buffer = mesh->getMeshBuffer(i);
+		video::S3DVertex* vertex = (video::S3DVertex*)buffer->getVertices();
+		
+		for(u32 j=0; j<buffer->getVertexCount(); j++)
+		{
+			vertex[j].Color.setAlpha(alpha_val);
+		}
+	}
+#endif
 	
 	smgr->addSkyBoxSceneNode(IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_up.jpg"),
                              IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_dn.jpg"),
