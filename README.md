@@ -79,6 +79,18 @@ Demo screenshots
 (b) https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
 
 7.
+Demo video
+
+Irrlicht 3D + Cocos2D on IOS by Mun
+
+https://www.youtube.com/watch?v=BIEafKA2IBM
+
+8.
 The brother site only implement 3D part
 
 https://github.com/fatalfeel/proton_sdk_source
+
+9.
+Any bugs or questions please search
+[Proton SDK] of http://irrlicht.sourceforge.net/forum/
+I will be there help you.
