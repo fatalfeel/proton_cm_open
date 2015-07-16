@@ -39,7 +39,7 @@ _IRR_COMPILE_WITH_OGLES1_;
 
 ->_IRR_COMPILE_WITH_OGLES2_;
 
-(b.) In Android Java
+(b.) In Android
 
 public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.java
 
