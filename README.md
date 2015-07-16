@@ -53,7 +53,7 @@ Because ogles1 and ogles2 use different libEGL.dll.
 
 copy correct dlls from shared/dep32 to [projname]/bin,
 
-[projname]/bin/update_OGLES[X].bat will help you do it.
+[projname]/bin/update_OGLES[x].bat will help you do it.
 
 Some texture mapping black in win32 is ogles2 simulator's problem.
 
