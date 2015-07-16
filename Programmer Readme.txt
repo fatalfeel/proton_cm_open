@@ -40,7 +40,7 @@ please run update_OGLES1.bat or update_OGLES2.bat
 the .bat file will copy correct libEGL.dll
 
 7.
-Win32 libGLESv2.dll use AngelProject instruction set with SSE(not SSE2)
+Win32 AngelProject's libGLESv2.dll use instruction set with SSE(not SSE2)
 git clone https://chromium.googlesource.com/angle/angle
 Revision: cc4ec64cda54f4b138f8d16ce0fe40b8fcedb459
 Date: 2013/9/24 Am 02:57:10
