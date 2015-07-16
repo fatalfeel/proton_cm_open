@@ -39,7 +39,7 @@ _IRR_COMPILE_WITH_OGLES1_;
 
 ->_IRR_COMPILE_WITH_OGLES2_;
 
-(b.) In Android
+(b.) In Android Java
 
 public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.java
 
@@ -51,11 +51,11 @@ public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.
 
 Because ogles1 and ogles2 use different libEGL.dll.
 
-select correct dlls of ogles-1/2 on RT3DApp/bin,
+copy correct dlls from shared/dep32 to [projname]/bin,
 
-xxxxxx/bin/update_OGLES1/2.bat will help you do it.
+[projname]/bin/update_OGLES[X].bat will help you do it.
 
-When meet some texture black in win32, its libGLESv2.dll simulator's problem.
+Some texture mapping black in win32 is ogles2 simulator's problem.
 
 4.
 When debug NDK c++ on Android, please set
@@ -65,11 +65,11 @@ android:installLocation="internalOnly" of AndroidManifest.xml
 and Android firmware need unlock s-on to s-off.
 
 5.
-Enable or Disable Gui
+Enable or disable Irrlicht debug info and gui
 
 Find define _IRR_COMPILE_WITH_GUI_ of IrrCompileConfig.h
 
-Enable or disable it, will use irrlicht GUI or not
+Enable or disable this define.
 
 6.
 Demo screenshots
@@ -95,4 +95,4 @@ Any bugs or questions please search
 
 [Proton SDK] of http://irrlicht.sourceforge.net/forum/
 
-I will be there help you.
+Post message, I will be there help you.
