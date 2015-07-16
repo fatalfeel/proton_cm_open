@@ -81,9 +81,11 @@ Demo screenshots
 7.
 Demo video
 
-Irrlicht 3D + Cocos2D on IOS by Mun
+Irrlicht 3D + Cocos2dx on Ios Android by Mun
 
 https://www.youtube.com/watch?v=BIEafKA2IBM
+
+https://www.youtube.com/watch?v=pfH2ZL9Ze-c
 
 8.
 The brother site only implement 3D part
