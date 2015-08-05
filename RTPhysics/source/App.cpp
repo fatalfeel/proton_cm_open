@@ -220,14 +220,7 @@ void App::Update()
 
 void App::Draw()
 {
-	irr::video::IVideoDriver* pdriver = NULL;
-	
 	this->isNeedInitAgain(); //driver reinit first
-
-#if defined(_IRR_COMPILE_WITH_OGLES2_)	
-	pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
-	pdriver->SetGlProgram(0);
-#endif
 		
 	IrrlichtManager::GetIrrlichtManager()->IsRunning(); //let it do its own update tick
 	IrrlichtManager::GetIrrlichtManager()->BeginScene(); //turn on irrlicht's 3d mode renderstates
