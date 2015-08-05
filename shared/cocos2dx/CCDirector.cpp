@@ -221,6 +221,8 @@ void CCDirector::setGLDefaultValues(void)
 
     // set other opengl default values
     //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+    ccSetGlProgram(0); //by stone
 }
 
 void CCDirector::RestoreGLValues(void)
@@ -990,8 +992,6 @@ void CCDisplayLinkDirector::mainLoop(void)
     }
     else if (! m_bInvalid)
      {
-         ccSetGlProgram(0); //by stone
-		 
 		 drawScene();
      
          // release the objects
