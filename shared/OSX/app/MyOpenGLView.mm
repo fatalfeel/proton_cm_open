@@ -238,11 +238,6 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
         //init shader program first than irrlicht
         if (!BaseApp::GetBaseApp()->IsInitted())
         {
-            if (!BaseApp::GetBaseApp()->Init())
-            {
-                NSLog(@"Couldn't init app");
-            }
-        
             CCShaderCache::sharedShaderCache();
         
             if (!BaseApp::GetBaseApp()->Init())
