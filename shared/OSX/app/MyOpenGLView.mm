@@ -238,12 +238,12 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
         //init shader program first than irrlicht
         if (!BaseApp::GetBaseApp()->IsInitted())
         {
-            CCShaderCache::sharedShaderCache();
-        
             if (!BaseApp::GetBaseApp()->Init())
             {
                 NSLog(@"Couldn't init app");
             }
+        
+            CCShaderCache::sharedShaderCache();
         
             CCSize size = CCSize(bounds.size.width, bounds.size.height);
             CCDirector::sharedDirector()->setWinSize(size);

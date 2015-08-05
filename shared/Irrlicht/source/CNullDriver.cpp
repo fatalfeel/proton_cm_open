@@ -2591,6 +2591,10 @@ void CNullDriver::OnReLoad()
 		Textures[i].Surface->Reload();
 }
 
+void CNullDriver::SetGlProgram(unsigned int program)
+{
+}
+
 bool CNullDriver::OnAgainDriverInit() //by stone
 {
 	// delete material renderers

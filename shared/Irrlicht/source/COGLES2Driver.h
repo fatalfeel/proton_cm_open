@@ -466,8 +466,9 @@ namespace video
 		//! inits the opengl-es driver
 		bool genericDriverInit(const core::dimension2d<u32>& screenSize, bool stencilBuffer);
 
+		void SetGlProgram(unsigned int program);
 		bool OnAgainDriverInit(); //by stone
-
+		
 		//! returns a device dependent texture from a software surface (IImage)
 		virtual video::ITexture* createDeviceDependentTexture(IImage* surface, const io::path& name, void* mipmapData);
 

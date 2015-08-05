@@ -990,7 +990,9 @@ void CCDisplayLinkDirector::mainLoop(void)
     }
     else if (! m_bInvalid)
      {
-         drawScene();
+         ccSetGlProgram(0); //by stone
+		 
+		 drawScene();
      
          // release the objects
          CCPoolManager::sharedPoolManager()->pop();        

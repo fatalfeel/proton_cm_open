@@ -121,6 +121,9 @@ void IrrlichtManager::BeginScene()
 {
 	if (m_pDriver)
 	{
+		//turn normal GL back on
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			
 		//this really isn't needed as Proton clears the zbuffer/etc
 		m_pDriver->beginScene(false, false, SColor(255,100,101,140));
 	

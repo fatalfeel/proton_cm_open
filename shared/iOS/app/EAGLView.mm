@@ -90,17 +90,15 @@ using namespace cocos2d;
         SetPrimaryScreenSize(fullScreenRect.size.width, fullScreenRect.size.height);
         SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), 0);
     }
-    
-	//init shader program first than irrlicht
-    CCShaderCache::sharedShaderCache();
-    
+            
     if (!BaseApp::GetBaseApp()->Init())
 	{
-		
 		NSLog(@"Couldn't init app");
 		[self release];
 		return nil;
 	}
+	
+	CCShaderCache::sharedShaderCache();
     
     CCSize size = CCSize(fullScreenRect.size.width, fullScreenRect.size.height);
     CCDirector::sharedDirector()->setWinSize(size);

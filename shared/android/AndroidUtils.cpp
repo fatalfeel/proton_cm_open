@@ -771,14 +771,13 @@ void AppResize( JNIEnv*  env, jobject  thiz, jint w, jint h )
 		pFileSystem->SetRootDirectory("assets");
 
 		FileManager::GetFileManager()->MountFileSystem(pFileSystem);
-
-		//init shader first
-		CCShaderCache::sharedShaderCache();
-		
+				
 		if (!BaseApp::GetBaseApp()->Init())
 		{
 			LogMsg("Unable to initalize BaseApp");
 		}
+		
+		CCShaderCache::sharedShaderCache();
 
 		CCSize size = CCSize(w, h);
 		CCDirector::sharedDirector()->setWinSize(size);

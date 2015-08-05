@@ -57,6 +57,8 @@ static int      s_eGLServerState = 0;
 
 #endif // CC_ENABLE_GL_STATE_CACHE
 
+static unsigned int s_ccProgram = 0;
+
 // GL State Cache functions
 
 void ccGLInvalidateStateCache( void )
@@ -91,6 +93,13 @@ void ccGLDeleteProgram( GLuint program )
 #endif
 }
 
+void ccSetGlProgram( GLuint program )
+{
+#if defined(_IRR_COMPILE_WITH_OGLES2_)	
+	s_ccProgram = program;
+#endif
+}
+
 void ccGLUseProgram( GLuint program )
 {
 #if defined(_IRR_COMPILE_WITH_OGLES2_)
@@ -101,7 +110,11 @@ void ccGLUseProgram( GLuint program )
 			glUseProgram(program);
 		}
 	#else
-		glUseProgram(program);
+		if( s_ccProgram != program ) 
+		{
+			s_ccProgram = program;
+			glUseProgram(program);
+		}
 	#endif // CC_ENABLE_GL_STATE_CACHE
 #endif
 }
