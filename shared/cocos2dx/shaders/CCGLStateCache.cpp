@@ -95,9 +95,7 @@ void ccGLDeleteProgram( GLuint program )
 
 void ccSetGlProgram( GLuint program )
 {
-#if defined(_IRR_COMPILE_WITH_OGLES2_)	
 	s_ccProgram = program;
-#endif
 }
 
 void ccGLUseProgram( GLuint program )

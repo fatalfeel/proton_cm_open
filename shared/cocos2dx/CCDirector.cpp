@@ -222,7 +222,10 @@ void CCDirector::setGLDefaultValues(void)
     // set other opengl default values
     //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
     ccSetGlProgram(0); //by stone
+#endif
+
 }
 
 void CCDirector::RestoreGLValues(void)
