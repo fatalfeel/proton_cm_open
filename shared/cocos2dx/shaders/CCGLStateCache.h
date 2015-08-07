@@ -76,7 +76,10 @@ void CC_DLL ccGLInvalidateStateCache( void );
  If CC_ENABLE_GL_STATE_CACHE is disabled, it will the glUseProgram() directly.
  @since v2.0.0
  */
+#if defined(_IRR_COMPILE_WITH_OGLES2_)
 void CC_DLL ccSetGlProgram( GLuint program ); //by stone
+#endif
+
 void CC_DLL ccGLUseProgram( GLuint program );
 
 /** Deletes the GL program. If it is the one that is being used, it invalidates it.
