@@ -834,8 +834,7 @@ void COGLES2Texture::Reload()
     {
 		m_bRequestReload = false;
 
-		//SpriteBank->addTexture(Driver->addTexture(name, tmpImage));
-		//of CGUIFont::loadTexture will glGenTextures(1, &TextureName);
+		//SpriteBank->addTexture of CGUIFont will glGenTextures for #DefaultFont
 		if(getName().getPath().find(".lightmap.") != -1)
 		{
 			pbuffer		= FileManager::GetFileManager()->Get(getName().getPath().c_str(), &fsize, false, false);
