@@ -2591,7 +2591,7 @@ void CNullDriver::OnReLoad()
 		Textures[i].Surface->Reload();
 }
 
-void CNullDriver::SetGlProgram(unsigned int program)
+void CNullDriver::SetUseProgram(unsigned int program)
 {
 }
 

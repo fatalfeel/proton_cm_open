@@ -377,7 +377,7 @@ namespace video
 
 		virtual void OnUnLoad(); //SETH
 		virtual void OnReLoad();
-		virtual void SetGlProgram(unsigned int program);
+		virtual void SetUseProgram(unsigned int program);
 		virtual bool OnAgainDriverInit();
 		
 	protected:

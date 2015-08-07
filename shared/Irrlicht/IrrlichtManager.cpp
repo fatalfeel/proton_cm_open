@@ -125,9 +125,9 @@ void IrrlichtManager::BeginScene()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 #if defined(_IRR_COMPILE_WITH_OGLES2_)			
-		m_pDriver->SetGlProgram(0);
+		m_pDriver->SetUseProgram(0);
 #endif
-		
+
 		//this really isn't needed as Proton clears the zbuffer/etc
 		m_pDriver->beginScene(false, false, SColor(255,100,101,140));
 	

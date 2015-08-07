@@ -445,7 +445,7 @@ bool COGLES2Driver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
-void COGLES2Driver::SetGlProgram(unsigned int program)
+void COGLES2Driver::SetUseProgram(unsigned int program)
 {
 	BridgeCalls->Program = program;
 }

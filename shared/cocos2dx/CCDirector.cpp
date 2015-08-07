@@ -223,7 +223,7 @@ void CCDirector::setGLDefaultValues(void)
     //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 #if defined(_IRR_COMPILE_WITH_OGLES2_)
-    ccSetGlProgram(0); //by stone
+    ccSetUseProgram(0); //by stone
 #endif
 
 }
