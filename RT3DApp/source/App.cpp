@@ -223,7 +223,7 @@ void App::Update()
 
 void App::Draw()
 {
-	this->isNeedInitAgain(); //driver reinit first
+	//this->CheckInitAgain(); //move to outside
 		
 	IrrlichtManager::GetIrrlichtManager()->IsRunning(); //let it do its own update tick
 	IrrlichtManager::GetIrrlichtManager()->BeginScene(); //turn on irrlicht's 3d mode renderstates
@@ -233,7 +233,7 @@ void App::Draw()
 	BaseApp::Draw();
 }
 
-int App::isNeedInitAgain()
+void App::CheckInitAgain()
 {
 	irr::IrrlichtDevice*		pdevice = IrrlichtManager::GetIrrlichtManager()->GetDevice();
 	irr::video::IVideoDriver*	pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
@@ -263,8 +263,6 @@ int App::isNeedInitAgain()
 
 		CCTextureCache::sharedTextureCache()->reloadAllTextures();
 	}
-
-	return m_initagain;
 }
 
 void App::OnUnloadSurfaces()

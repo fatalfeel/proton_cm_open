@@ -591,6 +591,7 @@ int main(int argc, char *argv[])
 			BaseApp::GetBaseApp()->Update();
 		}
 
+		BaseApp::GetBaseApp()->CheckInitAgain();
 		BaseApp::GetBaseApp()->Draw();
 
 		while (!BaseApp::GetBaseApp()->GetOSMessages()->empty())

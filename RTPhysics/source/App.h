@@ -20,11 +20,10 @@ public:
 	//virtual void	Kill();
 	virtual void	Draw();
 	virtual void	Update();
-
-	int				isNeedInitAgain();
+	virtual void	CheckInitAgain();
+	
 	void			OnUnloadSurfaces();
 	void			OnReLoadSurfaces();
-
 	Entity*			GetMainScene();
 	string			GetVersionString();
 	float			GetVersion();

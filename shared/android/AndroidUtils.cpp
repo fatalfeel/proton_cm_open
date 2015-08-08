@@ -798,6 +798,7 @@ void AppRender(JNIEnv*  env)
 
 	//glViewport(0, 0, GetPrimaryGLX(), GetPrimaryGLY());
 	
+	BaseApp::GetBaseApp()->CheckInitAgain();
 	BaseApp::GetBaseApp()->Draw();
 	
 	CCDirector::sharedDirector()->setGLDefaultValues();
