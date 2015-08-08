@@ -16218,6 +16218,38 @@
 					RelativePath="..\..\shared\OSX\PlatformSetupOSX.h"
 					>
 				</File>
+				<Filter
+					Name="app"
+					>
+					<File
+						RelativePath="..\..\shared\OSX\app\main.m"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\OSX\app\MainController.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\OSX\app\MainController.mm"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\OSX\app\MyApplication.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\OSX\app\MyApplication.mm"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\OSX\app\MyOpenGLView.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\shared\OSX\app\MyOpenGLView.mm"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="dep32"
