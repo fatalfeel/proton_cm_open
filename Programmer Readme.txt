@@ -40,7 +40,7 @@ public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.
 //setEGLContextClientVersion(2); -> setEGLContextClientVersion(2);
 
 7.
-Win32 OGLES1 and OGLES2 use different libEGL.dll
+Win32 OGLES1 and OGLES2 are using different libEGL.dll
 please run update_OGLES1.bat or update_OGLES2.bat
 the .bat file will copy correct libEGL.dll
 
