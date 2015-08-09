@@ -844,11 +844,10 @@ void AppUpdate(JNIEnv*  env)
 				GetAudioManager()->Play(g_musicToPlay, GetAudioManager()->GetLastMusicLooping(), true, false, true);
 				GetAudioManager()->SetPos(GetAudioManager()->GetLastMusicID(), g_musicPos);
 			}
-
 		}
 
-		if (BaseApp::GetBaseApp()->IsInBackground()) 
-			return;
+		//if (BaseApp::GetBaseApp()->IsInBackground())
+		//	return;
 		
 		if (!BaseApp::GetBaseApp()->IsInBackground())
 		{
