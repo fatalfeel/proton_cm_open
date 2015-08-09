@@ -606,7 +606,7 @@ namespace
 	//irr::core::list<SEnvMapper> EnvMap;
 
 	//HKL KEYBOARD_INPUT_HKL=0;
-	unsigned int KEYBOARD_INPUT_CODEPAGE = 1252;
+	//unsigned int KEYBOARD_INPUT_CODEPAGE = 1252;
 };
 
 /*
