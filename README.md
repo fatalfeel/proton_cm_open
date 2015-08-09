@@ -43,13 +43,13 @@ public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.
 
 (b.) In Win32
 
-Because ogles1 and ogles2 use different libEGL.dll.
+Ogles1 and ogles2 are using different libEGL.dll.
 
-copy correct dlls from shared/dep32 to [projname]/bin,
+Please copy correct dlls from shared/dep32 to [projname]/bin.
 
 [projname]/bin/update_OGLES[x].bat will help you do it.
 
-Some texture mapping black in win32 is ogles2 simulator's problem.
+Some texture black in ogles2 is simulator's problem.
 
 4.
 When debug NDK c++ on Android, please set
