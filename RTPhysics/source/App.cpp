@@ -262,6 +262,17 @@ void App::CheckInitAgain()
 	}
 }
 
+void App::OnEnterBackground()
+{
+	SaveStuff();
+	BaseApp::OnEnterBackground();
+}
+
+void App::OnEnterForeground()
+{
+	BaseApp::OnEnterForeground();
+}
+
 void App::OnUnloadSurfaces()
 {
 	irr::video::IVideoDriver* pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
@@ -329,17 +340,6 @@ void App::SaveStuff()
 {
 	m_varDB.Save("save.dat");
 }
-void App::OnEnterBackground()
-{
-	SaveStuff();
-	BaseApp::OnEnterBackground();
-}
-
-void App::OnEnterForeground()
-{
-	BaseApp::OnEnterForeground();
-}
-
 
 void App::OnExitApp(VariantList *pVarList)
 {

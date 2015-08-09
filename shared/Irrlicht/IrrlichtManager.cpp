@@ -121,9 +121,6 @@ void IrrlichtManager::BeginScene()
 {
 	if (m_pDriver)
 	{
-		//turn normal GL back on
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 #if defined(_IRR_COMPILE_WITH_OGLES2_)			
 		m_pDriver->SetUseProgram(0);
 #endif

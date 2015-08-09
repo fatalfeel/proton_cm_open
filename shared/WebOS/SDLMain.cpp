@@ -592,6 +592,7 @@ int main(int argc, char *argv[])
 		}
 
 		BaseApp::GetBaseApp()->CheckInitAgain();
+		BaseApp::GetBaseApp()->ClearGLBuffer();
 		BaseApp::GetBaseApp()->Draw();
 
 		while (!BaseApp::GetBaseApp()->GetOSMessages()->empty())

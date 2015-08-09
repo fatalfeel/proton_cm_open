@@ -17,11 +17,12 @@ public:
 	virtual ~App();
 	
 	virtual bool	Init();
-	//virtual void	Kill();
 	virtual void	Draw();
 	virtual void	Update();
 	virtual void	CheckInitAgain();
-	
+	virtual void	OnEnterBackground();
+	virtual void	OnEnterForeground();
+
 	void			OnUnloadSurfaces();
 	void			OnReLoadSurfaces();
 	Entity*			GetMainScene();
@@ -33,8 +34,6 @@ public:
 	Variant*		GetVar(const string &keyName );
 	Variant*		GetVarWithDefault(const string &varName, const Variant &var) {return m_varDB.GetVarWithDefault(varName, var);}
 	int				GetSpecial();
-	virtual void	OnEnterBackground();
-	virtual void	OnEnterForeground();
 	void			OnExitApp(VariantList *pVarList);
     void            SaveStuff();
 	

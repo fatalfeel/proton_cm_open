@@ -198,26 +198,27 @@ public:
 	virtual void	CheckInitAgain();
 	virtual void	OnEnterBackground(); //OS4 got a phonecall or changed apps, should save your junk
 	virtual void	OnEnterForeground(); //switched back to the app
-	virtual void	OnFullscreenToggleRequest(); //Alt-Enter on Win, Ctrl-F on Mac - override if you want custom functionality
-	
-	void SetConsoleVisible(bool bNew);
-	bool GetConsoleVisible()							{return m_bConsoleVisible;}
-	bool GetFPSVisible()								{return m_bFPSVisible;}
-	void SetFPSVisible(bool bNew)				{m_bFPSVisible = bNew;}
-	unsigned int GetGameTick()					{return m_gameTimer.GetGameTick();}
-	void SetGameTick(unsigned int tick)		{m_gameTimer.SetGameTick(tick);}
-	unsigned int GetTick()								{return m_gameTimer.GetTick();}
+		
+	void	ClearGLBuffer();
+	void	OnFullscreenToggleRequest(); //Alt-Enter on Win, Ctrl-F on Mac - override if you want custom functionality
+	void	SetConsoleVisible(bool bNew);
+	bool	GetConsoleVisible()				{return m_bConsoleVisible;}
+	bool	GetFPSVisible()					{return m_bFPSVisible;}
+	void	SetFPSVisible(bool bNew)		{m_bFPSVisible = bNew;}
+	unsigned int GetGameTick()				{return m_gameTimer.GetGameTick();}
+	void	SetGameTick(unsigned int tick)	{m_gameTimer.SetGameTick(tick);}
+	unsigned int GetTick()					{return m_gameTimer.GetTick();}
 	eTimingSystem GetActiveTimingSystem();
 	unsigned int GetTickTimingSystem(eTimingSystem timingSystem);
-	float GetDelta()											{return m_gameTimer.GetDelta();}
-	float GetGameDelta()								{return m_gameTimer.GetGameDelta();}	
-	int GetDeltaTick()										{return m_gameTimer.GetDeltaTick();}
-	int GetGameDeltaTick()							{return m_gameTimer.GetDeltaGameTick();} //elapsed time in milliseconds (1000=1 second)
-	float GetElapsedTime()							{return (float)m_gameTimer.GetDeltaTick()/1000.0f;} //elapsed time in seconds (1 = 1 second)
-	float GetGameElapsedTime()					{return (float)m_gameTimer.GetDeltaGameTick()/1000.0f;} //elapsed time in seconds (1 = 1 second)
-	Console * GetConsole()							{return &m_console;}
+	float GetDelta()						{return m_gameTimer.GetDelta();}
+	float GetGameDelta()					{return m_gameTimer.GetGameDelta();}	
+	int GetDeltaTick()						{return m_gameTimer.GetDeltaTick();}
+	int GetGameDeltaTick()					{return m_gameTimer.GetDeltaGameTick();} //elapsed time in milliseconds (1000=1 second)
+	float GetElapsedTime()					{return (float)m_gameTimer.GetDeltaTick()/1000.0f;} //elapsed time in seconds (1 = 1 second)
+	float GetGameElapsedTime()				{return (float)m_gameTimer.GetDeltaGameTick()/1000.0f;} //elapsed time in seconds (1 = 1 second)
+	Console * GetConsole()					{return &m_console;}
 	void SetGameTickPause(bool bNew)		{m_gameTimer.SetGameTickPause(bNew);}
-	bool GetGameTickPause()						{return m_gameTimer.GetGameTickPause();}
+	bool GetGameTickPause()					{return m_gameTimer.GetGameTickPause();}
 	GameTimer * GetGameTimer()				{return &m_gameTimer;}
 	virtual void OnMessage(Message &m);
 	//RTFont * GetFont(eFont font)					{return &m_fontArray[font];}

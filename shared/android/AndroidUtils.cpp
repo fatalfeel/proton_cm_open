@@ -795,10 +795,9 @@ void AppRender(JNIEnv*  env)
 {
 	if (BaseApp::GetBaseApp()->IsInBackground() || g_pauseASAP) 
 		return;
-
-	//glViewport(0, 0, GetPrimaryGLX(), GetPrimaryGLY());
 	
 	BaseApp::GetBaseApp()->CheckInitAgain();
+	BaseApp::GetBaseApp()->ClearGLBuffer();
 	BaseApp::GetBaseApp()->Draw();
 	
 	CCDirector::sharedDirector()->setGLDefaultValues();

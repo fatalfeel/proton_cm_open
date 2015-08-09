@@ -124,6 +124,7 @@ using namespace cocos2d;
 	glViewport(0, 0, GetPrimaryGLX(), GetPrimaryGLY());
 	
 	BaseApp::GetBaseApp()->CheckInitAgain();
+	BaseApp::GetBaseApp()->ClearGLBuffer();
 	
 	if (GetScreenSizeX() != 0)
     {

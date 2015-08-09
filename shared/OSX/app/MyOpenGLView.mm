@@ -195,6 +195,7 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
     if( m_bViewSetting ) //by stone, after openglview setting done
     {
         BaseApp::GetBaseApp()->CheckInitAgain();
+        BaseApp::GetBaseApp()->ClearGLBuffer();
         
         /*if (BaseApp::GetBaseApp()->IsInitted() && !BaseApp::GetBaseApp()->IsInBackground() && ![self inLiveResize])
         {

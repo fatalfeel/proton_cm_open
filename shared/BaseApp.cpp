@@ -200,6 +200,40 @@ void BaseApp::CheckInitAgain()
 {
 }
 
+void BaseApp::OnEnterBackground()
+{
+	if (!m_bIsInBackground)
+	{
+#ifdef _DEBUG	
+		LogMsg("Entering background");
+#endif
+		m_bIsInBackground = true;
+	}
+
+	if (GetAudioManager())
+		GetAudioManager()->Suspend();
+}
+
+void BaseApp::OnEnterForeground()
+{
+	if (GetAudioManager())
+		GetAudioManager()->Resume();
+
+	if (m_bIsInBackground)
+	{
+#ifdef _DEBUG
+		LogMsg("Entering foreground");
+#endif
+		m_bIsInBackground = false;
+	}
+}
+
+void BaseApp::ClearGLBuffer()
+{
+	//turn normal GL back on
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
 void BaseApp::SetConsoleVisible( bool bNew )
 {
 	m_bConsoleVisible = bNew;
@@ -502,46 +536,6 @@ void BaseApp::OnMemoryWarning()
 	LogMsg("Got memory warning");
 }
 
-void BaseApp::OnEnterBackground()
-{
-	if (!m_bIsInBackground)
-	{
-#ifdef _DEBUG	
-		LogMsg("Entering background");
-#endif
-
-		m_bIsInBackground = true;
-	}
-
-	if (GetAudioManager())
-		GetAudioManager()->Suspend();
-}
-
-void BaseApp::OnEnterForeground()
-{
-	if (GetAudioManager())
-		GetAudioManager()->Resume();
-
-	if (m_bIsInBackground)
-	{
-#ifdef _DEBUG
-		LogMsg("Entering foreground");
-#endif
-
-		m_bIsInBackground = false;
-	}
-}
-
-/*void BaseApp::AddCommandLineParm( string parm )
-{
-	m_commandLineParms.push_back(parm);
-}
-
-vector<string> BaseApp::GetCommandLineParms()
-{
-	return m_commandLineParms;
-}*/
-
 void BaseApp::SetAccelerometerUpdateHz(float hz) //another way to think of hz is "how many times per second to update"
 {
 	OSMessage o;
@@ -592,25 +586,9 @@ void BaseApp::SetVideoMode(int width, int height, bool bFullScreen, float aspect
 
 
 #ifdef _WINDOWS_
-
 //yes, hacky.  Will cleanup when I add the OSX support for this
 extern bool g_bIsFullScreen;
 #endif
-
-/*bool BaseApp::OnPreInitVideo()
-{
-	//only called for desktop systems
-	//override in App.* if you want to do something here.  You'd have to
-	//extern these vars from main.cpp to change them...
-	
-	//SetEmulatedPlatformID(PLATFORM_ID_WINDOWS);
-	//g_winVideoScreenX = 768;
-	//g_winVideoScreenY = 1024;
-
-	
-	return true; //no error
-}*/
-
 
 void BaseApp::OnFullscreenToggleRequest()
 {
@@ -633,7 +611,6 @@ void BaseApp::OnFullscreenToggleRequest()
 	}
 #endif
 }
-
 
 void BaseApp::ResetTouches()
 {
