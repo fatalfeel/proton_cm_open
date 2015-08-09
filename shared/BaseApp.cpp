@@ -583,8 +583,6 @@ void BaseApp::SetVideoMode(int width, int height, bool bFullScreen, float aspect
 	BaseApp::GetBaseApp()->AddOSMessage(o);
 }
 
-
-
 #ifdef _WINDOWS_
 //yes, hacky.  Will cleanup when I add the OSX support for this
 extern bool g_bIsFullScreen;
