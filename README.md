@@ -33,13 +33,7 @@ xxxxxx/media/update_media.sh
 3.
 Switch between OGLES1 and OGLES2
 
-(a.) Find define of IrrCompileConfig.h
-
-_IRR_COMPILE_WITH_OGLES1_;
-
-->_IRR_COMPILE_WITH_OGLES2_;
-
-(b.) In Android
+(a.) In Android
 
 public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.java
 
@@ -47,7 +41,7 @@ public AppGLSurfaceView(Context context, SharedActivity _app) in SharedActivity.
 
 -> setEGLContextClientVersion(2);
 
-(c.) In Win32
+(b.) In Win32
 
 Because ogles1 and ogles2 use different libEGL.dll.
 
