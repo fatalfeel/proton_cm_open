@@ -164,7 +164,7 @@ bool App::Init()
 		if( GetAudioManager() )
 		{
 			GetAudioManager()->Preload("audio/click.wav");
-			//GetAudioManager()->Play("audio/real.mp3",1,1); //ios 128bps mp3
+			//GetAudioManager()->Play("audio/real.mp3",1,1); //ios 128kbps mp3
 			//GetAudioManager()->Play("audio/real.ogg",1,1); //android play ogg
 		}
 		
@@ -232,12 +232,15 @@ void App::Draw()
 
 void App::CheckInitAgain()
 {
-	irr::IrrlichtDevice*		pdevice = IrrlichtManager::GetIrrlichtManager()->GetDevice();
-	irr::video::IVideoDriver*	pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
+	irr::IrrlichtDevice*		pdevice;
+	irr::video::IVideoDriver*	pdriver;
 		
 	if( m_initagain )
 	{
 		m_initagain = 0;
+
+		pdevice = IrrlichtManager::GetIrrlichtManager()->GetDevice();
+		pdriver = IrrlichtManager::GetIrrlichtManager()->GetDriver();
 
 		CCTextureCache::sharedTextureCache()->removeAllTextures();
 				
@@ -294,11 +297,6 @@ void App::OnReLoadSurfaces()
 
 		m_initagain = 1;
 	}
-}
-
-Entity*	App::GetMainScene() 
-{
-	return m_MenuEntity;
 }
 
 void App::GetServerInfo( string &server, uint32 &port )

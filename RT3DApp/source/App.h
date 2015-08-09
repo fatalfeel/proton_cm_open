@@ -25,7 +25,6 @@ public:
 
 	void			OnUnloadSurfaces();
 	void			OnReLoadSurfaces();
-	Entity*			GetMainScene();
 	string			GetVersionString();
 	float			GetVersion();
 	int				GetBuild();
@@ -45,7 +44,6 @@ public:
 
 private:
 	bool			m_bDidPostInit;
-	//int			m_special;
 	int				m_connect_set; //by jesse stone
 	int				m_initagain;
 	unsigned int	m_indexBitsUsed;
