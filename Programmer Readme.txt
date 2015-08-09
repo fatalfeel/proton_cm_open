@@ -49,3 +49,7 @@ Win32 AngelProject's libGLESv2.dll use instruction set with SSE(not SSE2)
 git clone https://chromium.googlesource.com/angle/angle
 Revision: cc4ec64cda54f4b138f8d16ce0fe40b8fcedb459
 Date: 2013/9/24 Am 02:57:10
+
+9.
+AngelProject bug fixed
+http://www.mediafire.com/download/8v4dfnlj0o3kl30/AngleGLes2.rar
