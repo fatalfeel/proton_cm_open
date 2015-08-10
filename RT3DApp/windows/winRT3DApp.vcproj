@@ -16149,14 +16149,62 @@
 				<File
 					RelativePath="..\..\shared\WebOS\PlatformSetupWebOS.h"
 					>
+					<FileConfiguration
+						Name="Debug GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\shared\WebOS\SDLMain.cpp"
 					>
+					<FileConfiguration
+						Name="Debug GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\shared\WebOS\SDLMain.h"
 					>
+					<FileConfiguration
+						Name="Debug GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\shared\WebOS\WebOSUtils.cpp"
@@ -16179,6 +16227,7 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Debug GL|Win32"
+						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -16187,6 +16236,7 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release GL|Win32"
+						ExcludedFromBuild="true"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -16205,6 +16255,22 @@
 				<File
 					RelativePath="..\..\shared\WebOS\WebOSUtils.h"
 					>
+					<FileConfiguration
+						Name="Debug GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release GL|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
