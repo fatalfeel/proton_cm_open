@@ -22,7 +22,10 @@ public:
 	int GetFPS() {return m_fps;}
 	GameTimer();
 	virtual ~GameTimer();
-	float GetDelta() {return m_deltaFloat;}
+	float GetDelta() 
+	{
+		return m_deltaFloat;
+	}
 	float GetGameDelta() 
 	{
 		if (m_bGameTimerPaused) 
@@ -42,12 +45,12 @@ private:
 	unsigned int m_timeMS;
 	unsigned int m_fpsTimer;
 	unsigned int m_gameTimer;
-	int m_fps;
-	int m_fpsTemp;
-	bool m_bGameTimerPaused;
-	int m_deltaMS;
-	float m_deltaFloat;
-	std::deque <float> m_tickHistory;
+	int		m_fps;
+	int		m_fpsTemp;
+	bool	m_bGameTimerPaused;
+	int		m_deltaMS;
+	float	m_deltaFloat;
+	std::deque<float> m_tickHistory;
 
 };
 

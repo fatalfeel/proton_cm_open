@@ -23,29 +23,32 @@ GameTimer::~GameTimer()
 
 void GameTimer::Update()
 {
-	m_timeMS = uint32(GetSystemTimeAccurate());
-	m_deltaMS =  m_timeMS - m_lastTimeMS;
-	//if (m_deltaMS == 0) goto loop;
-	if (m_deltaMS > C_MAXIMUM_DELTA_ALLOWED) m_deltaMS = C_MAXIMUM_DELTA_ALLOWED;
+	int		tickDiff;
+	float	tempDelta = 0;
+
+	m_timeMS	= uint32(GetSystemTimeAccurate());
+	m_deltaMS	= m_timeMS - m_lastTimeMS;
+	
+	if (m_deltaMS > C_MAXIMUM_DELTA_ALLOWED) 
+		m_deltaMS = C_MAXIMUM_DELTA_ALLOWED;
 
 	m_tickHistory.push_back(float(m_deltaMS));
 	if (m_tickHistory.size() > FPS_AVERAGING_HISTORY)
 	{
 		m_tickHistory.pop_front();
 	}
-	float tempDelta = 0;
-
+	
 	for (uint32 i=0; i < m_tickHistory.size(); i++)
 	{
 		tempDelta += float(m_tickHistory[i]);
 	}
+	
 	tempDelta /= float(m_tickHistory.size());
 
+	tickDiff		= int32(m_deltaMS)-int32(tempDelta);
 
-	int tickDiff = int32(m_deltaMS)-int32(tempDelta);
-
-	m_deltaMS = (int)tempDelta;
-	m_lastTimeMS =  m_timeMS;
+	m_deltaMS		= (int)tempDelta;
+	m_lastTimeMS	=  m_timeMS;
 
 	if (tickDiff >0 && tickDiff < 5)
 	{
@@ -55,7 +58,6 @@ void GameTimer::Update()
 
 	//we have a maximum delta because above a certain point all collision detection would
 	//be broken. 
-
 	if (!m_bGameTimerPaused)
 	{
 		//advance game timer 
@@ -63,9 +65,6 @@ void GameTimer::Update()
 	}
 	
 	m_deltaFloat = float(m_deltaMS)/ (1000.0f/50.0f); //plan on 50 FPS being about average, which will return 1.0
-	
-	//LogMsg("Delta: %.5f", m_deltaFloat);
-	//if (m_deltaFloat == 0) m_deltaFloat = 0.0000001; //avoid divide by 0 errors later
 
 	if (m_fpsTimer < m_timeMS)
 	{
