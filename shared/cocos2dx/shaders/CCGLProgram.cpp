@@ -186,7 +186,7 @@ bool CCGLProgram::link()
 #if defined(_IRR_COMPILE_WITH_OGLES2_)
 	glLinkProgram(m_uProgram);
 
-	#if DEBUG
+	/*#if DEBUG
 		GLint status;
 		glValidateProgram(m_uProgram);
 
@@ -201,7 +201,7 @@ bool CCGLProgram::link()
 			m_uVertShader = m_uFragShader = m_uProgram = 0;
 			return false;
 		}
-	#endif
+	#endif*/
 
     if (m_uVertShader)
         glDeleteShader(m_uVertShader);

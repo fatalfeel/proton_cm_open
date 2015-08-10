@@ -254,9 +254,9 @@ void App::CheckInitAgain()
 			
 		pdriver->OnUnLoad();
 
+		pdriver->OnAgainDriverInit(); //pdriver first, for re-glCreateProgram bug fixed on Android
 		CCShaderCache::sharedShaderCache()->reloadDefaultShaders();
-		pdriver->OnAgainDriverInit();
-						
+		
 		pdriver->OnReLoad();
 			
 		if (pdevice->getGUIEnvironment())
