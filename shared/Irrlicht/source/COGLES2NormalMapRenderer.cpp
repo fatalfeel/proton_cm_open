@@ -17,7 +17,7 @@
     #include "OpenGLES/ES2/glext.h"
 #else
     #ifdef _WIN32
-		#include "EGL/egl.h"
+		#include "ogles2/include/EGL/egl.h"
 	#endif
 
     #include "GLES2/gl2.h"

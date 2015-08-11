@@ -32,10 +32,10 @@ THE SOFTWARE.
 #else
 	#define GL_GLEXT_PROTOTYPES	
 
-	#include "GLES/gl.h"
-	#include "GLES/glext.h"
-
-	#ifdef _IRR_COMPILE_WITH_OGLES2_
+	#if defined(_IRR_COMPILE_WITH_OGLES1_)
+		#include "GLES/gl.h"
+		#include "GLES/glext.h"
+	#elif defined(_IRR_COMPILE_WITH_OGLES2_)
 		#include "GLES2/gl2.h"
 		#include "GLES2/gl2ext.h"
 	#endif

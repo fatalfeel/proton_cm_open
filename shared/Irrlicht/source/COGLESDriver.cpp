@@ -13,7 +13,7 @@
     #include "OpenGLES/ES1/glext.h"
 #else
     #ifdef _WIN32
-		#include "EGL/egl.h"
+		#include "ogles1/include/EGL/egl.h"
 	#endif
 
     #include "GLES/gl.h"

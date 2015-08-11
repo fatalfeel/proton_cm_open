@@ -16,7 +16,7 @@
     #include "OpenGLES/ES2/glext.h"
 #else
     #ifdef _WIN32
-		#include "EGL/egl.h"
+		#include "ogles2/include/EGL/egl.h"
 	#endif
 
     #include "GLES2/gl2.h"
@@ -39,8 +39,6 @@
 #ifdef _WIN32
 	#pragma comment(lib, "../../shared/dep32/ogles2/lib/libEGL.lib")
 	#pragma comment(lib, "../../shared/dep32/ogles2/lib/libGLESv2.lib")
-
-	#pragma comment(lib, "../../shared/dep32/ogles1/lib/libgles_cm.lib")
 #endif
 
 /*#if defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_)

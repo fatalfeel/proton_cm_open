@@ -23,6 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "ccConfig.h"
 #include "TransformUtils.h"
 #include "cocoa/CCAffineTransform.h"
 
