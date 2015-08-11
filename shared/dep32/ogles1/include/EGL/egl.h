@@ -32,7 +32,8 @@
 /* All platform-dependent types and macro boilerplate (such as EGLAPI
  * and EGLAPIENTRY) should go in eglplatform.h.
  */
-#include <EGL/eglplatform.h>
+//#include <EGL/eglplatform.h>
+#include "ogles1/include/EGL/eglplatform.h"
 
 #ifdef __cplusplus
 extern "C" {
