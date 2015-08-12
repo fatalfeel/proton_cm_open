@@ -1069,13 +1069,14 @@ void COGLES2Driver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		const void* indexList, u32 primitiveCount,
 		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType)
 {
-	testGLError();
 	if (!checkPrimitiveCount(primitiveCount))
 		return;
 
 	setRenderStates3DMode();
 
 	drawVertexPrimitiveList2d3d(vertices, vertexCount, (const u16*)indexList, primitiveCount, vType, pType, iType);
+
+	BridgeCalls->setDepthMask(true);
 }
 
 
@@ -1309,9 +1310,7 @@ void COGLES2Driver::drawVertexPrimitiveList2d3d(const void* vertices, u32 vertex
 		glDisableVertexAttribArray(EVA_COLOR);
 		glDisableVertexAttribArray(EVA_TCOORD0);
 	}
-
-	BridgeCalls->setDepthMask(true);
-
+	
 	testGLError();
 }
 

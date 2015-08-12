@@ -1606,19 +1606,19 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		const void* indexList, u32 primitiveCount,
 		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType)
 {
+	if (!checkPrimitiveCount(primitiveCount))
+		return;
+
 	if (!primitiveCount || !vertexCount)
 		return;
 
-	if (!checkPrimitiveCount(primitiveCount))
-		return;
+	// draw everything
+	setRenderStates3DMode();
 
 	CNullDriver::drawVertexPrimitiveList(vertices, vertexCount, indexList, primitiveCount, vType, pType, iType);
 
 	if (vertices && !FeatureAvailable[IRR_ARB_vertex_array_bgra] && !FeatureAvailable[IRR_EXT_vertex_array_bgra])
 		getColorBuffer(vertices, vertexCount, vType);
-
-	// draw everything
-	setRenderStates3DMode();
 
 	if ((pType!=scene::EPT_POINTS) && (pType!=scene::EPT_POINT_SPRITES))
 		BridgeCalls->setClientState(true, true, true, true);
