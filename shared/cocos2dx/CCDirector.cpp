@@ -195,16 +195,20 @@ void CCDirector::setGLDefaultValues(void)
 	int COCOS2DX_BLEND_SRC_ALPHA  = 0x80CB;
 	int COCOS2DX_BLEND_DST_ALPHA  = 0x80CA;
 	
-    m_origin_blend	=	glIsEnabled(GL_BLEND);
-	m_origin_depth	=	glIsEnabled(GL_DEPTH_TEST);
-	m_origin_cull	=	glIsEnabled(GL_CULL_FACE);
+   	m_origin_blend		=	glIsEnabled(GL_BLEND);
+	m_origin_lighting	=	glIsEnabled(GL_LIGHTING);
+	m_origin_depth		=	glIsEnabled(GL_DEPTH_TEST);
+	m_origin_cull		=	glIsEnabled(GL_CULL_FACE);
 	
 	//libgles_cm.dll not support glGetIntegerv
+	glGetTexEnviv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, &m_origin_texenvSrc);
 	glGetIntegerv(COCOS2DX_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
 	glGetIntegerv(COCOS2DX_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
-		
+			
+	setTexEnvSrc(GL_TEXTURE_ENV, GL_SRC0_ALPHA, GL_TEXTURE);
 	setAlphaBlending(true, CC_BLEND_SRC, CC_BLEND_DST);
-    setDepthTest(false);
+	setLighting(false);
+	setDepthTest(false);
 	setCullFace(false); //by stone
 
 #if defined(_IRR_COMPILE_WITH_OGLES2_)
@@ -230,8 +234,9 @@ void CCDirector::setGLDefaultValues(void)
 
 void CCDirector::RestoreGLValues(void)
 {
-	//setAlphaBlending(m_origin_blend>0?true:false);
+	setTexEnvSrc(GL_TEXTURE_ENV, GL_SRC0_ALPHA, m_origin_texenvSrc);
 	setAlphaBlending(m_origin_blend>0?true:false, m_origin_blendSrc, m_origin_blendDst);
+	setLighting(m_origin_lighting>0?true:false);
 	setDepthTest(m_origin_depth>0?true:false);
 	setCullFace(m_origin_cull>0?true:false); //by stone
 }
@@ -461,6 +466,27 @@ void CCDirector::setAlphaBlending(bool bOn, GLenum src, GLenum dst)
     }
 
     CHECK_GL_ERROR_DEBUG();
+}
+
+void CCDirector::setTexEnvSrc(GLenum env, GLenum pname, GLint params)
+{
+    glTexEnvf(env, pname, params);
+
+	CHECK_GL_ERROR_DEBUG();
+}
+
+void CCDirector::setLighting(bool bOn)
+{
+    if (bOn)
+    {
+        glEnable(GL_LIGHTING);
+    }
+    else
+    {
+        glDisable(GL_LIGHTING);
+    }
+    
+	CHECK_GL_ERROR_DEBUG();
 }
 
 void CCDirector::setDepthTest(bool bOn)

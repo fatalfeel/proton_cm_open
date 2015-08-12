@@ -291,8 +291,12 @@ public:
     //void setAlphaBlending(bool bOn);
 	void setAlphaBlending(bool bOn, GLenum src, GLenum dst);
 
+	void setTexEnvSrc(GLenum env, GLenum pname, GLint params);
+	
+	void setLighting(bool bOn);
+	
     /** enables/disables OpenGL depth test */
-    void setDepthTest(bool bOn);
+	void setDepthTest(bool bOn);
 
 	void setCullFace(bool bOn);
 
@@ -420,10 +424,13 @@ protected:
     //friend class CCEGLViewProtocol;
 
 	unsigned char	m_origin_blend;
+	unsigned char	m_origin_lighting;
 	unsigned char	m_origin_depth;
 	unsigned char	m_origin_cull;
+	
 	unsigned int	m_origin_blendSrc;
 	unsigned int	m_origin_blendDst;
+	int				m_origin_texenvSrc;
 };
 
 /** 
