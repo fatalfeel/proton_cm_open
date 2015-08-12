@@ -1309,6 +1309,9 @@ void COGLES2Driver::drawVertexPrimitiveList2d3d(const void* vertices, u32 vertex
 		glDisableVertexAttribArray(EVA_COLOR);
 		glDisableVertexAttribArray(EVA_TCOORD0);
 	}
+
+	BridgeCalls->setDepthMask(true);
+
 	testGLError();
 }
 
@@ -2191,8 +2194,8 @@ void COGLES2Driver::setBasicRenderStates(const SMaterial& material, const SMater
 		 && 
 		 (AllowZWriteOnTransparent || (material.BlendOperation == EBO_NONE && !MaterialRenderers[material.MaterialType].Renderer->isTransparent())) )
 		BridgeCalls->setDepthMask(true);
-	//else
-	//	BridgeCalls->setDepthMask(false);
+	else
+		BridgeCalls->setDepthMask(false);
 
 	//if (resetAllRenderStates || (lastmaterial.FrontfaceCulling != material.FrontfaceCulling) || (lastmaterial.BackfaceCulling != material.BackfaceCulling))
 	{
