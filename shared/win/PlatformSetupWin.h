@@ -10,9 +10,8 @@
 	#define PLATFORM_WINDOWS
 #endif
 
-#define GL_GLEXT_PROTOTYPES
-
 #if defined(_IRR_COMPILE_WITH_OGLES1_)
+	#define GL_GLEXT_PROTOTYPES
 	#include "GLES/gl.h"
 	#include "GLES/glext.h"
 
@@ -21,6 +20,7 @@
 	#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
 
 #elif defined(_IRR_COMPILE_WITH_OGLES2_)
+	#define GL_GLEXT_PROTOTYPES
 	#include "GLES2/gl2.h"
 	#include "GLES2/gl2ext.h"
 						
@@ -28,7 +28,7 @@
 	#define glFrustumf				glFrustum
 	#define glColor4x(r,g,b,a)		glColor4f( (float(r)/65536.0f),  (float(g)/65536.0f) , (float(b)/65536.0f), (float(a)/65536.0f));
 
-#else
+#elif defined(_IRR_COMPILE_WITH_OPENGL_)
 	#include <GL/gl.h>
 	#include "Irrlicht/source/glext.h"
 #endif
