@@ -2000,10 +2000,6 @@
 								>
 							</File>
 							<File
-								RelativePath="..\..\shared\dep32\ogles2\include\GLES2\gl2extimg.h"
-								>
-							</File>
-							<File
 								RelativePath="..\..\shared\dep32\ogles2\include\GLES2\gl2platform.h"
 								>
 							</File>

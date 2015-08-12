@@ -16433,17 +16433,6 @@
 								</FileConfiguration>
 							</File>
 							<File
-								RelativePath="..\..\shared\dep32\ogles2\include\GLES2\gl2extimg.h"
-								>
-								<FileConfiguration
-									Name="Debug GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-							</File>
-							<File
 								RelativePath="..\..\shared\dep32\ogles2\include\GLES2\gl2platform.h"
 								>
 								<FileConfiguration
