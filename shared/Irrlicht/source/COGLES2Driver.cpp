@@ -2191,8 +2191,8 @@ void COGLES2Driver::setBasicRenderStates(const SMaterial& material, const SMater
 		 && 
 		 (AllowZWriteOnTransparent || (material.BlendOperation == EBO_NONE && !MaterialRenderers[material.MaterialType].Renderer->isTransparent())) )
 		BridgeCalls->setDepthMask(true);
-	else
-		BridgeCalls->setDepthMask(false);
+	//else
+	//	BridgeCalls->setDepthMask(false);
 
 	//if (resetAllRenderStates || (lastmaterial.FrontfaceCulling != material.FrontfaceCulling) || (lastmaterial.BackfaceCulling != material.BackfaceCulling))
 	{
@@ -2592,6 +2592,8 @@ void COGLES2Driver::setViewPort(const core::rect<s32>& area)
 
 	glDisable(GL_STENCIL_TEST);
 
+	BridgeCalls->setDepthMask(true); //restore
+
 	Material.FogEnable = fog;
 	Material.Lighting = lighting;
 	Material.MaterialType = materialType;
@@ -2631,6 +2633,8 @@ void COGLES2Driver::drawStencilShadow(	bool clearStencilBuffer,
 		glClear(GL_STENCIL_BUFFER_BIT);
 
 	glDisable(GL_STENCIL_TEST);
+
+	BridgeCalls->setDepthMask(true); //restore
 }
 
 
