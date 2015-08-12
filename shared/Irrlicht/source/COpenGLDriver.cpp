@@ -1760,6 +1760,8 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		}
 		BridgeCalls->setClientActiveTexture(GL_TEXTURE0_ARB);
 	}
+
+	BridgeCalls->setDepthMask(true);
 }
 
 
@@ -4076,6 +4078,8 @@ void COpenGLDriver::drawStencilShadowVolume(const core::array<core::vector3df>& 
 
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPopAttrib();
+
+	BridgeCalls->setDepthMask(true);
 }
 
 //! Fills the stencil shadow with color. After the shadow volume has been drawn
@@ -4153,6 +4157,8 @@ void COpenGLDriver::drawStencilShadow(bool clearStencilBuffer, video::SColor lef
 	BridgeCalls->setMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 	glPopAttrib();
+
+	BridgeCalls->setDepthMask(true);
 }
 
 
