@@ -288,12 +288,14 @@ public:
 	void RestoreGLValues(void);
 
     /** enables/disables OpenGL alpha blending */
-    //void setAlphaBlending(bool bOn);
-	void setAlphaBlending(bool bOn, GLenum src, GLenum dst);
-
+    
+#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
 	void setTexEnvSrc(GLenum env, GLenum pname, GLint params);
-	
+
 	void setLighting(bool bOn);
+#endif
+	
+	void setAlphaBlending(bool bOn, GLenum src, GLenum dst);
 	
     /** enables/disables OpenGL depth test */
 	void setDepthTest(bool bOn);
