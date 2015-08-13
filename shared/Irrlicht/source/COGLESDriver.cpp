@@ -1009,12 +1009,18 @@ void COGLES1Driver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		const void* indexList, u32 primitiveCount,
 		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType)
 {
+	GLboolean depthMask = 0;
+	
 	if (!checkPrimitiveCount(primitiveCount))
 		return;
+
+	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
 
 	setRenderStates3DMode();
 
 	drawVertexPrimitiveList2d3d(vertices, vertexCount, (const u16*)indexList, primitiveCount, vType, pType, iType);
+
+	glDepthMask(depthMask);
 }
 
 
@@ -3612,6 +3618,8 @@ void COGLES1CallBridge::setBlend(bool enable)
 
 } // end namespace
 } // end namespace
+
+//#endif // _IRR_COMPILE_WITH_OGLES1_
 
 namespace irr
 {

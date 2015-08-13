@@ -168,11 +168,6 @@ void BaseApp::Draw()
 		strcat(stTemp, stExtra);
 #endif
 
-		/*if (GetFont(FONT_SMALL)->IsLoaded())
-		{
-			GetFont(FONT_SMALL)->DrawScaled(2,2, stTemp, 0.7f);
-		}*/
-
 		string 	strA = stTemp;
 		wstring	strB(strA.begin(), strA.end());
 

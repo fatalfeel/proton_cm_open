@@ -194,19 +194,20 @@ void CCDirector::setGLDefaultValues(void)
     //CCAssert(m_pobOpenGLView, "opengl view should not be null");
 	int COCOS2DX_BLEND_SRC_ALPHA  = 0x80CB;
 	int COCOS2DX_BLEND_DST_ALPHA  = 0x80CA;
-	
-   	m_origin_blend		=	glIsEnabled(GL_BLEND);
-	m_origin_depth		=	glIsEnabled(GL_DEPTH_TEST);
-	m_origin_cull		=	glIsEnabled(GL_CULL_FACE);
-	
+	   		
 	//libgles_cm.dll not support glGetIntegerv
 	glGetIntegerv(COCOS2DX_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
 	glGetIntegerv(COCOS2DX_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
 
-#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
-	m_origin_lighting	=	glIsEnabled(GL_LIGHTING);
-	glGetTexEnviv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, &m_origin_texenvSrc);
+	m_origin_blend		=	glIsEnabled(GL_BLEND);
+	m_origin_depth		=	glIsEnabled(GL_DEPTH_TEST);
+	m_origin_cull		=	glIsEnabled(GL_CULL_FACE);
 
+#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
+	//GL_SRC0_ALPHA = GL_SOURCE0_ALPHA_ARB
+	glGetTexEnviv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, &m_origin_texenvSrc);
+	m_origin_lighting = glIsEnabled(GL_LIGHTING);
+	
 	setTexEnvSrc(GL_TEXTURE_ENV, GL_SRC0_ALPHA, GL_TEXTURE);
 	setLighting(false);
 #endif
@@ -470,13 +471,9 @@ void CCDirector::setTexEnvSrc(GLenum env, GLenum pname, GLint params)
 void CCDirector::setLighting(bool bOn)
 {
     if (bOn)
-    {
         glEnable(GL_LIGHTING);
-    }
     else
-    {
         glDisable(GL_LIGHTING);
-    }
     
 	CHECK_GL_ERROR_DEBUG();
 }

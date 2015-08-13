@@ -662,11 +662,11 @@ namespace video
 		\param vType Vertex type, e.g. video::EVT_STANDARD for S3DVertex.
 		\param pType Primitive type, e.g. scene::EPT_TRIANGLE_FAN for a triangle fan.
 		\param iType Index type, e.g. video::EIT_16BIT for 16bit indices. */
-		virtual void draw2DVertexPrimitiveList(const void* vertices, u32 vertexCount,
+		/*virtual void draw2DVertexPrimitiveList(const void* vertices, u32 vertexCount,
 				const void* indexList, u32 primCount,
 				E_VERTEX_TYPE vType=EVT_STANDARD,
 				scene::E_PRIMITIVE_TYPE pType=scene::EPT_TRIANGLES,
-				E_INDEX_TYPE iType=EIT_16BIT) =0;
+				E_INDEX_TYPE iType=EIT_16BIT) =0;*/
 
 		//! Draws an indexed triangle list.
 		/** Note that there may be at maximum 65536 vertices, because

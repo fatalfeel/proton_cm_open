@@ -286,7 +286,7 @@ public:
     void setGLDefaultValues(void);
 
 	void RestoreGLValues(void);
-    
+
 #if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
 	void setTexEnvSrc(GLenum env, GLenum pname, GLint params);
 

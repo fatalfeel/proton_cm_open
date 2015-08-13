@@ -1606,24 +1606,50 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		const void* indexList, u32 primitiveCount,
 		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType)
 {
+	GLboolean depthMask = 0;
+		
 	if (!checkPrimitiveCount(primitiveCount))
 		return;
 
-	if (!primitiveCount || !vertexCount)
-		return;
-
+	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
+	
 	// draw everything
 	setRenderStates3DMode();
 
+	drawVertexPrimitiveList2d3d(vertices, vertexCount, (const u16*)indexList, primitiveCount, vType, pType, iType);
+
+	glDepthMask(depthMask);
+}
+
+void COpenGLDriver::drawVertexPrimitiveList2d3d(const void* vertices, u32 vertexCount,
+		const void* indexList, u32 primitiveCount,
+		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType, bool threed)
+{
+	if (!primitiveCount || !vertexCount)
+		return;
+
+	if (!threed && !checkPrimitiveCount(primitiveCount))
+		return;
+	
 	CNullDriver::drawVertexPrimitiveList(vertices, vertexCount, indexList, primitiveCount, vType, pType, iType);
 
 	if (vertices && !FeatureAvailable[IRR_ARB_vertex_array_bgra] && !FeatureAvailable[IRR_EXT_vertex_array_bgra])
 		getColorBuffer(vertices, vertexCount, vType);
 
+	if( !threed )
+		setActiveTexture(0, Material.getTexture(0));
+	
 	if ((pType!=scene::EPT_POINTS) && (pType!=scene::EPT_POINT_SPRITES))
-		BridgeCalls->setClientState(true, true, true, true);
+	{
+		if( threed )
+			BridgeCalls->setClientState(true, true, true, true);
+		else
+			BridgeCalls->setClientState(true, false, true, true);
+	}
 	else
+	{
 		BridgeCalls->setClientState(true, false, true, false);
+	}
 
 //due to missing defines in OSX headers, we have to be more specific with this check
 //#if defined(GL_ARB_vertex_array_bgra) || defined(GL_EXT_vertex_array_bgra)
@@ -1662,16 +1688,28 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		case EVT_STANDARD:
 			if (vertices)
 			{
-				glNormalPointer(GL_FLOAT, sizeof(S3DVertex), &(static_cast<const S3DVertex*>(vertices))[0].Normal);
+				if( threed )
+					glNormalPointer(GL_FLOAT, sizeof(S3DVertex), &(static_cast<const S3DVertex*>(vertices))[0].Normal);
+				
 				glTexCoordPointer(2, GL_FLOAT, sizeof(S3DVertex), &(static_cast<const S3DVertex*>(vertices))[0].TCoords);
-				glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex), &(static_cast<const S3DVertex*>(vertices))[0].Pos);
+				
+				if( threed )
+					glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex), &(static_cast<const S3DVertex*>(vertices))[0].Pos);
+				else
+					glVertexPointer(2, GL_FLOAT, sizeof(S3DVertex), &(static_cast<const S3DVertex*>(vertices))[0].Pos);
 			}
 			else
 			{
-				glNormalPointer(GL_FLOAT, sizeof(S3DVertex), buffer_offset(12));
+				if( threed )
+					glNormalPointer(GL_FLOAT, sizeof(S3DVertex), buffer_offset(12));
+				
 				glColorPointer(colorSize, GL_UNSIGNED_BYTE, sizeof(S3DVertex), buffer_offset(24));
 				glTexCoordPointer(2, GL_FLOAT, sizeof(S3DVertex), buffer_offset(28));
-				glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex), 0);
+				
+				if( threed )
+					glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex), 0);
+				else
+					glVertexPointer(2, GL_FLOAT, sizeof(S3DVertex), 0);
 			}
 
 			if (MultiTextureExtension && CurrentTexture[1])
@@ -1687,16 +1725,28 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		case EVT_2TCOORDS:
 			if (vertices)
 			{
-				glNormalPointer(GL_FLOAT, sizeof(S3DVertex2TCoords), &(static_cast<const S3DVertex2TCoords*>(vertices))[0].Normal);
+				if( threed )
+					glNormalPointer(GL_FLOAT, sizeof(S3DVertex2TCoords), &(static_cast<const S3DVertex2TCoords*>(vertices))[0].Normal);
+				
 				glTexCoordPointer(2, GL_FLOAT, sizeof(S3DVertex2TCoords), &(static_cast<const S3DVertex2TCoords*>(vertices))[0].TCoords);
-				glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex2TCoords), &(static_cast<const S3DVertex2TCoords*>(vertices))[0].Pos);
+				
+				if( threed )
+					glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex2TCoords), &(static_cast<const S3DVertex2TCoords*>(vertices))[0].Pos);
+				else
+					glVertexPointer(2, GL_FLOAT, sizeof(S3DVertex2TCoords), &(static_cast<const S3DVertex2TCoords*>(vertices))[0].Pos);
 			}
 			else
 			{
-				glNormalPointer(GL_FLOAT, sizeof(S3DVertex2TCoords), buffer_offset(12));
+				if( threed )
+					glNormalPointer(GL_FLOAT, sizeof(S3DVertex2TCoords), buffer_offset(12));
+				
 				glColorPointer(colorSize, GL_UNSIGNED_BYTE, sizeof(S3DVertex2TCoords), buffer_offset(24));
 				glTexCoordPointer(2, GL_FLOAT, sizeof(S3DVertex2TCoords), buffer_offset(28));
-				glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex2TCoords), buffer_offset(0));
+				
+				if( threed )
+					glVertexPointer(3, GL_FLOAT, sizeof(S3DVertex2TCoords), buffer_offset(0));
+				else
+					glVertexPointer(2, GL_FLOAT, sizeof(S3DVertex2TCoords), buffer_offset(0));
 			}
 
 
@@ -1713,19 +1763,31 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		case EVT_TANGENTS:
 			if (vertices)
 			{
-				glNormalPointer(GL_FLOAT, sizeof(S3DVertexTangents), &(static_cast<const S3DVertexTangents*>(vertices))[0].Normal);
+				if( threed )
+					glNormalPointer(GL_FLOAT, sizeof(S3DVertexTangents), &(static_cast<const S3DVertexTangents*>(vertices))[0].Normal);
+
 				glTexCoordPointer(2, GL_FLOAT, sizeof(S3DVertexTangents), &(static_cast<const S3DVertexTangents*>(vertices))[0].TCoords);
-				glVertexPointer(3, GL_FLOAT, sizeof(S3DVertexTangents), &(static_cast<const S3DVertexTangents*>(vertices))[0].Pos);
+				
+				if( threed )
+					glVertexPointer(3, GL_FLOAT, sizeof(S3DVertexTangents), &(static_cast<const S3DVertexTangents*>(vertices))[0].Pos);
+				else
+					glVertexPointer(2, GL_FLOAT, sizeof(S3DVertexTangents), &(static_cast<const S3DVertexTangents*>(vertices))[0].Pos);
 			}
 			else
 			{
-				glNormalPointer(GL_FLOAT, sizeof(S3DVertexTangents), buffer_offset(12));
+				if( threed )
+					glNormalPointer(GL_FLOAT, sizeof(S3DVertexTangents), buffer_offset(12));
+
 				glColorPointer(colorSize, GL_UNSIGNED_BYTE, sizeof(S3DVertexTangents), buffer_offset(24));
 				glTexCoordPointer(2, GL_FLOAT, sizeof(S3DVertexTangents), buffer_offset(28));
-				glVertexPointer(3, GL_FLOAT, sizeof(S3DVertexTangents), buffer_offset(0));
+				
+				if( threed )
+					glVertexPointer(3, GL_FLOAT, sizeof(S3DVertexTangents), buffer_offset(0));
+				else
+					glVertexPointer(2, GL_FLOAT, sizeof(S3DVertexTangents), buffer_offset(0));
 			}
 
-			if (MultiTextureExtension)
+			if (MultiTextureExtension && threed)
 			{
 				BridgeCalls->setClientActiveTexture(GL_TEXTURE1_ARB);
 				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -1748,11 +1810,12 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 
 	if (MultiTextureExtension)
 	{
-		if (vType==EVT_TANGENTS)
+		if (vType==EVT_TANGENTS && threed)
 		{
 			BridgeCalls->setClientActiveTexture(GL_TEXTURE2_ARB);
 			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 		}
+		
 		if ((vType!=EVT_STANDARD) || CurrentTexture[1])
 		{
 			BridgeCalls->setClientActiveTexture(GL_TEXTURE1_ARB);
@@ -1760,8 +1823,6 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		}
 		BridgeCalls->setClientActiveTexture(GL_TEXTURE0_ARB);
 	}
-
-	BridgeCalls->setDepthMask(true);
 }
 
 
@@ -1915,7 +1976,7 @@ void COpenGLDriver::renderArray(const void* indexList, u32 primitiveCount,
 
 
 //! draws a vertex primitive list in 2d
-void COpenGLDriver::draw2DVertexPrimitiveList(const void* vertices, u32 vertexCount,
+/*void COpenGLDriver::draw2DVertexPrimitiveList(const void* vertices, u32 vertexCount,
 		const void* indexList, u32 primitiveCount,
 		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType)
 {
@@ -2056,8 +2117,7 @@ void COpenGLDriver::draw2DVertexPrimitiveList(const void* vertices, u32 vertexCo
 		}
 		BridgeCalls->setClientActiveTexture(GL_TEXTURE0_ARB);
 	}
-}
-
+}*/
 
 //! draws a set of 2d images, using a color and the alpha channel of the
 //! texture if desired.
@@ -3958,10 +4018,13 @@ void COpenGLDriver::drawStencilShadowVolume(const core::array<core::vector3df>& 
 		ResetRenderStates = true;
 	}
 
+	GLboolean depthMask = 0;
+	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
+
 	// store current OpenGL state
 	glPushAttrib(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_ENABLE_BIT |
 		GL_POLYGON_BIT | GL_STENCIL_BUFFER_BIT);
-
+	
 	glDisable(GL_LIGHTING);
 	glDisable(GL_FOG);
 	glEnable(GL_DEPTH_TEST);
@@ -4079,7 +4142,7 @@ void COpenGLDriver::drawStencilShadowVolume(const core::array<core::vector3df>& 
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPopAttrib();
 
-	BridgeCalls->setDepthMask(true);
+	glDepthMask(depthMask);
 }
 
 //! Fills the stencil shadow with color. After the shadow volume has been drawn
@@ -4093,6 +4156,9 @@ void COpenGLDriver::drawStencilShadow(bool clearStencilBuffer, video::SColor lef
 
 	disableTextures();
 
+	GLboolean depthMask = 0;
+	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
+	
 	// store attributes
 	glPushAttrib(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_ENABLE_BIT | GL_POLYGON_BIT | GL_STENCIL_BUFFER_BIT | GL_LIGHTING_BIT);
 
@@ -4151,14 +4217,14 @@ void COpenGLDriver::drawStencilShadow(bool clearStencilBuffer, video::SColor lef
 	glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_SHORT, Quad2DIndices);
 
 	clearBuffers(false, false, clearStencilBuffer, 0x0);
-
+	
 	// restore settings
 	glPopMatrix();
 	BridgeCalls->setMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 	glPopAttrib();
 
-	BridgeCalls->setDepthMask(true);
+	glDepthMask(depthMask);
 }
 
 
