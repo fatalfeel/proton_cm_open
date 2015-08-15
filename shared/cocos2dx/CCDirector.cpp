@@ -194,20 +194,32 @@ void CCDirector::setGLDefaultValues(void)
     //CCAssert(m_pobOpenGLView, "opengl view should not be null");
 	int COCOS2DX_BLEND_SRC_ALPHA  = 0x80CB;
 	int COCOS2DX_BLEND_DST_ALPHA  = 0x80CA;
-	   		
+	
+	glActiveTexture(GL_TEXTURE1);
+	m_origin_acttex[1]	= glIsEnabled(GL_TEXTURE_2D);
+	glActiveTexture(GL_TEXTURE0);
+	m_origin_acttex[0]	= glIsEnabled(GL_TEXTURE_2D);
+
 	//libgles_cm.dll not support glGetIntegerv
 	glGetIntegerv(COCOS2DX_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
 	glGetIntegerv(COCOS2DX_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
 
-	m_origin_blend		=	glIsEnabled(GL_BLEND);
-	m_origin_depth		=	glIsEnabled(GL_DEPTH_TEST);
-	m_origin_cull		=	glIsEnabled(GL_CULL_FACE);
+#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
+	glGetTexEnviv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, &m_origin_texenvSrc);
+	m_origin_lighting	= glIsEnabled(GL_LIGHTING);
+#endif
+
+	m_origin_blend		= glIsEnabled(GL_BLEND);
+	m_origin_depth		= glIsEnabled(GL_DEPTH_TEST);
+	m_origin_cull		= glIsEnabled(GL_CULL_FACE);
+
+/////////////////////////////////////////////////////////////////////////	
+	glActiveTexture(GL_TEXTURE1);
+	glDisable(GL_TEXTURE_2D);
+	glActiveTexture(GL_TEXTURE0);
+	glEnable(GL_TEXTURE_2D);
 
 #if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
-	//GL_SRC0_ALPHA = GL_SOURCE0_ALPHA_ARB
-	glGetTexEnviv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, &m_origin_texenvSrc);
-	m_origin_lighting = glIsEnabled(GL_LIGHTING);
-	
 	setTexEnvSrc(GL_TEXTURE_ENV, GL_SRC0_ALPHA, GL_TEXTURE);
 	setLighting(false);
 #endif
@@ -244,6 +256,7 @@ void CCDirector::RestoreGLValues(void)
 	setLighting(m_origin_lighting>0?true:false);
 #endif
 	
+	setActiveTex2D();
 	setAlphaBlending(m_origin_blend>0?true:false, m_origin_blendSrc, m_origin_blendDst);
 	setDepthTest(m_origin_depth>0?true:false);
 	setCullFace(m_origin_cull>0?true:false); //by stone
@@ -478,6 +491,21 @@ void CCDirector::setLighting(bool bOn)
 	CHECK_GL_ERROR_DEBUG();
 }
 #endif
+
+void CCDirector::setActiveTex2D()
+{
+	glActiveTexture(GL_TEXTURE1);
+	if( m_origin_acttex[1] > 0 )
+		glEnable(GL_TEXTURE_2D);
+	else
+		glDisable(GL_TEXTURE_2D);
+
+	glActiveTexture(GL_TEXTURE0);
+	if( m_origin_acttex[0] > 0 )
+		glEnable(GL_TEXTURE_2D);
+	else
+		glDisable(GL_TEXTURE_2D);
+}
 
 void CCDirector::setAlphaBlending(bool bOn, GLenum src, GLenum dst)
 {

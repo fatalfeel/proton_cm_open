@@ -292,6 +292,8 @@ public:
 
 	void setLighting(bool bOn);
 #endif
+
+	void setActiveTex2D();
 	
 	/** enables/disables OpenGL alpha blending */
 	void setAlphaBlending(bool bOn, GLenum src, GLenum dst);
@@ -424,6 +426,7 @@ protected:
     // CCEGLViewProtocol will recreate stats labels to fit visible rect
     //friend class CCEGLViewProtocol;
 
+	unsigned char	m_origin_acttex[2];
 	unsigned char	m_origin_blend;
 	unsigned char	m_origin_lighting;
 	unsigned char	m_origin_depth;
