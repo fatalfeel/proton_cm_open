@@ -434,7 +434,7 @@ void COGLES1Driver::GetIrrstate()
 void COGLES1Driver::SetIrrstate()
 {
 	BridgeCalls->setDepthMask(true);
-	BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 bool COGLES1Driver::OnAgainDriverInit() //by stone

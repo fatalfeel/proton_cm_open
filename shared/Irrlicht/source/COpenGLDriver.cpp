@@ -814,7 +814,7 @@ void COpenGLDriver::GetIrrstate()
 void COpenGLDriver::SetIrrstate()
 {
 	BridgeCalls->setDepthMask(true);
-	BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 bool COpenGLDriver::OnAgainDriverInit()
