@@ -443,6 +443,16 @@ bool COGLES2Driver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
+void COGLES2Driver::GetIrrstate()
+{
+}
+
+void COGLES2Driver::SetIrrstate()
+{
+	BridgeCalls->setDepthMask(true);
+	BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
 void COGLES2Driver::SetUseProgram(unsigned int program)
 {
 	BridgeCalls->Program = program;
@@ -1069,18 +1079,12 @@ void COGLES2Driver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		const void* indexList, u32 primitiveCount,
 		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType)
 {
-	GLboolean depthMask = 0;
-	
 	if (!checkPrimitiveCount(primitiveCount))
 		return;
-
-	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
 
 	setRenderStates3DMode();
 
 	drawVertexPrimitiveList2d3d(vertices, vertexCount, (const u16*)indexList, primitiveCount, vType, pType, iType);
-
-	glDepthMask(depthMask);
 }
 
 
@@ -2534,11 +2538,10 @@ void COGLES2Driver::setViewPort(const core::rect<s32>& area)
 	if (!StencilBuffer || !count)
 		return;
 
-	GLboolean depthMask = 0;
-	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
+	bool depthMask	= BridgeCalls->getDepthMask();
 
-	bool fog		= Material.FogEnable;
-	bool lighting	= Material.Lighting;
+	bool fog = Material.FogEnable;
+	bool lighting = Material.Lighting;
 	E_MATERIAL_TYPE materialType = Material.MaterialType;
 
 	Material.FogEnable = false;
@@ -2605,7 +2608,7 @@ void COGLES2Driver::setViewPort(const core::rect<s32>& area)
 	Material.Lighting		= lighting;
 	Material.MaterialType	= materialType;
 
-	glDepthMask(depthMask);
+	BridgeCalls->setDepthMask(depthMask);
 }
 
 
@@ -2616,18 +2619,17 @@ void COGLES2Driver::drawStencilShadow(	bool clearStencilBuffer,
 	if (!StencilBuffer)
 		return;
 
-	GLboolean depthMask = 0;
-	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
+	bool depthMask = BridgeCalls->getDepthMask();
+	
+	disableTextures();
 
 	setRenderStates2DMode(true, false, false);
-
-	disableTextures();
 
 	BridgeCalls->setDepthMask(false);
 	BridgeCalls->setColorMask(true, true, true, true);
 
-	BridgeCalls->setBlend(true);
-	BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//BridgeCalls->setBlend(true); //setRenderStates2DMode did
+	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glEnable(GL_STENCIL_TEST);
 	glStencilFunc(GL_NOTEQUAL, 0, ~0);
@@ -2646,7 +2648,7 @@ void COGLES2Driver::drawStencilShadow(	bool clearStencilBuffer,
 
 	glDisable(GL_STENCIL_TEST);
 
-	glDepthMask(depthMask);
+	BridgeCalls->setDepthMask(depthMask);
 }
 
 
@@ -3215,7 +3217,8 @@ COGLES2CallBridge::COGLES2CallBridge(COGLES2Driver* driver) : Driver(driver),
 	glDisable(GL_CULL_FACE);
 
 	glDepthFunc(GL_LESS);
-	glDepthMask(GL_TRUE);
+	//glDepthMask(GL_TRUE);
+	setDepthMask(GL_TRUE);
 	glDisable(GL_DEPTH_TEST);
 }
 
@@ -3334,6 +3337,11 @@ void COGLES2CallBridge::setDepthMask(bool enable)
 
 		DepthMask = enable;
 	}
+}
+
+bool COGLES2CallBridge::getDepthMask()
+{
+	return DepthMask;
 }
 
 void COGLES2CallBridge::setDepthTest(bool enable)

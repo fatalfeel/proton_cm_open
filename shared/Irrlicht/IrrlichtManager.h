@@ -43,7 +43,6 @@ public:
 	bool Init();
 	//void Kill();
 
-	//void ClearScene();
 	void BeginScene();
 	void Render();
 	void EndScene();

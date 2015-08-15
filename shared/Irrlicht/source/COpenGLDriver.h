@@ -449,7 +449,14 @@ namespace video
 		//bool genericDriverInit();//SETH
 		bool genericDriverInit(const core::dimension2d<u32>& screenSize, bool stencilBuffer);
 
-		bool OnAgainDriverInit(); //by stone
+		//by stone, fix bugs		
+		void GetIrrstate();
+		
+		void SetIrrstate();
+
+		//void SetUseProgram(unsigned int program) //no need
+
+		bool OnAgainDriverInit();
 
 		//! returns a device dependent texture from a software surface (IImage)
 		virtual video::ITexture* createDeviceDependentTexture(IImage* surface, const io::path& name, void* mipmapData);
@@ -682,6 +689,8 @@ namespace video
 		void setDepthFunc(GLenum mode);
 
 		void setDepthMask(bool enable);
+
+		bool getDepthMask();
 
 		void setDepthTest(bool enable);
 

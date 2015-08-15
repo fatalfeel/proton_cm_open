@@ -1362,15 +1362,17 @@ void CSceneManager::drawAll()
 	if (!Driver)
 		return;
 
+	u32	i; // new ISO for scoping problem in some compilers
+	
+	Driver->GetIrrstate();
+
 	// reset attributes
 	Parameters->setAttribute("culled", 0);
 	Parameters->setAttribute("calls", 0);
 	Parameters->setAttribute("drawn_solid", 0);
 	Parameters->setAttribute("drawn_transparent", 0);
 	Parameters->setAttribute("drawn_transparent_effect", 0);
-
-	u32 i; // new ISO for scoping problem in some compilers
-
+	
 	// reset all transforms
 	Driver->setMaterial(video::SMaterial());
 	Driver->setTransform ( video::ETS_PROJECTION, core::IdentityMatrix );
@@ -1379,7 +1381,7 @@ void CSceneManager::drawAll()
 	for (i=video::ETS_COUNT-1; i>=video::ETS_TEXTURE_0; --i)
 		Driver->setTransform ( (video::E_TRANSFORMATION_STATE)i, core::IdentityMatrix );
 	Driver->setAllowZWriteOnTransparent(Parameters->getAttributeAsBool(ALLOW_ZWRITE_ON_TRANSPARENT));
-
+	
 	// do animations and other stuff.
 	OnAnimate(os::Timer::getTime());
 
@@ -1618,6 +1620,8 @@ void CSceneManager::drawAll()
 
 	LightList.set_used(0);
 	clearDeletionList();
+
+	Driver->SetIrrstate();
 
 	CurrentRendertime = ESNRP_NONE;
 }

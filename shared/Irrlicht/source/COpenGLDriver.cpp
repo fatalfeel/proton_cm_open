@@ -807,6 +807,16 @@ bool COpenGLDriver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
+void COpenGLDriver::GetIrrstate()
+{
+}
+
+void COpenGLDriver::SetIrrstate()
+{
+	BridgeCalls->setDepthMask(true);
+	BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
 bool COpenGLDriver::OnAgainDriverInit()
 {
 	bool stencilBuffer = queryFeature(video::EVDF_STENCIL_BUFFER);
@@ -1606,19 +1616,13 @@ void COpenGLDriver::drawVertexPrimitiveList(const void* vertices, u32 vertexCoun
 		const void* indexList, u32 primitiveCount,
 		E_VERTEX_TYPE vType, scene::E_PRIMITIVE_TYPE pType, E_INDEX_TYPE iType)
 {
-	GLboolean depthMask = 0;
-		
 	if (!checkPrimitiveCount(primitiveCount))
 		return;
 
-	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
-	
 	// draw everything
 	setRenderStates3DMode();
 
 	drawVertexPrimitiveList2d3d(vertices, vertexCount, (const u16*)indexList, primitiveCount, vType, pType, iType);
-
-	glDepthMask(depthMask);
 }
 
 void COpenGLDriver::drawVertexPrimitiveList2d3d(const void* vertices, u32 vertexCount,
@@ -2903,7 +2907,8 @@ void COpenGLDriver::setRenderStates3DMode()
 		// Reset Texture Stages
 		BridgeCalls->setBlend(false);
 		BridgeCalls->setAlphaTest(false);
-		BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		BridgeCalls->setBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
 
 		// switch back the matrices
 		BridgeCalls->setMatrixMode(GL_MODELVIEW);
@@ -3668,7 +3673,7 @@ void COpenGLDriver::setRenderStates2DMode(bool alpha, bool texture, bool alphaCh
 			LastMaterial = InitMaterial2D;
 		}*/
 		
-		BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 #ifdef GL_EXT_clip_volume_hint
 		if (FeatureAvailable[IRR_EXT_clip_volume_hint])
 			glHint(GL_CLIP_VOLUME_CLIPPING_HINT_EXT, GL_FASTEST);
@@ -3695,6 +3700,7 @@ void COpenGLDriver::setRenderStates2DMode(bool alpha, bool texture, bool alphaCh
 	if (alphaChannel || alpha)
 	{
 		BridgeCalls->setBlend(true);
+		BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		BridgeCalls->setAlphaTest(true);
 		BridgeCalls->setAlphaFunc(GL_GREATER, 0.f);
 	}
@@ -4010,6 +4016,8 @@ void COpenGLDriver::drawStencilShadowVolume(const core::array<core::vector3df>& 
 	if (!StencilBuffer || !count)
 		return;
 
+	bool depthMask	= BridgeCalls->getDepthMask();
+
 	// unset last 3d material
 	if (CurrentRenderMode == ERM_3D &&
 		static_cast<u32>(Material.MaterialType) < MaterialRenderers.size())
@@ -4018,18 +4026,16 @@ void COpenGLDriver::drawStencilShadowVolume(const core::array<core::vector3df>& 
 		ResetRenderStates = true;
 	}
 
-	GLboolean depthMask = 0;
-	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
-
 	// store current OpenGL state
 	glPushAttrib(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_ENABLE_BIT |
 		GL_POLYGON_BIT | GL_STENCIL_BUFFER_BIT);
-	
+
 	glDisable(GL_LIGHTING);
 	glDisable(GL_FOG);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
-	glDepthMask(GL_FALSE);
+	//glDepthMask(GL_FALSE);
+	BridgeCalls->setDepthMask(GL_FALSE);
 
 	if (debugDataVisible & scene::EDS_MESH_WIRE_OVERLAY)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -4142,7 +4148,7 @@ void COpenGLDriver::drawStencilShadowVolume(const core::array<core::vector3df>& 
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPopAttrib();
 
-	glDepthMask(depthMask);
+	BridgeCalls->setDepthMask(depthMask);
 }
 
 //! Fills the stencil shadow with color. After the shadow volume has been drawn
@@ -4154,23 +4160,25 @@ void COpenGLDriver::drawStencilShadow(bool clearStencilBuffer, video::SColor lef
 	if (!StencilBuffer)
 		return;
 
+	bool depthMask = BridgeCalls->getDepthMask();
+
 	disableTextures();
 
-	GLboolean depthMask = 0;
-	glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
-	
 	// store attributes
 	glPushAttrib(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_ENABLE_BIT | GL_POLYGON_BIT | GL_STENCIL_BUFFER_BIT | GL_LIGHTING_BIT);
 
 	glDisable(GL_LIGHTING);
 	glDisable(GL_FOG);
-	glDepthMask(GL_FALSE);
+	//glDepthMask(GL_FALSE);
+	BridgeCalls->setDepthMask(GL_FALSE);
 
 	glShadeModel(GL_FLAT);
 	glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	BridgeCalls->setBlend(true);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glEnable(GL_STENCIL_TEST);
 	glStencilFunc(GL_NOTEQUAL, 0, ~0);
@@ -4224,7 +4232,7 @@ void COpenGLDriver::drawStencilShadow(bool clearStencilBuffer, video::SColor lef
 	glPopMatrix();
 	glPopAttrib();
 
-	glDepthMask(depthMask);
+	BridgeCalls->setDepthMask(depthMask);
 }
 
 
@@ -5259,7 +5267,8 @@ COpenGLCallBridge::COpenGLCallBridge(COpenGLDriver* driver) : Driver(driver),
 	glCullFace(GL_BACK);
 	glDisable(GL_CULL_FACE);
 	glDepthFunc(GL_LESS);
-	glDepthMask(GL_TRUE);
+	//glDepthMask(GL_TRUE);
+	setDepthMask(GL_TRUE);
 	glDisable(GL_DEPTH_TEST);
 
 	glMatrixMode(GL_MODELVIEW);
@@ -5409,6 +5418,11 @@ void COpenGLCallBridge::setDepthMask(bool enable)
 			glDepthMask(GL_FALSE);
 		DepthMask = enable;
 	}
+}
+
+bool COpenGLCallBridge::getDepthMask()
+{
+	return DepthMask;
 }
 
 void COpenGLCallBridge::setDepthTest(bool enable)

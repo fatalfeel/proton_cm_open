@@ -375,9 +375,17 @@ namespace video
 		//! Draws the normals of a mesh buffer
 		virtual void drawMeshBufferNormals(const scene::IMeshBuffer* mb, f32 length=10.f, SColor color=0xffffffff);
 
-		virtual void OnUnLoad(); //SETH
+		//by stone, fix bugs
+		virtual void OnUnLoad();
+		
 		virtual void OnReLoad();
+		
+		virtual void GetIrrstate();
+		
+		virtual void SetIrrstate();
+		
 		virtual void SetUseProgram(unsigned int program);
+		
 		virtual bool OnAgainDriverInit();
 		
 	protected:

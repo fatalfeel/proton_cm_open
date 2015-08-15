@@ -1465,9 +1465,17 @@ namespace video
 		*/
 		virtual void convertColor(const void* sP, ECOLOR_FORMAT sF, s32 sN, void* dP, ECOLOR_FORMAT dF) const =0;
 
-		virtual void OnUnLoad() =0; //SETH
+		//by stone, fix bugs
+		virtual void OnUnLoad() =0;
+		
 		virtual void OnReLoad()	=0;
+		
+		virtual void GetIrrstate() =0;
+		
+		virtual void SetIrrstate() =0;
+						
 		virtual void SetUseProgram(unsigned int program) =0;
+		
 		virtual bool OnAgainDriverInit() =0;
 	};
 

@@ -398,7 +398,14 @@ namespace video
 		//! inits the opengl-es driver
 		bool genericDriverInit(const core::dimension2d<u32>& screenSize, bool stencilBuffer);
 
-		bool OnAgainDriverInit(); //by stone
+		//by stone, fix bugs		
+		void GetIrrstate();
+		
+		void SetIrrstate();
+
+		//void SetUseProgram(unsigned int program) //no need
+
+		bool OnAgainDriverInit();
 
 		//! returns a device dependent texture from a software surface (IImage)
 		virtual video::ITexture* createDeviceDependentTexture(IImage* surface, const io::path& name, void* mipmapData=0);
@@ -513,6 +520,10 @@ namespace video
 
 		void setBlend(bool enable);
 
+		void setDepthMask(bool enable);
+
+		bool getDepthMask();
+
 	private:
 		COGLES1Driver* Driver;
 
@@ -521,7 +532,8 @@ namespace video
 		GLenum BlendDestinationRGB;
 		GLenum BlendSourceAlpha;
 		GLenum BlendDestinationAlpha;
-		bool Blend;
+		bool	Blend;
+		bool	DepthMask;
 	};
 
 } // end namespace video

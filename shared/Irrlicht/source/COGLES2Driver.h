@@ -466,6 +466,10 @@ namespace video
 		//! inits the opengl-es driver
 		bool genericDriverInit(const core::dimension2d<u32>& screenSize, bool stencilBuffer);
 
+		void GetIrrstate();
+		
+		void SetIrrstate();
+
 		void SetUseProgram(unsigned int program);
 
 		bool OnAgainDriverInit();
@@ -594,6 +598,8 @@ namespace video
 		void setDepthFunc(GLenum mode);
 
         void setDepthMask(bool enable);
+
+		bool getDepthMask();
 
 		void setDepthTest(bool enable);
 
