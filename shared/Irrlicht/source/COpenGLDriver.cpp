@@ -807,11 +807,11 @@ bool COpenGLDriver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
-void COpenGLDriver::GetIrrstate()
+void COpenGLDriver::GetIrrState()
 {
 }
 
-void COpenGLDriver::SetIrrstate()
+void COpenGLDriver::SetIrrState()
 {
 	BridgeCalls->setDepthMask(true);
 	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

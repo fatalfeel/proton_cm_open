@@ -427,11 +427,11 @@ bool COGLES1Driver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
-void COGLES1Driver::GetIrrstate()
+void COGLES1Driver::GetIrrState()
 {
 }
 
-void COGLES1Driver::SetIrrstate()
+void COGLES1Driver::SetIrrState()
 {
 	BridgeCalls->setDepthMask(true);
 	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

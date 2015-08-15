@@ -2591,11 +2591,11 @@ void CNullDriver::OnReLoad()
 		Textures[i].Surface->Reload();
 }
 
-void CNullDriver::GetIrrstate()
+void CNullDriver::GetIrrState()
 {
 }
 
-void CNullDriver::SetIrrstate()
+void CNullDriver::SetIrrState()
 {
 }
 

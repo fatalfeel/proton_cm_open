@@ -466,9 +466,9 @@ namespace video
 		//! inits the opengl-es driver
 		bool genericDriverInit(const core::dimension2d<u32>& screenSize, bool stencilBuffer);
 
-		void GetIrrstate();
+		void GetIrrState();
 		
-		void SetIrrstate();
+		void SetIrrState();
 
 		void SetUseProgram(unsigned int program);
 

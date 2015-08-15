@@ -380,9 +380,9 @@ namespace video
 		
 		virtual void OnReLoad();
 		
-		virtual void GetIrrstate();
+		virtual void GetIrrState();
 		
-		virtual void SetIrrstate();
+		virtual void SetIrrState();
 		
 		virtual void SetUseProgram(unsigned int program);
 		
