@@ -206,15 +206,15 @@ void App::Update()
 	{
 		m_bDidPostInit	= true;
 						
-		//init
-		CCScene* pScene = HelloWorld::scene();
-		// run
-		CCDirector::sharedDirector()->runWithScene(pScene);
-		
 		//build a GUI node
 		Entity *pGUIEnt = Entity::GetEntityManager()->AddEntity(new Entity("GUI"));
 		//by stone, highlevel shader used
 		m_MenuEntity = MainMenuCreate(pGUIEnt);
+
+		//init
+		CCScene* pScene = HelloWorld::scene();
+		// run
+		CCDirector::sharedDirector()->runWithScene(pScene);
 	}
 }
 
