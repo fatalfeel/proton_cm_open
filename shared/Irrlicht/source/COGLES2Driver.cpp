@@ -443,11 +443,6 @@ bool COGLES2Driver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
-void COGLES2Driver::SetUseProgram(unsigned int program)
-{
-	BridgeCalls->Program = program;
-}
-
 bool COGLES2Driver::OnAgainDriverInit() //by stone
 {
 	bool stencilBuffer = queryFeature(video::EVDF_STENCIL_BUFFER);
@@ -770,6 +765,8 @@ bool COGLES2Driver::beginScene(	bool backBuffer, bool zBuffer, SColor color,
 								const SExposedVideoData& videoData, core::rect<s32>* sourceRect )
 {
 	CNullDriver::beginScene(backBuffer, zBuffer, color);
+
+	BridgeCalls->setProgram(0);
     
     setActiveTexture(0,0);
     ResetRenderStates = true;

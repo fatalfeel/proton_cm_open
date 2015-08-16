@@ -398,8 +398,6 @@ namespace video
 		//! inits the opengl-es driver
 		bool genericDriverInit(const core::dimension2d<u32>& screenSize, bool stencilBuffer);
 
-		//void SetUseProgram(unsigned int program) //no need
-
 		bool OnAgainDriverInit();
 
 		//! returns a device dependent texture from a software surface (IImage)
