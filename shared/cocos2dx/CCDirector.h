@@ -288,13 +288,13 @@ public:
 	void RestoreGLValues(void);
 
 #if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
-	void setTexEnvSrc(GLenum env, GLenum pname, GLint params);
+	void setActiveTex2D();
+	
+	void setTextureEnv(GLenum env, GLenum pname, GLint params);
 
 	void setLighting(bool bOn);
 #endif
 
-	void setActiveTex2D();
-	
 	/** enables/disables OpenGL alpha blending */
 	void setAlphaBlending(bool bOn, GLenum src, GLenum dst);
 	

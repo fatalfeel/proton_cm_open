@@ -93,6 +93,8 @@ CCDirector::CCDirector(void)
 {
 	m_origin_blendSrc = GL_SRC_ALPHA;
 	m_origin_blendDst = GL_ONE_MINUS_SRC_ALPHA;
+
+	memset(m_origin_acttex, 1, sizeof(m_origin_acttex));
 }
 
 bool CCDirector::init(void)
@@ -195,32 +197,32 @@ void CCDirector::setGLDefaultValues(void)
 	int COCOS2DX_BLEND_SRC_ALPHA  = 0x80CB;
 	int COCOS2DX_BLEND_DST_ALPHA  = 0x80CA;
 	
-	glActiveTexture(GL_TEXTURE1);
+#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
+	glActiveTexture(GL_TEXTURE1); //ogles2 no using glEnable(GL_TEXTURE_2D);
 	m_origin_acttex[1]	= glIsEnabled(GL_TEXTURE_2D);
 	glActiveTexture(GL_TEXTURE0);
 	m_origin_acttex[0]	= glIsEnabled(GL_TEXTURE_2D);
 
-	//libgles_cm.dll not support glGetIntegerv
-	glGetIntegerv(COCOS2DX_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
-	glGetIntegerv(COCOS2DX_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
-
-#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
 	glGetTexEnviv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, &m_origin_texenvSrc);
 	m_origin_lighting	= glIsEnabled(GL_LIGHTING);
 #endif
+
+	//win32 libgles_cm.dll not support glGetIntegerv
+	glGetIntegerv(COCOS2DX_BLEND_SRC_ALPHA, (int*)&m_origin_blendSrc);
+	glGetIntegerv(COCOS2DX_BLEND_DST_ALPHA, (int*)&m_origin_blendDst);
 
 	m_origin_blend		= glIsEnabled(GL_BLEND);
 	m_origin_depth		= glIsEnabled(GL_DEPTH_TEST);
 	m_origin_cull		= glIsEnabled(GL_CULL_FACE);
 
 /////////////////////////////////////////////////////////////////////////	
+#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
 	glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glActiveTexture(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 
-#if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
-	setTexEnvSrc(GL_TEXTURE_ENV, GL_SRC0_ALPHA, GL_TEXTURE);
+	setTextureEnv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, GL_TEXTURE);
 	setLighting(false);
 #endif
 	
@@ -252,11 +254,11 @@ void CCDirector::setGLDefaultValues(void)
 void CCDirector::RestoreGLValues(void)
 {
 #if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)	
-	setTexEnvSrc(GL_TEXTURE_ENV, GL_SRC0_ALPHA, m_origin_texenvSrc);
+	setActiveTex2D();
+	setTextureEnv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, m_origin_texenvSrc);
 	setLighting(m_origin_lighting>0?true:false);
 #endif
-	
-	setActiveTex2D();
+
 	setAlphaBlending(m_origin_blend>0?true:false, m_origin_blendSrc, m_origin_blendDst);
 	setDepthTest(m_origin_depth>0?true:false);
 	setCullFace(m_origin_cull>0?true:false); //by stone
@@ -474,7 +476,22 @@ float CCDirector::getZEye(void)
 }
 
 #if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
-void CCDirector::setTexEnvSrc(GLenum env, GLenum pname, GLint params)
+void CCDirector::setActiveTex2D()
+{
+	glActiveTexture(GL_TEXTURE1);
+	if( m_origin_acttex[1] > 0 )
+		glEnable(GL_TEXTURE_2D);
+	else
+		glDisable(GL_TEXTURE_2D);
+
+	glActiveTexture(GL_TEXTURE0);
+	if( m_origin_acttex[0] > 0 )
+		glEnable(GL_TEXTURE_2D);
+	else
+		glDisable(GL_TEXTURE_2D);
+}
+
+void CCDirector::setTextureEnv(GLenum env, GLenum pname, GLint params)
 {
     glTexEnvf(env, pname, params);
 
@@ -491,21 +508,6 @@ void CCDirector::setLighting(bool bOn)
 	CHECK_GL_ERROR_DEBUG();
 }
 #endif
-
-void CCDirector::setActiveTex2D()
-{
-	glActiveTexture(GL_TEXTURE1);
-	if( m_origin_acttex[1] > 0 )
-		glEnable(GL_TEXTURE_2D);
-	else
-		glDisable(GL_TEXTURE_2D);
-
-	glActiveTexture(GL_TEXTURE0);
-	if( m_origin_acttex[0] > 0 )
-		glEnable(GL_TEXTURE_2D);
-	else
-		glDisable(GL_TEXTURE_2D);
-}
 
 void CCDirector::setAlphaBlending(bool bOn, GLenum src, GLenum dst)
 {
