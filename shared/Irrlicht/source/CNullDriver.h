@@ -380,10 +380,6 @@ namespace video
 		
 		virtual void OnReLoad();
 		
-		virtual void GetIrrState();
-		
-		virtual void SetIrrState();
-		
 		virtual void SetUseProgram(unsigned int program);
 		
 		virtual bool OnAgainDriverInit();

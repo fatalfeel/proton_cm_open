@@ -427,16 +427,6 @@ bool COGLES1Driver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
-void COGLES1Driver::GetIrrState()
-{
-}
-
-void COGLES1Driver::SetIrrState()
-{
-	BridgeCalls->setDepthMask(true);
-	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
 bool COGLES1Driver::OnAgainDriverInit() //by stone
 {
 	bool stencilBuffer = queryFeature(video::EVDF_STENCIL_BUFFER);
@@ -585,6 +575,7 @@ bool COGLES1Driver::endScene()
 {
 	CNullDriver::endScene();
 
+	BridgeCalls->setDepthMask(true);
 /*
 #if defined(EGL_VERSION_1_0)
  eglSwapBuffers(EglDisplay, EglSurface);

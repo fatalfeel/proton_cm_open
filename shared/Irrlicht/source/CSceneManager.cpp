@@ -1364,8 +1364,6 @@ void CSceneManager::drawAll()
 
 	u32	i; // new ISO for scoping problem in some compilers
 	
-	Driver->GetIrrState();
-
 	// reset attributes
 	Parameters->setAttribute("culled", 0);
 	Parameters->setAttribute("calls", 0);
@@ -1620,8 +1618,6 @@ void CSceneManager::drawAll()
 
 	LightList.set_used(0);
 	clearDeletionList();
-
-	Driver->SetIrrState();
 
 	CurrentRendertime = ESNRP_NONE;
 }

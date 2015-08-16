@@ -807,16 +807,6 @@ bool COpenGLDriver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
-void COpenGLDriver::GetIrrState()
-{
-}
-
-void COpenGLDriver::SetIrrState()
-{
-	BridgeCalls->setDepthMask(true);
-	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
 bool COpenGLDriver::OnAgainDriverInit()
 {
 	bool stencilBuffer = queryFeature(video::EVDF_STENCIL_BUFFER);
@@ -1003,6 +993,8 @@ void COpenGLDriver::createMaterialRenderers()
 bool COpenGLDriver::endScene()
 {
 	CNullDriver::endScene();
+
+	BridgeCalls->setDepthMask(true);
 
 	glFlush();
 

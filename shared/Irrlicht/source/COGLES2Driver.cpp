@@ -443,16 +443,6 @@ bool COGLES2Driver::genericDriverInit(const core::dimension2d<u32>& screenSize, 
 	return true;
 }
 
-void COGLES2Driver::GetIrrState()
-{
-}
-
-void COGLES2Driver::SetIrrState()
-{
-	BridgeCalls->setDepthMask(true);
-	//BridgeCalls->setBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
 void COGLES2Driver::SetUseProgram(unsigned int program)
 {
 	BridgeCalls->Program = program;
@@ -746,6 +736,8 @@ void COGLES2Driver::createMaterialRenderers()
 bool COGLES2Driver::endScene()
 {
 	CNullDriver::endScene();
+
+	BridgeCalls->setDepthMask(true);
 /*
 #if defined(EGL_VERSION_1_0)
 	eglSwapBuffers(EglDisplay, EglSurface);

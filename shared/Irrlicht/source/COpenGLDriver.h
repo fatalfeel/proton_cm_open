@@ -449,11 +449,6 @@ namespace video
 		//bool genericDriverInit();//SETH
 		bool genericDriverInit(const core::dimension2d<u32>& screenSize, bool stencilBuffer);
 
-		//by stone, fix bugs		
-		void GetIrrState();
-		
-		void SetIrrState();
-
 		//void SetUseProgram(unsigned int program) //no need
 
 		bool OnAgainDriverInit();
