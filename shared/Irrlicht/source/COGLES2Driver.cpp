@@ -768,7 +768,7 @@ bool COGLES2Driver::beginScene(	bool backBuffer, bool zBuffer, SColor color,
 
 	BridgeCalls->setProgram(0);
     
-	setActiveTexture(0,0);
+	setActiveTexture(0, 0);
 	BridgeCalls->setTexture(0); //after setActiveTexture
 
 	ResetRenderStates = true;

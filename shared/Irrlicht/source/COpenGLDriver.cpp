@@ -1068,6 +1068,9 @@ bool COpenGLDriver::beginScene(bool backBuffer, bool zBuffer, SColor color,
 {
 	CNullDriver::beginScene(backBuffer, zBuffer, color, videoData, sourceRect);
 
+	setActiveTexture(0, 0);
+	BridgeCalls->setTexture(0, true); //after setActiveTexture
+
 	switch (DeviceType)
 	{
 #ifdef _IRR_COMPILE_WITH_WINDOWS_DEVICE_
@@ -3477,19 +3480,6 @@ void COpenGLDriver::setTextureRenderStates(const SMaterial& material, bool reset
 			if (i>0 && !MultiTextureExtension)
 				break;
 
-			/*if (!CurrentTexture[i])
-			{
-				BridgeCalls->setTexture(i, fixedPipeline);
-
-				continue;
-			}
-			else
-			{
-				BridgeCalls->setTexture(i, fixedPipeline);
-
-				setTransform ((E_TRANSFORMATION_STATE) (ETS_TEXTURE_0 + i), material.getTextureMatrix(i));
-			}*/
-
 			BridgeCalls->setTexture(i, fixedPipeline);
 
 			if (!CurrentTexture[i])
@@ -5469,7 +5459,8 @@ void COpenGLCallBridge::setTexture(u32 stage, bool fixedPipeline)
 				if(fixedPipeline)
 					glEnable(GL_TEXTURE_2D);
 
-				glBindTexture(GL_TEXTURE_2D, static_cast<const COpenGLTexture*>(Driver->CurrentTexture[stage])->getOpenGLTextureName());
+				//glBindTexture(GL_TEXTURE_2D, static_cast<const COpenGLTexture*>(Driver->CurrentTexture[stage])->getOpenGLTextureName());
+				glBindTexture(GL_TEXTURE_2D, ((COpenGLTexture*)Driver->CurrentTexture[stage])->getOpenGLTextureName());
 			}
 			else
 			{
