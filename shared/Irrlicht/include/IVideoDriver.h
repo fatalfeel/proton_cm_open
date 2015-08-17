@@ -323,9 +323,6 @@ namespace video
 		driver was reset. Should be queried right after beginScene().
 		*/
 		virtual bool checkDriverReset() =0;
-        
-        //by stone
-        virtual void setRenderStates3DMode(){}; //SETH, so my IrrlichtManager for proton can have it remove its own render states
 
 		//! Sets transformation matrices.
 		/** \param state Transformation type to be set, e.g. view,
