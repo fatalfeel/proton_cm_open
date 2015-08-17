@@ -681,7 +681,6 @@ void COGLES1Driver::setTransform(E_TRANSFORMATION_STATE state, const core::matri
 			glmat[12] *= -1.0f;
 			glMatrixMode(GL_PROJECTION);
 			glLoadMatrixf(glmat);
-            //RotateGLIfNeeded(); //by stone
 		}
 		break;
 	case ETS_TEXTURE_0:
