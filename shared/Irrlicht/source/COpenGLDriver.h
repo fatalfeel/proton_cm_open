@@ -517,7 +517,7 @@ namespace video
 			{
 				for (u32 i=0; i<MATERIAL_MAX_TEXTURES; ++i)
 				{
-					CurrentTexture[i] = 0;
+					m_opCurrentTexture[i] = 0;
 				}
 			}
 
@@ -530,10 +530,12 @@ namespace video
 			{
 				if (stage<MATERIAL_MAX_TEXTURES)
 				{
-					const ITexture* oldTexture=CurrentTexture[stage];
+					const ITexture* oldTexture = m_opCurrentTexture[stage];
 					if (tex)
 						tex->grab();
-					CurrentTexture[stage]=tex;
+					
+					m_opCurrentTexture[stage] = tex;
+
 					if (oldTexture)
 						oldTexture->drop();
 				}
@@ -542,7 +544,7 @@ namespace video
 			const ITexture* operator[](int stage) const
 			{
 				if ((u32)stage<MATERIAL_MAX_TEXTURES)
-					return CurrentTexture[stage];
+					return m_opCurrentTexture[stage];
 				else
 					return 0;
 			}
@@ -551,10 +553,10 @@ namespace video
 			{
 				for (s32 i = MATERIAL_MAX_TEXTURES-1; i>= 0; --i)
 				{
-					if (CurrentTexture[i] == tex)
+					if (m_opCurrentTexture[i] == tex)
 					{
 						tex->drop();
-						CurrentTexture[i] = 0;
+						m_opCurrentTexture[i] = 0;
 					}
 				}
 			}
@@ -564,16 +566,16 @@ namespace video
 				// Drop all the CurrentTexture handles
 				for (u32 i=0; i<MATERIAL_MAX_TEXTURES; ++i)
 				{
-					if (CurrentTexture[i])
+					if (m_opCurrentTexture[i])
 					{
-						CurrentTexture[i]->drop();
-						CurrentTexture[i] = 0;
+						m_opCurrentTexture[i]->drop();
+						m_opCurrentTexture[i] = 0;
 					}
 				}
 			}
 
 		private:
-			const ITexture* CurrentTexture[MATERIAL_MAX_TEXTURES];
+			const ITexture* m_opCurrentTexture[MATERIAL_MAX_TEXTURES];
 		};
 		STextureStageCache CurrentTexture;
 

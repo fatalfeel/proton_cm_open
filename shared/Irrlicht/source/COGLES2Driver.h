@@ -397,15 +397,7 @@ namespace video
 			{
 				clear();
 			}
-
-			const ITexture* operator[](int stage)
-			{
-				if ((u32)stage < MATERIAL_MAX_TEXTURES)
-					return m_opCurrentTexture[stage];
-				else
-					return 0;
-			}
-
+			
 			void set(u32 stage, const ITexture* tex)
 			{
 				if (stage < MATERIAL_MAX_TEXTURES)
@@ -422,13 +414,13 @@ namespace video
 				}
 			}
 
-			/*const ITexture* operator[](int stage) const
+			const ITexture* operator[](int stage)
 			{
 				if ((u32)stage < MATERIAL_MAX_TEXTURES)
 					return m_opCurrentTexture[stage];
 				else
 					return 0;
-			}*/
+			}
 
 			void remove(ITexture* tex)
 			{
