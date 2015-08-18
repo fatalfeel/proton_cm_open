@@ -509,6 +509,8 @@ namespace video
 
 		void setBlendFunc(GLenum source, GLenum destination);
 
+		void getBlendFunc(GLenum* source, GLenum* destination);
+
 		void setBlendFuncSeparate(GLenum sourceRGB, GLenum destinationRGB, GLenum sourceAlpha, GLenum destinationAlpha);
 
 		void setBlend(bool enable);
