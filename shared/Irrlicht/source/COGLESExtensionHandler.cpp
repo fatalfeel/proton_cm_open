@@ -3,8 +3,8 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in Irrlicht.h
 
-#include "PlatformEnums.h"
 #include "IrrCompileConfig.h"
+#include "PlatformEnums.h"
 
 #ifdef _IRR_COMPILE_WITH_OGLES1_
 
