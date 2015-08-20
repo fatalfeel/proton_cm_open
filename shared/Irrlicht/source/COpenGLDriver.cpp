@@ -3618,7 +3618,7 @@ void COpenGLDriver::enableMaterial2D(bool enable)
 //! sets the needed renderstates
 void COpenGLDriver::setRenderStates2DMode(bool alpha, bool texture, bool alphaChannel)
 {
-	SMaterial mat2d;
+	SMaterial material_2d;
 	
 	if (CurrentRenderMode != ERM_2D || Transformation3DChanged)
 	{
@@ -3671,10 +3671,10 @@ void COpenGLDriver::setRenderStates2DMode(bool alpha, bool texture, bool alphaCh
 		LastMaterial = OverrideMaterial2D;
 	}*/
 
-    mat2d.Lighting = false;
-    mat2d.TextureLayer[0].BilinearFilter=false;
-    setBasicRenderStates(mat2d, mat2d, true);
-    LastMaterial = mat2d;
+    material_2d.Lighting = false;
+    material_2d.TextureLayer[0].BilinearFilter = false; //use GL_NEAREST
+    setBasicRenderStates(material_2d, material_2d, true);
+    LastMaterial = material_2d;
 
 	// no alphaChannel without texture
 	alphaChannel &= texture;
