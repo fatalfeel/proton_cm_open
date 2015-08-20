@@ -3,7 +3,7 @@ Proton_CM cross platform 2D 3D engine open source
 1.
 
 (a.)
-Proton CM Open implement Irrlicht, Cocos2dx, Bullet Physics with OpenGL ES1.1 ES2.0
+Proton CM Open implement Irrlicht Engine, Cocos2dx, Bullet Physics with OpenGL ES1.1 ES2.0
 
 (b.)
 Full open source
