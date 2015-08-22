@@ -829,13 +829,13 @@ void AppResize( JNIEnv*  env, jobject  thiz, jint w, jint h )
 	LogMsg("Setup screen to %d %d", w, h);
 #endif
 		SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), ORIENTATION_PORTRAIT);
-		
-		pFileSystem = new FileSystemZip();
-		apkpath = GetAPKFile();
+				
+		apkpath 	= GetAPKFile();
 		
 #ifdef _DEBUG
 		LogMsg("Initializing BaseApp.  APK filename is %s", apkpath.c_str());
 #endif				
+		pFileSystem = new FileSystemZip();
 
 		if( pFileSystem->Init_unz(apkpath) )
 		{
