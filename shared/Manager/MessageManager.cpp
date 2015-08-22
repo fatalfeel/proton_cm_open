@@ -2,13 +2,25 @@
 #include "MessageManager.h"
 #include "BaseApp.h"
 
+Message::Message(eMessageClass messageClass, eTimingSystem timer, eMessageType type) 
+: m_class(messageClass), m_timerMethod(timer), m_type(type)
+{
+	m_deliveryTime		= 0; //delivery right away
+	m_pTargetEntity		= NULL;
+	m_pComponent		= NULL;
+	m_pStaticFunction	= NULL;
+}
+
+Message::~Message()
+{
+}
 
 void Message::SetDeliveryTime( int deliveryTimeMS )
 {
 	if (m_timerMethod == TIMER_GAME)
-	{
 		m_deliveryTime = deliveryTimeMS + BaseApp::GetBaseApp()->GetGameTick();
-	} else m_deliveryTime = deliveryTimeMS + BaseApp::GetBaseApp()->GetTick();
+	else 
+		m_deliveryTime = deliveryTimeMS + BaseApp::GetBaseApp()->GetTick();
 }
 
 void Message::SetTargetEntity( Entity *pEnt )
@@ -99,7 +111,7 @@ void MessageManager::SendGame( eMessageType type, const Variant &v, int deliverT
 }
 void MessageManager::SendGUI( eMessageType type, float parm1, float parm2, int deliverTimeMS, eTimingSystem timing)
 {
-	Message *m = new Message(MESSAGE_CLASS_GUI, timing, type);
+	Message *m = new Message(MESSAGE_CLASS_MOUSE, timing, type);
 	m->SetParm1(parm1);
 	m->SetParm2(parm2);
 	m->SetParm3(0); //finger id unknown so..
@@ -110,7 +122,7 @@ void MessageManager::SendGUI( eMessageType type, float parm1, float parm2, int d
 
 void MessageManager::SendGUIEx( eMessageType type, float parm1, float parm2, int finger, int deliverTimeMS, eTimingSystem timing)
 {
-	Message *m = new Message(MESSAGE_CLASS_GUI, timing, type);
+	Message *m = new Message(MESSAGE_CLASS_MOUSE, timing, type);
 	m->SetParm1(parm1);
 	m->SetParm2(parm2);
 	m->SetParm3(finger);
@@ -120,7 +132,7 @@ void MessageManager::SendGUIEx( eMessageType type, float parm1, float parm2, int
 
 void MessageManager::SendGUIEx2( eMessageType type, float parm1, float parm2, int finger, uint32 modifiers, int deliverTimeMS, eTimingSystem timing)
 {
-	Message *m = new Message(MESSAGE_CLASS_GUI, timing, type);
+	Message *m = new Message(MESSAGE_CLASS_MOUSE, timing, type);
 	m->SetParm1(parm1);
 	m->SetParm2(parm2);
 	m->SetParm3(finger);
@@ -130,7 +142,7 @@ void MessageManager::SendGUIEx2( eMessageType type, float parm1, float parm2, in
 }
 void MessageManager::SendGUIStringEx( eMessageType type, float parm1, float parm2, int finger, string s, int deliverTimeMS, eTimingSystem timing)
 {
-	Message *m = new Message(MESSAGE_CLASS_GUI, timing, type);
+	Message *m = new Message(MESSAGE_CLASS_MOUSE, timing, type);
 	m->SetStringParm(s);
 	m->SetParm1(parm1);
 	m->SetParm2(parm2);
@@ -141,7 +153,7 @@ void MessageManager::SendGUIStringEx( eMessageType type, float parm1, float parm
 
 void MessageManager::SendGUI( eMessageType type, const Variant &v, int deliverTimeMS)
 {
-	Message *m = new Message(MESSAGE_CLASS_GUI, TIMER_SYSTEM, type);
+	Message *m = new Message(MESSAGE_CLASS_MOUSE, TIMER_SYSTEM, type);
 	m->Set(v);
 	m->SetDeliveryTime(deliverTimeMS);
 	Send(m);
@@ -149,22 +161,24 @@ void MessageManager::SendGUI( eMessageType type, const Variant &v, int deliverTi
 
 void MessageManager::SendGUI( eMessageType type, const VariantList &vList, int deliverTimeMS /*= 0*/ )
 {
-	Message *m = new Message(MESSAGE_CLASS_GUI, TIMER_SYSTEM, type);
+	Message *m = new Message(MESSAGE_CLASS_MOUSE, TIMER_SYSTEM, type);
 	m->Set(&vList);
 	m->SetDeliveryTime(deliverTimeMS);
 	Send(m);
 }
 
-void MessageManager::AddMessageToList(list <Message*> &messageList, Message *m)
+void MessageManager::AddMessageToList(std::list <Message*> &messageList, Message *m)
 {
 	//insert sorted by delivery time
-	list <Message*>::reverse_iterator itor = messageList.rbegin();
+	std::list <Message*>::reverse_iterator itor = messageList.rbegin();
+	
 	while (itor != messageList.rend())
 	{
 		if ( (*itor)->GetDeliveryTime() > m->GetDeliveryTime())
 		{
 			itor++;
-		} else
+		} 
+		else
 		{
 			break;
 		}
@@ -172,36 +186,25 @@ void MessageManager::AddMessageToList(list <Message*> &messageList, Message *m)
 
 	//add it
 	messageList.insert(itor.base(), m);
-
-	
 }
 
 void MessageManager::Send(Message *m)
 {
-/*
-	if (m->GetType() != MESSAGE_TYPE_GUI_CLICK_MOVE_RAW)
-	{
-		LogMsg("Sending msg %d", m->GetType());
-	}
-	*/
-
 	if (m->GetTimingMethod() == TIMER_GAME)
 	{
 		AddMessageToList(m_gameMessages, m);
-		//LogMsg("Game messages: %d", m_gameMessages.size());
-	} else
+	} 
+	else
 	{
 		AddMessageToList(m_systemMessages, m);
-		//LogMsg("System messages: %d", m_gameMessages.size());
 	}
 }
 
-
-void MessageManager::DumpMessagesInList(list<Message*> m)
+void MessageManager::DumpMessagesInList(std::list<Message*> m)
 {
-	list<Message*>::iterator itor = m.begin();
+	std::list<Message*>::iterator itor = m.begin();
 
-	string s;
+	std::string s;
 
 	while (itor != m.end())
 	{
@@ -209,7 +212,8 @@ void MessageManager::DumpMessagesInList(list<Message*> m)
 		if ( (*itor)->GetTimingMethod() == TIMER_GAME)
 		{
 			s += "Game: ";
-		} else
+		} 
+		else
 		{
 			s += "System: ";
 		}
@@ -237,13 +241,12 @@ void MessageManager::DumpMessages()
 
 void MessageManager::Deliver(Message *m)
 {
-	
 	if (m->GetClass() == MESSAGE_CLASS_ENTITY)
 	{
-			if (m->GetTargetComponent())
+		if (m->GetTargetComponent())
+		{
+			switch (m->GetType())
 			{
-				switch (m->GetType())
-				{
 				case MESSAGE_TYPE_SET_ENTITY_VARIANT:
 					m->GetTargetComponent()->GetVar(m->GetVarName())->Set(m->Get());
 					break;
@@ -256,18 +259,20 @@ void MessageManager::Deliver(Message *m)
 					//actually, we're targeting an entity but adding this component...
 					m->GetTargetEntity()->AddComponent(m->GetTargetComponent());
 					m->ClearComponent();
-
 					break;
+
 				default:
 					LogError("Message delivery error");
 					assert(0);
-				}
-		
-			} else if (m->GetTargetEntity())
+					break;
+			}
+	
+		} 
+		else if (m->GetTargetEntity())
+		{
+			switch (m->GetType())
 			{
-				switch (m->GetType())
-				{
-			
+		
 				case MESSAGE_TYPE_CALL_COMPONENT_FUNCTION_BY_NAME:
 					{
 
@@ -312,31 +317,32 @@ void MessageManager::Deliver(Message *m)
 				case MESSAGE_TYPE_REMOVE_COMPONENT:
 					m->GetTargetEntity()->RemoveComponentByName(m->GetVarName());
 					break;
+				
 				default:
 					LogError("Message delivery error");
 					assert(0);
-				}	//entity's shared space
-			} 
-			else
+					break;
+			}	//entity's shared space
+		} 
+		else
+		{
+			switch (m->GetType())
 			{
-				switch (m->GetType())
-				{
-					case MESSAGE_TYPE_CALL_STATIC_FUNCTION:
-						(m->GetFunctionPointer())(&m->GetVariantList());
-						break;
-				
-					default:
-						//LogError("Message delivery error");
-						;
-						//Not actually an error, if an entity is killed while a message is in transit, it will set the entity
-						//to null and some messages may end up here as they are undeliverable
-				}
+				case MESSAGE_TYPE_CALL_STATIC_FUNCTION:
+					(m->GetFunctionPointer())(&m->GetVariantList());
+					break;
+			
+				default:
+					//LogError("Message delivery error");
+					break;
+					//Not actually an error, if an entity is killed while a message is in transit, it will set the entity
+					//to null and some messages may end up here as they are undeliverable
 			}
+		}
 	} 
-	else
+	else //MESSAGE_CLASS_MOUSE, MESSAGE_CLASS_GAME
 	{
 		BaseApp::GetBaseApp()->OnMessage(*m);
-
 	}
 }
 
@@ -472,11 +478,11 @@ void MessageManager::AddComponent(Entity *pEnt, int timeMS, EntityComponent *pCo
 
 void MessageManager::DeleteMessagesByFunctionCallName( const string &name, eTimingSystem timing )
 {
-	list<Message*> *pList = &m_gameMessages;
+	std::list<Message*> *pList = &m_gameMessages;
 	
 	if (timing == TIMER_SYSTEM) pList = &m_systemMessages;
 
-	list<Message*>::iterator itor = pList->begin();
+	std::list<Message*>::iterator itor = pList->begin();
 
 	while (itor != pList->end())
 	{
@@ -493,9 +499,9 @@ void MessageManager::DeleteMessagesByFunctionCallName( const string &name, eTimi
 
 void MessageManager::DeleteMessagesToComponent( EntityComponent *pComponent)
 {
-	list<Message*> *pList = &m_gameMessages;
+	std::list<Message*> *pList = &m_gameMessages;
 
-	list<Message*>::iterator itor = pList->begin();
+	std::list<Message*>::iterator itor = pList->begin();
 	while (itor != pList->end())
 	{
 		if ( (*itor)->GetTargetComponent() == pComponent)
@@ -526,11 +532,11 @@ void MessageManager::DeleteMessagesToComponent( EntityComponent *pComponent)
 
 void MessageManager::DeleteMessagesByType( eMessageType type, eTimingSystem timing  )
 {
-	list<Message*> *pList = &m_gameMessages;
+	std::list<Message*> *pList = &m_gameMessages;
 
 	if (timing == TIMER_SYSTEM) pList = &m_systemMessages;
 
-	list<Message*>::iterator itor = pList->begin();
+	std::list<Message*>::iterator itor = pList->begin();
 
 	while (itor != pList->end())
 	{

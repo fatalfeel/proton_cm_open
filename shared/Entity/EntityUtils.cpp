@@ -920,45 +920,6 @@ void AddFocusIfNeeded(Entity *pEnt, bool bAlsoLinkMoveMessages, int delayInputMS
 
 		}
 	}
-
-	if (!pEnt->GetComponentByName("FocusInput", true))
-	{
-		if (delayInputMS == 0)
-		{
-			FocusInputComponent *pComp = (FocusInputComponent*)pEnt->AddComponent(new FocusInputComponent);
-		
-			if (bAlsoLinkMoveMessages)
-			{
-				pComp->GetFunction("LinkMoveMessages")->m_sig_function(NULL);
-			}
-		} else
-		{
-			//add the input focus, but wait a bit before doing it
-			MessageManager::GetMessageManager()->AddComponent(pEnt, delayInputMS, new FocusInputComponent);
-			//call a function on a component that doesn't exist yet, but will be added in 500 ms
-			if (bAlsoLinkMoveMessages)
-			{
-				MessageManager::GetMessageManager()->CallComponentFunction(pEnt, "FocusInput", delayInputMS, "LinkMoveMessages");
-			}
-
-		}
-	}
-}
-
-//adds input focus, but ONLY for touch movement, nothing else.  Useful if you're already receiving the other inputs by trickle down from
-//another focus.
-
-void AddInputMovementFocusIfNeeded(Entity *pEnt)
-{
-	if (!pEnt->GetComponentByName("FocusInput", false))
-	{
-			FocusInputComponent *pComp = new FocusInputComponent;
-			
-			//tell it not to wire anything
-			pComp->GetVar("mode")->Set(uint32(FocusInputComponent::MODE_START_NONE));
-			pEnt->AddComponent(pComp);
-			pComp->GetFunction("LinkMoveMessages")->m_sig_function(NULL);
-	}
 }
 
 void EnableRawMessageFocusInput(Entity *pEnt)

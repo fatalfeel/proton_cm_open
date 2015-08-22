@@ -1369,21 +1369,6 @@ class WrapSharedMultiTouchInput
 
 class AppRenderer implements GLSurfaceView.Renderer 
 {
-	public AppRenderer(SharedActivity _app)
-	{
-		app = _app;
-	}
-
-	public void onSurfaceCreated(GL10 gl, EGLConfig config)
-    {
-    }
-
-    public void onSurfaceChanged(GL10 gl, int w, int h) 
-    {
-        //gl.glViewport(0, 0, w, h);
-        nativeResize(w, h);
-        nativeInit();
-    }
 	
 	//don't change the order of these defines, they match the ones in Proton!
 		
@@ -1436,7 +1421,23 @@ class AppRenderer implements GLSurfaceView.Renderer
 
 	static long m_gameTimer = 0;
 	static int m_timerLoopMS = 0; //every this MS, the loop runs.  0 for no fps limit
+	
+	public AppRenderer(SharedActivity _app)
+	{
+		app = _app;
+		
+		nativeInit();
+	}
 
+	public void onSurfaceCreated(GL10 gl, EGLConfig config)
+    {
+    }
+
+    public void onSurfaceChanged(GL10 gl, int w, int h) 
+    {
+        nativeResize(w, h);
+    }
+	
     public synchronized void onDrawFrame(GL10 gl)
     {
 		if (m_timerLoopMS != 0)

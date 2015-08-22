@@ -85,7 +85,7 @@ bool GuiScroll::init()
 		m_pScrollView->setTouchEnabled(false);
 		m_pScrollView->setDelegate(this);
 		m_pScrollView->setDirection(kCCScrollViewDirectionHorizontal);
-		this->addChild(m_pScrollView,1);
+		this->addChild(m_pScrollView,0);
 
 		pCache = CCSpriteFrameCache::sharedSpriteFrameCache();
 		pCache->addSpriteFrame(CCSpriteFrame::create((GetBaseAppPath()+"interface/button_normal.png").c_str(),CCRectMake(0, 0, 32/ratio, 32/ratio)),"button_normal.png");
@@ -94,8 +94,8 @@ bool GuiScroll::init()
 		for (i=1; i<=3; i++)
 		{
 		   pPoint = CCSprite::createWithSpriteFrameName("button_normal.png");
-		   pPoint->setTag(i);
 		   pPoint->setPosition(ccp( (visibleSize.width/2 - pPoint->getContentSize().width)+ pPoint->getContentSize().width * (i-1), 30));
+		   pPoint->setTag(i);
 		   this->addChild(pPoint,1);
 		}
 		
@@ -134,27 +134,26 @@ bool GuiScroll::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void GuiScroll::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
+	CCPoint endPoint = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
+	float distance = endPoint.x - m_touchPoint.x;
 	
+	adjustMoveView(distance);
 }
 
 void GuiScroll::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
 	CCPoint endPoint = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
 	float distance = endPoint.x - m_touchPoint.x;
-	if(fabs(distance) > 10)
-	{
-		adjustScrollView(distance);
-	}
+	
+	adjustPage(distance);
 }
 
 void GuiScroll::ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
 	CCPoint endPoint = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
 	float distance = endPoint.x - m_touchPoint.x;
-	if(fabs(distance) > 10)
-	{
-		adjustScrollView(distance);
-	}
+	
+	adjustPage(distance);
 }
 
 void GuiScroll::scrollViewDidScroll(cocos2d::extension::CCScrollView *view)
@@ -167,36 +166,49 @@ void GuiScroll::scrollViewDidZoom(cocos2d::extension::CCScrollView *view)
 	CCLOG("zoom");
 }
 
-void GuiScroll::adjustScrollView(float offset)
+void GuiScroll::adjustMoveView(float offset)
 {
 	CCPoint				adjustPos;
-	CCSize				visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 	CCPoint				origin		= CCDirector::sharedDirector()->getVisibleOrigin();
+	CCSize				visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+	
+	adjustPos = ccp(origin.x - visibleSize.width*(m_nCurPage-1) + offset*2.0f, 0);
+	m_pScrollView->setContentOffset(adjustPos, true);
+}
+
+void GuiScroll::adjustPage(float offset)
+{
+	CCPoint				adjustPos;
+	CCPoint				origin		= CCDirector::sharedDirector()->getVisibleOrigin();
+	CCSize				visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 	CCSpriteFrameCache*	pCache		= CCSpriteFrameCache::sharedSpriteFrameCache();
 	CCSprite*			pPoint		= (CCSprite *)this->getChildByTag(m_nCurPage);
-	
-	pPoint->setDisplayFrame(pCache->spriteFrameByName("button_normal.png"));
-	
-	if ( offset < 0 )
+		
+	if( fabs(offset) > 50 )
 	{
-		m_nCurPage ++;
-	}
-	else
-	{
-		m_nCurPage --;
-	}
+		if ( offset < 0 )
+		{
+			m_nCurPage ++;
+		}
+		else if( offset > 0 )
+		{
+			m_nCurPage --;
+		}
+		
+		if (m_nCurPage < 1)
+		{
+			m_nCurPage = 1;
+		}
+		else if(m_nCurPage > 3)
+		{
+			m_nCurPage = 3;
+		}
 
-	if (m_nCurPage < 1)
-	{
-		m_nCurPage = 1;
-	}
-	else if(m_nCurPage > 3)
-	{
-		m_nCurPage = 3;
+		pPoint->setDisplayFrame(pCache->spriteFrameByName("button_normal.png"));
+		pPoint = (CCSprite *)this->getChildByTag(m_nCurPage);
+		pPoint->setDisplayFrame(pCache->spriteFrameByName("button_selected.png"));
 	}
 		
-	pPoint = (CCSprite *)this->getChildByTag(m_nCurPage);
-	pPoint->setDisplayFrame(pCache->spriteFrameByName("button_selected.png"));
-	adjustPos = ccp(origin.x - visibleSize.width * (m_nCurPage-1), 0);
+	adjustPos = ccp(origin.x - visibleSize.width*(m_nCurPage-1), 0);
 	m_pScrollView->setContentOffset(adjustPos, true);
 }

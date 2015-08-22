@@ -13,10 +13,12 @@ EntityComponent::~EntityComponent()
 		OnRemove();
 	}
 }
+
 EntityComponent::EntityComponent( string name )
 {
 	SetName(name);
 }
+
 void EntityComponent::SetName( string name )
 {
 	m_name = name;

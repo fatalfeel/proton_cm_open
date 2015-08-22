@@ -4,13 +4,6 @@
 #include "BaseApp.h"
 #include "Entity.h"
 
-/*#include "Entity/OverlayRenderComponent.h"
-#include "Entity/TextRenderComponent.h"
-#include "Entity/TouchHandlerComponent.h"
-#include "Entity/TouchStripComponent.h"
-#include "Entity/Button2DComponent.h"*/
-
-#include "Entity/FocusInputComponent.h"
 #include "Entity/FocusUpdateComponent.h"
 #include "Entity/FocusRenderComponent.h"
 
@@ -133,7 +126,7 @@ void OneTimeBobEntity(Entity *pEnt, float bobAmount = -10, int delayBeforeBob = 
  *        \c FocusRenderComponent are added to the \c Entity.
  */
 void AddFocusIfNeeded(Entity *pEnt, bool bAlsoLinkMoveMessages = false, int delayInputMS = 0, int updateAndRenderDelay = 0); //add input, think, and render focuses to an entity (if they don't exist)
-void AddInputMovementFocusIfNeeded(Entity *pEnt);
+//void AddInputMovementFocusIfNeeded(Entity *pEnt);
 /**
  * Commands a \c FocusInputComponent in \a pEnt to also recognize the raw keyboard input messages.
  *

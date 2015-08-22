@@ -56,18 +56,15 @@ enum eAndroidActions
 	ACTION_OUTSIDE,
 };
 
-class AndroidMessageCache
+typedef struct _AndroidMessageCache
 {
-public:
-	float x,y;
-	eMessageType type;
-	int finger;
+	eMessageType	type;
+	float			x,y;
+	int				finger;
+}AndroidMessageCache;
 
-};
-
-std::list<AndroidMessageCache> g_messageCache;
-
-//JavaVM* g_pJavaVM = NULL;
+static std::list<AndroidMessageCache>	s_messageCache;
+static pthread_mutex_t					s_mouselock;
 
 int g_winVideoScreenX = 0;
 int g_winVideoScreenY = 0;
@@ -79,7 +76,6 @@ std::vector<std::string> StringTokenize(const std::string& theString, const std:
 
 extern "C" 
 {
-
 	JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) 
 	{
 		JNIEnv* env;
@@ -94,7 +90,6 @@ extern "C"
 
 		return JNI_VERSION_1_4;
 	}
-
 }
 
 int GetPrimaryGLX() 
@@ -734,6 +729,90 @@ bool HasVibration()
 	return true;
 }
 
+void MouseKeyProcess(int method, AndroidMessageCache* amsg, unsigned int* qsize)
+{
+	pthread_mutex_lock(&s_mouselock);
+	
+	switch(method)
+	{
+		case 0:
+			s_messageCache.push_back(*amsg);
+			break;
+
+		case 1:
+			*amsg = s_messageCache.front();
+			s_messageCache.pop_front();
+			break;
+
+		case 2:
+			*qsize = s_messageCache.size();
+			break;
+	}
+		
+	pthread_mutex_unlock(&s_mouselock);
+}
+
+void CheckTouchCommand()
+{
+#ifdef _IRR_COMPILE_WITH_GUI_	
+	irr::SEvent	ev;
+#endif			
+	
+	int					keyid;
+	unsigned int		qsize;
+	AndroidMessageCache	amessage;
+
+	MouseKeyProcess(2, NULL, &qsize);
+		
+	if( qsize > 0 )
+	{
+		MouseKeyProcess(1, &amessage, NULL);
+		
+		switch (amessage.type)
+		{
+			case MESSAGE_TYPE_GUI_CLICK_START:
+				//by stone
+#ifdef _IRR_COMPILE_WITH_GUI_
+				ev.MouseInput.Event 		= irr::EMIE_LMOUSE_PRESSED_DOWN;
+				ev.EventType            	= irr::EET_MOUSE_INPUT_EVENT;
+				ev.MouseInput.ButtonStates 	= 0;
+				ev.MouseInput.X				= amessage.x;
+				ev.MouseInput.Y				= amessage.y;
+				IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
+#endif
+				keyid = 0;
+				g_pApp->HandleTouchesBegin(1, &keyid, &amessage.x, &amessage.y);
+
+				break;
+
+			case MESSAGE_TYPE_GUI_CLICK_END:
+				//by stone
+#ifdef _IRR_COMPILE_WITH_GUI_
+				ev.MouseInput.Event 		= irr::EMIE_LMOUSE_LEFT_UP;
+				ev.EventType            	= irr::EET_MOUSE_INPUT_EVENT;
+				ev.MouseInput.ButtonStates 	= 0;
+				ev.MouseInput.X				= amessage.x;
+				ev.MouseInput.Y				= amessage.y;
+				IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
+#endif
+				keyid = 0;
+				g_pApp->HandleTouchesEnd(1, &keyid, &amessage.x, &amessage.y);
+				break;
+
+			case MESSAGE_TYPE_GUI_CLICK_MOVE:
+				keyid = 0;
+				g_pApp->HandleTouchesMove(1, &keyid, &amessage.x, &amessage.y);
+				break;
+
+			default:
+#ifndef _DEBUG
+				LogMsg("Unhandled input message %d at %.2f:%.2f", action, x, y);
+#endif
+				break;
+		}
+	}
+}
+
 void AppResize( JNIEnv*  env, jobject  thiz, jint w, jint h )
 {
 	std::string		apkpath;
@@ -752,9 +831,8 @@ void AppResize( JNIEnv*  env, jobject  thiz, jint w, jint h )
 		SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), ORIENTATION_PORTRAIT);
 		
 		pFileSystem = new FileSystemZip();
-
 		apkpath = GetAPKFile();
-
+		
 #ifdef _DEBUG
 		LogMsg("Initializing BaseApp.  APK filename is %s", apkpath.c_str());
 #endif				
@@ -840,10 +918,31 @@ void AppRender(JNIEnv*  env)
 	CCDirector::sharedDirector()->setGLDefaultValues();
 	CCDirector::sharedDirector()->mainLoop();
 	CCDirector::sharedDirector()->RestoreGLValues();
+
+	CheckTouchCommand();
+}
+
+void AppInit(JNIEnv* env)
+{
+	//create mutex attribute variable
+	pthread_mutexattr_t	pmattr;
+
+	// setup recursive mutex for mutex attribute
+	pthread_mutexattr_settype(&pmattr, PTHREAD_MUTEX_RECURSIVE_NP);
+
+	// Use the mutex attribute to create the mutex
+	pthread_mutex_init(&s_mouselock, &pmattr);
+
+	// Mutex attribute can be destroy after initializing the mutex variable
+	pthread_mutexattr_destroy(&pmattr);
+
+	LogMsg("AppInit finish");
 }
 
 void AppDone(JNIEnv*  env)
 {
+	pthread_mutex_destroy(&s_mouselock);
+
 	LogMsg("Killing base app.");
 }
 
@@ -890,84 +989,41 @@ void AppResume(JNIEnv*  env)
 #endif
 }
 
-void AppInit(JNIEnv*  env)
-{
-	LogMsg("AppInit finish");
-}
-
 void AppOnTouch( JNIEnv*  env, jobject jobj,jint action, jfloat x, jfloat y, jint finger)
 {
 	int							keyid;
-	static AndroidMessageCache	am;
-	eMessageType				messageType = MESSAGE_TYPE_UNKNOWN;
-	
-#ifdef _IRR_COMPILE_WITH_GUI_	
-	irr::SEvent	ev;
-#endif		
-
+	AndroidMessageCache			amessage;
+			
 	switch (action)
 	{
 		case ACTION_DOWN:
-			messageType = MESSAGE_TYPE_GUI_CLICK_START;
-
-			//by stone
-#ifdef _IRR_COMPILE_WITH_GUI_
-			ev.MouseInput.Event 		= irr::EMIE_LMOUSE_PRESSED_DOWN;
-			ev.EventType            	= irr::EET_MOUSE_INPUT_EVENT;
-			ev.MouseInput.ButtonStates 	= 0;
-			ev.MouseInput.X				= x;
-			ev.MouseInput.Y				= y;
-			IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
-#endif
-			keyid = 0;
-			g_pApp->HandleTouchesBegin(1, &keyid, &x, &y);
-
+			amessage.type = MESSAGE_TYPE_GUI_CLICK_START;
 			break;
 
 		case ACTION_UP:
-			messageType = MESSAGE_TYPE_GUI_CLICK_END;
-
-			//by stone
-#ifdef _IRR_COMPILE_WITH_GUI_
-			ev.MouseInput.Event 		= irr::EMIE_LMOUSE_LEFT_UP;
-			ev.EventType            	= irr::EET_MOUSE_INPUT_EVENT;
-			ev.MouseInput.ButtonStates 	= 0;
-			ev.MouseInput.X				= x;
-			ev.MouseInput.Y				= y;
-			IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
-#endif
-			keyid = 0;
-			g_pApp->HandleTouchesEnd(1, &keyid, &x, &y);
+			amessage.type = MESSAGE_TYPE_GUI_CLICK_END;
 			break;
 
 		case ACTION_MOVE:
-			messageType = MESSAGE_TYPE_GUI_CLICK_MOVE;
-
-			keyid = 0;
-			g_pApp->HandleTouchesMove(1, &keyid, &x, &y);
+			amessage.type = MESSAGE_TYPE_GUI_CLICK_MOVE;
 			break;
 
-	default:
-
-#ifndef _DEBUG
-			LogMsg("Unhandled input message %d at %.2f:%.2f", action, x, y);
-#endif
+		default:
+			amessage.type = MESSAGE_TYPE_UNKNOWN;
 			break;
 	}
 	
-	am.x		= x;
-	am.y		= y;
-	am.finger	= finger;
-	am.type		= messageType;
-
-	g_messageCache.push_back(am);
+	amessage.x		= x;
+	amessage.y		= y;
+	amessage.finger	= finger;
+	
+	//s_messageCache.push_back(amessage);
+	MouseKeyProcess(0, &amessage, NULL);
 }
-
 
 void AppOnSendGUIEx(JNIEnv*  env, jobject thiz,jint messageType, jint parm1, jint parm2, jint finger )
 {
 	MessageManager::GetMessageManager()->SendGUIEx((eMessageType)messageType, (float)parm1, (float)parm2, finger);  
-
 }
 
 void AppOnSendGUIStringEx(JNIEnv*  env, jobject thiz,jint messageType, jint parm1, jint parm2, jint finger, jstring s )
@@ -1072,15 +1128,15 @@ int AppOSMessageGet(JNIEnv* env)
 		return 0;
 	}
 
-	while (!g_messageCache.empty())
+	/*while (!s_messageCache.empty())
 	{
-		AndroidMessageCache *pM = &g_messageCache.front();
+		AndroidMessageCache *pM = &s_messageCache.front();
 		
 		ConvertCoordinatesIfRequired(pM->x, pM->y);
 
 		MessageManager::GetMessageManager()->SendGUIEx(pM->type, pM->x, pM->y, pM->finger);
-		g_messageCache.pop_front();
-	}
+		s_messageCache.pop_front();
+	}*/
 
 	while (!BaseApp::GetBaseApp()->GetOSMessages()->empty())
 	{

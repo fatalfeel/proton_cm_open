@@ -262,13 +262,13 @@ public:
 	 *   - For \link eMessageType::MESSAGE_TYPE_GUI_PASTE MESSAGE_TYPE_GUI_PASTE\endlink this
 	 *     parameter contains the contents of the clipboard as a \c string.
 	 */
-	boost::signal<void (VariantList*)> m_sig_input;
+	//boost::signal<void (VariantList*)> m_sig_input;
 	/**
 	 * "Move" touch messages.
 	 * Used if eInputMode::INPUT_MODE_SEPARATE_MOVE_TOUCHES was set. Otherwise they are signaled
 	 * via \c BaseApp::m_sig_input.
 	 */
-	boost::signal<void (VariantList*)> m_sig_input_move;
+	//boost::signal<void (VariantList*)> m_sig_input_move;
 	/**
 	 * Messages from the platform itself.
 	 * To get the type of the message use code like this:
@@ -412,7 +412,7 @@ protected:
 	int                     m_texMemUsed;
 	eErrorType              m_error;
 	bool                    m_bIsInBackground;
-	vector<string>          m_commandLineParms;
+	//vector<string>          m_commandLineParms;
 
 	CL_Mat4f                m_projectionMatrix;
 	bool                    m_bCheatMode;

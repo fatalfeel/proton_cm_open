@@ -21,7 +21,8 @@ public:
 
 	void scrollViewDidScroll(CCScrollView* view);
 	void scrollViewDidZoom(CCScrollView* view);
-	void adjustScrollView(float offset);
+	void adjustMoveView(float offset);
+	void adjustPage(float offset);
 
 private:
 	 CCScrollView*	m_pScrollView;

@@ -17,8 +17,8 @@ class EntityComponent;
 
 enum eMessageClass
 {
+	MESSAGE_CLASS_MOUSE, //these come from GUI events like clicks
 	MESSAGE_CLASS_GAME, //generic global game-specific messages
-	MESSAGE_CLASS_GUI, //these come from GUI events like clicks
 	MESSAGE_CLASS_ENTITY, //delivered directly to specific entities
 };
 
@@ -196,18 +196,11 @@ enum eMessageType
 
 typedef void(*PtrFuncVarList)(VariantList *);
 
-class Message: public boost::signals::trackable
+class Message
 {
-
 public:
-
-	Message(eMessageClass messageClass, eTimingSystem timer, eMessageType type) : m_class(messageClass), m_timerMethod(timer), m_type(type)
-	{
-		m_deliveryTime = 0; //delivery right away
-		m_pTargetEntity = NULL;
-		m_pComponent = NULL;
-		m_pStaticFunction = NULL;
-	}
+	Message(eMessageClass messageClass, eTimingSystem timer, eMessageType type);
+	virtual ~Message();
 
 	void SetParm1(float parm1) {m_parm1 = parm1;}
 	float GetParm1() {return m_parm1;}
@@ -307,12 +300,12 @@ public:
 private:
 
 	void Send(Message *m);
-	void AddMessageToList(list <Message*> &messageList, Message *m);
-	void DumpMessagesInList(list<Message*> m);
+	void AddMessageToList(std::list <Message*> &messageList, Message *m);
+	void DumpMessagesInList(std::list<Message*> m);
 	void Deliver(Message *m);
 	//a separate queue for each timing system
-	list <Message*> m_gameMessages;
-	list <Message*> m_systemMessages;
+	std::list <Message*> m_gameMessages;
+	std::list <Message*> m_systemMessages;
 
 };
 

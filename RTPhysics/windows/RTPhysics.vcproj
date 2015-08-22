@@ -1170,14 +1170,6 @@
 					Name="Component"
 					>
 					<File
-						RelativePath="..\..\shared\Entity\FocusInputComponent.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\shared\Entity\FocusInputComponent.h"
-						>
-					</File>
-					<File
 						RelativePath="..\..\shared\Entity\FocusRenderComponent.cpp"
 						>
 					</File>

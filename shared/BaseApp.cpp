@@ -236,212 +236,73 @@ void BaseApp::SetConsoleVisible( bool bNew )
 
 void BaseApp::OnMessage(Message &m)
 {
-	static VariantList v;
-	
-	v.Reset();
-	
 	switch (m.GetClass())
 	{
-		case MESSAGE_CLASS_GUI:
+		case MESSAGE_CLASS_MOUSE:
 			switch (m.GetType())
 			{
-			
-			case MESSAGE_TYPE_GUI_CLICK_START:
-			case MESSAGE_TYPE_GUI_CLICK_END:
-				{
-					v.Get(0).Set((float)m.GetType());
-					v.Get(1).Set(float(m.GetParm1()), float(m.GetParm2()) );
-					v.Get(2).Set(uint32(m.GetParm3()));
-					v.Get(3).Set(m.GetParm4());
-			
-					if (m.GetType() == MESSAGE_TYPE_GUI_CLICK_START)
-					{
-					//	LogMsg("Clicked finger %d, down is %d", m.GetParm3(), (int)m_touchTracker[m.GetParm3()].IsDown());
-						m_touchTracker[m.GetParm3()].SetIsDown(true);
-						m_touchTracker[m.GetParm3()].SetPos(v.Get(1).GetVector2());
-						m_touchTracker[m.GetParm3()].SetWasHandled(false);
-						m_touchTracker[m.GetParm3()].SetWasPreHandled(false);
-					} else
-					{
-					//	LogMsg("Released finger %d, down is %d", m.GetParm3(), (int)m_touchTracker[m.GetParm3()].IsDown());
-						m_touchTracker[m.GetParm3()].SetIsDown(false);
-					}
-
-
-					m_sig_input(&v);
+				case MESSAGE_TYPE_GUI_CLICK_START:
 					break;
-				}
-			
-			case MESSAGE_TYPE_GUI_CLICK_MOVE:
-			case MESSAGE_TYPE_GUI_CLICK_MOVE_RAW:
-				{
 				
-					if (!m_touchTracker[m.GetParm3()].IsDown())
-					{
-						//ignore this, we don't want a move message from something that isn't fricken' down.  At least
-						//one known HP device is known to do this...
-						break;
-					}
-
-					v.Get(0).Set(float(m.GetType()));
-					v.Get(1).Set(float(m.GetParm1()), float(m.GetParm2()) );
-					v.Get(2).Set(uint32(m.GetParm3()));
-					v.Get(3).Set(m.GetParm4());
-
-					if (m.GetType() == MESSAGE_TYPE_GUI_CLICK_MOVE)
-					{
-						m_touchTracker[m.GetParm3()].SetPos(v.Get(1).GetVector2());
-					}
-
-					if (m_inputMode == INPUT_MODE_NORMAL)
-					{
-						m_sig_input(&v);
-					} else
-					{
-						m_sig_input_move(&v);
-					}
-
+				case MESSAGE_TYPE_GUI_CLICK_END:
 					break;
-				}
+					
+				case MESSAGE_TYPE_GUI_CLICK_MOVE:
+					break;
+								
+				case MESSAGE_TYPE_GUI_CHAR:
+					break;
 			
-			case MESSAGE_TYPE_GUI_ACCELEROMETER:
-				{
-					v.Get(0).Set((float)m.GetType());
-					v.Get(1).Set(m.Get().GetVector3());
-					m_sig_accel(&v);				
-				}
-				break;
-			
-			//like MESSAGE_TYPE_GUI_CHAR, but handles up AND down events, and ignores things like key-repeat, better for
-			//arcade action
-			case MESSAGE_TYPE_GUI_CHAR_RAW:
-				{
-					v.Get(0).Set(uint32(m.GetParm1()));
-					v.Get(1).Set(uint32(m.GetParm2()));
-					v.Get(2).Set(uint32(m.GetParm3()));
-					v.Get(3).Set(m.GetParm4());
-					m_sig_raw_keyboard(&v);
-				}
-				break;
-
-			//usually used for text input
-			case MESSAGE_TYPE_GUI_CHAR:
-				{
-#ifdef _DEBUG
-					//LogMsg("Got char: %c (%d)", (char)m.GetParm1(), int(m.GetParm1()));
-#endif
-					v.Get(0).Set((float)m.GetType());
-					v.Get(1).Set(0,0);
-					v.Get(2).Set(uint32(m.GetParm1()));
-					v.Get(3).Set(m.GetParm4());
-					m_sig_input(&v);
-				}
-				break;
-
-			case MESSAGE_TYPE_GUI_PASTE:
-				{
-					v.Get(0).Set((float)m.GetType());
-					v.Get(1).Set(0,0);
-					v.Get(2).Set(m.Get());
-					m_sig_input(&v);
+				case MESSAGE_TYPE_GUI_MOUSEWHEEL:
 					break;
-				}
-	
-			case MESSAGE_TYPE_GUI_TRACKBALL:
-				{
-					v.Get(0).Set((float)m.GetType());
-					v.Get(1).Set(m.Get().GetVector3());
-					m_sig_trackball(&v);
+	                    
+				default:
 					break;
-				}
-
-			case MESSAGE_TYPE_HW_TOUCH_KEYBOARD_WILL_SHOW:
-			case MESSAGE_TYPE_HW_TOUCH_KEYBOARD_WILL_HIDE:
-				{
-					v.Get(0).Set((float)m.GetType());
-					m_sig_hardware(&v);
-					break;
-				}
-
-
-			case MESSAGE_TYPE_OS_CONNECTION_CHECKED:
-				{
-					v.Get(0).Set((float)m.GetType());
-					v.Get(1).Set(float(m.GetParm1()), float(m.GetParm2()) );
-					m_sig_os(&v);
-				}
-				break;
-			
-			case MESSAGE_TYPE_GUI_TOGGLE_FULLSCREEN:
-				{
-					OnFullscreenToggleRequest();
-				}
-				break;
-
-			case MESSAGE_TYPE_APP_VERSION:
-				{
-					m_version = m.GetStringParm();
-					break;
-				}
+			}
+			break;
 		
-			case MESSAGE_TYPE_GUI_MOUSEWHEEL:
-				{
-					v.Get(0).Set((float)m.GetType());
-					v.Get(1).Set(float(m.GetParm1()), float(m.GetParm2()) );
-					v.Get(2).Set(uint32(m.GetParm3()));
-					v.Get(3).Set(m.GetParm4());
-
-					m_sig_input(&v);
+		case MESSAGE_CLASS_GAME:
+			switch (m.GetType())
+			{
+				case MESSAGE_TYPE_PLAY_SOUND:
+					if (GetAudioManager())
+					{
+						GetAudioManager()->Play(m.GetVarName());
+					}
 					break;
-				}
-                    
-            default:
-                    break;
-			}
-		
-	break;
-		
-	case MESSAGE_CLASS_GAME:
+				
+				case MESSAGE_TYPE_SET_SOUND_ENABLED:
+					GetAudioManager()->SetSoundEnabled(m.Get().GetUINT32() != 0);
+					break;
+				
+				case MESSAGE_TYPE_PRELOAD_SOUND:
+					if (GetAudioManager())
+					{
+						GetAudioManager()->Preload(ReplaceMP3(m.GetVarName()));
+					}
+					break;
 
-		switch (m.GetType())
-		{
-		case MESSAGE_TYPE_PLAY_SOUND:
-			if (GetAudioManager())
-			{
-				GetAudioManager()->Play(m.GetVarName());
-			}
-			break;
-		case MESSAGE_TYPE_SET_SOUND_ENABLED:
-			GetAudioManager()->SetSoundEnabled(m.Get().GetUINT32() != 0);
-			break;
-		case MESSAGE_TYPE_PRELOAD_SOUND:
-			if (GetAudioManager())
-			{
-				GetAudioManager()->Preload(ReplaceMP3(m.GetVarName()));
-			}
-			break;
+				case MESSAGE_TYPE_PLAY_MUSIC:
+					if (GetAudioManager())
+					{
+						GetAudioManager()->Play(ReplaceMP3(m.GetVarName()), true, true);
+					}
+					break;
 
-		case MESSAGE_TYPE_PLAY_MUSIC:
-			if (GetAudioManager())
-			{
-				GetAudioManager()->Play(ReplaceMP3(m.GetVarName()), true, true);
+				case MESSAGE_TYPE_VIBRATE:
+					if (GetAudioManager())
+					{
+						GetAudioManager()->Vibrate(m.Get().GetUINT32());
+					}
+					break;
+		                
+				default:
+					break;
 			}
 			break;
-
-		case MESSAGE_TYPE_VIBRATE:
-			if (GetAudioManager())
-			{
-				GetAudioManager()->Vibrate(m.Get().GetUINT32());
-			}
-			break;
-                
-        default:
-            break;
-		}
-		break;
-            
-    default:
-        break;
+	            
+		default:
+				break;
 	}
 }
 
@@ -457,9 +318,8 @@ void BaseApp::KillOSMessagesByType(OSMessage::eMessageType type)
 	//It's a deque, making it tricky to delete stuff from the middle.  I'll do it this way, speed isn't important
 	//as this is used rarely.
 
-	deque <OSMessage>::iterator itor = m_OSMessages.begin();
-
-	deque <OSMessage> temp;
+	std::deque <OSMessage>::iterator itor = m_OSMessages.begin();
+	std::deque <OSMessage> temp;
 
 	for (;itor != m_OSMessages.end(); itor++)
 	{
