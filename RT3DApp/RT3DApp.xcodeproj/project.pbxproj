@@ -4210,8 +4210,8 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -4235,8 +4235,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = RT3DApp;
-				PROVISIONING_PROFILE = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
@@ -4245,8 +4245,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -4283,8 +4283,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SYMROOT = "~/build";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4295,8 +4295,8 @@
 		5D8733750FA9A0BC001DB559 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -4320,8 +4320,8 @@
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = RT3DApp;
-				PROVISIONING_PROFILE = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = AdHoc;
 		};
@@ -4330,8 +4330,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -4367,7 +4367,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "";
-				PROVISIONING_PROFILE = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SYMROOT = "~/build";
 				TARGETED_DEVICE_FAMILY = "1,2";
