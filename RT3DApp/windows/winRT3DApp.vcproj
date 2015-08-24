@@ -451,6 +451,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\shared\win\app\main.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Programmer Readme.txt"
 				>
 			</File>
