@@ -100,12 +100,6 @@ bool g_controlDown = false;
 			
 	}
 	
-#ifdef _DEBUG
-	if ([anEvent type] != 5)
-	{
-	//LogMsg("Event: %d: ", [anEvent type]);
-	}
-#endif
 	[super sendEvent:anEvent];
 }
 

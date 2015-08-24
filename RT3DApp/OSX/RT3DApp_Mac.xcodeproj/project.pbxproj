@@ -23,7 +23,6 @@
 		5D70B7AA12B606DC00A1AB17 /* GameTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B6C512B606DC00A1AB17 /* GameTimer.cpp */; };
 		5D70B7AB12B606DC00A1AB17 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B6C712B606DC00A1AB17 /* MessageManager.cpp */; };
 		5D70B7B012B606DC00A1AB17 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B6D312B606DC00A1AB17 /* AudioManager.cpp */; };
-		5D70B7C912B606DC00A1AB17 /* FocusInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B70312B606DC00A1AB17 /* FocusInputComponent.cpp */; };
 		5D70B7CA12B606DC00A1AB17 /* FocusRenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B70512B606DC00A1AB17 /* FocusRenderComponent.cpp */; };
 		5D70B7CB12B606DC00A1AB17 /* FocusUpdateComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B70712B606DC00A1AB17 /* FocusUpdateComponent.cpp */; };
 		5D70B7ED12B606DC00A1AB17 /* EntityUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B74C12B606DC00A1AB17 /* EntityUtils.cpp */; };
@@ -584,8 +583,6 @@
 		5D70B6C812B606DC00A1AB17 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageManager.h; path = ../../shared/Manager/MessageManager.h; sourceTree = SOURCE_ROOT; };
 		5D70B6D312B606DC00A1AB17 /* AudioManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioManager.cpp; path = ../../shared/Audio/AudioManager.cpp; sourceTree = SOURCE_ROOT; };
 		5D70B6D412B606DC00A1AB17 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioManager.h; path = ../../shared/Audio/AudioManager.h; sourceTree = SOURCE_ROOT; };
-		5D70B70312B606DC00A1AB17 /* FocusInputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FocusInputComponent.cpp; path = ../../shared/Entity/FocusInputComponent.cpp; sourceTree = SOURCE_ROOT; };
-		5D70B70412B606DC00A1AB17 /* FocusInputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FocusInputComponent.h; path = ../../shared/Entity/FocusInputComponent.h; sourceTree = SOURCE_ROOT; };
 		5D70B70512B606DC00A1AB17 /* FocusRenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FocusRenderComponent.cpp; path = ../../shared/Entity/FocusRenderComponent.cpp; sourceTree = SOURCE_ROOT; };
 		5D70B70612B606DC00A1AB17 /* FocusRenderComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FocusRenderComponent.h; path = ../../shared/Entity/FocusRenderComponent.h; sourceTree = SOURCE_ROOT; };
 		5D70B70712B606DC00A1AB17 /* FocusUpdateComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FocusUpdateComponent.cpp; path = ../../shared/Entity/FocusUpdateComponent.cpp; sourceTree = SOURCE_ROOT; };
@@ -1939,8 +1936,6 @@
 		5D70B6E012B606DC00A1AB17 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5D70B70312B606DC00A1AB17 /* FocusInputComponent.cpp */,
-				5D70B70412B606DC00A1AB17 /* FocusInputComponent.h */,
 				5D70B70512B606DC00A1AB17 /* FocusRenderComponent.cpp */,
 				5D70B70612B606DC00A1AB17 /* FocusRenderComponent.h */,
 				5D70B70712B606DC00A1AB17 /* FocusUpdateComponent.cpp */,
@@ -3742,7 +3737,6 @@
 				B72C17211B3BD6F600B853FC /* CCGeometry.cpp in Sources */,
 				B72C17301B3BD6F600B853FC /* CCControlButtonLoader.cpp in Sources */,
 				5D70B7B012B606DC00A1AB17 /* AudioManager.cpp in Sources */,
-				5D70B7C912B606DC00A1AB17 /* FocusInputComponent.cpp in Sources */,
 				B72C177F1B3BD6F600B853FC /* CCSpriteBatchNode.cpp in Sources */,
 				5D70B7CA12B606DC00A1AB17 /* FocusRenderComponent.cpp in Sources */,
 				B72C174A1B3BD6F600B853FC /* CCControlUtils.cpp in Sources */,

@@ -17,8 +17,30 @@
  The view content is basically an EAGL surface you render your OpenGL scene into.
  Note that setting the view non-opaque will only work if the EAGL surface has an alpha channel.
  */
-@interface EAGLView : UIView {
-	
+enum eIosActions
+{
+    ACTION_DOWN,
+    ACTION_UP,
+    ACTION_MOVE,
+    ACTION_CANCEL,
+    ACTION_OUTSIDE,
+};
+
+class IosMessageCache
+{
+public:
+    IosMessageCache()
+    {}
+    ~IosMessageCache()
+    {}
+    
+    eIosActions     type;
+    float			x,y;
+    int				finger;
+};
+
+@interface EAGLView : UIView
+{
 @private
 	/* The pixel dimensions of the backbuffer */
 	GLint backingWidth;
@@ -41,11 +63,13 @@
 @property NSTimeInterval animationInterval;
 @property NSTimeInterval animationIntervalSave;
 
-- (void)startAnimation;
-- (void)stopAnimation;
-- (void)drawView;
-- (void)destroyFramebuffer;
-- (BOOL)createFramebuffer;
+- (void) MouseKeyProcess:(int)method : (IosMessageCache*) amsg : (unsigned int*) qsize;
+- (void) CheckTouchCommand;
+- (void) drawView;
+- (void) startAnimation;
+- (void) stopAnimation;
+- (void) destroyFramebuffer;
+- (BOOL) createFramebuffer;
 //- (void)onKill;
 
 @end

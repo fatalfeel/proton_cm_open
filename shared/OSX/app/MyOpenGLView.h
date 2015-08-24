@@ -9,6 +9,27 @@
 #import <AppKit/NSOpenGLView.h>
 #import <AppKit/NSOpenGLLayer.h>
 
+enum eIosActions
+{
+    ACTION_DOWN,
+    ACTION_UP,
+    ACTION_MOVE,
+    ACTION_CANCEL,
+    ACTION_OUTSIDE,
+};
+
+class IosMessageCache
+{
+public:
+    IosMessageCache()
+    {}
+    ~IosMessageCache()
+    {}
+    
+    eIosActions     type;
+    float			x,y;
+    int				finger;
+};
 
 @class MainController;
 
@@ -33,6 +54,8 @@
 
 - (void) setMainController:(MainController*)theController;
 
+- (void) MouseKeyProcess:(int)method : (IosMessageCache*) amsg : (unsigned int*) qsize;
+- (void) CheckTouchCommand;
 - (void) drawView;
 
 - (void) startAnimation;

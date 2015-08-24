@@ -34,41 +34,12 @@ int			g_musicPos = 0;
 std::string	g_musicToPlay;
 
 static bool	s_preferSDCardForUserStorage	= false;
-//static bool	s_bSurfacesUnloaded				= false;
 static bool s_bFirstTime		= true;
 static char s_ClassName[128]	= {0};
 
-//this delay fixes a problem with restoring surfaces before android 1.6 devices are ready for it resulting
-//in white textures -  update: unneeded
-//#define C_DELAY_BEFORE_RESTORING_SURFACES_MS 1
-
-OSMessage g_lastOSMessage; //used to be a temporary holding place so android can access it because I'm too lazy to figure
+//used to be a temporary holding place so android can access it because I'm too lazy to figure
 //out how to make/pass java structs
-
-//android has some concurrency issues that cause problems unless we cache input events - we don't want it calling ConvertCoordinatesIfRequired
-//willy nilly
-enum eAndroidActions
-{
-	ACTION_DOWN,
-	ACTION_UP,
-	ACTION_MOVE,
-	ACTION_CANCEL,
-	ACTION_OUTSIDE,
-};
-
-class AndroidMessageCache
-{
-public:
-	AndroidMessageCache()
-	{}
-	~AndroidMessageCache()
-	{}
-
-	eAndroidActions		type;
-	float				x,y;
-	int					finger;
-};
-
+static OSMessage						s_lastOSMessage; 
 static std::list<AndroidMessageCache*>	s_messageCache;
 static pthread_mutex_t					s_mouselock;
 
@@ -1004,7 +975,6 @@ void AppResume(JNIEnv*  env)
 
 void AppOnTouch( JNIEnv*  env, jobject jobj,jint action, jfloat x, jfloat y, jint finger)
 {
-	int						keyid;
 	unsigned int			qsize;
 	AndroidMessageCache*	amessage;
 
@@ -1167,8 +1137,8 @@ int AppOSMessageGet(JNIEnv* env)
 	while (!BaseApp::GetBaseApp()->GetOSMessages()->empty())
 	{
 		//check for special messages that we don't want to pass on
-		g_lastOSMessage = BaseApp::GetBaseApp()->GetOSMessages()->front();
-		if (g_lastOSMessage.m_type == OSMessage::MESSAGE_CHECK_CONNECTION)
+		s_lastOSMessage = BaseApp::GetBaseApp()->GetOSMessages()->front();
+		if (s_lastOSMessage.m_type == OSMessage::MESSAGE_CHECK_CONNECTION)
 		{
 				//pretend we did it
 				MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_OS_CONNECTION_CHECKED, (float)RT_kCFStreamEventOpenCompleted, 0.0f);	
@@ -1180,10 +1150,10 @@ int AppOSMessageGet(JNIEnv* env)
 
 	if (!BaseApp::GetBaseApp()->GetOSMessages()->empty())
 	{
-		g_lastOSMessage = BaseApp::GetBaseApp()->GetOSMessages()->front();
+		s_lastOSMessage = BaseApp::GetBaseApp()->GetOSMessages()->front();
 		BaseApp::GetBaseApp()->GetOSMessages()->pop_front();
-		//LogMsg("Preparing OS message %d, %s", g_lastOSMessage.m_type, g_lastOSMessage.m_string.c_str());
-		return g_lastOSMessage.m_type;
+		//LogMsg("Preparing OS message %d, %s", s_lastOSMessage.m_type, s_lastOSMessage.m_string.c_str());
+		return s_lastOSMessage.m_type;
 	}
 
 	return OSMessage::MESSAGE_NONE;
@@ -1191,32 +1161,32 @@ int AppOSMessageGet(JNIEnv* env)
 
 jstring AppGetLastOSMessageString(JNIEnv* env)
 {
-	 return(env->NewStringUTF(g_lastOSMessage.m_string.c_str()));
+	 return(env->NewStringUTF(s_lastOSMessage.m_string.c_str()));
 }
 
 jstring AppGetLastOSMessageString2(JNIEnv* env)
 {
-	return(env->NewStringUTF(g_lastOSMessage.m_string2.c_str()));
+	return(env->NewStringUTF(s_lastOSMessage.m_string2.c_str()));
 }
 
 jstring AppGetLastOSMessageString3(JNIEnv* env)
 {
-	return(env->NewStringUTF(g_lastOSMessage.m_string3.c_str()));
+	return(env->NewStringUTF(s_lastOSMessage.m_string3.c_str()));
 }
 
 float AppGetLastOSMessageX(JNIEnv* env)
 {
-	return g_lastOSMessage.m_x;
+	return s_lastOSMessage.m_x;
 }
 
 float AppGetLastOSMessageY(JNIEnv* env)
 {
-	return g_lastOSMessage.m_y;
+	return s_lastOSMessage.m_y;
 }
 
 float AppGetLastOSMessageParm1(JNIEnv* env)
 {
-	return g_lastOSMessage.m_parm1;
+	return s_lastOSMessage.m_parm1;
 }
 
 // JAKE ADDED - MachineWorks needs this, so please leave.

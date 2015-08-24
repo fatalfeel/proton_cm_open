@@ -16,7 +16,6 @@
 		5D0CC93C0F79E0D1004D9AE9 /* GameTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CC9360F79E0D1004D9AE9 /* GameTimer.cpp */; };
 		5D0CC93D0F79E0D1004D9AE9 /* MessageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CC9380F79E0D1004D9AE9 /* MessageManager.cpp */; };
 		5D0CC9440F79E0E1004D9AE9 /* ResourceUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D0CC9400F79E0E1004D9AE9 /* ResourceUtils.cpp */; };
-		5D17BA5A0FBD5DD8009D74BC /* FocusInputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BA540FBD5DD8009D74BC /* FocusInputComponent.cpp */; };
 		5D17BA5B0FBD5DD8009D74BC /* FocusRenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BA560FBD5DD8009D74BC /* FocusRenderComponent.cpp */; };
 		5D17BA5C0FBD5DD8009D74BC /* FocusUpdateComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D17BA580FBD5DD8009D74BC /* FocusUpdateComponent.cpp */; };
 		5D30635B0FD89049009DE600 /* VariantDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D3063590FD89049009DE600 /* VariantDB.cpp */; };
@@ -716,8 +715,6 @@
 		5D0CC9400F79E0E1004D9AE9 /* ResourceUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ResourceUtils.cpp; path = util/ResourceUtils.cpp; sourceTree = "<group>"; };
 		5D0CC9410F79E0E1004D9AE9 /* ResourceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceUtils.h; path = util/ResourceUtils.h; sourceTree = "<group>"; };
 		5D0CC9420F79E0E1004D9AE9 /* RTFileFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTFileFormat.h; path = util/RTFileFormat.h; sourceTree = "<group>"; };
-		5D17BA540FBD5DD8009D74BC /* FocusInputComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FocusInputComponent.cpp; path = Entity/FocusInputComponent.cpp; sourceTree = "<group>"; };
-		5D17BA550FBD5DD8009D74BC /* FocusInputComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FocusInputComponent.h; path = Entity/FocusInputComponent.h; sourceTree = "<group>"; };
 		5D17BA560FBD5DD8009D74BC /* FocusRenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FocusRenderComponent.cpp; path = Entity/FocusRenderComponent.cpp; sourceTree = "<group>"; };
 		5D17BA570FBD5DD8009D74BC /* FocusRenderComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FocusRenderComponent.h; path = Entity/FocusRenderComponent.h; sourceTree = "<group>"; };
 		5D17BA580FBD5DD8009D74BC /* FocusUpdateComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FocusUpdateComponent.cpp; path = Entity/FocusUpdateComponent.cpp; sourceTree = "<group>"; };
@@ -2892,8 +2889,6 @@
 		5D82C88E0FF4BB660082EBE7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5D17BA540FBD5DD8009D74BC /* FocusInputComponent.cpp */,
-				5D17BA550FBD5DD8009D74BC /* FocusInputComponent.h */,
 				5D17BA560FBD5DD8009D74BC /* FocusRenderComponent.cpp */,
 				5D17BA570FBD5DD8009D74BC /* FocusRenderComponent.h */,
 				5D17BA580FBD5DD8009D74BC /* FocusUpdateComponent.cpp */,
@@ -4678,7 +4673,6 @@
 				5D4760810FBB1CE0008400E3 /* EntityUtils.cpp in Sources */,
 				5D4760850FBB1CFF008400E3 /* MainMenu.cpp in Sources */,
 				B720D6311AE13F370055D4B5 /* CCCamera.cpp in Sources */,
-				5D17BA5A0FBD5DD8009D74BC /* FocusInputComponent.cpp in Sources */,
 				B720D5A41AE13F360055D4B5 /* CCActionCamera.cpp in Sources */,
 				B720D5D31AE13F360055D4B5 /* CCScale9SpriteLoader.cpp in Sources */,
 				5D17BA5B0FBD5DD8009D74BC /* FocusRenderComponent.cpp in Sources */,
@@ -5377,7 +5371,7 @@
 					../shared/cocos2dx/kazmath/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -5422,6 +5416,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = RTPhysics;
 				PROVISIONING_PROFILE = "f4334dc6-bf3b-4aa2-96fc-13c95b138a02";
 			};

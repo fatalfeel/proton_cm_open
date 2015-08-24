@@ -10,6 +10,9 @@
 #import "cocos2d.h"
 using namespace cocos2d;
 
+static std::list<IosMessageCache*>	s_messageCache;
+static pthread_mutex_t				s_mouselock;
+
 @implementation MyOpenGLView
 
 // This is the renderer output callback function
@@ -134,6 +137,21 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
     CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink, cglContext, cglPixelFormat);
 }
 
+- (void) setMainController:(MainController*)theController;
+{
+    maincontroller = theController;
+    
+    [self setupDisplayLink]; //by stone
+    
+    //if setting view here, value will no change
+    //[[self openGLContext] setView:self->maincontroller.openGLView];
+}
+
+- (NSOpenGLContext*) openGLContext
+{
+    return openGLContext;
+}
+
 - (void) lockFocus
 {
 	[super lockFocus];
@@ -174,6 +192,97 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 		[self drawView];
 }
 
+-(void) MouseKeyProcess:(int)method : (IosMessageCache*) amsg : (unsigned int*) qsize
+{
+    pthread_mutex_lock(&s_mouselock);
+    
+    IosMessageCache* store_msg;
+    
+    switch(method)
+    {
+        case 0:
+            s_messageCache.push_back(amsg);
+            break;
+            
+        case 1:
+            store_msg		= s_messageCache.front();
+            
+            amsg->type		= store_msg->type;
+            amsg->x			= store_msg->x;
+            amsg->y			= store_msg->y;
+            amsg->finger	= store_msg->finger;
+            
+            s_messageCache.pop_front();
+            delete store_msg;
+            
+            break;
+            
+        case 2:
+            *qsize = s_messageCache.size();
+            break;
+    }
+    
+    pthread_mutex_unlock(&s_mouselock);
+}
+
+-(void) CheckTouchCommand
+{
+#ifdef _IRR_COMPILE_WITH_GUI_
+    irr::SEvent	ev;
+#endif
+    
+    int                     keyid;
+    unsigned int            qsize;
+    IosMessageCache         amessage;
+    
+    [self MouseKeyProcess: 2 : NULL : &qsize];
+    
+    if( qsize >= 1 )
+    {
+        [self MouseKeyProcess: 1 : &amessage : NULL];
+        
+        switch (amessage.type)
+        {
+            case ACTION_DOWN:
+                //by stone
+#ifdef _IRR_COMPILE_WITH_GUI_
+                ev.MouseInput.X			= amessage.x;
+                ev.MouseInput.Y			= amessage.y;
+                ev.EventType            = irr::EET_MOUSE_INPUT_EVENT;
+                ev.MouseInput.Event     = irr::EMIE_LMOUSE_PRESSED_DOWN;
+                ev.MouseInput.ButtonStates = 0;
+                IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
+#endif
+                keyid = 0;
+                g_pApp->HandleTouchesBegin(1, &keyid, &amessage.x, &amessage.y);
+                
+                break;
+                
+            case ACTION_UP:
+                //by stone
+#ifdef _IRR_COMPILE_WITH_GUI_
+                ev.MouseInput.X				= amessage.x;
+                ev.MouseInput.Y				= amessage.y;
+                ev.EventType            	= irr::EET_MOUSE_INPUT_EVENT;
+                ev.MouseInput.Event 		= irr::EMIE_LMOUSE_LEFT_UP;
+                ev.MouseInput.ButtonStates 	= 0;
+                IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
+#endif
+                keyid = 0;
+                g_pApp->HandleTouchesEnd(1, &keyid, &amessage.x, &amessage.y);
+                break;
+                
+            case ACTION_MOVE:
+                keyid = 0;
+                g_pApp->HandleTouchesMove(1, &keyid, &amessage.x, &amessage.y);
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
 - (void) drawView
 {
     CGLLockContext( (_CGLContextObject*) [[self openGLContext] CGLContextObj]);
@@ -211,6 +320,8 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
         CCDirector::sharedDirector()->setGLDefaultValues();
         CCDirector::sharedDirector()->mainLoop();
         CCDirector::sharedDirector()->RestoreGLValues();
+        
+        [self CheckTouchCommand];
     }
 	
 	[[self openGLContext] flushBuffer];
@@ -261,24 +372,9 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 	CGLUnlockContext( (_CGLContextObject*)[[self openGLContext] CGLContextObj] );
 }
 
-- (void) setMainController:(MainController*)theController;
-{
-	maincontroller = theController;
-    
-    [self setupDisplayLink]; //by stone
-    
-    //if setting view here, value will no change
-    //[[self openGLContext] setView:self->maincontroller.openGLView];
-}
-
 - (void)viewDidEndLiveResize
 {
 	[maincontroller OnResizeFinished];
-}
-
-- (NSOpenGLContext*) openGLContext
-{
-	return openGLContext;
 }
 
 - (NSOpenGLPixelFormat*) pixelFormat
@@ -337,26 +433,23 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    int			keyid;
-    float       cx,cy;
-    float       scale      = 1.0f;
-    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    float               cx,cy;
+    float               scale      = 1.0f;
+    NSPoint             touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    IosMessageCache*    amessage;
+   
+    cx      = touchPoint.x*scale;
+    cy      = GetPrimaryGLY() - touchPoint.y*scale;
     
-#ifdef _IRR_COMPILE_WITH_GUI_
-    irr::SEvent ev;
+    amessage			= new IosMessageCache();
+    amessage->type		= ACTION_DOWN;
+    amessage->x			= cx;
+    amessage->y			= cy;
+    amessage->finger	= 0; //one mouse clieck
+    [self MouseKeyProcess : 0 : amessage : NULL];
     
-    ev.MouseInput.X = touchPoint.x;
-    ev.MouseInput.Y = GetPrimaryGLY() - touchPoint.y;
-
-    // event as mouse.
-    ev.EventType            = irr::EET_MOUSE_INPUT_EVENT;
-    ev.MouseInput.Event     = irr::EMIE_LMOUSE_PRESSED_DOWN;
-
-    ev.MouseInput.ButtonStates = 0;
-    IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
-#endif
     
-    keyid   = 0;
+    /*keyid   = 0;
     cx      = touchPoint.x*scale;
     cy      = GetPrimaryGLY() - touchPoint.y*scale;
     g_pApp->HandleTouchesBegin(1, &keyid, &cx, &cy);
@@ -364,7 +457,7 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 	touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
 	
 	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
-	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_START,touchPoint.x, touchPoint.y);
+	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_START,touchPoint.x, touchPoint.y);*/
 
 	//LogMsg("Got mouse down: %.2f, %0.2f", pt.x, pt.y);
 	// [controller mouseDown:theEvent];
@@ -372,68 +465,58 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    int			keyid;
-    float       cx,cy;
-    float       scale      = 1.0f;
-    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    float               cx,cy;
+    float               scale      = 1.0f;
+    NSPoint             touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    IosMessageCache*    amessage;
     
-#ifdef _IRR_COMPILE_WITH_GUI_
-    irr::SEvent ev;
-    
-    ev.MouseInput.X = touchPoint.x;
-    ev.MouseInput.Y = GetPrimaryGLY() - touchPoint.y;
-    
-    // event as mouse.
-    ev.EventType            = irr::EET_MOUSE_INPUT_EVENT;
-    ev.MouseInput.Event     = irr::EMIE_LMOUSE_LEFT_UP;
-    
-    ev.MouseInput.ButtonStates = 0;
-    IrrlichtManager::GetIrrlichtManager()->GetDevice()->postEventFromUser(ev);
-#endif
-
-    keyid   = 0;
     cx      = touchPoint.x*scale;
     cy      = GetPrimaryGLY() - touchPoint.y*scale;
-    g_pApp->HandleTouchesEnd(1, &keyid, &cx, &cy);
     
-    // Delegate to the controller object for handling mouse events
+    amessage			= new IosMessageCache();
+    amessage->type		= ACTION_UP;
+    amessage->x			= cx;
+    amessage->y			= cy;
+    amessage->finger	= 0; //one mouse clieck
+    [self MouseKeyProcess : 0 : amessage : NULL];
+    
+    /*// Delegate to the controller object for handling mouse events
 	touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
 	
 	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
 	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_END,touchPoint.x, touchPoint.y);
-	// [controller mouseDown:theEvent];
+	// [controller mouseDown:theEvent];*/
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
     // Delegate to the controller object for handling mouse events
-    int			keyid;
-    float       cx,cy;
-    float       scale      = 1.0f;
-    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    float               cx,cy;
+    float               scale      = 1.0f;
+    NSPoint             touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    unsigned int        qsize;
+    IosMessageCache*    amessage;
     
-    keyid   = 0;
-    cx      = touchPoint.x*scale;
-    cy      = GetPrimaryGLY() - touchPoint.y*scale;
-    g_pApp->HandleTouchesMove(1, &keyid, &cx, &cy);
+    [self MouseKeyProcess : 2 : NULL : &qsize ];
+    
+    if( qsize <= 0 )
+    {
+        cx      = touchPoint.x*scale;
+        cy      = GetPrimaryGLY() - touchPoint.y*scale;
+        
+        amessage			= new IosMessageCache();
+        amessage->type		= ACTION_MOVE;
+        amessage->x			= cx;
+        amessage->y			= cy;
+        amessage->finger	= 0; //one mouse clieck
+        [self MouseKeyProcess : 0 : amessage : NULL];
+    }
 	
-    touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
+    /*touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
 	
 	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
 	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_MOVE,touchPoint.x, touchPoint.y);
-	// [controller mouseDown:theEvent];
-}
-
-- (void)mouseMovedMessage:(NSEvent *)theEvent
-{
-    // Delegate to the controller object for handling mouse events
-    NSPoint     touchPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    
-	touchPoint.y = GetPrimaryGLY()-touchPoint.y; //flip it to upper left hand coords
-	
-	ConvertCoordinatesIfRequired(touchPoint.x, touchPoint.y);
-	MessageManager::GetMessageManager()->SendGUI(MESSAGE_TYPE_GUI_CLICK_MOVE_RAW,touchPoint.x, touchPoint.y);
-	// [controller mouseDown:theEvent];
+	// [controller mouseDown:theEvent];*/
 }
 
 - (void)keyDown:(NSEvent *)theEvent
