@@ -99,10 +99,15 @@
 #if defined(C_GL_MODE)
 	#define	_IRR_COMPILE_WITH_WINDOWS_DEVICE_
 	
-	//one of 3 options can choice
-	//#define _IRR_COMPILE_WITH_OGLES1_
-	#define _IRR_COMPILE_WITH_OGLES2_
-	//#define _IRR_COMPILE_WITH_OPENGL_
+	#ifdef _WIN32
+		//one of 3 options can choice
+		//#define _IRR_COMPILE_WITH_OGLES1_
+		#define _IRR_COMPILE_WITH_OGLES2_
+		//#define _IRR_COMPILE_WITH_OPENGL_
+	#else
+		#define _IRR_COMPILE_WITH_OPENGL_
+	#endif
+
 #else
 	#define _IRR_IPHONE_PLATFORM_	//share with android setting
 	#define _IRR_COMPILE_WITH_IPHONE_DEVICE_
