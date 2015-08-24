@@ -320,9 +320,9 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
         CCDirector::sharedDirector()->setGLDefaultValues();
         CCDirector::sharedDirector()->mainLoop();
         CCDirector::sharedDirector()->RestoreGLValues();
-        
-        [self CheckTouchCommand];
     }
+    
+    [self CheckTouchCommand];
 	
 	[[self openGLContext] flushBuffer];
 	CGLUnlockContext( (_CGLContextObject*) [[self openGLContext] CGLContextObj]);
