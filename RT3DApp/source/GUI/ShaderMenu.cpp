@@ -280,7 +280,7 @@ void CShaderMenu::OnReLoad()
 	MyShaderCallBack* mc_A;
 	MyShaderCallBack* mc_B;
     
-#if defined(_IRR_COMPILE_WITH_WINDOWS_DEVICE_)
+#if defined(_IRR_COMPILE_WITH_OPENGL_)
 	io::path vsFileName = (GetBaseAppPath() + "game/opengl.vert").c_str();
 	io::path psFileName = (GetBaseAppPath() + "game/opengl.frag").c_str();
 #else
