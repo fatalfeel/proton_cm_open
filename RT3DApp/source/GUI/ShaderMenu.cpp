@@ -143,7 +143,7 @@ void CShaderMenu::InitScene()
 	s32 newMaterialType1 = 0;
 	s32 newMaterialType2 = 0;
     
-#if defined(_IRR_COMPILE_WITH_WINDOWS_DEVICE_)
+#if defined(_IRR_COMPILE_WITH_OPENGL_)
 	io::path vsFileName = "game/opengl.vert";
 	io::path psFileName = "game/opengl.frag";
 #else
