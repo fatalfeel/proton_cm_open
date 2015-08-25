@@ -234,8 +234,7 @@ void CShaderMenu::InitScene()
                                  driver->getTexture("game/irrlicht2_rt.jpg"),
                                  driver->getTexture("game/irrlicht2_ft.jpg"),
                                  driver->getTexture("game/irrlicht2_bk.jpg"));*/
-        smgr->addSkyBoxSceneNode(
-                                 IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_up.jpg"),
+        smgr->addSkyBoxSceneNode(IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_up.jpg"),
                                  IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_dn.jpg"),
                                  IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_lf.jpg"),
                                  IrrlichtManager::GetIrrlichtManager()->GetTexture("game/irrlicht2_rt.jpg"),
