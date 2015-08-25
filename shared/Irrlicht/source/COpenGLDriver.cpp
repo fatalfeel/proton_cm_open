@@ -994,6 +994,9 @@ bool COpenGLDriver::endScene()
 {
 	CNullDriver::endScene();
 
+	if( CNullDriver::getMaterialRendererCount() > (int)EMT_ONETEXTURE_BLEND+1 )
+		extGlUseProgram(0);
+
 	BridgeCalls->setDepthMask(true);
 
 	glFlush();
