@@ -1093,20 +1093,25 @@ void COGLES2Driver::drawVertexPrimitiveList2d3d(const void* vertices, u32 vertex
 
 	//TODO: treat #ifdef GL_OES_point_size_array outside this if
 	{
-		glEnableVertexAttribArray(EVA_COLOR);
 		glEnableVertexAttribArray(EVA_POSITION);
-		if ((pType != scene::EPT_POINTS) && (pType != scene::EPT_POINT_SPRITES))
+
+		if (threed && (pType != scene::EPT_POINTS) && (pType != scene::EPT_POINT_SPRITES))
+		{
+			glEnableVertexAttribArray(EVA_NORMAL);
+		}
+
+		glEnableVertexAttribArray(EVA_COLOR);
+		glEnableVertexAttribArray(EVA_TCOORD0);
+		
+		//ogles2 no glEnableClientState(GL_POINT_SIZE_ARRAY_OES);
+		/*if ((pType != scene::EPT_POINTS) && (pType != scene::EPT_POINT_SPRITES))
 		{
 			glEnableVertexAttribArray(EVA_TCOORD0);
 		}
 #ifdef GL_OES_point_size_array
 		else if (FeatureAvailable[IRR_OES_point_size_array] && (Material.Thickness == 0.0f))
 			glEnableClientState(GL_POINT_SIZE_ARRAY_OES);
-#endif
-		if (threed && (pType != scene::EPT_POINTS) && (pType != scene::EPT_POINT_SPRITES))
-		{
-			glEnableVertexAttribArray(EVA_NORMAL);
-		}
+#endif*/
 
 		switch (vType)
 		{
