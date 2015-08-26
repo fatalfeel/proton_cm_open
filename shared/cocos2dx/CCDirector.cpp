@@ -217,11 +217,13 @@ void CCDirector::setGLDefaultValues(void)
 
 /////////////////////////////////////////////////////////////////////////	
 #if defined(_IRR_COMPILE_WITH_OGLES1_) || defined(_IRR_COMPILE_WITH_OPENGL_)
+	//HOUSESCENE no irr gui tex black bug fixed
 	glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glActiveTexture(GL_TEXTURE0);
 	glEnable(GL_TEXTURE_2D);
 
+	//ANIMESH no irr gui alpha black bug fixed
 	setTextureEnv(GL_TEXTURE_ENV, GL_SRC0_ALPHA, GL_TEXTURE);
 	setLighting(false);
 #endif
