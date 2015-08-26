@@ -40,7 +40,7 @@ NS_CC_BEGIN
 class CCGLProgram;
 
 /** vertex attrib flags */
-enum {
+/*enum {
     kCCVertexAttribFlag_None        = 0,
 
     kCCVertexAttribFlag_Position    = 1 << 0,
@@ -48,6 +48,16 @@ enum {
     kCCVertexAttribFlag_TexCoords    = 1 << 2,
 
     kCCVertexAttribFlag_PosColorTex = ( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_Color | kCCVertexAttribFlag_TexCoords ),
+};*/
+
+enum {
+	kCCVertexAttribFlag_None        = 0,
+	kCCVertexAttribFlag_Position    = 1 << 0, 
+	kCCVertexAttribFlag_Normal      = 1 << 1, //sync as irrlicht glBindAttribLocation, by stone
+	kCCVertexAttribFlag_Color       = 1 << 2,
+	kCCVertexAttribFlag_TexCoords   = 1 << 3,
+
+	kCCVertexAttribFlag_PosColorTex = ( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_Normal | kCCVertexAttribFlag_Color | kCCVertexAttribFlag_TexCoords ),
 };
 
 /** GL server side states */
