@@ -89,7 +89,7 @@ void Mesh3DInitScene()
     node->addAnimator(anim);
     anim->drop();
 
-	u32 alpha_val		= 100; //.x file can not do alpha transparent
+	u32 alpha_val		= 100; //.x mesh file can not do alpha transparent
 	u32 MaterialCount	= node->getMaterialCount();
 	
 	for(u32 i=0; i<MaterialCount; i++)
