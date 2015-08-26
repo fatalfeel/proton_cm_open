@@ -53,7 +53,7 @@ class CCGLProgram;
 enum {
 	kCCVertexAttribFlag_None        = 0,
 	kCCVertexAttribFlag_Position    = 1 << 0, 
-	kCCVertexAttribFlag_Normal      = 1 << 1, //sync as irrlicht glBindAttribLocation, by stone
+	kCCVertexAttribFlag_Normal      = 1 << 1, //sync as irrlicht glEnableVertexAttribArray, by stone
 	kCCVertexAttribFlag_Color       = 1 << 2,
 	kCCVertexAttribFlag_TexCoords   = 1 << 3,
 
