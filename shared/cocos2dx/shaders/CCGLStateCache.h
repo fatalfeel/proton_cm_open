@@ -105,7 +105,7 @@ void CC_DLL ccGLBlendFunc(GLenum sfactor, GLenum dfactor);
 /** sets the projection matrix as dirty
  @since v2.0.0
  */
-void CC_DLL ccSetProjectionMatrixDirty( void );
+//void CC_DLL ccSetProjectionMatrixDirty( void );
 
 /** Will enable the vertex attribs that are passed as flags.
  Possible flags:
@@ -153,6 +153,7 @@ void CC_DLL ccGLEnable( ccGLServerState flags );
 
 void CC_DLL	ccGLVertexAttribPointer( GLuint uAttrib, GLint nSize, GLenum uType, GLboolean bNormalized, GLsizei nStride, const GLvoid* pPtr );
 
+void CC_DLL	ccGLSetVertexState(bool position, bool color, bool texcoord);
 // end of shaders group
 /// @}
 

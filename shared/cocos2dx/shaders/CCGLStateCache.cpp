@@ -38,10 +38,10 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-static GLuint    s_uCurrentProjectionMatrix = -1;
-static bool        s_bVertexAttribPosition = false;
-static bool        s_bVertexAttribColor = false;
-static bool        s_bVertexAttribTexCoords = false;
+//static GLuint    s_uCurrentProjectionMatrix = -1;
+static bool      s_bVertexAttribPosition = false;
+static bool      s_bVertexAttribColor = false;
+static bool      s_bVertexAttribTexCoords = false;
 
 
 #if CC_ENABLE_GL_STATE_CACHE
@@ -63,7 +63,7 @@ static unsigned int s_ccUseProgram = 0;
 void ccGLInvalidateStateCache( void )
 {
     kmGLFreeAll();
-    s_uCurrentProjectionMatrix = -1;
+    //s_uCurrentProjectionMatrix = -1;
     s_bVertexAttribPosition = false;
     s_bVertexAttribColor = false;
     s_bVertexAttribTexCoords = false;
@@ -276,10 +276,10 @@ void ccGLEnableVertexAttribs( unsigned int flags )
 
 //#pragma mark - GL Uniforms functions
 
-void ccSetProjectionMatrixDirty( void )
+/*void ccSetProjectionMatrixDirty( void )
 {
     s_uCurrentProjectionMatrix = -1;
-}
+}*/
 
 void ccGLVertexAttribPointer( GLuint uAttrib, GLint nSize, GLenum uType, GLboolean bNormalized, GLsizei nStride, const GLvoid* pPtr )
 {
@@ -299,6 +299,45 @@ void ccGLVertexAttribPointer( GLuint uAttrib, GLint nSize, GLenum uType, GLboole
 			break;
 	}
 #endif
+}
+
+void ccGLSetVertexState(bool position, bool color, bool texcoord)
+{
+#if defined(_IRR_COMPILE_WITH_OGLES2_) 
+	if( position )
+		glEnableVertexAttribArray( kCCVertexAttrib_Position );
+    else
+        glDisableVertexAttribArray( kCCVertexAttrib_Position );
+
+	if( color )
+		glEnableVertexAttribArray( kCCVertexAttrib_Color );
+    else
+		glDisableVertexAttribArray( kCCVertexAttrib_Color );
+
+	if( texcoord )
+        glEnableVertexAttribArray( kCCVertexAttrib_TexCoords );
+    else
+		glDisableVertexAttribArray( kCCVertexAttrib_TexCoords );
+#else
+	if( position )
+		glEnableClientState( GL_VERTEX_ARRAY );
+	else
+		glDisableClientState( GL_VERTEX_ARRAY );
+
+	if( color )
+        glEnableClientState( GL_COLOR_ARRAY );
+    else
+		glDisableClientState( GL_COLOR_ARRAY );
+
+	if( texcoord )
+		glEnableClientState  ( GL_TEXTURE_COORD_ARRAY );
+    else
+		glDisableClientState ( GL_TEXTURE_COORD_ARRAY );
+#endif
+
+	s_bVertexAttribPosition		= position;
+	s_bVertexAttribColor		= color;
+	s_bVertexAttribTexCoords	= texcoord;
 }
 
 NS_CC_END

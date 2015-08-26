@@ -203,8 +203,7 @@ void CCGridBase::set2DProjection()
     kmGLMatrixMode(KM_GL_MODELVIEW);
     kmGLLoadIdentity();
 
-
-    ccSetProjectionMatrixDirty();
+    //ccSetProjectionMatrixDirty();
 }
 
 void CCGridBase::beforeDraw(void)

@@ -230,15 +230,7 @@ void CCDirector::setGLDefaultValues(void)
 	setDepthTest(false);
 	setCullFace(false); //by stone
 
-#if defined(_IRR_COMPILE_WITH_OGLES2_)
-	glEnableVertexAttribArray(kCCVertexAttrib_Position);
-	glEnableVertexAttribArray(kCCVertexAttrib_Color);
-	glEnableVertexAttribArray(kCCVertexAttrib_TexCoords);
-#else
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-#endif
+	ccGLSetVertexState(true, true, true);
 
     setProjection(m_eProjection);
 
@@ -460,7 +452,7 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
     }
 
     m_eProjection = kProjection;
-    ccSetProjectionMatrixDirty();
+    //ccSetProjectionMatrixDirty();
 }
 
 void CCDirector::purgeCachedData(void)
