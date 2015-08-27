@@ -112,6 +112,8 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
     
     CCDirector::sharedDirector()->end();
 	CCDirector::sharedDirector()->purgeDirector();
+
+	pthread_mutex_destroy(&s_mouselock);
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSViewGlobalFrameDidChangeNotification 
@@ -351,12 +353,12 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
         InitDeviceScreenInfoEx(bounds.size.width, bounds.size.height);
         
         //init shader program first than irrlicht
-        if (!BaseApp::GetBaseApp()->IsInitted())
-        {
-            if (!BaseApp::GetBaseApp()->Init())
-            {
+		if (!BaseApp::GetBaseApp()->IsInitted())
+		{
+			if (!BaseApp::GetBaseApp()->Init())
+			{
                 NSLog(@"Couldn't init app");
-            }
+			}
         
             CCShaderCache::sharedShaderCache();
         
@@ -364,7 +366,15 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
             CCDirector::sharedDirector()->setWinSize(size);
             CCDirector::sharedDirector()->setContentScaleFactor(1.0f);
             CCDirector::sharedDirector()->setOpenGLView(NULL);
-        }
+
+			pthread_mutexattr_t	pmattr;
+			// setup recursive mutex for mutex attribute
+			pthread_mutexattr_settype(&pmattr, PTHREAD_MUTEX_RECURSIVE_NP);
+			// Use the mutex attribute to create the mutex
+			pthread_mutex_init(&s_mouselock, &pmattr);
+			// Mutex attribute can be destroy after initializing the mutex variable
+			pthread_mutexattr_destroy(&pmattr);
+		}
 	}
 	
 	[[self openGLContext] update];

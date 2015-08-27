@@ -94,19 +94,28 @@ static pthread_mutex_t				s_mouselock;
         SetupScreenInfo(GetPrimaryGLX(), GetPrimaryGLY(), 0);
     }
             
-    if (!BaseApp::GetBaseApp()->Init())
+	if (!BaseApp::GetBaseApp()->IsInitted())
 	{
-		NSLog(@"Couldn't init app");
-		[self release];
-		return nil;
+		if (!BaseApp::GetBaseApp()->Init())
+		{
+			NSLog(@"Couldn't init app");
+		}
+		
+		CCShaderCache::sharedShaderCache();
+	    
+		CCSize size = CCSize(fullScreenRect.size.width, fullScreenRect.size.height);
+		CCDirector::sharedDirector()->setWinSize(size);
+		CCDirector::sharedDirector()->setContentScaleFactor(pixelScale);
+		CCDirector::sharedDirector()->setOpenGLView(NULL);
+
+		pthread_mutexattr_t	pmattr;
+		// setup recursive mutex for mutex attribute
+		pthread_mutexattr_settype(&pmattr, PTHREAD_MUTEX_RECURSIVE_NP);
+		// Use the mutex attribute to create the mutex
+		pthread_mutex_init(&s_mouselock, &pmattr);
+		// Mutex attribute can be destroy after initializing the mutex variable
+		pthread_mutexattr_destroy(&pmattr);
 	}
-	
-	CCShaderCache::sharedShaderCache();
-    
-    CCSize size = CCSize(fullScreenRect.size.width, fullScreenRect.size.height);
-    CCDirector::sharedDirector()->setWinSize(size);
-    CCDirector::sharedDirector()->setContentScaleFactor(pixelScale);
-    CCDirector::sharedDirector()->setOpenGLView(NULL);
     
 	return self;
 }
@@ -397,6 +406,8 @@ static pthread_mutex_t				s_mouselock;
 	
 	CCDirector::sharedDirector()->end();
 	CCDirector::sharedDirector()->purgeDirector();
+
+	pthread_mutex_destroy(&s_mouselock);
 	
 	[super dealloc];
 }
