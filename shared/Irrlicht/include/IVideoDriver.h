@@ -828,9 +828,12 @@ namespace video
 		will be transparent.
 		\param useAlphaChannelOfTexture: If true, the alpha channel of
 		the texture is used to draw the image.*/
-		virtual void draw2DImage(const video::ITexture* texture, const core::position2d<s32>& destPos,
-			const core::rect<s32>& sourceRect, const core::rect<s32>* clipRect =0,
-			SColor color=SColor(255,255,255,255), bool useAlphaChannelOfTexture=false) =0;
+		virtual void draw2DImage(const video::ITexture* texture, 
+			const core::position2d<s32>& destPos,
+			const core::rect<s32>& sourceRect, 
+			const core::rect<s32>* clipRect =0,
+			SColor color=SColor(255,255,255,255), 
+			bool useAlphaChannelOfTexture=false) =0;
 
 		//! Draws a set of 2d images, using a color and the alpha channel of the texture.
 		/** The images are drawn beginning at pos and concatenated in
@@ -894,9 +897,12 @@ namespace video
 		the corners of the destRect
 		\param useAlphaChannelOfTexture True if alpha channel will be
 		blended. */
-		virtual void draw2DImage(const video::ITexture* texture, const core::rect<s32>& destRect,
-			const core::rect<s32>& sourceRect, const core::rect<s32>* clipRect =0,
-			const video::SColor * const colors=0, bool useAlphaChannelOfTexture=false) =0;
+		virtual void draw2DImage(const video::ITexture* texture, 
+			const core::rect<s32>& destRect,
+			const core::rect<s32>& sourceRect, 
+			const core::rect<s32>* clipRect =0,
+			const video::SColor * const colors=0, 
+			bool useAlphaChannelOfTexture=false) =0;
 
 		//! Draws a 2d rectangle.
 		/** \param color Color of the rectangle to draw. The alpha

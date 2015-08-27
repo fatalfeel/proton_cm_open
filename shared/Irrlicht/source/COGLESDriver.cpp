@@ -1514,12 +1514,14 @@ void COGLES1Driver::draw2DImage(const video::ITexture* texture, const core::rect
 
 
 //! draws a set of 2d images, using a color and the alpha channel
-void COGLES1Driver::draw2DImage(const video::ITexture* texture,
-				const core::position2d<s32>& pos,
-				const core::array<core::rect<s32> >& sourceRects,
-				const core::array<s32>& indices,
-				const core::rect<s32>* clipRect, SColor color,
-				bool useAlphaChannelOfTexture)
+void COGLES1Driver::draw2DImageBatch(const video::ITexture* texture,
+									const core::position2d<s32>& pos,
+									const core::array<core::rect<s32> >& sourceRects,
+									const core::array<s32>& indices,
+									s32 kerningWidth,
+									const core::rect<s32>* clipRect,
+									SColor color,
+									bool useAlphaChannelOfTexture)
 {
 	if (!texture)
 		return;

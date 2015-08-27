@@ -167,9 +167,12 @@ namespace video
 				bool useAlphaChannelOfTexture);
 
 		//! draws an 2d image, using a color (if color is other then Color(255,255,255,255)) and the alpha channel of the texture if wanted.
-		virtual void draw2DImage(const video::ITexture* texture, const core::position2d<s32>& destPos,
-			const core::rect<s32>& sourceRect, const core::rect<s32>* clipRect = 0,
-			SColor color=SColor(255,255,255,255), bool useAlphaChannelOfTexture=false);
+		virtual void draw2DImage(const video::ITexture* texture, 
+			const core::position2d<s32>& destPos,
+			const core::rect<s32>& sourceRect, 
+			const core::rect<s32>* clipRect = 0,
+			SColor color=SColor(255,255,255,255), 
+			bool useAlphaChannelOfTexture=false);
 
 		//! draws a set of 2d images, using a color and the alpha
 		/** channel of the texture if desired. The images are drawn
@@ -187,18 +190,22 @@ namespace video
 		Note that the alpha component is used: If alpha is other than 255, the image will be transparent.
 		\param useAlphaChannelOfTexture: If true, the alpha channel of the texture is
 		used to draw the image. */
-		virtual void draw2DImage(const video::ITexture* texture,
+		virtual void draw2DImageBatch(const video::ITexture* texture,
 				const core::position2d<s32>& pos,
 				const core::array<core::rect<s32> >& sourceRects,
 				const core::array<s32>& indices,
-				const core::rect<s32>* clipRect=0,
+				s32 kerningWidth = 0,
+				const core::rect<s32>* clipRect = 0,
 				SColor color=SColor(255,255,255,255),
 				bool useAlphaChannelOfTexture=false);
 
 		//! Draws a part of the texture into the rectangle.
-		virtual void draw2DImage(const video::ITexture* texture, const core::rect<s32>& destRect,
-			const core::rect<s32>& sourceRect, const core::rect<s32>* clipRect = 0,
-			const video::SColor* const colors=0, bool useAlphaChannelOfTexture=false);
+		virtual void draw2DImage(const video::ITexture* texture, 
+			const core::rect<s32>& destRect,
+			const core::rect<s32>& sourceRect, 
+			const core::rect<s32>* clipRect = 0,
+			const video::SColor* const colors=0, 
+			bool useAlphaChannelOfTexture=false);
 
 		//! draw an 2d rectangle
 		virtual void draw2DRectangle(SColor color, const core::rect<s32>& pos,
