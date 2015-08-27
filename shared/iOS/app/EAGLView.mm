@@ -110,7 +110,7 @@ static pthread_mutex_t				s_mouselock;
 
 		pthread_mutexattr_t	pmattr;
 		// setup recursive mutex for mutex attribute
-		pthread_mutexattr_settype(&pmattr, PTHREAD_MUTEX_RECURSIVE_NP);
+		pthread_mutexattr_settype(&pmattr, PTHREAD_MUTEX_RECURSIVE);
 		// Use the mutex attribute to create the mutex
 		pthread_mutex_init(&s_mouselock, &pmattr);
 		// Mutex attribute can be destroy after initializing the mutex variable
