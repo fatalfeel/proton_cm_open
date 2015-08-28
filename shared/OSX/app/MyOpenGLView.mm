@@ -334,12 +334,13 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 {
 	// This method will be called on the main thread when resizing
     // Add a mutex around to avoid the threads accessing the context simultaneously
-    core::dimension2d<u32>  size;
     NSRect                  bounds;
-    
+	core::dimension2d<u32>  size;
+        
 	CGLLockContext( (_CGLContextObject*)[[self openGLContext] CGLContextObj]);
 	
     bounds      = [self bounds];
+
     size.Width  = bounds.size.width;
     size.Height = bounds.size.height;
 	
