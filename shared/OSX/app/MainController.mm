@@ -57,7 +57,7 @@
 		// Start playing the animation
 		[fullScreenView startAnimation];
 	}
-	InitDeviceScreenInfoEx(mainDisplayRect.size.width, mainDisplayRect.size.height, ORIENTATION_LANDSCAPE_LEFT);
+	InitDeviceScreenInfoEx(mainDisplayRect.size.width, mainDisplayRect.size.height);
 
 #else
 	// Mac OS X 10.5 and eariler require additional work to capture the display and set up a special context
@@ -117,7 +117,7 @@
 	// Perform the application's main loop until exiting full-screen
 	// The shift here is from a model in which we passively receive events handed to us by the AppKit (in window mode)
 	// to one in which we are actively driving event processing (in full-screen mode)
-	InitDeviceScreenInfoEx(mainDisplayRect.size.width, mainDisplayRect.size.height, ORIENTATION_LANDSCAPE_LEFT);
+	InitDeviceScreenInfoEx(mainDisplayRect.size.width, mainDisplayRect.size.height);
 
 	while (isInFullScreenMode)
 	{
