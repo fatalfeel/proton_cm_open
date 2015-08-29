@@ -80,8 +80,6 @@ The brother site only implement 3D part
 https://github.com/fatalfeel/proton_sdk_source
 
 8.
-Any bugs or questions please search
-
-[Proton SDK] of http://irrlicht.sourceforge.net/forum/
+Any bugs or questions please click github's [Issues] -> [New issue]
 
 Post message, I will be there help you.
