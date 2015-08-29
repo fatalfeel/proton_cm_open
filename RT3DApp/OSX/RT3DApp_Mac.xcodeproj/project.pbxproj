@@ -263,7 +263,6 @@
 		B7359ED3184315530085B525 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7359ED2184315530085B525 /* AudioToolbox.framework */; };
 		B7359ED5184315AF0085B525 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7359ED4184315AF0085B525 /* OpenAL.framework */; };
 		B753EB60198F77160070F0D5 /* StencilMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B753EB5E198F77160070F0D5 /* StencilMenu.cpp */; };
-		B77A6CB41B92534800915F0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B77A6CB31B92534800915F0F /* Images.xcassets */; };
 		B7AA50571B3BF2CA00BE8B02 /* jcsample.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA500A1B3BF2CA00BE8B02 /* jcsample.c */; };
 		B7AA50581B3BF2CA00BE8B02 /* jcapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA500C1B3BF2CA00BE8B02 /* jcapimin.c */; };
 		B7AA50591B3BF2CA00BE8B02 /* jcapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA500D1B3BF2CA00BE8B02 /* jcapistd.c */; };
@@ -1080,7 +1079,6 @@
 		B7359ED4184315AF0085B525 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		B753EB5E198F77160070F0D5 /* StencilMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StencilMenu.cpp; path = ../source/GUI/StencilMenu.cpp; sourceTree = "<group>"; };
 		B753EB5F198F77160070F0D5 /* StencilMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StencilMenu.h; path = ../source/GUI/StencilMenu.h; sourceTree = "<group>"; };
-		B77A6CB31B92534800915F0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RT3DApp_Mac/Images.xcassets; sourceTree = "<group>"; };
 		B7AA500A1B3BF2CA00BE8B02 /* jcsample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcsample.c; path = ../shared/Irrlicht/source/jpeglib/jcsample.c; sourceTree = "<group>"; };
 		B7AA500B1B3BF2CA00BE8B02 /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cderror.h; path = ../shared/Irrlicht/source/jpeglib/cderror.h; sourceTree = "<group>"; };
 		B7AA500C1B3BF2CA00BE8B02 /* jcapimin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcapimin.c; path = ../shared/Irrlicht/source/jpeglib/jcapimin.c; sourceTree = "<group>"; };
@@ -1806,7 +1804,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B77A6CB31B92534800915F0F /* Images.xcassets */,
 				5D70B83512B6075B00A1AB17 /* game */,
 				5D70B83312B6074D00A1AB17 /* audio */,
 				5DDE05A912B58EBD000C5CC0 /* interface */,
@@ -3650,7 +3647,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B77A6CB41B92534800915F0F /* Images.xcassets in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				AFBD7716113895850015E685 /* MainMenu.xib in Resources */,
 				5DDE05AA12B58EBD000C5CC0 /* interface in Resources */,

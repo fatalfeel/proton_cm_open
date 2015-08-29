@@ -216,7 +216,6 @@
 		B75D0B4A184018C1004B6297 /* bvhtrianglemeshshape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B75D0B33184018C1004B6297 /* bvhtrianglemeshshape.cpp */; };
 		B75D0B4B184018C1004B6297 /* bulletworld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B75D0B35184018C1004B6297 /* bulletworld.cpp */; };
 		B75D0B4C184018C1004B6297 /* boxshape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B75D0B37184018C1004B6297 /* boxshape.cpp */; };
-		B77A6CB61B92546100915F0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B77A6CB51B92546100915F0F /* Images.xcassets */; };
 		B79DF6471B3C116400F79268 /* jcsample.c in Sources */ = {isa = PBXBuildFile; fileRef = B79DF5FA1B3C116400F79268 /* jcsample.c */; };
 		B79DF6481B3C116400F79268 /* jcapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = B79DF5FC1B3C116400F79268 /* jcapimin.c */; };
 		B79DF6491B3C116400F79268 /* jcapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = B79DF5FD1B3C116400F79268 /* jcapistd.c */; };
@@ -1150,7 +1149,6 @@
 		B75D0B35184018C1004B6297 /* bulletworld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bulletworld.cpp; path = irrBullet/bulletworld.cpp; sourceTree = "<group>"; };
 		B75D0B36184018C1004B6297 /* boxshape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = boxshape.h; path = irrBullet/boxshape.h; sourceTree = "<group>"; };
 		B75D0B37184018C1004B6297 /* boxshape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = boxshape.cpp; path = irrBullet/boxshape.cpp; sourceTree = "<group>"; };
-		B77A6CB51B92546100915F0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RTPhysics_Mac/Images.xcassets; sourceTree = "<group>"; };
 		B79DF5FA1B3C116400F79268 /* jcsample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcsample.c; path = ../shared/Irrlicht/source/jpeglib/jcsample.c; sourceTree = "<group>"; };
 		B79DF5FB1B3C116400F79268 /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cderror.h; path = ../shared/Irrlicht/source/jpeglib/cderror.h; sourceTree = "<group>"; };
 		B79DF5FC1B3C116400F79268 /* jcapimin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = jcapimin.c; path = ../shared/Irrlicht/source/jpeglib/jcapimin.c; sourceTree = "<group>"; };
@@ -2279,7 +2277,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B77A6CB51B92546100915F0F /* Images.xcassets */,
 				B7177D2318438E6000914F8E /* audio */,
 				B7177D2418438E6000914F8E /* game */,
 				B7177D2518438E6000914F8E /* interface */,
@@ -4579,7 +4576,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B77A6CB61B92546100915F0F /* Images.xcassets in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				AFBD7716113895850015E685 /* MainMenu.xib in Resources */,
 				5DFB863312BB233D00337543 /* app.icns in Resources */,
