@@ -334,24 +334,24 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
 {
 	// This method will be called on the main thread when resizing
     // Add a mutex around to avoid the threads accessing the context simultaneously
-    NSRect                  bounds;
+    NSRect                  wbound;
 	core::dimension2d<u32>  size;
         
 	CGLLockContext( (_CGLContextObject*)[[self openGLContext] CGLContextObj]);
 	
-    bounds      = [self bounds];
+    wbound      = [self bounds];
 
-    size.Width  = bounds.size.width;
-    size.Height = bounds.size.height;
+    size.Width  = wbound.size.width;
+    size.Height = wbound.size.height;
 	
-	//glViewport(0, 0, bounds.size.width, bounds.size.height);
+	//glViewport(0, 0, wbound.size.width, wbound.size.height);
     IrrlichtManager::GetIrrlichtManager()->SetReSize(size);
 	
 	if (![self inLiveResize])
 	{
-		LogMsg("Reshaping: %.2f %.2f", bounds.size.width, bounds.size.height);
+		LogMsg("Reshaping: %.2f %.2f", wbound.size.width, wbound.size.height);
 		
-        InitDeviceScreenInfoEx(bounds.size.width, bounds.size.height);
+        InitDeviceScreenInfoEx(wbound.size.width, wbound.size.height);
         
         //init shader program first than irrlicht
 		if (!BaseApp::GetBaseApp()->IsInitted())
@@ -363,7 +363,7 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef      displayLink,
         
             CCShaderCache::sharedShaderCache();
         
-            CCSize size = CCSize(bounds.size.width, bounds.size.height);
+            CCSize size = CCSize(wbound.size.width, wbound.size.height);
             CCDirector::sharedDirector()->setWinSize(size);
             CCDirector::sharedDirector()->setContentScaleFactor(1.0f);
             CCDirector::sharedDirector()->setOpenGLView(NULL);
