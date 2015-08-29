@@ -314,14 +314,12 @@
 		B7AA50871B3BF2CA00BE8B02 /* pnggccrd.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA50471B3BF2CA00BE8B02 /* pnggccrd.c */; };
 		B7AA50881B3BF2CA00BE8B02 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA50481B3BF2CA00BE8B02 /* pngget.c */; };
 		B7AA50891B3BF2CA00BE8B02 /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA50491B3BF2CA00BE8B02 /* pngmem.c */; };
-		B7AA508A1B3BF2CA00BE8B02 /* pngnow.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AA504A1B3BF2CA00BE8B02 /* pngnow.png */; };
 		B7AA508B1B3BF2CA00BE8B02 /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA504B1B3BF2CA00BE8B02 /* pngpread.c */; };
 		B7AA508C1B3BF2CA00BE8B02 /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA504C1B3BF2CA00BE8B02 /* pngread.c */; };
 		B7AA508D1B3BF2CA00BE8B02 /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA504D1B3BF2CA00BE8B02 /* pngrio.c */; };
 		B7AA508E1B3BF2CA00BE8B02 /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA504E1B3BF2CA00BE8B02 /* pngrtran.c */; };
 		B7AA508F1B3BF2CA00BE8B02 /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA504F1B3BF2CA00BE8B02 /* pngrutil.c */; };
 		B7AA50901B3BF2CA00BE8B02 /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA50501B3BF2CA00BE8B02 /* pngset.c */; };
-		B7AA50911B3BF2CA00BE8B02 /* pngtest.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AA50511B3BF2CA00BE8B02 /* pngtest.png */; };
 		B7AA50921B3BF2CA00BE8B02 /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA50521B3BF2CA00BE8B02 /* pngtrans.c */; };
 		B7AA50931B3BF2CA00BE8B02 /* pngvcrd.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA50531B3BF2CA00BE8B02 /* pngvcrd.c */; };
 		B7AA50941B3BF2CA00BE8B02 /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = B7AA50541B3BF2CA00BE8B02 /* pngwio.c */; };
@@ -1144,14 +1142,12 @@
 		B7AA50471B3BF2CA00BE8B02 /* pnggccrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pnggccrd.c; path = ../shared/Irrlicht/source/libpng/pnggccrd.c; sourceTree = "<group>"; };
 		B7AA50481B3BF2CA00BE8B02 /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngget.c; path = ../shared/Irrlicht/source/libpng/pngget.c; sourceTree = "<group>"; };
 		B7AA50491B3BF2CA00BE8B02 /* pngmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngmem.c; path = ../shared/Irrlicht/source/libpng/pngmem.c; sourceTree = "<group>"; };
-		B7AA504A1B3BF2CA00BE8B02 /* pngnow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pngnow.png; path = ../shared/Irrlicht/source/libpng/pngnow.png; sourceTree = "<group>"; };
 		B7AA504B1B3BF2CA00BE8B02 /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngpread.c; path = ../shared/Irrlicht/source/libpng/pngpread.c; sourceTree = "<group>"; };
 		B7AA504C1B3BF2CA00BE8B02 /* pngread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngread.c; path = ../shared/Irrlicht/source/libpng/pngread.c; sourceTree = "<group>"; };
 		B7AA504D1B3BF2CA00BE8B02 /* pngrio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngrio.c; path = ../shared/Irrlicht/source/libpng/pngrio.c; sourceTree = "<group>"; };
 		B7AA504E1B3BF2CA00BE8B02 /* pngrtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngrtran.c; path = ../shared/Irrlicht/source/libpng/pngrtran.c; sourceTree = "<group>"; };
 		B7AA504F1B3BF2CA00BE8B02 /* pngrutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngrutil.c; path = ../shared/Irrlicht/source/libpng/pngrutil.c; sourceTree = "<group>"; };
 		B7AA50501B3BF2CA00BE8B02 /* pngset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngset.c; path = ../shared/Irrlicht/source/libpng/pngset.c; sourceTree = "<group>"; };
-		B7AA50511B3BF2CA00BE8B02 /* pngtest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pngtest.png; path = ../shared/Irrlicht/source/libpng/pngtest.png; sourceTree = "<group>"; };
 		B7AA50521B3BF2CA00BE8B02 /* pngtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngtrans.c; path = ../shared/Irrlicht/source/libpng/pngtrans.c; sourceTree = "<group>"; };
 		B7AA50531B3BF2CA00BE8B02 /* pngvcrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngvcrd.c; path = ../shared/Irrlicht/source/libpng/pngvcrd.c; sourceTree = "<group>"; };
 		B7AA50541B3BF2CA00BE8B02 /* pngwio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pngwio.c; path = ../shared/Irrlicht/source/libpng/pngwio.c; sourceTree = "<group>"; };
@@ -3339,14 +3335,12 @@
 				B7AA50471B3BF2CA00BE8B02 /* pnggccrd.c */,
 				B7AA50481B3BF2CA00BE8B02 /* pngget.c */,
 				B7AA50491B3BF2CA00BE8B02 /* pngmem.c */,
-				B7AA504A1B3BF2CA00BE8B02 /* pngnow.png */,
 				B7AA504B1B3BF2CA00BE8B02 /* pngpread.c */,
 				B7AA504C1B3BF2CA00BE8B02 /* pngread.c */,
 				B7AA504D1B3BF2CA00BE8B02 /* pngrio.c */,
 				B7AA504E1B3BF2CA00BE8B02 /* pngrtran.c */,
 				B7AA504F1B3BF2CA00BE8B02 /* pngrutil.c */,
 				B7AA50501B3BF2CA00BE8B02 /* pngset.c */,
-				B7AA50511B3BF2CA00BE8B02 /* pngtest.png */,
 				B7AA50521B3BF2CA00BE8B02 /* pngtrans.c */,
 				B7AA50531B3BF2CA00BE8B02 /* pngvcrd.c */,
 				B7AA50541B3BF2CA00BE8B02 /* pngwio.c */,
@@ -3654,8 +3648,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				B7AA50911B3BF2CA00BE8B02 /* pngtest.png in Resources */,
-				B7AA508A1B3BF2CA00BE8B02 /* pngnow.png in Resources */,
 				AFBD7716113895850015E685 /* MainMenu.xib in Resources */,
 				5DDE05AA12B58EBD000C5CC0 /* interface in Resources */,
 				5D70B83412B6074D00A1AB17 /* audio in Resources */,
