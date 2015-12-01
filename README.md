@@ -18,7 +18,7 @@ All platform can play music and sound easily
 GLSL shading language full control
 
 2.
-First run need to do
+First run need to do. (Take care of CR line ending in linux system)
 
 On Win32 or Android --->
 
