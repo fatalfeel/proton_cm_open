@@ -18,7 +18,10 @@ All platform can play music and sound easily
 GLSL shading language full control
 
 2.
-First run need to do. (Take care of CR line ending in linux system)
+Before download source, take care of CR line ending in linux system
+
+3.
+First run need to do
 
 On Win32 or Android --->
 
@@ -30,7 +33,7 @@ chmod 777 xxxxxx/media/update_media.sh
 
 xxxxxx/media/update_media.sh
 
-3.
+4.
 Switch between OGLES1 and OGLES2
 
 (a.) In Android
@@ -51,21 +54,21 @@ Please copy correct dlls from shared/dep32 to [projname]/bin.
 
 Some texture black in ogles2 is simulator's problem.
 
-4.
+5.
 When debug NDK c++ on Android, please set
 
 android:installLocation="internalOnly" of AndroidManifest.xml
 
 and Android firmware need unlock s-on to s-off.
 
-5.
+6.
 Demo screenshots
 
 (a) https://github.com/fatalfeel/proton_cm_open/tree/master/DemoPicture
 
 (b) https://plus.google.com/photos/106185541018774360364/albums/6128347518156528913
 
-6.
+7.
 Demo video
 
 Irrlicht 3D + Cocos2dx on Ios Android by Mun
@@ -74,12 +77,12 @@ https://www.youtube.com/watch?v=BIEafKA2IBM
 
 https://www.youtube.com/watch?v=pfH2ZL9Ze-c
 
-7.
+8.
 The brother site only implement 3D part
 
 https://github.com/fatalfeel/proton_sdk_source
 
-8.
+9.
 Any bugs or questions please click github's [Issues] -> [New issue]
 
 Post message, I will be there help you.
