@@ -82,7 +82,7 @@ bool StreamingInstanceZip::OpenWithCacheEntry(ZipCacheEntry *pCacheEntry)
 	
 	Close();
 	int err = UNZ_OK;
-	err = unzGoToFilePos(m_unzf, &pCacheEntry->m_unzfilepos);
+	err = unzGoToFilePos(m_unzf, &pCacheEntry->unzfilepos);
 
 	return OpenFileAtCurrentLocation();
 }

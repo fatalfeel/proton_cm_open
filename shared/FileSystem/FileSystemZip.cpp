@@ -122,10 +122,13 @@ void FileSystemZip::CacheIndex()
 {
 	assert(m_cache.empty() && "Why would you want to call this twice?");
 
-	uLong i;
+	int				err;
+	uLong			i;
 	unz_global_info gi;
-	int err;
-
+	ZipCacheEntry	entry;
+	char			filename_inzip[512];
+	unz_file_info	file_info;
+	
 	err = unzGetGlobalInfo (m_unzf,&gi);
 
 	if (err!=UNZ_OK)
@@ -134,13 +137,9 @@ void FileSystemZip::CacheIndex()
 		return;
 	}
 	unzGoToFirstFile(m_unzf);
-
-	ZipCacheEntry entry;
-
-	for (i=0;i<gi.number_entry;i++)
+	
+	for(i=0;i<gi.number_entry;i++)
 	{
-		char filename_inzip[512];
-		unz_file_info file_info;
 		err = unzGetCurrentFileInfo(m_unzf,&file_info,filename_inzip,sizeof(filename_inzip),NULL,0,NULL,0);
 	
 		if (err!=UNZ_OK)
@@ -149,7 +148,7 @@ void FileSystemZip::CacheIndex()
 			break;
 		}
 		
-		err = unzGetFilePos(m_unzf, &entry.m_unzfilepos);
+		err = unzGetFilePos(m_unzf, &entry.unzfilepos);
 		if (err!=UNZ_OK)
 		{
 			LogError("error %d with zipfile in unzGetFilePos\n",err);
@@ -173,26 +172,26 @@ void FileSystemZip::CacheIndex()
 
 std::vector<std::string> FileSystemZip::GetContents()
 {
-	std::vector<std::string> m_contents;
-
-	uLong i;
+	uLong			i;
 	unz_global_info gi;
-	int err;
+	int				err;
+	char			filename_inzip[512];
+	unz_file_info	file_info;
+	
+	std::vector<std::string> contents;
 
-	err = unzGetGlobalInfo (m_unzf,&gi);
+	err = unzGetGlobalInfo(m_unzf,&gi);
 
 	if (err!=UNZ_OK)
 	{
 		LogError("error %d with zipfile in unzGetGlobalInfo \n",err);
-		return m_contents;
+		return contents;
 	}
 
 	unzGoToFirstFile(m_unzf);
 
 	for (i=0;i<gi.number_entry;i++)
 	{
-		char filename_inzip[512];
-		unz_file_info file_info;
 		err = unzGetCurrentFileInfo(m_unzf,&file_info,filename_inzip,sizeof(filename_inzip),NULL,0,NULL,0);
 		
 		if (err!=UNZ_OK)
@@ -200,7 +199,7 @@ std::vector<std::string> FileSystemZip::GetContents()
 			LogError("error %d with zipfile in unzGetCurrentFileInfo\n",err);
 			break;
 		}
-		m_contents.push_back(std::string(filename_inzip));
+		contents.push_back(std::string(filename_inzip));
 
 		if ((i+1)<gi.number_entry)
 		{
@@ -213,7 +212,7 @@ std::vector<std::string> FileSystemZip::GetContents()
 		}
 	}
 
-	return m_contents;
+	return contents;
 }
 
 byte* FileSystemZip::Get_z( int* pSizeOut )
@@ -228,37 +227,26 @@ byte* FileSystemZip::Get_z( int* pSizeOut )
 
 byte* FileSystemZip::Get_unz( std::string fileName, int *pSizeOut )
 {
-	zipCacheMap::iterator itor = m_cache.find(m_rootDir+fileName);
+	int						err		= UNZ_OK;
+	char					st_filename_inzip[512];
+	unz_file_info			file_info;
+	zipCacheMap::iterator	itor	= m_cache.find(m_rootDir+fileName);
+	byte*					pBytes;
 
 	if (itor == m_cache.end())
 	{
 		return NULL; //not found in this zip
 		//bingo!
 	}
-	
-	int err = UNZ_OK;
-
-	err = unzGoToFilePos(m_unzf, &itor->second.m_unzfilepos);
+		
+	err = unzGoToFilePos(m_unzf, &itor->second.unzfilepos);
 	
 	if (err!=UNZ_OK)
 	{
 		LogError("error %d with zipfile in unzGoToFilePos",err);
 		return NULL;
 	}
-
-	/*
-	//old slow way of locating a file
-	if (unzLocateFile(m_unzf,(m_rootDir+fileName).c_str(),CASESENSITIVITY)!=UNZ_OK)
-	{
-		return NULL;
-	}
-	*/
-
-	unz_file_info file_info;
-
-	char st_filename_inzip[512];
-
-	
+		
 	err = unzGetCurrentFileInfo(m_unzf,&file_info,st_filename_inzip,sizeof(st_filename_inzip),NULL,0,NULL,0);
 
 	if (err!=UNZ_OK)
@@ -267,18 +255,16 @@ byte* FileSystemZip::Get_unz( std::string fileName, int *pSizeOut )
 		return NULL;
 	}
 	
-
 	//let's allocate our own memory and pass the pointer back to them.
-	byte *pBytes = new byte[file_info.uncompressed_size+1]; //the extra is because I will add a null later, helps when processing
-	//text files and can't hurt
-	
-	
+	pBytes = new byte[file_info.uncompressed_size+1]; //the extra is because I will add a null later, helps when processing
+			
 	if (pBytes)
 	{
 		//memory allocated
 		*pSizeOut =  file_info.uncompressed_size;
 		pBytes[file_info.uncompressed_size] = 0;
-	}   else
+	}   
+	else
 	{
 		LogError("Couldn't allocate the required %d bytes to unzip into.", file_info.uncompressed_size+1);
 		return NULL;
@@ -310,18 +296,14 @@ byte* FileSystemZip::Get_unz( std::string fileName, int *pSizeOut )
 	return pBytes;
 }
 
-void FileSystemZip::SetRootDirectory( std::string rootDir )
+void FileSystemZip::SetRootDirectory(std::string rootDir)
 {
 	m_rootDir = rootDir+"/";
 }
 
-/*std::string FileSystemZip::GetRootDirectory()
-{
-	return m_rootDir;
-}*/
-
 StreamingInstance* FileSystemZip::GetStreaming( std::string fileName, int *pSizeOut )
 {
+	StreamingInstanceZip* pStream;
 	zipCacheMap::iterator itor = m_cache.find(m_rootDir+fileName);
 
 	if (itor == m_cache.end())
@@ -329,7 +311,7 @@ StreamingInstance* FileSystemZip::GetStreaming( std::string fileName, int *pSize
 		return NULL; //not found in this zip
 	}
 
-	StreamingInstanceZip* pStream = new StreamingInstanceZip;
+	pStream = new StreamingInstanceZip;
 
 	if (!pStream->Init(m_zipFileName))
 	{
@@ -367,27 +349,24 @@ bool FileSystemZip::FileExists( std::string fileName )
 
 int FileSystemZip::GetFileSize( std::string fileName )
 {
-	
-	zipCacheMap::iterator itor = m_cache.find(m_rootDir+fileName);
+	int						err = UNZ_OK;
+	unz_file_info			file_info;
+	char					st_filename_inzip[512];
+	zipCacheMap::iterator	itor = m_cache.find(m_rootDir+fileName);
 
 	if (itor == m_cache.end())
 	{
 		return -1; //not found in this zip
 	}
-
-	int err = UNZ_OK;
-
-	err = unzGoToFilePos(m_unzf, &itor->second.m_unzfilepos);
+	
+	err = unzGoToFilePos(m_unzf, &itor->second.unzfilepos);
 
 	if (err!=UNZ_OK)
 	{
 		LogError("error %d with unzGoToFilePos in unzGetCurrentFileInfo",err);
 		return -1;
 	}
-
-	unz_file_info file_info;
-	char st_filename_inzip[512];
-
+	
 	err = unzGetCurrentFileInfo(m_unzf,&file_info,st_filename_inzip,sizeof(st_filename_inzip),NULL,0,NULL,0);
 
 	if (err!=UNZ_OK)

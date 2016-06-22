@@ -17,7 +17,7 @@
 //it's hella slow to find zips using just minizip, so we construct our own stl::map for faster lookups
 struct ZipCacheEntry
 {
-	unz_file_pos m_unzfilepos;
+	unz_file_pos unzfilepos;
 };
 
 typedef std::map<std::string, ZipCacheEntry> zipCacheMap;
