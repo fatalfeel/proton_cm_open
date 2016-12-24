@@ -69,6 +69,22 @@ extern "C"
 	}
 }
 
+JNIEnv* GetJavaEnv()
+{
+	JNIEnv* env = NULL;
+
+	assert(g_pJavaVM);
+
+	g_pJavaVM->GetEnv((void **)&env, JNI_VERSION_1_4);
+	if (!env)
+	{
+		LogError("Env is null, something is terrible wrong");
+		return NULL;
+	}
+	
+	return env;
+}
+
 int GetPrimaryGLX() 
 {
 
@@ -107,20 +123,6 @@ void LogMsg( const char* traceStr, ... )
 std::string GetBaseAppPath()
 {
 	return ""; //we mount the assets as zip, there really isn't a base path
-}
-
-JNIEnv* GetJavaEnv()
-{
-	assert(g_pJavaVM);
-
-	JNIEnv *env = NULL;
-	g_pJavaVM->GetEnv((void **)&env, JNI_VERSION_1_4);
-	if (!env)
-	{
-		LogError("Env is null, something is terrible wrong");
-		return NULL;
-	}
-	return env;
 }
 
 char* GetAndroidMainClassName()
