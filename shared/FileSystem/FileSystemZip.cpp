@@ -228,7 +228,7 @@ byte* FileSystemZip::Get_z( int* pSizeOut )
 byte* FileSystemZip::Get_unz( std::string fileName, int *pSizeOut )
 {
 	int						err		= UNZ_OK;
-	char					st_filename_inzip[512];
+	char					filename_inzip[512];
 	unz_file_info			file_info;
 	zipCacheMap::iterator	itor	= m_cache.find(m_rootDir+fileName);
 	byte*					pBytes;
@@ -247,7 +247,7 @@ byte* FileSystemZip::Get_unz( std::string fileName, int *pSizeOut )
 		return NULL;
 	}
 		
-	err = unzGetCurrentFileInfo(m_unzf,&file_info,st_filename_inzip,sizeof(st_filename_inzip),NULL,0,NULL,0);
+	err = unzGetCurrentFileInfo(m_unzf,&file_info,filename_inzip,sizeof(filename_inzip),NULL,0,NULL,0);
 
 	if (err!=UNZ_OK)
 	{
@@ -351,7 +351,7 @@ int FileSystemZip::GetFileSize( std::string fileName )
 {
 	int						err = UNZ_OK;
 	unz_file_info			file_info;
-	char					st_filename_inzip[512];
+	char					filename_inzip[512];
 	zipCacheMap::iterator	itor = m_cache.find(m_rootDir+fileName);
 
 	if (itor == m_cache.end())
@@ -367,7 +367,7 @@ int FileSystemZip::GetFileSize( std::string fileName )
 		return -1;
 	}
 	
-	err = unzGetCurrentFileInfo(m_unzf,&file_info,st_filename_inzip,sizeof(st_filename_inzip),NULL,0,NULL,0);
+	err = unzGetCurrentFileInfo(m_unzf,&file_info,filename_inzip,sizeof(filename_inzip),NULL,0,NULL,0);
 
 	if (err!=UNZ_OK)
 	{
