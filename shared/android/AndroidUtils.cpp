@@ -79,16 +79,17 @@ int GetPrimaryGLY()
 	return g_winVideoScreenY;
 }	
 
-void LogMsg ( const char* traceStr, ... )
+void LogMsg( const char* traceStr, ... )
 {
 	std::string	strapp;
 	va_list		argsVA;
 	
-	const int logSize = 4096;
-	char buffer[logSize];
-	memset ( (void*)buffer, 0, logSize );
+	int		logSize = 4096;
+	char	buffer[logSize];
+	
+	memset( (void*)buffer, 0, logSize );
 
-	va_start ( argsVA, traceStr );
+	va_start( argsVA, traceStr );
 	vsnprintf( buffer, logSize, traceStr, argsVA );
 	va_end( argsVA );
 			
@@ -141,28 +142,25 @@ char* GetAndroidMainClassName()
 
 std::string GetSavePathBasic()
 {
-	JNIEnv *env = GetJavaEnv();
-	if (!env) return "";
+	JNIEnv* env = GetJavaEnv();
+	
+	if (!env) 
+		return "";
 
-	jclass cls = env->FindClass(GetAndroidMainClassName());
-	jmethodID mid = env->GetStaticMethodID(cls,	"get_docdir", "()Ljava/lang/String;");
-	jstring ret;
-	ret = (jstring)env->CallStaticObjectMethod(cls, mid);
-	//static char r[512];
+	jclass		cls = env->FindClass(GetAndroidMainClassName());
+	jmethodID	mid = env->GetStaticMethodID(cls, "get_docdir", "()Ljava/lang/String;");
+	jstring		ret = (jstring)env->CallStaticObjectMethod(cls, mid);
 	const char* ss	= env->GetStringUTFChars(ret,0);
-	//sprintf(r,"%s",ss);
 	std::string tmp = ss;
 	env->ReleaseStringUTFChars(ret, ss);
-	//return std::string(r)+"/";
+
 	return std::string(tmp)+"/";
 }
 
-//this isn't really defined anywhere yet, if you need it, make your own header. Better to just use GetAppCachePath()
-//directly.
-void SetPreferSDCardForStorage(bool bNew)
+/*void SetPreferSDCardForStorage(bool bNew)
 {
 	s_preferSDCardForUserStorage = bNew;
-}
+}*/
 
 std::string GetSavePath()
 {
