@@ -6,7 +6,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := cocos2dx
+LOCAL_MODULE := libcocos2dx
 SHARED := ../../../shared
 LOCAL_ARM_MODE := arm
 
@@ -129,7 +129,7 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := rt3dapp
+LOCAL_MODULE := librt3dapp
 SHARED := ../../../shared
 APP := ../../source
 LOCAL_ARM_MODE := arm
@@ -245,7 +245,7 @@ $(APP)/GUI/TerrainMenu.cpp $(APP)/GUI/ShaderMenu.cpp $(APP)/GUI/StencilMenu.cpp 
 $(APP)/GUI/HelloWorldScene.cpp $(APP)/GUI/GuiScroll.cpp \
 $(APP)/Component/EventControlComponent.cpp
 
-LOCAL_STATIC_LIBRARIES := cocos2dx
+LOCAL_STATIC_LIBRARIES := libcocos2dx
 
 LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -ldl -llog -lz
 

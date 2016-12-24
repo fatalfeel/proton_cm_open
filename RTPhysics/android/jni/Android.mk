@@ -6,7 +6,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := cocos2dx
+LOCAL_MODULE := libcocos2dx
 SHARED := ../../../shared
 LOCAL_ARM_MODE := arm
 
@@ -129,7 +129,7 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := bullet
+LOCAL_MODULE := libbullet
 SHARED := ../../../shared
 LOCAL_ARM_MODE := arm
 
@@ -297,7 +297,7 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := rtphysics
+LOCAL_MODULE := librtphysics
 SHARED := ../../../shared
 APP := ../../source
 LOCAL_ARM_MODE := arm
@@ -425,7 +425,7 @@ $(IRRBULLET)/trianglemeshshape.cpp \
 $(APP)/App.cpp $(APP)/GUI/MainMenu.cpp $(APP)/GUI/PhysicsHelloMenu.cpp $(APP)/GUI/HelloWorldScene.cpp \
 $(APP)/Component/EventControlComponent.cpp
 
-LOCAL_STATIC_LIBRARIES := cocos2dx bullet
+LOCAL_STATIC_LIBRARIES := libcocos2dx libbullet
 
 LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -ldl -llog -lz
 
