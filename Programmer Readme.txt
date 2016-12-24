@@ -44,12 +44,41 @@ Win32 OGLES1 and OGLES2 are using different libEGL.dll
 please run update_OGLES1.bat or update_OGLES2.bat
 the .bat file will copy correct libEGL.dll
 
-8.
-Win32 AngelProject's libGLESv2.dll enable instruction set with SSE(not SSE2)
+8. AngelProject is Win32 OGLES2 simulator
 git clone https://chromium.googlesource.com/angle/angle
 Revision: cc4ec64cda54f4b138f8d16ce0fe40b8fcedb459
 Date: 2013/9/24 Am 02:57:10
 
-9.
-AngelProject bug fixed
-http://www.mediafire.com/download/8v4dfnlj0o3kl30/AngleGLes2.rar
+Build libGLESv2.dll enable instruction set with SSE(not SSE2)
+
+9. AngelProject bug fixed
+//edit ~\src\libEGL\Surface.cpp
+bool Surface::resizeSwapChain(int backbufferWidth, int backbufferHeight)
+{
+    ASSERT(backbufferWidth >= 0 && backbufferHeight >= 0);
+    ASSERT(mSwapChain);
+
+    EGLint status = mSwapChain->resize(backbufferWidth, backbufferHeight);
+	
+    //by stone
+    mWidth = backbufferWidth;
+    mHeight = backbufferHeight;
+
+    if (status == EGL_CONTEXT_LOST)
+    {
+        mDisplay->notifyDeviceLost();
+        return false;
+    }
+    else if (status != EGL_SUCCESS)
+    {
+        return error(status, false);
+    }
+
+    //mWidth = backbufferWidth;
+    //mHeight = backbufferHeight;
+
+    return true;
+}
+
+10. AngelProject bug fixed download
+http://www.mediafire.com/file/n81r28nym4mqjhn/AngleGLes2.rar
