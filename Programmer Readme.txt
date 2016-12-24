@@ -52,7 +52,7 @@ Date: 2013/9/24 Am 02:57:10
 Build libGLESv2.dll enable instruction set with SSE(not SSE2)
 
 9. AngelProject bug fixed
-//edit ~\src\libEGL\Surface.cpp
+//edit ~/src/libEGL/Surface.cpp
 bool Surface::resizeSwapChain(int backbufferWidth, int backbufferHeight)
 {
     ASSERT(backbufferWidth >= 0 && backbufferHeight >= 0);
