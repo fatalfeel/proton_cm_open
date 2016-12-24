@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: C:\\proton_sdk_source\\RTPhysics\\android\\src\\com\\android\\vending\\billing\\IMarketBillingService.aidl
+ * Original file: C:\\proton_cm_open\\RTPhysics\\android\\src\\com\\android\\vending\\billing\\IMarketBillingService.aidl
  */
 package com.android.vending.billing;
 public interface IMarketBillingService extends android.os.IInterface
