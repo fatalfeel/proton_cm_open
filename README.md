@@ -18,7 +18,7 @@ All platform can play music and sound easily
 GLSL shading language full control
 
 2.
-Before download source, take care of CR line ending in linux system
+Take care of carriage return in linux system
 
 3.
 First run need to do
