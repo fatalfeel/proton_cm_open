@@ -166,6 +166,7 @@ void SetPreferSDCardForStorage(bool bNew)
 
 std::string GetSavePath()
 {
+	std::string retString;
 
 	LogMsg("Starting get save path..");
 
@@ -178,7 +179,7 @@ std::string GetSavePath()
 	}
 	LogMsg("continuing get save path..");
 
-	std::string retString = GetSavePathBasic();
+	retString = GetSavePathBasic();
 	
 #ifdef _DEBUG
 	LogMsg("Save dir is %s", std::string(retString).c_str());
@@ -209,7 +210,6 @@ std::string GetAPKFile()
 
 std::string GetAppCachePath()
 {
-
 	LogMsg("Getting app cache..");
 
 	JNIEnv *env = GetJavaEnv();
@@ -217,16 +217,12 @@ std::string GetAppCachePath()
 		return "";
 
 	//first see if we can access an external storage method
-	jclass cls = env->FindClass(GetAndroidMainClassName());
-	jmethodID mid = env->GetStaticMethodID(cls,	"get_externaldir", "()Ljava/lang/String;");
-	jstring ret;
-	ret = (jstring)env->CallStaticObjectMethod(cls, mid);
-	//static char r[512];
+	jclass		cls = env->FindClass(GetAndroidMainClassName());
+	jmethodID	mid = env->GetStaticMethodID(cls, "get_externaldir", "()Ljava/lang/String;");
+	jstring		ret = (jstring)env->CallStaticObjectMethod(cls, mid);
 	const char* ss	= env->GetStringUTFChars(ret,0);
-	//sprintf(r,"%s",ss);
 	std::string tmp = ss;
 	env->ReleaseStringUTFChars(ret, ss);
-	//std::string retString = std::string(r);
 	std::string retString = std::string(tmp);
 
 	if (!retString.empty())
@@ -243,6 +239,7 @@ std::string GetAppCachePath()
 
 void LaunchEmail(std::string subject, std::string content)
 {
+
 }
 
 void FireAchievement(std::string achievement)
@@ -1145,7 +1142,7 @@ int AppOSMessageGet(JNIEnv* env)
 	{
 		s_lastOSMessage = BaseApp::GetBaseApp()->GetOSMessages()->front();
 		BaseApp::GetBaseApp()->GetOSMessages()->pop_front();
-		//LogMsg("Preparing OS message %d, %s", s_lastOSMessage.m_type, s_lastOSMessage.m_string.c_str());
+		
 		return s_lastOSMessage.m_type;
 	}
 
@@ -1248,11 +1245,10 @@ void AppOnAccelerometerUpdate(JNIEnv* env, jobject jobj, jfloat x, jfloat y, jfl
 
 void ForceVideoUpdate()
 {
-	//g_globalBatcher.Flush();
-	assert(!"You really need this?  Add it.  It's supposed to force a gl flip or whatever now.. useful for some situations where you need to update mid-function call..");
+
 }
 
-bool IsDirectoryDateNewerThan(std::string dir, int day, int month, int year)
+/*bool IsDirectoryDateNewerThan(std::string dir, int day, int month, int year)
 {
 	struct stat st;
 	int ierr = stat (dir.c_str(), &st);
@@ -1280,4 +1276,4 @@ bool IsDirectoryDateNewerThan(std::string dir, int day, int month, int year)
 		return true;
 
 	return true;
-}
+}*/
