@@ -17,6 +17,9 @@ All platform can play music and sound easily
 (e.)
 GLSL shading language full control
 
+(f.)
+OGLES1/OGLES2 simulator on Win32
+
 2.
 Take care of carriage return in linux system
 
