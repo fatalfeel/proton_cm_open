@@ -44,14 +44,16 @@ Win32 OGLES1 and OGLES2 are using different libEGL.dll
 please run update_OGLES1.bat or update_OGLES2.bat
 the .bat file will copy correct libEGL.dll
 
-8. AngelProject is Win32 OGLES2 simulator
+8. AngleProject is a win32 OGLES2 simulator
 git clone https://chromium.googlesource.com/angle/angle
 Revision: cc4ec64cda54f4b138f8d16ce0fe40b8fcedb459
 Date: 2013/9/24 Am 02:57:10
 
-Build libGLESv2.dll enable instruction set with SSE(not SSE2)
+Preinstall VS2010 and DirectX SDK (June 2010)
+Set DirectX SDK include and library to VS2010
+Set /arch:SSE(not SSE2) to enable enhanced instruction set
 
-9. AngelProject bug fixed
+9. AngleProject bug fixed
 //edit ~/src/libEGL/Surface.cpp
 bool Surface::resizeSwapChain(int backbufferWidth, int backbufferHeight)
 {
@@ -80,5 +82,5 @@ bool Surface::resizeSwapChain(int backbufferWidth, int backbufferHeight)
     return true;
 }
 
-10. AngelProject bug fixed download
+10. AngleProject bug fixed download
 http://www.mediafire.com/file/n81r28nym4mqjhn/AngleGLes2.rar
