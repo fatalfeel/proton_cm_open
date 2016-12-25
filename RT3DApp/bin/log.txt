@@ -1,9 +1,9 @@
 AppManualRotation set to 1
-GL Version = 4.5.0 NVIDIA 368.81
+GL Version = OpenGL ES 2.0 (ANGLE 2.0.0.2015)
 
-GL Vendor = NVIDIA Corporation
+GL Vendor = Google Inc.
 
-GL Renderer = GeForce GTX 460/PCIe/SSE2
+GL Renderer = ANGLE (NVIDIA GeForce GTX 460 Direct3D9 vs_3_0 ps_3_0)
 
 Save path is 
 initting irrlicht
@@ -28,6 +28,8 @@ Proton open file C:\proton_cm_open\RT3DApp\bin\game/ar_up_32.png OK
 Proton open file C:\proton_cm_open\RT3DApp\bin\game/ar_dn_32.png OK
 Proton open file C:\proton_cm_open\RT3DApp\bin\game/ar_lt_32.png OK
 Proton open file C:\proton_cm_open\RT3DApp\bin\game/ar_rt_32.png OK
+Entering background
+Entering foreground
 App shutting down from getting the X clicked
 Entering background
 Killing sound cache

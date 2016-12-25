@@ -17,15 +17,15 @@ If debug c++ in Android, please set
 (b) the android phone also need unlock s-on to s-off
 
 4.
-Enable or disable C_GL_MODE of IrrCompileConfig.h
+Predefined C_GL_MODE of IrrCompileConfig.h
 (a) Win32 and MacOs Enable C_GL_MODE
--- only one of 3 options can choice
+-- only one of three options can be chosen
 #define _IRR_COMPILE_WITH_OGLES1_
 #define _IRR_COMPILE_WITH_OGLES2_
 #define _IRR_COMPILE_WITH_OPENGL_
 
 (b) Ios and Android Disable C_GL_MODE
--- only one of 2 options can choice
+-- only one of two options can be chosen
 #define _IRR_COMPILE_WITH_OGLES1_
 #define _IRR_COMPILE_WITH_OGLES2_
 

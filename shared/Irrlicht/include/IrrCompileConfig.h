@@ -100,19 +100,19 @@
 	#define	_IRR_COMPILE_WITH_WINDOWS_DEVICE_
 	
 	#ifdef _WIN32
-		//one of 3 options can choice
+		//select one option
 		//#define _IRR_COMPILE_WITH_OGLES1_
 		#define _IRR_COMPILE_WITH_OGLES2_
 		//#define _IRR_COMPILE_WITH_OPENGL_
 	#else
+		/*MacOs*/
 		#define _IRR_COMPILE_WITH_OPENGL_
 	#endif
-
 #else
 	#define _IRR_IPHONE_PLATFORM_	//share with android setting
 	#define _IRR_COMPILE_WITH_IPHONE_DEVICE_
 	
-	//one of 2 options can choice
+	//select one option
 	//#define _IRR_COMPILE_WITH_OGLES1_
 	#define _IRR_COMPILE_WITH_OGLES2_
 #endif
