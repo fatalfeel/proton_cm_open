@@ -29,11 +29,11 @@ Preinstall DirectX SDK (June 2010) in Win32, libGLESv2.dll depends on DirectX li
 3.
 First run need to do
 
-On Win32 or Android --->
+(a)Win32 or Android --->
 
 xxxxxx/media/update_media.bat
 
-On MacOs or Ios --->
+(b)MacOs or Ios --->
 
 chmod 777 xxxxxx/media/update_media.sh
 
