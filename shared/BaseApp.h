@@ -327,11 +327,6 @@ public:
 	boost::signal<void (VariantList*)>	m_sig_joypad_events; //only used for the android Moga game controller implementation
 	boost::signal<void (VariantList*)>	m_sig_native_input_state_changed; //first part is a uint32 that is 1 if input box is open, 0 if closed.  Useful for turning off WASD while inputting a name on desktops
 
-	deque<OSMessage>* GetOSMessages() 
-	{
-		return &m_OSMessages;
-	}
-	
 	bool GetManualRotationMode();
 	void SetManualRotationMode(bool bRotation); //if true, we manually rotate our GL and coordinates for the screen.
 	
@@ -373,6 +368,7 @@ public:
 	bool GetCheatMode() {return m_bCheatMode;}
 	void SetVideoMode(int width, int height, bool bFullScreen, float aspectRatio = 0) /*aspectRatio should be 0 to ignore */;
 	
+	deque<OSMessage>* GetOSMessages();
 	void AddOSMessage(OSMessage &m);
 	void KillOSMessagesByType(OSMessage::eMessageType type);
 

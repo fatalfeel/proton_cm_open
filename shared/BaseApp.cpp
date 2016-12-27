@@ -306,6 +306,11 @@ void BaseApp::OnMessage(Message &m)
 	}
 }
 
+deque<OSMessage>* BaseApp::GetOSMessages()
+{
+	return &m_OSMessages;
+}
+
 void BaseApp::AddOSMessage( OSMessage &m )
 {
 	assert(IsBaseAppInitted() && "Base app should be initted before calling AddOSMessage");
