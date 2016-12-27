@@ -36,7 +36,7 @@ $(LOCAL_PATH)/$(SHARED)/Irrlicht/source/jpeglib \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/include \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/extensions \
-$(LOCAL_PATH)/$(SHARED)/cocos2dx/kazmath\include \
+$(LOCAL_PATH)/$(SHARED)/cocos2dx/kazmath/include \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/platform \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/platform/android
                 
@@ -343,7 +343,7 @@ $(LOCAL_PATH)/$(SHARED)/Irrlicht/source/jpeglib \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/include \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/extensions \
-$(LOCAL_PATH)/$(SHARED)/cocos2dx/kazmath\include \
+$(LOCAL_PATH)/$(SHARED)/cocos2dx/kazmath/include \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/platform \
 $(LOCAL_PATH)/$(SHARED)/cocos2dx/platform/android
 
