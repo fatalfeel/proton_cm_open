@@ -22,9 +22,9 @@ OGLES1/OGLES2 simulator on Win32
 
 2.
 
-Preinstall DirectX SDK (June 2010) in Win32, libGLESv2.dll depends on sdk library
+Before download take care of carriage return in source files
 
-Take care of carriage return in source files
+Preinstall DirectX SDK (June 2010) in Win32, libGLESv2.dll depends on DirectX library
 
 3.
 First run need to do
