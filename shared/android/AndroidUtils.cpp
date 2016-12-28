@@ -87,10 +87,10 @@ JNIEnv* GetJavaEnv()
 
 int GetPrimaryGLX() 
 {
-
 	return g_winVideoScreenX;
 }
-int GetPrimaryGLY() 
+
+int GetPrimaryGLY()
 {
 	return g_winVideoScreenY;
 }	
