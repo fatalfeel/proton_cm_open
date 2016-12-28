@@ -418,7 +418,8 @@ $(IRRBULLET)/gimpactmeshshape.cpp $(IRRBULLET)/irrbullet.cpp $(IRRBULLET)/irrbul
 $(IRRBULLET)/physicsdebug.cpp $(IRRBULLET)/raycastvehicle.cpp $(IRRBULLET)/rigidbody.cpp $(IRRBULLET)/softbody.cpp $(IRRBULLET)/sphereshape.cpp \
 $(IRRBULLET)/trianglemeshshape.cpp \
 \
-$(APP)/App.cpp $(APP)/GUI/MainMenu.cpp $(APP)/GUI/PhysicsHelloMenu.cpp $(APP)/GUI/HelloWorldScene.cpp \
+$(APP)/App.cpp $(APP)/GUI/MainMenu.cpp \
+$(APP)/GUI/PhysicsHelloMenu.cpp $(APP)/GUI/HelloWorldScene.cpp \
 $(APP)/Component/EventControlComponent.cpp
 
 LOCAL_STATIC_LIBRARIES := libcocos2dx libbullet
