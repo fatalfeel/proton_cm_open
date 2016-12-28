@@ -22,6 +22,7 @@ ifeq ($(APP_DEBUG),0)
 else
 	LOCAL_CFLAGS := -DANDROID_NDK -DBUILD_ANDROID -DGC_BUILD_ANDROID -D_DEBUG -DHAVE_NEON=1 -mfpu=neon -mfloat-abi=softfp
 	LOCAL_CPPFLAGS := -DGC_BUILD_C -DANDROID_NDK -DBUILD_ANDROID -D_DEBUG -DHAVE_NEON=1 -mfpu=neon -mfloat-abi=softfp
+	LOCAL_STRIP_MODULE := false
 endif
 
 LOCAL_C_INCLUDES := \
@@ -152,6 +153,7 @@ ifeq ($(APP_DEBUG),0)
 else
 	LOCAL_CFLAGS := -DANDROID_NDK -DBUILD_ANDROID -DGC_BUILD_ANDROID -D_DEBUG -D_IRR_STATIC_LIB_ -DHAVE_NEON=1 -mfpu=neon -mfloat-abi=softfp
 	LOCAL_CPPFLAGS := -DGC_BUILD_C -DANDROID_NDK -DBUILD_ANDROID -D_DEBUG -D_IRR_STATIC_LIB_ -DHAVE_NEON=1 -mfpu=neon -mfloat-abi=softfp
+	LOCAL_STRIP_MODULE := false
 endif
 
 LOCAL_C_INCLUDES := \
@@ -246,7 +248,6 @@ $(APP)/GUI/HelloWorldScene.cpp $(APP)/GUI/GuiScroll.cpp \
 $(APP)/Component/EventControlComponent.cpp
 
 LOCAL_STATIC_LIBRARIES := libcocos2dx
-
 LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -ldl -llog -lz
 
 include $(BUILD_SHARED_LIBRARY)
