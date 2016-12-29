@@ -22,9 +22,9 @@
 	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>
 	#include <GL/gl.h>
-#ifdef _MSC_VER
-	#pragma comment(lib, "OpenGL32.lib")
-#endif
+	//#ifdef _MSC_VER
+	//	#pragma comment(lib, "OpenGL32.lib")
+	//#endif
 #elif defined(_IRR_OSX_PLATFORM_)
 	#include <OpenGL/gl.h>
 #elif defined(_IRR_COMPILE_WITH_SDL_DEVICE_)
