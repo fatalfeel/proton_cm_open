@@ -289,6 +289,7 @@
 				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\Irrlicht\include;..\..\shared\Irrlicht\source\libpng;..\..\shared\Irrlicht\source\jpeglib;..\..\shared\libxml;..\..\shared\util\zlib;..\..\shared\pthreadwin;..\..\shared\cocos2dx;..\..\shared\cocos2dx\include;..\..\shared\cocos2dx\platform;..\..\shared\cocos2dx\platform\win32;..\..\shared\cocos2dx\extensions;..\..\shared\cocos2dx\kazmath\include;..\..\shared\dep32;..\..\shared\dep32\ogles1\include;..\..\shared\dep32\ogles2\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;BOOST_ALL_NO_LIB;_USE_32BIT_TIME_T;C_GL_MODE;_IRR_STATIC_LIB_;PTW32_STATIC_LIB"
 				RuntimeLibrary="0"
+				BufferSecurityCheck="false"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="PlatformPrecomp.h"
@@ -316,89 +317,6 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug WebOS|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="..\source;..\..\shared;..\..\shared\win\;..\..\shared\util\boost;&quot;..\..\shared\ClanLib-2.0\Sources&quot;;..\..\shared\win\include;..\..\shared\FliteTTS\include;..\..\shared\Irrlicht\include;&quot;$(PalmPDK)\include\SDL&quot;;&quot;$(PalmPDK)\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;BOOST_ALL_NO_LIB;_USE_32BIT_TIME_T;RT_WEBOS;_IRR_STATIC_LIB_"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				BufferSecurityCheck="true"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="PlatformPrecomp.h"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="SDLmain.lib SDL.lib SDL_image.lib SDL_net.lib SDL_mixer.lib ws2_32.lib libpdl.lib dgles.lib zdll.lib wsock32.lib"
-				OutputFile="../bin/winRT3DApp.exe"
-				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\shared\win\lib;..\..\shared\win\fmod\api\lib;..\..\shared\win\audiere\lib;&quot;$(PalmPDK)\host\lib&quot;"
-				IgnoreDefaultLibraryNames="msvcrt.lib"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/RT3DApp.pdb"
-				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
@@ -693,14 +611,6 @@
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug WebOS|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\shared\PlatformPrecomp.h"
@@ -746,14 +656,6 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release GL|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug WebOS|Win32"
 						ExcludedFromBuild="true"
 						>
 						<Tool
@@ -806,14 +708,6 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release GL|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug WebOS|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -931,14 +825,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\util\boost\libs\signals\src\named_slot_map.cpp"
@@ -969,14 +855,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1019,14 +897,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\util\boost\libs\signals\src\slot.cpp"
@@ -1063,14 +933,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\util\boost\libs\signals\src\trackable.cpp"
@@ -1101,14 +963,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1227,14 +1081,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\util\unzip\ioapi.h"
@@ -1289,14 +1135,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -1534,14 +1372,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\ClanLib-2.0\Sources\Core\Math\mat3.cpp"
@@ -1572,14 +1402,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -1622,14 +1444,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\ClanLib-2.0\Sources\Core\Math\rect.cpp"
@@ -1660,14 +1474,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -1710,14 +1516,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\ClanLib-2.0\Sources\Core\Math\vec3.cpp"
@@ -1754,14 +1552,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\ClanLib-2.0\Sources\Core\Math\vec4.cpp"
@@ -1792,14 +1582,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -2128,14 +1910,6 @@
 							Name="VCCLCompilerTool"
 						/>
 					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug WebOS|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\shared\Audio\AudioManagerFMOD.h"
@@ -2166,14 +1940,6 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release GL|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug WebOS|Win32"
 						ExcludedFromBuild="true"
 						>
 						<Tool
@@ -5400,14 +5166,6 @@
 							Name="VCCLCompilerTool"
 						/>
 					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug WebOS|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\shared\android\AndroidUtils.h"
@@ -5510,14 +5268,6 @@
 									Name="VCCLCompilerTool"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								ExcludedFromBuild="true"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-								/>
-							</FileConfiguration>
 						</File>
 					</Filter>
 				</Filter>
@@ -5558,14 +5308,6 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release GL|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug WebOS|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -6379,14 +6121,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CAnimatedMeshMD2.h"
@@ -6421,14 +6155,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -6475,14 +6201,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CAttributes.h"
@@ -6517,14 +6235,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -6571,14 +6281,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CColorConverter.h"
@@ -6613,14 +6315,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -6667,14 +6361,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CDefaultSceneNodeFactory.h"
@@ -6709,14 +6395,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -6763,14 +6441,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CDummyTransformationSceneNode.h"
@@ -6805,14 +6475,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -6859,14 +6521,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CFPSCounter.h"
@@ -6901,14 +6555,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -6955,14 +6601,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CLightSceneNode.h"
@@ -6997,14 +6635,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7051,14 +6681,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CMemoryFile.h"
@@ -7093,14 +6715,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7147,14 +6761,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CMeshManipulator.h"
@@ -7189,14 +6795,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7243,14 +6841,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CMetaTriangleSelector.h"
@@ -7285,14 +6875,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7339,14 +6921,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\COctreeSceneNode.h"
@@ -7381,14 +6955,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7435,14 +7001,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\COSOperator.h"
@@ -7477,14 +7035,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7531,14 +7081,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CTextSceneNode.h"
@@ -7573,14 +7115,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7627,14 +7161,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CTriangleSelector.h"
@@ -7669,14 +7195,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7723,14 +7241,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\CVolumeLightSceneNode.h"
@@ -7765,14 +7275,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7831,14 +7333,6 @@
 								UsePrecompiledHeader="0"
 							/>
 						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
 					</File>
 					<File
 						RelativePath="..\..\shared\Irrlicht\source\irrXML.cpp"
@@ -7870,15 +7364,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
-							ExcludedFromBuild="true"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -7919,14 +7404,6 @@
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release GL|Win32"
-							>
-							<Tool
-								Name="VCCLCompilerTool"
-								UsePrecompiledHeader="0"
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Debug WebOS|Win32"
 							>
 							<Tool
 								Name="VCCLCompilerTool"
@@ -8029,15 +7506,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLDriver.h"
@@ -8067,14 +7535,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8116,15 +7576,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLExtensionHandler.h"
@@ -8159,14 +7610,6 @@
 										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLMaterialRenderer.h"
@@ -8196,14 +7639,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8245,15 +7680,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLNormalMapRenderer.h"
@@ -8283,14 +7709,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8332,15 +7750,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLParallaxMapRenderer.h"
@@ -8370,14 +7779,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8419,15 +7820,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLShaderMaterialRenderer.h"
@@ -8457,14 +7849,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8506,15 +7890,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLSLMaterialRenderer.h"
@@ -8544,14 +7919,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8593,15 +7960,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COpenGLTexture.h"
@@ -8631,14 +7989,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									ExcludedFromBuild="true"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8684,14 +8034,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COGLESDriver.h"
@@ -8709,13 +8051,6 @@
 									<Tool
 										Name="VCCLCompilerTool"
 										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
 									/>
 								</FileConfiguration>
 							</File>
@@ -8754,14 +8089,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COGLESExtensionHandler.h"
@@ -8781,13 +8108,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\COGLESMaterialRenderer.h"
@@ -8801,13 +8121,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCustomBuildTool"
@@ -8852,13 +8165,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCustomBuildTool"
-									/>
-								</FileConfiguration>
 							</File>
 						</Filter>
 						<Filter
@@ -8893,14 +8199,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -9260,14 +8558,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\C3DSMeshFileLoader.h"
@@ -9302,14 +8592,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -9356,14 +8638,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CBSPMeshFileLoader.h"
@@ -9404,14 +8678,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CColladaFileLoader.h"
@@ -9446,14 +8712,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -9572,14 +8830,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CMD2MeshFileLoader.h"
@@ -9620,14 +8870,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CMD3MeshFileLoader.h"
@@ -9662,14 +8904,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -9720,14 +8954,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CMY3DMeshFileLoader.h"
@@ -9762,14 +8988,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -9864,14 +9082,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CQ3LevelMesh.h"
@@ -9906,14 +9116,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -9984,14 +9186,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CXMeshFileLoader.h"
@@ -10030,14 +9224,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10084,14 +9270,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CParticleAttractionAffector.h"
@@ -10126,14 +9304,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10180,14 +9350,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CParticleCylinderEmitter.h"
@@ -10222,14 +9384,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10276,14 +9430,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CParticleGravityAffector.h"
@@ -10318,14 +9464,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10372,14 +9510,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CParticlePointEmitter.h"
@@ -10414,14 +9544,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10468,14 +9590,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CParticleRotationAffector.h"
@@ -10510,14 +9624,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10564,14 +9670,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CParticleSphereEmitter.h"
@@ -10606,14 +9704,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10666,14 +9756,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CIrrDeviceIPhone.h"
@@ -10681,13 +9763,6 @@
 							<FileConfiguration
 								Name="Debug GL|Win32"
 								ExcludedFromBuild="true"
-								>
-								<Tool
-									Name="VCCustomBuildTool"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCustomBuildTool"
@@ -10729,14 +9804,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CIrrDeviceStub.h"
@@ -10772,15 +9839,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								ExcludedFromBuild="true"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10831,14 +9889,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CAnimatedMeshSceneNode.h"
@@ -10873,14 +9923,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -10927,14 +9969,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CCubeSceneNode.h"
@@ -10969,14 +10003,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11047,14 +10073,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CSceneManager.h"
@@ -11089,14 +10107,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11143,14 +10153,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CSceneNodeAnimatorCollisionResponse.h"
@@ -11185,14 +10187,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11239,14 +10233,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CSceneNodeAnimatorFlyCircle.h"
@@ -11281,14 +10267,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11335,14 +10313,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CSceneNodeAnimatorFollowSpline.h"
@@ -11377,14 +10347,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11431,14 +10393,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CSceneNodeAnimatorTexture.h"
@@ -11473,14 +10427,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11531,14 +10477,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CImage.h"
@@ -11573,14 +10511,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11627,14 +10557,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CImageLoaderJPG.h"
@@ -11669,14 +10591,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11723,14 +10637,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CImageLoaderRGB.h"
@@ -11765,14 +10671,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -11826,14 +10724,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jcapistd.c"
@@ -11864,14 +10754,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -11914,14 +10796,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jccolor.c"
@@ -11952,14 +10826,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12002,14 +10868,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jchuff.c"
@@ -12040,14 +10898,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12094,14 +10944,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jcmainct.c"
@@ -12132,14 +10974,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12182,14 +11016,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jcmaster.c"
@@ -12226,14 +11052,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jcomapi.c"
@@ -12264,14 +11082,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12318,14 +11128,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jcphuff.c"
@@ -12356,14 +11158,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12406,14 +11200,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jcsample.c"
@@ -12444,14 +11230,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12494,14 +11272,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdapimin.c"
@@ -12532,14 +11302,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12582,14 +11344,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdatadst.c"
@@ -12620,14 +11374,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12670,14 +11416,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdcoefct.c"
@@ -12714,14 +11452,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdcolor.c"
@@ -12752,14 +11482,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12806,14 +11528,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdhuff.c"
@@ -12844,14 +11558,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12898,14 +11604,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdmainct.c"
@@ -12936,14 +11634,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -12986,14 +11676,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdmaster.c"
@@ -13024,14 +11706,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13074,14 +11748,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdphuff.c"
@@ -13112,14 +11778,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13162,14 +11820,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jdsample.c"
@@ -13200,14 +11850,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13250,14 +11892,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jerror.c"
@@ -13288,14 +11922,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13342,14 +11968,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jfdctfst.c"
@@ -13380,14 +11998,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13430,14 +12040,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jidctflt.c"
@@ -13468,14 +12070,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13518,14 +12112,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jidctint.c"
@@ -13562,14 +12148,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jidctred.c"
@@ -13600,14 +12178,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13654,14 +12224,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jmemnobs.c"
@@ -13692,14 +12254,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13758,14 +12312,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jquant2.c"
@@ -13802,14 +12348,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\jpeglib\jutils.c"
@@ -13840,14 +12378,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -13898,14 +12428,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\png.h"
@@ -13950,14 +12472,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\pnggccrd.c"
@@ -13988,14 +12502,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -14038,14 +12544,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\pngmem.c"
@@ -14076,14 +12574,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -14126,14 +12616,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\pngread.c"
@@ -14164,14 +12646,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -14214,14 +12688,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\pngrtran.c"
@@ -14252,14 +12718,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -14302,14 +12760,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\pngset.c"
@@ -14340,14 +12790,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -14390,14 +12832,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\pngvcrd.c"
@@ -14434,14 +12868,6 @@
 										UsePrecompiledHeader="0"
 									/>
 								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
 							</File>
 							<File
 								RelativePath="..\..\shared\Irrlicht\source\libpng\pngwio.c"
@@ -14472,14 +12898,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -14536,14 +12954,6 @@
 								</FileConfiguration>
 								<FileConfiguration
 									Name="Release GL|Win32"
-									>
-									<Tool
-										Name="VCCLCompilerTool"
-										UsePrecompiledHeader="0"
-									/>
-								</FileConfiguration>
-								<FileConfiguration
-									Name="Debug WebOS|Win32"
 									>
 									<Tool
 										Name="VCCLCompilerTool"
@@ -14611,14 +13021,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CFileList.h"
@@ -14653,14 +13055,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -14707,14 +13101,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CLimitReadFile.h"
@@ -14749,14 +13135,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -14827,14 +13205,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CReadFile.h"
@@ -14875,14 +13245,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CWriteFile.h"
@@ -14917,14 +13279,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -14975,14 +13329,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CXMLWriter.h"
@@ -15023,14 +13369,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CZBuffer.h"
@@ -15065,14 +13403,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -15123,14 +13453,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CTerrainSceneNode.h"
@@ -15165,14 +13487,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -15223,14 +13537,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CCameraSceneNode.h"
@@ -15265,14 +13571,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -15323,14 +13621,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CSkyBoxSceneNode.h"
@@ -15371,14 +13661,6 @@
 									UsePrecompiledHeader="0"
 								/>
 							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\shared\Irrlicht\source\CSkyDomeSceneNode.h"
@@ -15413,14 +13695,6 @@
 							</FileConfiguration>
 							<FileConfiguration
 								Name="Release GL|Win32"
-								>
-								<Tool
-									Name="VCCLCompilerTool"
-									UsePrecompiledHeader="0"
-								/>
-							</FileConfiguration>
-							<FileConfiguration
-								Name="Debug WebOS|Win32"
 								>
 								<Tool
 									Name="VCCLCompilerTool"
@@ -16229,14 +14503,6 @@
 					<FileConfiguration
 						Name="Release GL|Win32"
 						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug WebOS|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
